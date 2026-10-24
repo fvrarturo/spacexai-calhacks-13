@@ -16,6 +16,8 @@ Our Cal Hacks 13.0 project for the SpaceXAI **Make it Legendary** challenge.
 
 The full starter pack is in [`docs/`](docs/).
 
+The research for the idea is in [`research/`](research/00_INDEX.md). Start with [`research/12_idea_bank.md`](research/12_idea_bank.md), the ranked ideas with sponsor fit, data and demo plans. [`research/08-ideas.md`](research/08-ideas.md) is a second, shorter shortlist, and [`research/00-brief.md`](research/00-brief.md) has the challenge constraints. [`research/00_INDEX.md`](research/00_INDEX.md) lists every research file.
+
 ## Team
 
 - Arturo Favara
