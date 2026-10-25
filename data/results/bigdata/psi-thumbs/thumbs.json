@@ -1,0 +1,82 @@
+[
+ {
+  "file": "dsi-init4-cells-dark.png",
+  "key": "DSI/Data/INIT activity 4/INIT activity 4/DA_TC_DSI_SEQ1_ACTIVITE4_HR2_6 - LOADED -PS/DSI_SEQ1_ACTIVITE_4_HR2_958213939_1.bmp",
+  "label": "INIT-4  V=1 um/s  d=53.3 mm  t=14.8 h",
+  "bytes": 48319,
+  "lambda_um": 410.5,
+  "prom_db": 21.9,
+  "rel_fwhm": 0.325,
+  "aniso2": 0.019
+ },
+ {
+  "file": "dsi-init4-cells-grey.png",
+  "key": "DSI/Data/INIT activity 4/INIT activity 4/DA_TC_DSI_SEQ1_ACTIVITE4_HR2_8 - LOADED -PS/DSI_SEQ1_ACTIVITE_4_HR2_958142667_1.bmp",
+  "label": "INIT-4  V=1 um/s  d=50.2 mm  t=13.9 h",
+  "bytes": 54190,
+  "lambda_um": 410.8,
+  "prom_db": 12.3,
+  "rel_fwhm": 0.209,
+  "aniso2": 0.107
+ },
+ {
+  "file": "dsi-s1-2-fast.png",
+  "key": "DSI/Data/S1 activity 2/S1 activity 2/DA_TC_DSI_SEQ2_ACTIVITE02_HR2_2/DSI_SEQ2_ACTIVITE02_HR2_1016584800_1.bmp",
+  "label": "S1-2  V=12 um/s  d=51.8 mm  t=1.2 h",
+  "bytes": 42078,
+  "lambda_um": 223.2,
+  "prom_db": 10.7,
+  "rel_fwhm": 0.278,
+  "aniso2": 0.048
+ },
+ {
+  "file": "dsi-s2-4-cells.png",
+  "key": "DSI/Data/S2 activity 4/S2 activity 4/DA_TC_DSI_SEQ3_ACTIVITE04_HR2_2/DSI_SEQ3_ACTIVITE04_HR2_1286601592_1.bmp",
+  "label": "S2-4  V=1 um/s  d=34.7 mm  t=9.6 h",
+  "bytes": 46328,
+  "lambda_um": 759.5,
+  "prom_db": 16.0,
+  "rel_fwhm": 0.344,
+  "aniso2": 0.152
+ },
+ {
+  "file": "dsi-s2-11-cells.png",
+  "key": "DSI/Data/S2 activity 11/S2 activity 11/DA_TC_DSI_SEQ3_ACTIVITE11_HR2_3/DSI_SEQ3_ACTIVITE11_HR2_1301778024_1.bmp",
+  "label": "S2-11  V=0.5 um/s  d=51.4 mm  t=28.6 h",
+  "bytes": 45541,
+  "lambda_um": 658.2,
+  "prom_db": 17.7,
+  "rel_fwhm": 0.223,
+  "aniso2": 0.081
+ },
+ {
+  "file": "dsi-hd9-after-jump.png",
+  "key": "DSI/Data/HD activity 9/HD activity 9/DA_TC_DSI_SEQ5_ACTIVITE09_HR2_3/DSI_SEQ5_ACTIVITE09_HR2_1487713054_1.bmp",
+  "label": "HD-9  V=0.35->0.75 um/s  d=50.4 mm  t=31.4 h",
+  "bytes": 53589,
+  "lambda_um": 409.2,
+  "prom_db": 12.8,
+  "rel_fwhm": 0.185,
+  "aniso2": 0.027
+ },
+ {
+  "file": "dsi-hd9-planar-rejected.png",
+  "key": "DSI/Data/HD activity 9/HD activity 9/DA_TC_DSI_SEQ5_ACTIVITE09_HR2_3/DSI_SEQ5_ACTIVITE09_HR2_1485887671_1.bmp",
+  "label": "HD-9  V=0.35->0.75 um/s  d=11.7 mm  t=9.3 h",
+  "bytes": 47293,
+  "lambda_um": 931.5,
+  "prom_db": 5.8,
+  "rel_fwhm": 0.105,
+  "aniso2": 0.23
+ },
+ {
+  "file": "dsi-s1-1-fringe-rejected.png",
+  "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR2_3/DSI_SEQ2_ACTIVITE01_HR2_1014444761_1.bmp",
+  "label": "S1-1  V=6 um/s  d=36.0 mm  t=1.7 h",
+  "bytes": 53207,
+  "lambda_um": 714.4,
+  "prom_db": 10.6,
+  "rel_fwhm": 0.202,
+  "aniso2": 0.267
+ }
+]

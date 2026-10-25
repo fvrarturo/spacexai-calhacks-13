@@ -1,0 +1,21 @@
+{
+  "kind": "proposed architecture; illustrative engineering assumptions",
+  "capacity": {"power_w": 600, "heat_w": 400, "imagers": 1},
+  "processes": [
+    {"id":"protein","name":"Protein crystal growth","family":"Solution","power_w":80,"heat_w":60,"imagers":1,"vibration":"quiet","module":"Sealed, product-specific sterile fluid path","endpoint":"Size distribution, viscosity, biological function"},
+    {"id":"small","name":"Small-molecule crystallization","family":"Thermal / solution","power_w":180,"heat_w":130,"imagers":1,"vibration":"quiet","module":"Solvent-compatible sealed growth cell","endpoint":"Solid form, dissolution, stability"},
+    {"id":"cooling","name":"Cooling-material solidification","family":"Thermal","power_w":350,"heat_w":280,"imagers":1,"vibration":"quiet","module":"Gradient furnace and dedicated sample ampoule","endpoint":"Hysteresis, caloric response after cycling"},
+    {"id":"mof","name":"MOF membrane growth","family":"Solution","power_w":130,"heat_w":100,"imagers":1,"vibration":"quiet","module":"Precursor handling and substrate fixture","endpoint":"Selectivity, flux, adhesion, lifetime"},
+    {"id":"bijel","name":"Bijel mixing / formation","family":"Assembly","power_w":170,"heat_w":100,"imagers":1,"vibration":"active","module":"Multiphase mixer and fixation system","endpoint":"Connectivity, conversion, pressure drop"},
+    {"id":"photonic","name":"Photonic colloid assembly","family":"Assembly","power_w":100,"heat_w":70,"imagers":1,"vibration":"quiet","module":"Colloid cell and material-specific stabilization","endpoint":"Order, optical loss, retained structure"}
+  ],
+  "layers": [
+    {"name":"Telemetry, timestamps, batch records","state":"Share","detail":"Common event schema and data service. Product-specific acceptance logic stays with each recipe."},
+    {"name":"Power distribution and heat rejection","state":"Budget","detail":"Share the bus and radiator only within measured peak power, heat, transient and fault-isolation limits."},
+    {"name":"Imaging and metrology","state":"Schedule","detail":"Time-share when optics, field of view, cleanliness and sampling cadence are compatible. Critical simultaneous observations need separate instruments."},
+    {"name":"Growth cells and wetted paths","state":"Isolate","detail":"Separate chemistry, sterility and contamination boundaries. Similar process steps do not make fluid circuits interchangeable."},
+    {"name":"Furnaces, magnets and mixers","state":"Specialize","detail":"Material-specific ranges, gradients and field geometry. Characterize magnetic, vibration and thermal coupling before co-location."},
+    {"name":"Storage, return and qualification","state":"Conditional","detail":"Shared logistics require compatible preservation and hazard classes. Qualification remains specific to the material and application."}
+  ],
+  "limits": "Power and heat values are placeholder design loads, not sourced flight hardware specifications. This screening model is not flight qualification. A pass requires isolated cartridges and does not imply common fluids, chemistry, or shared internal equipment."
+}

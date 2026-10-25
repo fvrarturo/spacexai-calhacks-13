@@ -1,0 +1,5753 @@
+{
+ "id": "literature-map",
+ "tab": "network",
+ "title": "The literature no human can read: 50 years of microgravity process papers",
+ "question": "How much published work pairs microgravity or spaceflight with each foundry process, who writes it, and which partners does the record actually support?",
+ "headline": {
+  "value": "11",
+  "unit": "papers",
+  "text": "Of 4,532 papers pairing microgravity with a foundry process, just 11 concern crystallizing small molecules or drug ingredients in microgravity, and 10 of those are from 2024 or later. The pharma-crystal frontier is brand new."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "OpenAlex works API (title_and_abstract.search, 8 queries)",
+   "url": "https://api.openalex.org/works",
+   "license": "CC0",
+   "records": 4867,
+   "bytes": 17111462,
+   "accessed": "2026-10-24",
+   "notes": "4672 distinct works harvested across 8 queries (4532 in the six-topic union); fields id, doi, title, publication_year, type, cited_by_count, authorships (institutions, countries, raw affiliation strings). Plus 3 group_by calls (all works by year, space terms by year, solidification by year). Raw JSON cached outside the repo."
+  }
+ ],
+ "compute": {
+  "where": "local Mac (API work, stdlib Python)",
+  "partitions": [],
+  "job_ids": [],
+  "cpu_hours": 0.0,
+  "wall_minutes": 4.2,
+  "peak_storage_gb": 0.017,
+  "notes": "301 OpenAlex credits logged on the Mac IP (31 live requests, plus one 10-credit manual paging test); 0 on the Engaging IP. No API key. wall_minutes is the span from the first to the last live request (it includes probing pauses)."
+ },
+ "method": [
+  "Space terms: microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\" (a bare 'ISS' was avoided as ambiguous).",
+  "Each topic phrase set was ANDed with the space terms inside one OpenAlex title_and_abstract.search filter (boolean parsing verified in meta.x_query). In-space manufacturing was searched on its own.",
+  "All matching works were harvested (page 1 via cursor=*, pages 2+ via page=N, 200 per page), deduplicated by OpenAlex work id, and analysed locally.",
+  "Works per year per topic come from the harvested records; the union de-duplicates across the six topics. A plain group_by over all OpenAlex works gives the per-million normalisation.",
+  "Institutions were counted per distinct work (any author). Companies are institutions whose OpenAlex type is 'company'. Countries come from authorship countries.",
+  "Precision: a seeded random sample of 20 titles per topic (all 13 for MOF) was judged on- or off-topic. All 132 pharma hits were read and classified, and unclear abstracts were checked with free single-work lookups.",
+  "Partner check: case-insensitive regexes for each candidate organisation, matched against resolved institution names, and against raw affiliation strings for authorships with no resolved institution."
+ ],
+ "charts": [
+  {
+   "id": "lit-per-year",
+   "kind": "line",
+   "title": "Papers per year pairing microgravity/spaceflight with each foundry process",
+   "subtitle": "OpenAlex title+abstract keyword hits, 1965-2026 (2026 is partial)",
+   "x": {
+    "label": "Publication year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works/year",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Protein crystallization",
+     "points": [
+      [
+       1965,
+       0
+      ],
+      [
+       1966,
+       0
+      ],
+      [
+       1967,
+       0
+      ],
+      [
+       1968,
+       0
+      ],
+      [
+       1969,
+       0
+      ],
+      [
+       1970,
+       0
+      ],
+      [
+       1971,
+       0
+      ],
+      [
+       1972,
+       0
+      ],
+      [
+       1973,
+       0
+      ],
+      [
+       1974,
+       0
+      ],
+      [
+       1975,
+       0
+      ],
+      [
+       1976,
+       0
+      ],
+      [
+       1977,
+       0
+      ],
+      [
+       1978,
+       0
+      ],
+      [
+       1979,
+       0
+      ],
+      [
+       1980,
+       0
+      ],
+      [
+       1981,
+       0
+      ],
+      [
+       1982,
+       0
+      ],
+      [
+       1983,
+       0
+      ],
+      [
+       1984,
+       1
+      ],
+      [
+       1985,
+       2
+      ],
+      [
+       1986,
+       3
+      ],
+      [
+       1987,
+       4
+      ],
+      [
+       1988,
+       8
+      ],
+      [
+       1989,
+       5
+      ],
+      [
+       1990,
+       7
+      ],
+      [
+       1991,
+       24
+      ],
+      [
+       1992,
+       21
+      ],
+      [
+       1993,
+       13
+      ],
+      [
+       1994,
+       21
+      ],
+      [
+       1995,
+       14
+      ],
+      [
+       1996,
+       25
+      ],
+      [
+       1997,
+       27
+      ],
+      [
+       1998,
+       17
+      ],
+      [
+       1999,
+       23
+      ],
+      [
+       2000,
+       27
+      ],
+      [
+       2001,
+       22
+      ],
+      [
+       2002,
+       39
+      ],
+      [
+       2003,
+       27
+      ],
+      [
+       2004,
+       16
+      ],
+      [
+       2005,
+       9
+      ],
+      [
+       2006,
+       14
+      ],
+      [
+       2007,
+       12
+      ],
+      [
+       2008,
+       10
+      ],
+      [
+       2009,
+       5
+      ],
+      [
+       2010,
+       9
+      ],
+      [
+       2011,
+       12
+      ],
+      [
+       2012,
+       19
+      ],
+      [
+       2013,
+       10
+      ],
+      [
+       2014,
+       6
+      ],
+      [
+       2015,
+       8
+      ],
+      [
+       2016,
+       7
+      ],
+      [
+       2017,
+       11
+      ],
+      [
+       2018,
+       14
+      ],
+      [
+       2019,
+       22
+      ],
+      [
+       2020,
+       11
+      ],
+      [
+       2021,
+       5
+      ],
+      [
+       2022,
+       11
+      ],
+      [
+       2023,
+       7
+      ],
+      [
+       2024,
+       6
+      ],
+      [
+       2025,
+       11
+      ],
+      [
+       2026,
+       8
+      ]
+     ],
+     "color": "orange"
+    },
+    {
+     "name": "Pharmaceutical crystallization / polymorph",
+     "points": [
+      [
+       1965,
+       0
+      ],
+      [
+       1966,
+       0
+      ],
+      [
+       1967,
+       0
+      ],
+      [
+       1968,
+       0
+      ],
+      [
+       1969,
+       0
+      ],
+      [
+       1970,
+       0
+      ],
+      [
+       1971,
+       0
+      ],
+      [
+       1972,
+       0
+      ],
+      [
+       1973,
+       0
+      ],
+      [
+       1974,
+       0
+      ],
+      [
+       1975,
+       0
+      ],
+      [
+       1976,
+       0
+      ],
+      [
+       1977,
+       0
+      ],
+      [
+       1978,
+       0
+      ],
+      [
+       1979,
+       0
+      ],
+      [
+       1980,
+       0
+      ],
+      [
+       1981,
+       0
+      ],
+      [
+       1982,
+       0
+      ],
+      [
+       1983,
+       0
+      ],
+      [
+       1984,
+       0
+      ],
+      [
+       1985,
+       0
+      ],
+      [
+       1986,
+       0
+      ],
+      [
+       1987,
+       1
+      ],
+      [
+       1988,
+       0
+      ],
+      [
+       1989,
+       0
+      ],
+      [
+       1990,
+       1
+      ],
+      [
+       1991,
+       2
+      ],
+      [
+       1992,
+       5
+      ],
+      [
+       1993,
+       0
+      ],
+      [
+       1994,
+       1
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       7
+      ],
+      [
+       1997,
+       2
+      ],
+      [
+       1998,
+       4
+      ],
+      [
+       1999,
+       4
+      ],
+      [
+       2000,
+       3
+      ],
+      [
+       2001,
+       6
+      ],
+      [
+       2002,
+       1
+      ],
+      [
+       2003,
+       6
+      ],
+      [
+       2004,
+       1
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       2
+      ],
+      [
+       2007,
+       3
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       1
+      ],
+      [
+       2010,
+       1
+      ],
+      [
+       2011,
+       1
+      ],
+      [
+       2012,
+       2
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       3
+      ],
+      [
+       2015,
+       1
+      ],
+      [
+       2016,
+       1
+      ],
+      [
+       2017,
+       7
+      ],
+      [
+       2018,
+       4
+      ],
+      [
+       2019,
+       5
+      ],
+      [
+       2020,
+       4
+      ],
+      [
+       2021,
+       1
+      ],
+      [
+       2022,
+       5
+      ],
+      [
+       2023,
+       6
+      ],
+      [
+       2024,
+       4
+      ],
+      [
+       2025,
+       12
+      ],
+      [
+       2026,
+       11
+      ]
+     ],
+     "color": "violet"
+    },
+    {
+     "name": "Solidification / alloy",
+     "points": [
+      [
+       1965,
+       1
+      ],
+      [
+       1966,
+       0
+      ],
+      [
+       1967,
+       0
+      ],
+      [
+       1968,
+       0
+      ],
+      [
+       1969,
+       1
+      ],
+      [
+       1970,
+       3
+      ],
+      [
+       1971,
+       1
+      ],
+      [
+       1972,
+       0
+      ],
+      [
+       1973,
+       5
+      ],
+      [
+       1974,
+       8
+      ],
+      [
+       1975,
+       3
+      ],
+      [
+       1976,
+       4
+      ],
+      [
+       1977,
+       4
+      ],
+      [
+       1978,
+       10
+      ],
+      [
+       1979,
+       7
+      ],
+      [
+       1980,
+       7
+      ],
+      [
+       1981,
+       17
+      ],
+      [
+       1982,
+       13
+      ],
+      [
+       1983,
+       6
+      ],
+      [
+       1984,
+       20
+      ],
+      [
+       1985,
+       28
+      ],
+      [
+       1986,
+       49
+      ],
+      [
+       1987,
+       30
+      ],
+      [
+       1988,
+       47
+      ],
+      [
+       1989,
+       19
+      ],
+      [
+       1990,
+       31
+      ],
+      [
+       1991,
+       46
+      ],
+      [
+       1992,
+       45
+      ],
+      [
+       1993,
+       56
+      ],
+      [
+       1994,
+       47
+      ],
+      [
+       1995,
+       48
+      ],
+      [
+       1996,
+       75
+      ],
+      [
+       1997,
+       61
+      ],
+      [
+       1998,
+       72
+      ],
+      [
+       1999,
+       89
+      ],
+      [
+       2000,
+       92
+      ],
+      [
+       2001,
+       110
+      ],
+      [
+       2002,
+       76
+      ],
+      [
+       2003,
+       83
+      ],
+      [
+       2004,
+       63
+      ],
+      [
+       2005,
+       75
+      ],
+      [
+       2006,
+       72
+      ],
+      [
+       2007,
+       44
+      ],
+      [
+       2008,
+       58
+      ],
+      [
+       2009,
+       44
+      ],
+      [
+       2010,
+       37
+      ],
+      [
+       2011,
+       61
+      ],
+      [
+       2012,
+       64
+      ],
+      [
+       2013,
+       40
+      ],
+      [
+       2014,
+       52
+      ],
+      [
+       2015,
+       44
+      ],
+      [
+       2016,
+       78
+      ],
+      [
+       2017,
+       66
+      ],
+      [
+       2018,
+       70
+      ],
+      [
+       2019,
+       91
+      ],
+      [
+       2020,
+       55
+      ],
+      [
+       2021,
+       60
+      ],
+      [
+       2022,
+       61
+      ],
+      [
+       2023,
+       68
+      ],
+      [
+       2024,
+       60
+      ],
+      [
+       2025,
+       90
+      ],
+      [
+       2026,
+       86
+      ]
+     ],
+     "color": "grey"
+    },
+    {
+     "name": "Colloid / photonic crystal",
+     "points": [
+      [
+       1965,
+       0
+      ],
+      [
+       1966,
+       1
+      ],
+      [
+       1967,
+       0
+      ],
+      [
+       1968,
+       0
+      ],
+      [
+       1969,
+       0
+      ],
+      [
+       1970,
+       0
+      ],
+      [
+       1971,
+       0
+      ],
+      [
+       1972,
+       2
+      ],
+      [
+       1973,
+       0
+      ],
+      [
+       1974,
+       0
+      ],
+      [
+       1975,
+       0
+      ],
+      [
+       1976,
+       0
+      ],
+      [
+       1977,
+       0
+      ],
+      [
+       1978,
+       0
+      ],
+      [
+       1979,
+       1
+      ],
+      [
+       1980,
+       0
+      ],
+      [
+       1981,
+       0
+      ],
+      [
+       1982,
+       2
+      ],
+      [
+       1983,
+       0
+      ],
+      [
+       1984,
+       0
+      ],
+      [
+       1985,
+       0
+      ],
+      [
+       1986,
+       0
+      ],
+      [
+       1987,
+       0
+      ],
+      [
+       1988,
+       0
+      ],
+      [
+       1989,
+       0
+      ],
+      [
+       1990,
+       1
+      ],
+      [
+       1991,
+       2
+      ],
+      [
+       1992,
+       3
+      ],
+      [
+       1993,
+       3
+      ],
+      [
+       1994,
+       6
+      ],
+      [
+       1995,
+       1
+      ],
+      [
+       1996,
+       10
+      ],
+      [
+       1997,
+       8
+      ],
+      [
+       1998,
+       12
+      ],
+      [
+       1999,
+       11
+      ],
+      [
+       2000,
+       11
+      ],
+      [
+       2001,
+       18
+      ],
+      [
+       2002,
+       21
+      ],
+      [
+       2003,
+       8
+      ],
+      [
+       2004,
+       8
+      ],
+      [
+       2005,
+       6
+      ],
+      [
+       2006,
+       4
+      ],
+      [
+       2007,
+       8
+      ],
+      [
+       2008,
+       12
+      ],
+      [
+       2009,
+       8
+      ],
+      [
+       2010,
+       7
+      ],
+      [
+       2011,
+       6
+      ],
+      [
+       2012,
+       13
+      ],
+      [
+       2013,
+       8
+      ],
+      [
+       2014,
+       7
+      ],
+      [
+       2015,
+       6
+      ],
+      [
+       2016,
+       7
+      ],
+      [
+       2017,
+       7
+      ],
+      [
+       2018,
+       6
+      ],
+      [
+       2019,
+       14
+      ],
+      [
+       2020,
+       7
+      ],
+      [
+       2021,
+       6
+      ],
+      [
+       2022,
+       3
+      ],
+      [
+       2023,
+       7
+      ],
+      [
+       2024,
+       12
+      ],
+      [
+       2025,
+       14
+      ],
+      [
+       2026,
+       10
+      ]
+     ],
+     "color": "cyan"
+    },
+    {
+     "name": "Metal-organic framework",
+     "points": [
+      [
+       1965,
+       0
+      ],
+      [
+       1966,
+       0
+      ],
+      [
+       1967,
+       0
+      ],
+      [
+       1968,
+       0
+      ],
+      [
+       1969,
+       0
+      ],
+      [
+       1970,
+       0
+      ],
+      [
+       1971,
+       0
+      ],
+      [
+       1972,
+       0
+      ],
+      [
+       1973,
+       0
+      ],
+      [
+       1974,
+       0
+      ],
+      [
+       1975,
+       0
+      ],
+      [
+       1976,
+       0
+      ],
+      [
+       1977,
+       0
+      ],
+      [
+       1978,
+       0
+      ],
+      [
+       1979,
+       0
+      ],
+      [
+       1980,
+       0
+      ],
+      [
+       1981,
+       0
+      ],
+      [
+       1982,
+       0
+      ],
+      [
+       1983,
+       0
+      ],
+      [
+       1984,
+       0
+      ],
+      [
+       1985,
+       0
+      ],
+      [
+       1986,
+       0
+      ],
+      [
+       1987,
+       0
+      ],
+      [
+       1988,
+       0
+      ],
+      [
+       1989,
+       0
+      ],
+      [
+       1990,
+       0
+      ],
+      [
+       1991,
+       0
+      ],
+      [
+       1992,
+       0
+      ],
+      [
+       1993,
+       0
+      ],
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       3
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       0
+      ],
+      [
+       2020,
+       1
+      ],
+      [
+       2021,
+       2
+      ],
+      [
+       2022,
+       0
+      ],
+      [
+       2023,
+       1
+      ],
+      [
+       2024,
+       3
+      ],
+      [
+       2025,
+       1
+      ],
+      [
+       2026,
+       2
+      ]
+     ],
+     "color": "green"
+    }
+   ],
+   "annotations": [
+    {
+     "x": 2026,
+     "y": 0,
+     "text": "2026: partial year"
+    }
+   ],
+   "caption": "Raw keyword hits, not curated counts. Spot-check precision (share of 20 sampled titles that are on topic): Protein crystallization 14/20; Pharmaceutical crystallization / polymorph 2/20; Solidification / alloy 15/20; Colloid / photonic crystal 12/20; Metal-organic framework 3/13. Pharma and MOF hits are mostly off-topic: see the frontier chart for their hand-classified counts."
+  },
+  {
+   "id": "lit-frontier",
+   "kind": "bar",
+   "title": "The thin frontier: hand-classified papers on making small-molecule drug crystals or MOFs in microgravity",
+   "subtitle": "All 132 pharma and 13 MOF keyword hits read by title (abstract where unclear)",
+   "x": {
+    "label": "Publication year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works/year",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Small-molecule / API crystallization or pharma manufacturing in microgravity",
+     "points": [
+      [
+       1990,
+       1
+      ],
+      [
+       1991,
+       0
+      ],
+      [
+       1992,
+       0
+      ],
+      [
+       1993,
+       0
+      ],
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       0
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       0
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       1
+      ],
+      [
+       2025,
+       6
+      ],
+      [
+       2026,
+       3
+      ]
+     ],
+     "color": "violet"
+    },
+    {
+     "name": "MOF growth in real or simulated microgravity",
+     "points": [
+      [
+       1990,
+       0
+      ],
+      [
+       1991,
+       0
+      ],
+      [
+       1992,
+       0
+      ],
+      [
+       1993,
+       0
+      ],
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       0
+      ],
+      [
+       2020,
+       1
+      ],
+      [
+       2021,
+       2
+      ],
+      [
+       2022,
+       0
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       0
+      ],
+      [
+       2025,
+       0
+      ],
+      [
+       2026,
+       0
+      ]
+     ],
+     "color": "green"
+    }
+   ],
+   "annotations": [],
+   "caption": "11 small-molecule works (10 from 2024 onward) and 3 MOF records (2 distinct studies plus a journal-cover record of one of them). 9 of the 13 MOF hits are about using MOFs aboard spacecraft (CO2, humidity, hydrogen, VOC sensing, shielding), not making them. Classification is ours; keyword recall is not measured, so the true literature may be somewhat larger."
+  },
+  {
+   "id": "ism-per-year",
+   "kind": "line",
+   "title": "In-space manufacturing papers per year",
+   "subtitle": "Works matching an in-space / orbital / on-orbit manufacturing phrase (no space-term filter needed)",
+   "x": {
+    "label": "Publication year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works/year",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "In-space manufacturing",
+     "points": [
+      [
+       1965,
+       0
+      ],
+      [
+       1966,
+       0
+      ],
+      [
+       1967,
+       1
+      ],
+      [
+       1968,
+       1
+      ],
+      [
+       1969,
+       3
+      ],
+      [
+       1970,
+       7
+      ],
+      [
+       1971,
+       1
+      ],
+      [
+       1972,
+       3
+      ],
+      [
+       1973,
+       3
+      ],
+      [
+       1974,
+       5
+      ],
+      [
+       1975,
+       8
+      ],
+      [
+       1976,
+       3
+      ],
+      [
+       1977,
+       28
+      ],
+      [
+       1978,
+       4
+      ],
+      [
+       1979,
+       23
+      ],
+      [
+       1980,
+       9
+      ],
+      [
+       1981,
+       17
+      ],
+      [
+       1982,
+       7
+      ],
+      [
+       1983,
+       5
+      ],
+      [
+       1984,
+       3
+      ],
+      [
+       1985,
+       6
+      ],
+      [
+       1986,
+       5
+      ],
+      [
+       1987,
+       9
+      ],
+      [
+       1988,
+       6
+      ],
+      [
+       1989,
+       4
+      ],
+      [
+       1990,
+       4
+      ],
+      [
+       1991,
+       3
+      ],
+      [
+       1992,
+       6
+      ],
+      [
+       1993,
+       4
+      ],
+      [
+       1994,
+       2
+      ],
+      [
+       1995,
+       3
+      ],
+      [
+       1996,
+       3
+      ],
+      [
+       1997,
+       3
+      ],
+      [
+       1998,
+       7
+      ],
+      [
+       1999,
+       2
+      ],
+      [
+       2000,
+       2
+      ],
+      [
+       2001,
+       1
+      ],
+      [
+       2002,
+       9
+      ],
+      [
+       2003,
+       7
+      ],
+      [
+       2004,
+       7
+      ],
+      [
+       2005,
+       2
+      ],
+      [
+       2006,
+       6
+      ],
+      [
+       2007,
+       1
+      ],
+      [
+       2008,
+       8
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       7
+      ],
+      [
+       2011,
+       8
+      ],
+      [
+       2012,
+       9
+      ],
+      [
+       2013,
+       13
+      ],
+      [
+       2014,
+       16
+      ],
+      [
+       2015,
+       12
+      ],
+      [
+       2016,
+       36
+      ],
+      [
+       2017,
+       32
+      ],
+      [
+       2018,
+       34
+      ],
+      [
+       2019,
+       47
+      ],
+      [
+       2020,
+       24
+      ],
+      [
+       2021,
+       33
+      ],
+      [
+       2022,
+       41
+      ],
+      [
+       2023,
+       54
+      ],
+      [
+       2024,
+       99
+      ],
+      [
+       2025,
+       129
+      ],
+      [
+       2026,
+       140
+      ]
+     ],
+     "color": "orange"
+    }
+   ],
+   "annotations": [
+    {
+     "x": 2026,
+     "y": 0,
+     "text": "2026: partial year"
+    }
+   ],
+   "caption": "Keyword hits; spot-check precision 13/20. Includes conference papers and NASA reports, and some records about manufacturing on Earth for space."
+  },
+  {
+   "id": "lit-per-million",
+   "kind": "line",
+   "title": "Share of the whole literature: foundry-process papers per million OpenAlex works",
+   "subtitle": "Removes the growth of the literature as a whole (denominator: every OpenAlex work that year)",
+   "x": {
+    "label": "Publication year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Works per million OpenAlex works",
+    "unit": "per million",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "All six topics (union)",
+     "points": [
+      [
+       1980,
+       11.8
+      ],
+      [
+       1981,
+       25.25
+      ],
+      [
+       1982,
+       15.96
+      ],
+      [
+       1983,
+       7.67
+      ],
+      [
+       1984,
+       15.99
+      ],
+      [
+       1985,
+       23.19
+      ],
+      [
+       1986,
+       34.93
+      ],
+      [
+       1987,
+       24.45
+      ],
+      [
+       1988,
+       33.92
+      ],
+      [
+       1989,
+       14.09
+      ],
+      [
+       1990,
+       19.75
+      ],
+      [
+       1991,
+       35.71
+      ],
+      [
+       1992,
+       33.19
+      ],
+      [
+       1993,
+       33.58
+      ],
+      [
+       1994,
+       32.25
+      ],
+      [
+       1995,
+       25.64
+      ],
+      [
+       1996,
+       40.28
+      ],
+      [
+       1997,
+       32.91
+      ],
+      [
+       1998,
+       33.57
+      ],
+      [
+       1999,
+       39.09
+      ],
+      [
+       2000,
+       34.48
+      ],
+      [
+       2001,
+       40.05
+      ],
+      [
+       2002,
+       31.61
+      ],
+      [
+       2003,
+       26.29
+      ],
+      [
+       2004,
+       18.52
+      ],
+      [
+       2005,
+       16.91
+      ],
+      [
+       2006,
+       16.55
+      ],
+      [
+       2007,
+       10.05
+      ],
+      [
+       2008,
+       11.93
+      ],
+      [
+       2009,
+       7.58
+      ],
+      [
+       2010,
+       7.44
+      ],
+      [
+       2011,
+       9.82
+      ],
+      [
+       2012,
+       11.53
+      ],
+      [
+       2013,
+       7.66
+      ],
+      [
+       2014,
+       8.45
+      ],
+      [
+       2015,
+       7.29
+      ],
+      [
+       2016,
+       12.03
+      ],
+      [
+       2017,
+       11.45
+      ],
+      [
+       2018,
+       12.12
+      ],
+      [
+       2019,
+       15.89
+      ],
+      [
+       2020,
+       8.65
+      ],
+      [
+       2021,
+       9.88
+      ],
+      [
+       2022,
+       11.45
+      ],
+      [
+       2023,
+       12.74
+      ],
+      [
+       2024,
+       16.32
+      ],
+      [
+       2025,
+       16.61
+      ]
+     ],
+     "color": "cyan"
+    },
+    {
+     "name": "Five materials topics (no in-space manufacturing)",
+     "points": [
+      [
+       1980,
+       5.16
+      ],
+      [
+       1981,
+       12.62
+      ],
+      [
+       1982,
+       10.88
+      ],
+      [
+       1983,
+       4.18
+      ],
+      [
+       1984,
+       13.99
+      ],
+      [
+       1985,
+       19.32
+      ],
+      [
+       1986,
+       31.87
+      ],
+      [
+       1987,
+       19.21
+      ],
+      [
+       1988,
+       30.59
+      ],
+      [
+       1989,
+       12.53
+      ],
+      [
+       1990,
+       17.82
+      ],
+      [
+       1991,
+       34.27
+      ],
+      [
+       1992,
+       30.42
+      ],
+      [
+       1993,
+       31.81
+      ],
+      [
+       1994,
+       31.41
+      ],
+      [
+       1995,
+       24.46
+      ],
+      [
+       1996,
+       39.18
+      ],
+      [
+       1997,
+       31.85
+      ],
+      [
+       1998,
+       31.24
+      ],
+      [
+       1999,
+       38.45
+      ],
+      [
+       2000,
+       33.95
+      ],
+      [
+       2001,
+       39.78
+      ],
+      [
+       2002,
+       29.57
+      ],
+      [
+       2003,
+       24.8
+      ],
+      [
+       2004,
+       17.14
+      ],
+      [
+       2005,
+       16.54
+      ],
+      [
+       2006,
+       15.54
+      ],
+      [
+       2007,
+       9.9
+      ],
+      [
+       2008,
+       10.78
+      ],
+      [
+       2009,
+       7.58
+      ],
+      [
+       2010,
+       6.57
+      ],
+      [
+       2011,
+       8.89
+      ],
+      [
+       2012,
+       10.63
+      ],
+      [
+       2013,
+       6.28
+      ],
+      [
+       2014,
+       6.84
+      ],
+      [
+       2015,
+       6.11
+      ],
+      [
+       2016,
+       8.72
+      ],
+      [
+       2017,
+       8.37
+      ],
+      [
+       2018,
+       8.82
+      ],
+      [
+       2019,
+       11.66
+      ],
+      [
+       2020,
+       6.6
+      ],
+      [
+       2021,
+       6.87
+      ],
+      [
+       2022,
+       7.44
+      ],
+      [
+       2023,
+       7.97
+      ],
+      [
+       2024,
+       7.39
+      ],
+      [
+       2025,
+       8.2
+      ]
+     ],
+     "color": "violet"
+    }
+   ],
+   "annotations": [],
+   "caption": "The 1990s Shuttle/Spacelab peak is visible. Since 2020 the gap between the two lines is in-space manufacturing. OpenAlex indexes more non-article records over time, so part of the long decline reflects the denominator."
+  },
+  {
+   "id": "lit-top-institutions",
+   "kind": "hbar",
+   "title": "Who publishes on foundry processes in space: top institutions",
+   "subtitle": "Distinct works in the 4532-work union, by OpenAlex institution",
+   "x": {
+    "label": "Institution",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Works",
+     "points": [
+      [
+       "Marshall Space Flight Center",
+       434
+      ],
+      [
+       "Glenn Research Center",
+       172
+      ],
+      [
+       "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+       156
+      ],
+      [
+       "National Aeronautics and Space Administration",
+       132
+      ],
+      [
+       "Centre National de la Recherche Scientifique",
+       112
+      ],
+      [
+       "Chinese Academy of Sciences",
+       99
+      ],
+      [
+       "University of Alabama in Huntsville",
+       95
+      ],
+      [
+       "Northwestern Polytechnical University",
+       86
+      ],
+      [
+       "Rensselaer Polytechnic Institute",
+       74
+      ],
+      [
+       "Universities Space Research Association",
+       66
+      ],
+      [
+       "Aix-Marseille Université",
+       65
+      ],
+      [
+       "Japan Aerospace Exploration Agency",
+       63
+      ],
+      [
+       "Massachusetts Institute of Technology",
+       62
+      ],
+      [
+       "Access",
+       61
+      ],
+      [
+       "University of Alabama at Birmingham",
+       61
+      ],
+      [
+       "European Space Research and Technology Centre",
+       60
+      ],
+      [
+       "Institut des Matériaux, de Microélectronique et des Nanosciences de Provence",
+       58
+      ],
+      [
+       "Johnson Space Center",
+       57
+      ],
+      [
+       "European Space Agency",
+       51
+      ],
+      [
+       "CEA Grenoble",
+       49
+      ]
+     ],
+     "color": "cyan"
+    }
+   ],
+   "annotations": [],
+   "caption": "Counts every work on which at least one author lists the institution (fractional credit not applied). 70% of works have at least one resolved institution, so older NASA technical reports and conference abstracts are under-attributed."
+  },
+  {
+   "id": "lit-top-companies",
+   "kind": "hbar",
+   "title": "Companies on the papers",
+   "subtitle": "OpenAlex institutions typed 'company', distinct works in the union",
+   "x": {
+    "label": "Company",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Works",
+     "points": [
+      [
+       "Maruwa Foods and Biosciences (Japan)",
+       21
+      ],
+      [
+       "Confocal Science (Japan)",
+       17
+      ],
+      [
+       "Boeing (United States)",
+       16
+      ],
+      [
+       "Advanced Engineering Services (Japan)",
+       13
+      ],
+      [
+       "Northrop Grumman (United States)",
+       12
+      ],
+      [
+       "Wyle (United States)",
+       12
+      ],
+      [
+       "ZIN Technologies (United States)",
+       12
+      ],
+      [
+       "IHI Corporation (Japan)",
+       9
+      ],
+      [
+       "Tec-Masters (United States)",
+       9
+      ],
+      [
+       "Jacobs (United States)",
+       8
+      ],
+      [
+       "Lockheed Martin (United States)",
+       8
+      ],
+      [
+       "Mitsubishi Research Institute (Japan)",
+       8
+      ],
+      [
+       "General Electric (United States)",
+       7
+      ],
+      [
+       "Nissan (Japan)",
+       7
+      ],
+      [
+       "S. P. Korolev Rocket and Space Corporation Energia (Russia)",
+       7
+      ],
+      [
+       "BAE Systems (United States)",
+       5
+      ],
+      [
+       "Eli Lilly (United States)",
+       5
+      ],
+      [
+       "General Dynamics (United States)",
+       5
+      ],
+      [
+       "Raytheon (United States)",
+       5
+      ],
+      [
+       "Rockwell International (United States)",
+       5
+      ]
+     ],
+     "color": "orange"
+    }
+   ],
+   "annotations": [],
+   "caption": "Companies appear on 354 of 4532 works (7.8%). Industry work is mostly unpublished or patented, so this is a lower bound on industrial activity, not a market share."
+  },
+  {
+   "id": "lit-partner-check",
+   "kind": "hbar",
+   "title": "Candidate partners: how many of these papers carry their affiliation?",
+   "subtitle": "Regex match on OpenAlex institution names, plus raw affiliation strings where no institution was resolved",
+   "x": {
+    "label": "Organisation",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Works in the union",
+     "points": [
+      [
+       "Merck & Co. / MSD",
+       4
+      ],
+      [
+       "Merck KGaA (Darmstadt)",
+       0
+      ],
+      [
+       "Redwire",
+       10
+      ],
+      [
+       "Made In Space (now Redwire)",
+       4
+      ],
+      [
+       "Techshot (now Redwire)",
+       2
+      ],
+      [
+       "Varda Space Industries",
+       1
+      ],
+      [
+       "Space Tango",
+       0
+      ],
+      [
+       "Axiom Space",
+       4
+      ],
+      [
+       "Voyager / Nanoracks",
+       2
+      ],
+      [
+       "LambdaVision",
+       1
+      ],
+      [
+       "ACME Advanced Materials / Astral Materials",
+       0
+      ],
+      [
+       "Sierra Space / Sierra Nevada Corp.",
+       0
+      ],
+      [
+       "Boeing",
+       18
+      ],
+      [
+       "Airbus",
+       4
+      ],
+      [
+       "Bristol-Myers Squibb",
+       1
+      ],
+      [
+       "Eli Lilly",
+       5
+      ],
+      [
+       "JAXA",
+       77
+      ],
+      [
+       "ESA",
+       75
+      ],
+      [
+       "NASA Marshall Space Flight Center",
+       434
+      ],
+      [
+       "NASA Glenn Research Center",
+       172
+      ],
+      [
+       "NASA (any centre)",
+       780
+      ],
+      [
+       "CASIS / ISS National Lab",
+       4
+      ],
+      [
+       "DLR",
+       156
+      ],
+      [
+       "CNES",
+       9
+      ],
+      [
+       "China Manned Space / CAS",
+       99
+      ],
+      [
+       "SpaceX",
+       0
+      ]
+     ],
+     "color": "green"
+    }
+   ],
+   "annotations": [],
+   "caption": "Zero means no affiliated paper in this keyword set, not absence of activity: start-ups publish little and many results sit in patents and press releases."
+  },
+  {
+   "id": "lit-countries",
+   "kind": "hbar",
+   "title": "Countries of author institutions",
+   "subtitle": "Distinct works with at least one author in the country",
+   "x": {
+    "label": "Country (ISO-2)",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Works",
+    "unit": "works",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Works",
+     "points": [
+      [
+       "US",
+       1741
+      ],
+      [
+       "DE",
+       377
+      ],
+      [
+       "CN",
+       338
+      ],
+      [
+       "FR",
+       285
+      ],
+      [
+       "JP",
+       256
+      ],
+      [
+       "GB",
+       119
+      ],
+      [
+       "IT",
+       98
+      ],
+      [
+       "RU",
+       97
+      ],
+      [
+       "NL",
+       81
+      ],
+      [
+       "CA",
+       66
+      ],
+      [
+       "ES",
+       55
+      ],
+      [
+       "IN",
+       41
+      ],
+      [
+       "BE",
+       41
+      ],
+      [
+       "IE",
+       40
+      ],
+      [
+       "SE",
+       37
+      ]
+     ],
+     "color": "violet"
+    }
+   ],
+   "annotations": [],
+   "caption": "Country is taken from OpenAlex authorship countries; works with no resolved affiliation are not counted."
+  }
+ ],
+ "stats": {
+  "union_works": 4532,
+  "space_terms_only_works": 110401,
+  "union_by_decade": {
+   "1970-1979": 133,
+   "1980-1989": 330,
+   "1990-1999": 831,
+   "2000-2009": 1032,
+   "2010-2019": 1018,
+   "2020-2025": 880
+  },
+  "company_works": 354,
+  "company_share": 0.0781,
+  "company_share_by_era": {
+   "1980-1999": {
+    "works": 1161,
+    "company_works": 98,
+    "share": 0.084
+   },
+   "2000-2014": {
+    "works": 1436,
+    "company_works": 115,
+    "share": 0.08
+   },
+   "2015-2025": {
+    "works": 1494,
+    "company_works": 107,
+    "share": 0.072
+   }
+  },
+  "works_with_resolved_institution": 3195,
+  "authorships": 17388,
+  "authorships_without_institution": 5510,
+  "institution_type_mix": {
+   "education": 2223,
+   "facility": 1512,
+   "government": 613,
+   "company": 354,
+   "nonprofit": 215,
+   "healthcare": 43,
+   "other": 20,
+   "funder": 6,
+   "archive": 2
+  },
+  "work_type_mix": {
+   "article": 3189,
+   "conference-paper": 705,
+   "book-chapter": 227,
+   "dissertation": 92,
+   "preprint": 66,
+   "book": 53,
+   "conference-abstract": 50,
+   "other": 46,
+   "report": 44,
+   "dataset": 15,
+   "paratext": 12,
+   "review": 9,
+   "reference-entry": 7,
+   "erratum": 6,
+   "editorial": 5,
+   "book-review": 2,
+   "standard": 2,
+   "data-paper": 1,
+   "software": 1
+  },
+  "topics": {
+   "protein": {
+    "label": "Protein crystallization",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (\"protein crystal\" OR \"protein crystals\" OR \"protein crystallization\" OR \"protein crystallisation\" OR \"macromolecular crystal\" OR \"macromolecular crystallization\")",
+    "api_count": 576,
+    "harvested_unique": 576,
+    "complete": true,
+    "pages": 3,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 14,
+     "precision": 0.7,
+     "wilson95": [
+      0.481,
+      0.855
+     ]
+    },
+    "est_on_topic": 403,
+    "est_on_topic_95": [
+     277,
+     492
+    ],
+    "works_2016_2025": 105,
+    "works_2006_2015": 105,
+    "peak_year": 2002,
+    "top_institutions": [
+     {
+      "name": "Marshall Space Flight Center",
+      "papers": 60,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "University of Alabama at Birmingham",
+      "papers": 43,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "University of Alabama in Huntsville",
+      "papers": 27,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Japan Aerospace Exploration Agency",
+      "papers": 26,
+      "type": "facility",
+      "country": "JP"
+     },
+     {
+      "name": "Maruwa Foods and Biosciences (Japan)",
+      "papers": 21,
+      "type": "company",
+      "country": "JP"
+     },
+     {
+      "name": "Universities Space Research Association",
+      "papers": 19,
+      "type": "nonprofit",
+      "country": "US"
+     },
+     {
+      "name": "Centre National de la Recherche Scientifique",
+      "papers": 18,
+      "type": "government",
+      "country": "FR"
+     },
+     {
+      "name": "Confocal Science (Japan)",
+      "papers": 17,
+      "type": "company",
+      "country": "JP"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "Maruwa Foods and Biosciences (Japan)",
+      "papers": 21,
+      "country": "JP"
+     },
+     {
+      "name": "Confocal Science (Japan)",
+      "papers": 17,
+      "country": "JP"
+     },
+     {
+      "name": "Advanced Engineering Services (Japan)",
+      "papers": 5,
+      "country": "JP"
+     },
+     {
+      "name": "BAE Systems (United States)",
+      "papers": 4,
+      "country": "US"
+     },
+     {
+      "name": "Raytheon (United States)",
+      "papers": 4,
+      "country": null
+     },
+     {
+      "name": "Air Liquide (France)",
+      "papers": 3,
+      "country": "FR"
+     },
+     {
+      "name": "Boeing (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "DuPont (United States)",
+      "papers": 3,
+      "country": "US"
+     }
+    ]
+   },
+   "pharma": {
+    "label": "Pharmaceutical crystallization / polymorph",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (pharmaceutical OR pharmaceuticals OR drug OR drugs OR \"small molecule\" OR \"small-molecule\") AND (crystallization OR crystallisation OR \"crystal growth\" OR polymorph OR polymorphs OR \"crystal form\" OR cocrystal OR cocrystals)",
+    "api_count": 119,
+    "harvested_unique": 119,
+    "complete": true,
+    "pages": 1,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 2,
+     "precision": 0.1,
+     "wilson95": [
+      0.028,
+      0.301
+     ]
+    },
+    "est_on_topic": 12,
+    "est_on_topic_95": [
+     3,
+     36
+    ],
+    "works_2016_2025": 49,
+    "works_2006_2015": 15,
+    "peak_year": 2025,
+    "top_institutions": [
+     {
+      "name": "University of Alabama at Birmingham",
+      "papers": 13,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Marshall Space Flight Center",
+      "papers": 9,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "Butler University",
+      "papers": 5,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Universities Space Research Association",
+      "papers": 5,
+      "type": "nonprofit",
+      "country": "US"
+     },
+     {
+      "name": "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+      "papers": 4,
+      "type": "facility",
+      "country": "DE"
+     },
+     {
+      "name": "Johnson Space Center",
+      "papers": 4,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "University of Toledo",
+      "papers": 4,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Alabama Agricultural and Mechanical University",
+      "papers": 3,
+      "type": "education",
+      "country": "US"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "Confocal Science (Japan)",
+      "papers": 3,
+      "country": "JP"
+     },
+     {
+      "name": "Maruwa Foods and Biosciences (Japan)",
+      "papers": 3,
+      "country": "JP"
+     },
+     {
+      "name": "Merck & Co., Inc., Rahway, NJ, USA (United States)",
+      "papers": 2,
+      "country": "US"
+     },
+     {
+      "name": "BAE Systems (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "BioCryst Pharmaceuticals (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "Bionetics (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "Carna Biosciences (Japan)",
+      "papers": 1,
+      "country": "JP"
+     },
+     {
+      "name": "Hogan Lovells (United States)",
+      "papers": 1,
+      "country": "US"
+     }
+    ]
+   },
+   "solid": {
+    "label": "Solidification / alloy",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (solidification OR alloy OR alloys OR \"directional solidification\" OR dendritic)",
+    "api_count": 2712,
+    "harvested_unique": 2709,
+    "complete": false,
+    "pages": 14,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 15,
+     "precision": 0.75,
+     "wilson95": [
+      0.531,
+      0.888
+     ]
+    },
+    "est_on_topic": 2032,
+    "est_on_topic_95": [
+     1438,
+     2406
+    ],
+    "works_2016_2025": 699,
+    "works_2006_2015": 516,
+    "peak_year": 2001,
+    "top_institutions": [
+     {
+      "name": "Marshall Space Flight Center",
+      "papers": 293,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+      "papers": 137,
+      "type": "facility",
+      "country": "DE"
+     },
+     {
+      "name": "Glenn Research Center",
+      "papers": 126,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "Centre National de la Recherche Scientifique",
+      "papers": 84,
+      "type": "government",
+      "country": "FR"
+     },
+     {
+      "name": "Northwestern Polytechnical University",
+      "papers": 78,
+      "type": "education",
+      "country": "CN"
+     },
+     {
+      "name": "Rensselaer Polytechnic Institute",
+      "papers": 71,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "National Aeronautics and Space Administration",
+      "papers": 68,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Aix-Marseille Université",
+      "papers": 65,
+      "type": "education",
+      "country": "FR"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "Boeing (United States)",
+      "papers": 9,
+      "country": "US"
+     },
+     {
+      "name": "IHI Corporation (Japan)",
+      "papers": 9,
+      "country": "JP"
+     },
+     {
+      "name": "Tec-Masters (United States)",
+      "papers": 8,
+      "country": "US"
+     },
+     {
+      "name": "Northrop Grumman (United States)",
+      "papers": 7,
+      "country": "US"
+     },
+     {
+      "name": "Wyle (United States)",
+      "papers": 7,
+      "country": "US"
+     },
+     {
+      "name": "Lockheed Martin (United States)",
+      "papers": 6,
+      "country": "US"
+     },
+     {
+      "name": "Nissan (Japan)",
+      "papers": 6,
+      "country": "JP"
+     },
+     {
+      "name": "Advanced Engineering Services (Japan)",
+      "papers": 5,
+      "country": "JP"
+     }
+    ],
+    "years_api_group_by": {
+     "2001": 110,
+     "2000": 92,
+     "2019": 91,
+     "2025": 90,
+     "1999": 89,
+     "2026": 86,
+     "2003": 83,
+     "2016": 78,
+     "2002": 76,
+     "1996": 75,
+     "2005": 75,
+     "2006": 73,
+     "1998": 72,
+     "2018": 70,
+     "2023": 68,
+     "2017": 66,
+     "2012": 64,
+     "2004": 63,
+     "1997": 61,
+     "2011": 61,
+     "2021": 61,
+     "2022": 61,
+     "2024": 60,
+     "2008": 58,
+     "1993": 56,
+     "2020": 55,
+     "2014": 52,
+     "1986": 49,
+     "1995": 48,
+     "1988": 47,
+     "1994": 47,
+     "1991": 46,
+     "1992": 45,
+     "2007": 44,
+     "2009": 44,
+     "2015": 44,
+     "2013": 40,
+     "2010": 37,
+     "1990": 31,
+     "1987": 30,
+     "1985": 28,
+     "1984": 20,
+     "1989": 19,
+     "1981": 17,
+     "1982": 14,
+     "1978": 10,
+     "1974": 8,
+     "1979": 7,
+     "1980": 7,
+     "1983": 6,
+     "1973": 5,
+     "1976": 4,
+     "1977": 4,
+     "1970": 3,
+     "1975": 3,
+     "1962": 2,
+     "1963": 2,
+     "1911": 1,
+     "1937": 1,
+     "1957": 1,
+     "1959": 1,
+     "1961": 1,
+     "1964": 1,
+     "1965": 1,
+     "1969": 1,
+     "1971": 1
+    }
+   },
+   "colloid": {
+    "label": "Colloid / photonic crystal",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (colloid OR colloids OR colloidal OR \"photonic crystal\" OR \"photonic crystals\")",
+    "api_count": 310,
+    "harvested_unique": 310,
+    "complete": true,
+    "pages": 2,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 12,
+     "precision": 0.6,
+     "wilson95": [
+      0.387,
+      0.781
+     ]
+    },
+    "est_on_topic": 186,
+    "est_on_topic_95": [
+     120,
+     242
+    ],
+    "works_2016_2025": 83,
+    "works_2006_2015": 79,
+    "peak_year": 2002,
+    "top_institutions": [
+     {
+      "name": "Glenn Research Center",
+      "papers": 54,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "National Aeronautics and Space Administration",
+      "papers": 19,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Chinese Academy of Sciences",
+      "papers": 17,
+      "type": "government",
+      "country": "CN"
+     },
+     {
+      "name": "Princeton University",
+      "papers": 17,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Institute of Mechanics",
+      "papers": 12,
+      "type": "facility",
+      "country": "CN"
+     },
+     {
+      "name": "Gifu University",
+      "papers": 11,
+      "type": "education",
+      "country": "JP"
+     },
+     {
+      "name": "Harvard University",
+      "papers": 11,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Johnson Space Center",
+      "papers": 10,
+      "type": "facility",
+      "country": "US"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "ZIN Technologies (United States)",
+      "papers": 10,
+      "country": "US"
+     },
+     {
+      "name": "Mitsubishi Research Institute (Japan)",
+      "papers": 4,
+      "country": "JP"
+     },
+     {
+      "name": "Advanced Engineering Services (Japan)",
+      "papers": 3,
+      "country": "JP"
+     },
+     {
+      "name": "Wyle (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "Busek (United States)",
+      "papers": 2,
+      "country": "US"
+     },
+     {
+      "name": "Crabion (Italy)",
+      "papers": 2,
+      "country": "IT"
+     },
+     {
+      "name": "NanoTemper Technologies (Germany)",
+      "papers": 2,
+      "country": "DE"
+     },
+     {
+      "name": "Procter & Gamble (United States)",
+      "papers": 2,
+      "country": "US"
+     }
+    ]
+   },
+   "mof": {
+    "label": "Metal-organic framework",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (\"metal-organic framework\" OR \"metal-organic frameworks\" OR \"metal organic framework\" OR \"metal organic frameworks\")",
+    "api_count": 13,
+    "harvested_unique": 13,
+    "complete": true,
+    "pages": 1,
+    "spotcheck": {
+     "sampled": 13,
+     "judged": 13,
+     "on_topic": 3,
+     "precision": 0.231,
+     "wilson95": [
+      0.082,
+      0.503
+     ]
+    },
+    "est_on_topic": 3,
+    "est_on_topic_95": [
+     1,
+     7
+    ],
+    "works_2016_2025": 8,
+    "works_2006_2015": 3,
+    "peak_year": 2024,
+    "top_institutions": [
+     {
+      "name": "ETH Zurich",
+      "papers": 2,
+      "type": "education",
+      "country": "CH"
+     },
+     {
+      "name": "Institute for Chemical and Bioengineering",
+      "papers": 2,
+      "type": "facility",
+      "country": "CH"
+     },
+     {
+      "name": "International Institute for Nanotechnology",
+      "papers": 2,
+      "type": "facility",
+      "country": null
+     },
+     {
+      "name": "Johnson Space Center",
+      "papers": 2,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "National Aeronautics and Space Administration",
+      "papers": 2,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Northwestern University",
+      "papers": 2,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Shanghai Jiao Tong University",
+      "papers": 2,
+      "type": "education",
+      "country": "CN"
+     },
+     {
+      "name": "Zhejiang University",
+      "papers": 2,
+      "type": "education",
+      "country": "CN"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "ALBA Synchrotron (Spain)",
+      "papers": 1,
+      "country": "ES"
+     },
+     {
+      "name": "Amentum (United States)",
+      "papers": 1,
+      "country": "FR"
+     },
+     {
+      "name": "Boeing (United States)",
+      "papers": 1,
+      "country": "US"
+     }
+    ]
+   },
+   "ism": {
+    "label": "In-space manufacturing",
+    "query": "(\"in-space manufacturing\" OR \"in space manufacturing\" OR \"space manufacturing\" OR \"orbital manufacturing\" OR \"in-orbit manufacturing\" OR \"on-orbit manufacturing\")",
+    "api_count": 978,
+    "harvested_unique": 978,
+    "complete": true,
+    "pages": 5,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 13,
+     "precision": 0.65,
+     "wilson95": [
+      0.433,
+      0.819
+     ]
+    },
+    "est_on_topic": 636,
+    "est_on_topic_95": [
+     423,
+     801
+    ],
+    "works_2016_2025": 529,
+    "works_2006_2015": 80,
+    "peak_year": 2025,
+    "top_institutions": [
+     {
+      "name": "Marshall Space Flight Center",
+      "papers": 81,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "National Aeronautics and Space Administration",
+      "papers": 31,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Massachusetts Institute of Technology",
+      "papers": 30,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Ames Research Center",
+      "papers": 21,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "European Space Research and Technology Centre",
+      "papers": 12,
+      "type": "government",
+      "country": "NL"
+     },
+     {
+      "name": "Embry–Riddle Aeronautical University",
+      "papers": 11,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Princeton University",
+      "papers": 11,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Chinese Academy of Sciences",
+      "papers": 10,
+      "type": "government",
+      "country": "CN"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "General Dynamics (United States)",
+      "papers": 5,
+      "country": "US"
+     },
+     {
+      "name": "Northrop Grumman (United States)",
+      "papers": 5,
+      "country": "US"
+     },
+     {
+      "name": "Made In Space (United States)",
+      "papers": 4,
+      "country": "US"
+     },
+     {
+      "name": "Tethers Unlimited (United States)",
+      "papers": 4,
+      "country": "US"
+     },
+     {
+      "name": "Boeing (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "General Electric (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "Airbus (France)",
+      "papers": 2,
+      "country": "FR"
+     },
+     {
+      "name": "Jacobs (United States)",
+      "papers": 2,
+      "country": "US"
+     }
+    ]
+   },
+   "pharma_narrow": {
+    "label": "Pharmaceutical crystallization, narrow phrase set",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (\"pharmaceutical crystal\" OR \"pharmaceutical crystallization\" OR \"drug crystal\" OR \"drug crystallization\" OR \"crystal polymorph\" OR \"polymorphic form\" OR \"small molecule crystal\" OR \"active pharmaceutical ingredient\")",
+    "api_count": 21,
+    "harvested_unique": 21,
+    "complete": true,
+    "pages": 1,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 5,
+     "precision": 0.25,
+     "wilson95": [
+      0.112,
+      0.469
+     ]
+    },
+    "est_on_topic": 5,
+    "est_on_topic_95": [
+     2,
+     10
+    ],
+    "works_2016_2025": 8,
+    "works_2006_2015": 4,
+    "peak_year": 2025,
+    "top_institutions": [
+     {
+      "name": "Johnson Space Center",
+      "papers": 4,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "University of Cincinnati",
+      "papers": 4,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "59th Medical Wing",
+      "papers": 2,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Baylor College of Medicine",
+      "papers": 2,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Brooke Army Medical Center",
+      "papers": 2,
+      "type": "healthcare",
+      "country": "US"
+     },
+     {
+      "name": "Butler University",
+      "papers": 2,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Nirma University",
+      "papers": 2,
+      "type": "education",
+      "country": "IN"
+     },
+     {
+      "name": "SpaceX (United States)",
+      "papers": 2,
+      "type": "company",
+      "country": "US"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "SpaceX (United States)",
+      "papers": 2,
+      "country": "US"
+     },
+     {
+      "name": "3M (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "BAE Systems (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "KBR (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "Stantec (United States)",
+      "papers": 1,
+      "country": "US"
+     }
+    ]
+   },
+   "zeolite": {
+    "label": "Zeolite (porous-crystal precedent for MOFs)",
+    "query": "(microgravity OR \"micro-gravity\" OR spaceflight OR \"space flight\" OR \"International Space Station\" OR \"space station\" OR \"reduced gravity\") AND (zeolite OR zeolites)",
+    "api_count": 141,
+    "harvested_unique": 141,
+    "complete": true,
+    "pages": 1,
+    "spotcheck": {
+     "sampled": 20,
+     "judged": 20,
+     "on_topic": 8,
+     "precision": 0.4,
+     "wilson95": [
+      0.219,
+      0.613
+     ]
+    },
+    "est_on_topic": 56,
+    "est_on_topic_95": [
+     31,
+     86
+    ],
+    "works_2016_2025": 25,
+    "works_2006_2015": 34,
+    "peak_year": 2009,
+    "top_institutions": [
+     {
+      "name": "Northeastern University",
+      "papers": 15,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Worcester Polytechnic Institute",
+      "papers": 13,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Goddard Space Flight Center",
+      "papers": 9,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "National Aeronautics and Space Administration",
+      "papers": 8,
+      "type": "government",
+      "country": "US"
+     },
+     {
+      "name": "Ames Research Center",
+      "papers": 6,
+      "type": "facility",
+      "country": "US"
+     },
+     {
+      "name": "KU Leuven",
+      "papers": 5,
+      "type": "education",
+      "country": "BE"
+     },
+     {
+      "name": "Case Western Reserve University",
+      "papers": 4,
+      "type": "education",
+      "country": "US"
+     },
+     {
+      "name": "Johnson Space Center",
+      "papers": 4,
+      "type": "facility",
+      "country": "US"
+     }
+    ],
+    "top_companies": [
+     {
+      "name": "Precision Combustion (United States)",
+      "papers": 4,
+      "country": "US"
+     },
+     {
+      "name": "Advanced Cooling Technologies (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "Stinger Ghaffarian Technologies (United States)",
+      "papers": 3,
+      "country": "US"
+     },
+     {
+      "name": "AlliedSignal (United States)",
+      "papers": 1,
+      "country": null
+     },
+     {
+      "name": "Boeing (United States)",
+      "papers": 1,
+      "country": "US"
+     },
+     {
+      "name": "IHI Corporation (Japan)",
+      "papers": 1,
+      "country": "JP"
+     },
+     {
+      "name": "Kurita Water Industries (Japan)",
+      "papers": 1,
+      "country": "JP"
+     },
+     {
+      "name": "Lockheed Martin (United States)",
+      "papers": 1,
+      "country": "US"
+     }
+    ]
+   }
+  },
+  "pharma_small_molecule_works": [
+   {
+    "id": "W1972435319",
+    "year": 1990,
+    "title": "Effect of gravity on copper phthalocyanine thin films II: Spectroscopic evidence for a new oriented thin film polymorph of copper phthalocyanine grown in a microgravity enviroment"
+   },
+   {
+    "id": "W4392594909",
+    "year": 2024,
+    "title": "Gravity as a Knob for Tuning Particle Size Distributions of Small Molecules"
+   },
+   {
+    "id": "W4417297530",
+    "year": 2025,
+    "title": "Deep space environment empowering drug design and development."
+   },
+   {
+    "id": "W4410896693",
+    "year": 2025,
+    "title": "Crystallization of Small Molecules in Microgravity Using Pharmaceutical In-Space Laboratory–Biocrystal Optimization eXperiment (PIL-BOX)"
+   },
+   {
+    "id": "W4414409735",
+    "year": 2025,
+    "title": "Microgravity-Grown Crystals as Seeds for Pharmaceutical Compounds"
+   },
+   {
+    "id": "W4412486415",
+    "year": 2025,
+    "title": "Utilizing Microgravity To Create Better Seed Crystals for the Pharmaceutical Industry"
+   },
+   {
+    "id": "W7116284342",
+    "year": 2025,
+    "title": "Manufacturing in Microgravity and Sample Re-Entry Using a Commercial Rideshare Spacecraft Platform"
+   },
+   {
+    "id": "W4413303918",
+    "year": 2025,
+    "title": "Space Pharmaceutical Manufacturing: Emergence of a New Era for Pharmaceutical Industry"
+   },
+   {
+    "id": "W7222959925",
+    "year": 2026,
+    "title": "Microgravity Crystallization of Active Pharmaceutical Ingredients (APIs): Impact on Crystalline Forms"
+   },
+   {
+    "id": "W7160987556",
+    "year": 2026,
+    "title": "The Pharmaceutical In-Space Laboratory – The Commercialization of Drug Manufacturing in Space"
+   },
+   {
+    "id": "W7126088814",
+    "year": 2026,
+    "title": "Microgravity-Enabled Biomanufacturing for High-Value Pharmaceutical Ingredients and Space Biotechnology Commercialization"
+   }
+  ],
+  "mof_microgravity_growth_works": [
+   {
+    "id": "W3016413958",
+    "year": 2020,
+    "title": "Growing and Shaping Metal–Organic Framework Single Crystals at the Millimeter Scale"
+   },
+   {
+    "id": "W4245863642",
+    "year": 2021,
+    "title": null
+   },
+   {
+    "id": "W3183262270",
+    "year": 2021,
+    "title": "2D Materials: Synthesis of 2D Porous Crystalline Materials in Simulated Microgravity (Adv. Mater. 30/2021)"
+   }
+  ],
+  "top_institutions": [
+   {
+    "name": "Marshall Space Flight Center",
+    "type": "facility",
+    "country": "US",
+    "works": 434,
+    "id": "I1294504835"
+   },
+   {
+    "name": "Glenn Research Center",
+    "type": "facility",
+    "country": "US",
+    "works": 172,
+    "id": "I2799786008"
+   },
+   {
+    "name": "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)",
+    "type": "facility",
+    "country": "DE",
+    "works": 156,
+    "id": "I2898391981"
+   },
+   {
+    "name": "National Aeronautics and Space Administration",
+    "type": "government",
+    "country": "US",
+    "works": 132,
+    "id": "I4210124779"
+   },
+   {
+    "name": "Centre National de la Recherche Scientifique",
+    "type": "government",
+    "country": "FR",
+    "works": 112,
+    "id": "I1294671590"
+   },
+   {
+    "name": "Chinese Academy of Sciences",
+    "type": "government",
+    "country": "CN",
+    "works": 99,
+    "id": "I19820366"
+   },
+   {
+    "name": "University of Alabama in Huntsville",
+    "type": "education",
+    "country": "US",
+    "works": 95,
+    "id": "I82495205"
+   },
+   {
+    "name": "Northwestern Polytechnical University",
+    "type": "education",
+    "country": "CN",
+    "works": 86,
+    "id": "I17145004"
+   },
+   {
+    "name": "Rensselaer Polytechnic Institute",
+    "type": "education",
+    "country": "US",
+    "works": 74,
+    "id": "I165799507"
+   },
+   {
+    "name": "Universities Space Research Association",
+    "type": "nonprofit",
+    "country": "US",
+    "works": 66,
+    "id": "I1329765538"
+   },
+   {
+    "name": "Aix-Marseille Université",
+    "type": "education",
+    "country": "FR",
+    "works": 65,
+    "id": "I21491767"
+   },
+   {
+    "name": "Japan Aerospace Exploration Agency",
+    "type": "facility",
+    "country": "JP",
+    "works": 63,
+    "id": "I2800865746"
+   },
+   {
+    "name": "Massachusetts Institute of Technology",
+    "type": "education",
+    "country": "US",
+    "works": 62,
+    "id": "I63966007"
+   },
+   {
+    "name": "Access",
+    "type": "facility",
+    "country": "DE",
+    "works": 61,
+    "id": "I4210121009"
+   },
+   {
+    "name": "University of Alabama at Birmingham",
+    "type": "education",
+    "country": "US",
+    "works": 61,
+    "id": "I32389192"
+   },
+   {
+    "name": "European Space Research and Technology Centre",
+    "type": "government",
+    "country": "NL",
+    "works": 60,
+    "id": "I44377176"
+   },
+   {
+    "name": "Institut des Matériaux, de Microélectronique et des Nanosciences de Provence",
+    "type": "facility",
+    "country": "FR",
+    "works": 58,
+    "id": "I4210112016"
+   },
+   {
+    "name": "Johnson Space Center",
+    "type": "facility",
+    "country": "US",
+    "works": 57,
+    "id": "I4210149382"
+   },
+   {
+    "name": "European Space Agency",
+    "type": "nonprofit",
+    "country": "FR",
+    "works": 51,
+    "id": "I2801994115"
+   },
+   {
+    "name": "CEA Grenoble",
+    "type": "government",
+    "country": "FR",
+    "works": 49,
+    "id": "I3020098449"
+   },
+   {
+    "name": "Iowa State University",
+    "type": "education",
+    "country": "US",
+    "works": 43,
+    "id": "I173911158"
+   },
+   {
+    "name": "Universität Ulm",
+    "type": "education",
+    "country": "DE",
+    "works": 40,
+    "id": "I196349391"
+   },
+   {
+    "name": "Commissariat à l'Énergie Atomique et aux Énergies Alternatives",
+    "type": "government",
+    "country": "FR",
+    "works": 37,
+    "id": "I2738703131"
+   },
+   {
+    "name": "Ames Research Center",
+    "type": "facility",
+    "country": "US",
+    "works": 35,
+    "id": "I1280536761"
+   },
+   {
+    "name": "Northeastern University",
+    "type": "education",
+    "country": "US",
+    "works": 34,
+    "id": "I12912129"
+   },
+   {
+    "name": "Vanderbilt University",
+    "type": "education",
+    "country": "US",
+    "works": 34,
+    "id": "I200719446"
+   },
+   {
+    "name": "Russian Academy of Sciences",
+    "type": "government",
+    "country": "RU",
+    "works": 33,
+    "id": "I1313323035"
+   },
+   {
+    "name": "National Institute of Advanced Industrial Science and Technology",
+    "type": "government",
+    "country": "JP",
+    "works": 30,
+    "id": "I73613424"
+   },
+   {
+    "name": "Tufts University",
+    "type": "education",
+    "country": "US",
+    "works": 30,
+    "id": "I121934306"
+   },
+   {
+    "name": "University College Dublin",
+    "type": "education",
+    "country": "IE",
+    "works": 30,
+    "id": "I100930933"
+   },
+   {
+    "name": "University of Arizona",
+    "type": "education",
+    "country": "US",
+    "works": 30,
+    "id": "I138006243"
+   },
+   {
+    "name": "Pennsylvania State University",
+    "type": "education",
+    "country": "US",
+    "works": 29,
+    "id": "I130769515"
+   },
+   {
+    "name": "Princeton University",
+    "type": "education",
+    "country": "US",
+    "works": 29,
+    "id": "I20089843"
+   },
+   {
+    "name": "Langley Research Center",
+    "type": "facility",
+    "country": "US",
+    "works": 28,
+    "id": "I1319063186"
+   },
+   {
+    "name": "University of Chinese Academy of Sciences",
+    "type": "education",
+    "country": "CN",
+    "works": 28,
+    "id": "I4210165038"
+   },
+   {
+    "name": "University of Alabama",
+    "type": "education",
+    "country": "US",
+    "works": 27,
+    "id": "I17301866"
+   },
+   {
+    "name": "University of Massachusetts Amherst",
+    "type": "education",
+    "country": "US",
+    "works": 27,
+    "id": "I24603500"
+   },
+   {
+    "name": "University of Florida",
+    "type": "education",
+    "country": "US",
+    "works": 26,
+    "id": "I33213144"
+   },
+   {
+    "name": "The University of Osaka",
+    "type": "education",
+    "country": "JP",
+    "works": 25,
+    "id": "I98285908"
+   },
+   {
+    "name": "Cleveland State University",
+    "type": "education",
+    "country": "US",
+    "works": 24,
+    "id": "I102607778"
+   }
+  ],
+  "top_companies": [
+   {
+    "name": "Maruwa Foods and Biosciences (Japan)",
+    "country": "JP",
+    "works": 21,
+    "id": "I4210086526"
+   },
+   {
+    "name": "Confocal Science (Japan)",
+    "country": "JP",
+    "works": 17,
+    "id": "I4210135339"
+   },
+   {
+    "name": "Boeing (United States)",
+    "country": "US",
+    "works": 16,
+    "id": "I1295339012"
+   },
+   {
+    "name": "Advanced Engineering Services (Japan)",
+    "country": "JP",
+    "works": 13,
+    "id": "I4210129977"
+   },
+   {
+    "name": "Northrop Grumman (United States)",
+    "country": "US",
+    "works": 12,
+    "id": "I2948394018"
+   },
+   {
+    "name": "Wyle (United States)",
+    "country": "US",
+    "works": 12,
+    "id": "I144472018"
+   },
+   {
+    "name": "ZIN Technologies (United States)",
+    "country": "US",
+    "works": 12,
+    "id": "I4210089224"
+   },
+   {
+    "name": "IHI Corporation (Japan)",
+    "country": "JP",
+    "works": 9,
+    "id": "I4210101228"
+   },
+   {
+    "name": "Tec-Masters (United States)",
+    "country": "US",
+    "works": 9,
+    "id": "I4210151020"
+   },
+   {
+    "name": "Jacobs (United States)",
+    "country": "US",
+    "works": 8,
+    "id": "I4210150894"
+   },
+   {
+    "name": "Lockheed Martin (United States)",
+    "country": "US",
+    "works": 8,
+    "id": "I1287521167"
+   },
+   {
+    "name": "Mitsubishi Research Institute (Japan)",
+    "country": "JP",
+    "works": 8,
+    "id": "I113974858"
+   },
+   {
+    "name": "General Electric (United States)",
+    "country": "US",
+    "works": 7,
+    "id": "I1332737386"
+   },
+   {
+    "name": "Nissan (Japan)",
+    "country": "JP",
+    "works": 7,
+    "id": "I4210110524"
+   },
+   {
+    "name": "S. P. Korolev Rocket and Space Corporation Energia (Russia)",
+    "country": "RU",
+    "works": 7,
+    "id": "I4210144760"
+   },
+   {
+    "name": "BAE Systems (United States)",
+    "country": "US",
+    "works": 5,
+    "id": "I4210117222"
+   },
+   {
+    "name": "Eli Lilly (United States)",
+    "country": "US",
+    "works": 5,
+    "id": "I168537998"
+   },
+   {
+    "name": "General Dynamics (United States)",
+    "country": "US",
+    "works": 5,
+    "id": "I1343953105"
+   },
+   {
+    "name": "Raytheon (United States)",
+    "country": null,
+    "works": 5,
+    "id": "I4388891764"
+   },
+   {
+    "name": "Rockwell International (United States)",
+    "country": "US",
+    "works": 5,
+    "id": "I4405256118"
+   },
+   {
+    "name": "Amentum (United States)",
+    "country": "FR",
+    "works": 4,
+    "id": "I4405263009"
+   },
+   {
+    "name": "BBT-Materials Processing (Czechia)",
+    "country": "CZ",
+    "works": 4,
+    "id": "I4210105271"
+   },
+   {
+    "name": "CapeSym (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I4210091424"
+   },
+   {
+    "name": "Dornier Flugzeugwerke (Germany)",
+    "country": "DE",
+    "works": 4,
+    "id": "I1339191578"
+   },
+   {
+    "name": "DuPont (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I1316910977"
+   },
+   {
+    "name": "Intel (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I1343180700"
+   },
+   {
+    "name": "Lockheed (United States)",
+    "country": null,
+    "works": 4,
+    "id": "I4388891857"
+   },
+   {
+    "name": "Made In Space (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I4210147262"
+   },
+   {
+    "name": "Merck & Co., Inc., Rahway, NJ, USA (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I1285764155"
+   },
+   {
+    "name": "Motorola (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I1333370159"
+   },
+   {
+    "name": "Plasma Processes (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I4210152060"
+   },
+   {
+    "name": "Space Applications Services (Belgium)",
+    "country": "BE",
+    "works": 4,
+    "id": "I4210150580"
+   },
+   {
+    "name": "Tethers Unlimited (United States)",
+    "country": "US",
+    "works": 4,
+    "id": "I4210086412"
+   },
+   {
+    "name": "Air Liquide (France)",
+    "country": "FR",
+    "works": 3,
+    "id": "I4210143465"
+   },
+   {
+    "name": "Bionetics (United States)",
+    "country": "US",
+    "works": 3,
+    "id": "I4210138265"
+   },
+   {
+    "name": "Japan Manned Space Systems Corporation (Japan)",
+    "country": "JP",
+    "works": 3,
+    "id": "I4405273813"
+   },
+   {
+    "name": "Leidos (United States)",
+    "country": "US",
+    "works": 3,
+    "id": "I114662689"
+   },
+   {
+    "name": "Lockheed Missiles and Space Company (United States)",
+    "country": null,
+    "works": 3,
+    "id": "I4388891779"
+   },
+   {
+    "name": "Mitsui Mining & Smelting (Japan)",
+    "country": "JP",
+    "works": 3,
+    "id": "I4210114561"
+   },
+   {
+    "name": "NTT (Japan)",
+    "country": "JP",
+    "works": 3,
+    "id": "I2251713219"
+   }
+  ],
+  "countries": {
+   "US": 1741,
+   "DE": 377,
+   "CN": 338,
+   "FR": 285,
+   "JP": 256,
+   "GB": 119,
+   "IT": 98,
+   "RU": 97,
+   "NL": 81,
+   "CA": 66,
+   "ES": 55,
+   "IN": 41,
+   "BE": 41,
+   "IE": 40,
+   "SE": 37,
+   "AU": 37,
+   "CH": 23,
+   "AT": 20,
+   "HU": 19,
+   "DK": 14,
+   "KR": 13,
+   "CZ": 13,
+   "BR": 13,
+   "NO": 11,
+   "TR": 10
+  },
+  "partner_check": [
+   {
+    "name": "Merck & Co. / MSD",
+    "why": "Ran the pembrolizumab (Keytruda) crystallization experiments on the ISS, the anchor for crystalline-suspension antibody formulations.",
+    "papers": 4,
+    "via_institution": 4,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 2,
+     "pharma": 2
+    },
+    "matched_institution_names": [
+     "Merck & Co., Inc., Rahway, NJ, USA (United States)"
+    ],
+    "first_year": 1989,
+    "last_year": 2019,
+    "examples": [
+     {
+      "id": "W2115267298",
+      "year": 1989,
+      "title": "Protein Crystal Growth in Microgravity",
+      "cited_by": 192
+     },
+     {
+      "id": "W2993431654",
+      "year": 2019,
+      "title": "Pembrolizumab microgravity crystallization experimentation",
+      "cited_by": 65
+     }
+    ]
+   },
+   {
+    "name": "Merck KGaA (Darmstadt)",
+    "why": "A separate company from Merck & Co.; listed so the two are not conflated.",
+    "papers": 0,
+    "via_institution": 0,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": null,
+    "last_year": null,
+    "examples": []
+   },
+   {
+    "name": "Redwire",
+    "why": "Owns the ISS PIL-BOX pharmaceutical crystallization and in-space manufacturing hardware lines (Made In Space, Techshot).",
+    "papers": 10,
+    "via_institution": 0,
+    "via_raw_string_only": 10,
+    "by_topic": {
+     "protein": 1,
+     "pharma": 5,
+     "solid": 2,
+     "colloid": 2
+    },
+    "matched_institution_names": [],
+    "first_year": 2024,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W4394853226",
+      "year": 2024,
+      "title": "Autoclave Design for Microgravity Hydrothermal Synthesis",
+      "cited_by": 10
+     },
+     {
+      "id": "W4410896693",
+      "year": 2025,
+      "title": "Crystallization of Small Molecules in Microgravity Using Pharmaceutical In-Space Laboratory–Biocrystal Optimization eXperiment (PIL-BOX)",
+      "cited_by": 5
+     }
+    ]
+   },
+   {
+    "name": "Made In Space (now Redwire)",
+    "why": "Ran the first ISS 3D printers; acquired by Redwire in 2020.",
+    "papers": 4,
+    "via_institution": 4,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "ism": 4
+    },
+    "matched_institution_names": [
+     "Made In Space (United States)"
+    ],
+    "first_year": 2017,
+    "last_year": 2020,
+    "examples": [
+     {
+      "id": "W2755893968",
+      "year": 2017,
+      "title": "Archinaut: In-Space Manufacturing and Assembly for Next-Generation Space Habitats",
+      "cited_by": 60
+     },
+     {
+      "id": "W2754177056",
+      "year": 2017,
+      "title": "Applications for the Archinaut In Space Manufacturing and Assembly Capability",
+      "cited_by": 25
+     }
+    ]
+   },
+   {
+    "name": "Techshot (now Redwire)",
+    "why": "ISS BioFabrication Facility and furnace hardware; acquired by Redwire in 2021.",
+    "papers": 2,
+    "via_institution": 2,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "colloid": 2
+    },
+    "matched_institution_names": [
+     "Techshot (United States)"
+    ],
+    "first_year": 2015,
+    "last_year": 2015,
+    "examples": [
+     {
+      "id": "W2499036410",
+      "year": 2015,
+      "title": "Remotely Controlled Mixers for Light Microscopy Module (LMM) Colloid Samples",
+      "cited_by": 0
+     },
+     {
+      "id": "W2345218615",
+      "year": 2015,
+      "title": "Observation Platform for Dynamic Biomedical and Biotechnology Experiments Using the International Space Station (ISS) Light Microscopy Module (LMM)",
+      "cited_by": 0
+     }
+    ]
+   },
+   {
+    "name": "Varda Space Industries",
+    "why": "Free-flying pharmaceutical processing capsule (W-series).",
+    "papers": 1,
+    "via_institution": 0,
+    "via_raw_string_only": 1,
+    "by_topic": {
+     "protein": 1,
+     "pharma": 1
+    },
+    "matched_institution_names": [],
+    "first_year": 2024,
+    "last_year": 2024,
+    "examples": [
+     {
+      "id": "W4392594909",
+      "year": 2024,
+      "title": "Gravity as a Knob for Tuning Particle Size Distributions of Small Molecules",
+      "cited_by": 5
+     }
+    ]
+   },
+   {
+    "name": "Space Tango",
+    "why": "ISS CubeLab processing payloads for commercial pharma/biotech.",
+    "papers": 0,
+    "via_institution": 0,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": null,
+    "last_year": null,
+    "examples": []
+   },
+   {
+    "name": "Axiom Space",
+    "why": "Private astronaut missions and a planned commercial station.",
+    "papers": 4,
+    "via_institution": 0,
+    "via_raw_string_only": 4,
+    "by_topic": {
+     "solid": 2,
+     "ism": 3
+    },
+    "matched_institution_names": [],
+    "first_year": 2024,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W4411944582",
+      "year": 2025,
+      "title": "In space fabrication of Janus base nano matrix for improved assembly and bioactivity",
+      "cited_by": 2
+     },
+     {
+      "id": "W7163520544",
+      "year": 2026,
+      "title": "Multi-Omics Characterization of Human Molecular Responses to Spaceflight Across Two Independent Missions",
+      "cited_by": 1
+     }
+    ]
+   },
+   {
+    "name": "Voyager / Nanoracks",
+    "why": "Commercial ISS access (Nanoracks) and the planned Starlab station.",
+    "papers": 2,
+    "via_institution": 0,
+    "via_raw_string_only": 2,
+    "by_topic": {
+     "protein": 1,
+     "solid": 1
+    },
+    "matched_institution_names": [],
+    "first_year": 2013,
+    "last_year": 2022,
+    "examples": [
+     {
+      "id": "W2070399984",
+      "year": 2013,
+      "title": "A Microfluidic, High Throughput Protein Crystal Growth Method for Microgravity",
+      "cited_by": 21
+     },
+     {
+      "id": "W4205760158",
+      "year": 2022,
+      "title": "Free-Flying StarLabs as Platforms for In-Space Developmental Test",
+      "cited_by": 1
+     }
+    ]
+   },
+   {
+    "name": "LambdaVision",
+    "why": "Layer-by-layer protein retinal implant manufacturing on the ISS.",
+    "papers": 1,
+    "via_institution": 0,
+    "via_raw_string_only": 1,
+    "by_topic": {
+     "protein": 1,
+     "pharma": 1
+    },
+    "matched_institution_names": [],
+    "first_year": 2022,
+    "last_year": 2022,
+    "examples": [
+     {
+      "id": "W4283775007",
+      "year": 2022,
+      "title": "Layer‐by‐Layer Deposition in Microgravity for Enhanced Thin‐Film Production",
+      "cited_by": 1
+     }
+    ]
+   },
+   {
+    "name": "ACME Advanced Materials / Astral Materials",
+    "why": "Microgravity-processed silicon-carbide wafers.",
+    "papers": 0,
+    "via_institution": 0,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": null,
+    "last_year": null,
+    "examples": []
+   },
+   {
+    "name": "Sierra Space / Sierra Nevada Corp.",
+    "why": "Dream Chaser cargo return and the LIFE habitat.",
+    "papers": 0,
+    "via_institution": 0,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": null,
+    "last_year": null,
+    "examples": []
+   },
+   {
+    "name": "Boeing",
+    "why": "ISS prime contractor; Starliner.",
+    "papers": 18,
+    "via_institution": 16,
+    "via_raw_string_only": 2,
+    "by_topic": {
+     "protein": 3,
+     "solid": 10,
+     "mof": 2,
+     "ism": 3
+    },
+    "matched_institution_names": [
+     "Boeing (United States)"
+    ],
+    "first_year": 1974,
+    "last_year": 2015,
+    "examples": [
+     {
+      "id": "W2169015115",
+      "year": 2002,
+      "title": "Telerobotic remote handling of protein crystals",
+      "cited_by": 23
+     },
+     {
+      "id": "W2330660444",
+      "year": 2006,
+      "title": "The In-Space Soldering Investigation (ISSI): Melting and Solidification Experiments Aboard the International Space Station",
+      "cited_by": 12
+     }
+    ]
+   },
+   {
+    "name": "Airbus",
+    "why": "Columbus/ESA payload hardware and space-grown materials furnaces.",
+    "papers": 4,
+    "via_institution": 2,
+    "via_raw_string_only": 2,
+    "by_topic": {
+     "solid": 2,
+     "ism": 2
+    },
+    "matched_institution_names": [
+     "Airbus (France)",
+     "Airbus Defence and Space GmbH (Germany)",
+     "Airbus (United Kingdom)",
+     "Airbus (Germany)"
+    ],
+    "first_year": 2009,
+    "last_year": 2023,
+    "examples": [
+     {
+      "id": "W2053721711",
+      "year": 2010,
+      "title": "The Development of a Microgravity Experiment Involving Columnar to Equiaxed Transition for Solidification of a Ti-Al Based Alloy",
+      "cited_by": 11
+     },
+     {
+      "id": "W4382582435",
+      "year": 2023,
+      "title": "Outcomes of the PERIOD project on In-Space Manufacturing, Assembly and Refuelling Technologies",
+      "cited_by": 7
+     }
+    ]
+   },
+   {
+    "name": "Bristol-Myers Squibb",
+    "why": "Pharma ISS protein crystallization user.",
+    "papers": 1,
+    "via_institution": 1,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 1
+    },
+    "matched_institution_names": [
+     "Bristol-Myers Squibb (United States)"
+    ],
+    "first_year": 1996,
+    "last_year": 1996,
+    "examples": [
+     {
+      "id": "W1507943980",
+      "year": 1996,
+      "title": "Appraising the benefits of protein crystal growth in microgravity",
+      "cited_by": 0
+     }
+    ]
+   },
+   {
+    "name": "Eli Lilly",
+    "why": "Pharma ISS crystallization user.",
+    "papers": 5,
+    "via_institution": 5,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 3,
+     "solid": 1,
+     "ism": 1
+    },
+    "matched_institution_names": [
+     "Eli Lilly (United States)"
+    ],
+    "first_year": 1999,
+    "last_year": 2018,
+    "examples": [
+     {
+      "id": "W2044902269",
+      "year": 1999,
+      "title": "PCAM: a multi-user facility-based protein crystallization apparatus for microgravity",
+      "cited_by": 31
+     },
+     {
+      "id": "W2085373192",
+      "year": 2001,
+      "title": "Presintering effects on ground-based and microgravity liquid phase sintering",
+      "cited_by": 14
+     }
+    ]
+   },
+   {
+    "name": "JAXA",
+    "why": "Runs the Kibo high-quality protein crystal growth programme.",
+    "papers": 77,
+    "via_institution": 63,
+    "via_raw_string_only": 14,
+    "by_topic": {
+     "protein": 27,
+     "pharma": 3,
+     "solid": 45,
+     "colloid": 3,
+     "ism": 2
+    },
+    "matched_institution_names": [
+     "Japan Aerospace Exploration Agency"
+    ],
+    "first_year": 1986,
+    "last_year": 2025,
+    "examples": [
+     {
+      "id": "W2767762012",
+      "year": 2017,
+      "title": "On-orbit demonstration of oscillating heat pipe with check valves for space application",
+      "cited_by": 73
+     },
+     {
+      "id": "W1970515127",
+      "year": 2001,
+      "title": "Containerless solidification of oxide material using an electrostatic levitation furnace in microgravity",
+      "cited_by": 63
+     }
+    ]
+   },
+   {
+    "name": "ESA",
+    "why": "Runs the Material Science Laboratory, the Electromagnetic Levitator and the Fluid Science Laboratory on Columbus.",
+    "papers": 75,
+    "via_institution": 75,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 13,
+     "pharma": 1,
+     "solid": 43,
+     "colloid": 7,
+     "ism": 14
+    },
+    "matched_institution_names": [
+     "European Space Research and Technology Centre",
+     "European Space Agency"
+    ],
+    "first_year": 1980,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W3104993528",
+      "year": 2020,
+      "title": "Space station biomining experiment demonstrates rare earth element extraction in microgravity and Mars gravity",
+      "cited_by": 154
+     },
+     {
+      "id": "W2058922657",
+      "year": 2013,
+      "title": "XRMON-GF: A novel facility for solidification of metallic alloys with in situ and time-resolved X-ray radiographic characterization in microgravity conditions",
+      "cited_by": 65
+     }
+    ]
+   },
+   {
+    "name": "NASA Marshall Space Flight Center",
+    "why": "NASA's microgravity materials and protein crystal growth centre.",
+    "papers": 434,
+    "via_institution": 434,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 60,
+     "pharma": 9,
+     "solid": 293,
+     "colloid": 5,
+     "mof": 1,
+     "ism": 81
+    },
+    "matched_institution_names": [
+     "Marshall Space Flight Center"
+    ],
+    "first_year": 1967,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W2115267298",
+      "year": 1989,
+      "title": "Protein Crystal Growth in Microgravity",
+      "cited_by": 192
+     },
+     {
+      "id": "W2059790465",
+      "year": 1998,
+      "title": "Particle engulfment and pushing by solidifying interfaces: Part II. Microgravity experiments and theoretical analysis",
+      "cited_by": 145
+     }
+    ]
+   },
+   {
+    "name": "NASA Glenn Research Center",
+    "why": "NASA's microgravity fluids and combustion centre.",
+    "papers": 172,
+    "via_institution": 172,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 11,
+     "solid": 126,
+     "colloid": 54,
+     "ism": 3
+    },
+    "matched_institution_names": [
+     "Glenn Research Center"
+    ],
+    "first_year": 1977,
+    "last_year": 2025,
+    "examples": [
+     {
+      "id": "W1579170559",
+      "year": 1997,
+      "title": "Crystallization of hard-sphere colloids in microgravity",
+      "cited_by": 471
+     },
+     {
+      "id": "W2002434822",
+      "year": 1994,
+      "title": "Dendritic Growth Velocities in Microgravity",
+      "cited_by": 253
+     }
+    ]
+   },
+   {
+    "name": "NASA (any centre)",
+    "why": "Operator of the US ISS segment and a major source of microgravity research.",
+    "papers": 780,
+    "via_institution": 772,
+    "via_raw_string_only": 8,
+    "by_topic": {
+     "protein": 84,
+     "pharma": 14,
+     "solid": 496,
+     "colloid": 80,
+     "mof": 3,
+     "ism": 143
+    },
+    "matched_institution_names": [
+     "Marshall Space Flight Center",
+     "Glenn Research Center",
+     "National Aeronautics and Space Administration",
+     "Johnson Space Center"
+    ],
+    "first_year": 1967,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W1579170559",
+      "year": 1997,
+      "title": "Crystallization of hard-sphere colloids in microgravity",
+      "cited_by": 471
+     },
+     {
+      "id": "W1975960053",
+      "year": 1993,
+      "title": "An electrostatic levitator for high-temperature containerless materials processing in 1-g",
+      "cited_by": 343
+     }
+    ]
+   },
+   {
+    "name": "CASIS / ISS National Lab",
+    "why": "Manages the US ISS National Laboratory; selects and sponsors commercial payloads.",
+    "papers": 4,
+    "via_institution": 1,
+    "via_raw_string_only": 3,
+    "by_topic": {
+     "protein": 1,
+     "pharma": 1,
+     "ism": 2
+    },
+    "matched_institution_names": [
+     "Center for the Advancement of Science in Space"
+    ],
+    "first_year": 2019,
+    "last_year": 2025,
+    "examples": [
+     {
+      "id": "W2993431654",
+      "year": 2019,
+      "title": "Pembrolizumab microgravity crystallization experimentation",
+      "cited_by": 65
+     },
+     {
+      "id": "W2997193453",
+      "year": 2019,
+      "title": "A real-time protein crystal growth approach to crystallization on the International Space Station",
+      "cited_by": 3
+     }
+    ]
+   },
+   {
+    "name": "DLR",
+    "why": "Runs electromagnetic levitation (TEMPUS/EML) solidification research.",
+    "papers": 156,
+    "via_institution": 156,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 5,
+     "pharma": 4,
+     "solid": 137,
+     "colloid": 6,
+     "ism": 7
+    },
+    "matched_institution_names": [
+     "Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR)"
+    ],
+    "first_year": 1991,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W2019878687",
+      "year": 1994,
+      "title": "Non-equilibrium solidification of undercooled metallic metls",
+      "cited_by": 568
+     },
+     {
+      "id": "W2053225053",
+      "year": 1995,
+      "title": "Liquid immiscible alloys",
+      "cited_by": 388
+     }
+    ]
+   },
+   {
+    "name": "CNES",
+    "why": "French space agency (DECLIC fluid-physics instrument).",
+    "papers": 9,
+    "via_institution": 9,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "pharma": 1,
+     "solid": 4,
+     "colloid": 2,
+     "ism": 2
+    },
+    "matched_institution_names": [
+     "Centre National d'Études Spatiales"
+    ],
+    "first_year": 1997,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W2563084545",
+      "year": 2016,
+      "title": "The NEUF-DIX space project - Non-EquilibriUm Fluctuations during DIffusion in compleX liquids",
+      "cited_by": 34
+     },
+     {
+      "id": "W3043618068",
+      "year": 2020,
+      "title": "Giant Fluctuations Induced by Thermal Diffusion in Complex Liquids",
+      "cited_by": 22
+     }
+    ]
+   },
+   {
+    "name": "China Manned Space / CAS",
+    "why": "Tiangong station materials and life-science racks.",
+    "papers": 99,
+    "via_institution": 99,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 13,
+     "solid": 62,
+     "colloid": 17,
+     "ism": 10
+    },
+    "matched_institution_names": [
+     "Chinese Academy of Sciences",
+     "University of Chinese Academy of Sciences",
+     "Institute of Optics and Electronics, Chinese Academy of Sciences",
+     "Innovation Academy for Microsatellites of Chinese Academy of Sciences"
+    ],
+    "first_year": 1991,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W2568770849",
+      "year": 2017,
+      "title": "Solidification of Immiscible Alloys: A Review",
+      "cited_by": 105
+     },
+     {
+      "id": "W2564618331",
+      "year": 2016,
+      "title": "Superwettable Microchips as a Platform toward Microgravity Biosensing",
+      "cited_by": 83
+     }
+    ]
+   },
+   {
+    "name": "SpaceX",
+    "why": "Dragon is the only routine pressurised cargo-return vehicle to the ISS; the foundry's launch and return provider.",
+    "papers": 0,
+    "via_institution": 0,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": null,
+    "last_year": null,
+    "examples": []
+   }
+  ],
+  "partner_check_zeolite_and_narrow_pharma": [
+   {
+    "name": "Redwire",
+    "why": "Owns the ISS PIL-BOX pharmaceutical crystallization and in-space manufacturing hardware lines (Made In Space, Techshot).",
+    "papers": 2,
+    "via_institution": 0,
+    "via_raw_string_only": 2,
+    "by_topic": {
+     "pharma": 2
+    },
+    "matched_institution_names": [],
+    "first_year": 2025,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W4414409735",
+      "year": 2025,
+      "title": "Microgravity-Grown Crystals as Seeds for Pharmaceutical Compounds",
+      "cited_by": 1
+     },
+     {
+      "id": "W7222959925",
+      "year": 2026,
+      "title": "Microgravity Crystallization of Active Pharmaceutical Ingredients (APIs): Impact on Crystalline Forms",
+      "cited_by": 0
+     }
+    ]
+   },
+   {
+    "name": "Boeing",
+    "why": "ISS prime contractor; Starliner.",
+    "papers": 1,
+    "via_institution": 1,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Boeing (United States)"
+    ],
+    "first_year": 2003,
+    "last_year": 2003,
+    "examples": [
+     {
+      "id": "W2011405623",
+      "year": 2003,
+      "title": "Flight performance of the International Space Station active rack isolation system",
+      "cited_by": 4
+     }
+    ]
+   },
+   {
+    "name": "JAXA",
+    "why": "Runs the Kibo high-quality protein crystal growth programme.",
+    "papers": 3,
+    "via_institution": 3,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Japan Aerospace Exploration Agency"
+    ],
+    "first_year": 2008,
+    "last_year": 2009,
+    "examples": [
+     {
+      "id": "W2276589049",
+      "year": 2009,
+      "title": "Subscale Air Revitalization System by CO 2 Reduction for Small Satellite Demonstration",
+      "cited_by": 5
+     },
+     {
+      "id": "W422994395",
+      "year": 2008,
+      "title": "Water Electrolysis Cell that are Free Liquid-Gas Separation System for Microgravity Conditions in order to Establish Circulated Life Support System",
+      "cited_by": 1
+     }
+    ]
+   },
+   {
+    "name": "ESA",
+    "why": "Runs the Material Science Laboratory, the Electromagnetic Levitator and the Fluid Science Laboratory on Columbus.",
+    "papers": 1,
+    "via_institution": 1,
+    "via_raw_string_only": 0,
+    "by_topic": {
+     "protein": 1
+    },
+    "matched_institution_names": [
+     "European Space Agency",
+     "European Space Research and Technology Centre"
+    ],
+    "first_year": 2004,
+    "last_year": 2004,
+    "examples": [
+     {
+      "id": "W1554960082",
+      "year": 2004,
+      "title": "European facilities for the study of zeolite formation on the international space station",
+      "cited_by": 2
+     }
+    ]
+   },
+   {
+    "name": "NASA Marshall Space Flight Center",
+    "why": "NASA's microgravity materials and protein crystal growth centre.",
+    "papers": 4,
+    "via_institution": 4,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Marshall Space Flight Center"
+    ],
+    "first_year": 2004,
+    "last_year": 2013,
+    "examples": [
+     {
+      "id": "W1991039734",
+      "year": 2013,
+      "title": "Carbon dioxide removal system for closed loop atmosphere revitalization, candidate sorbents screening and test results",
+      "cited_by": 23
+     },
+     {
+      "id": "W2108033006",
+      "year": 2011,
+      "title": "Microlith-based Structured Sorbent for Carbon Dioxide, Humidity, and Trace Contaminant Control in Manned Space Habitats",
+      "cited_by": 4
+     }
+    ]
+   },
+   {
+    "name": "NASA Glenn Research Center",
+    "why": "NASA's microgravity fluids and combustion centre.",
+    "papers": 2,
+    "via_institution": 2,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Glenn Research Center"
+    ],
+    "first_year": 2006,
+    "last_year": 2024,
+    "examples": [
+     {
+      "id": "W7160297861",
+      "year": 2024,
+      "title": "Conservation Law Model of a Rapidly Cycled Temperature Swing Adsorption Pump in a Terrestrial Environment",
+      "cited_by": 0
+     },
+     {
+      "id": "W2325809012",
+      "year": 2006,
+      "title": "Generation of Fine Particulates in Packed Granular Bed in the Carbon Dioxide Removal Assembly (CDRA)",
+      "cited_by": 0
+     }
+    ]
+   },
+   {
+    "name": "NASA (any centre)",
+    "why": "Operator of the US ISS segment and a major source of microgravity research.",
+    "papers": 36,
+    "via_institution": 36,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Goddard Space Flight Center",
+     "National Aeronautics and Space Administration",
+     "Johnson Space Center",
+     "Ames Research Center"
+    ],
+    "first_year": 1993,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W4372335789",
+      "year": 2023,
+      "title": "The effect of long-term spaceflight on drug potency and the risk of medication failure",
+      "cited_by": 49
+     },
+     {
+      "id": "W1986896230",
+      "year": 2003,
+      "title": "Plant growth during the greenhouse II experiment on the Mir orbital station",
+      "cited_by": 25
+     }
+    ]
+   },
+   {
+    "name": "China Manned Space / CAS",
+    "why": "Tiangong station materials and life-science racks.",
+    "papers": 1,
+    "via_institution": 1,
+    "via_raw_string_only": 0,
+    "by_topic": {},
+    "matched_institution_names": [
+     "Chinese Academy of Sciences"
+    ],
+    "first_year": 2007,
+    "last_year": 2007,
+    "examples": [
+     {
+      "id": "W3139818384",
+      "year": 2007,
+      "title": "SPACE EXPERIMENTS OF CRYSTAL GROWTH IN AQUEOUS SOLUTION AND ITS GROUND-BASED RESEARCH",
+      "cited_by": 0
+     }
+    ]
+   },
+   {
+    "name": "SpaceX",
+    "why": "Dragon is the only routine pressurised cargo-return vehicle to the ISS; the foundry's launch and return provider.",
+    "papers": 1,
+    "via_institution": 0,
+    "via_raw_string_only": 1,
+    "by_topic": {},
+    "matched_institution_names": [],
+    "first_year": 2026,
+    "last_year": 2026,
+    "examples": [
+     {
+      "id": "W7138937255",
+      "year": 2026,
+      "title": "Comparative Analysis of Pharmaceutical Content Following Spaceflight and Vacuum Exposure During Commercial Extravehicular Activity",
+      "cited_by": 3
+     }
+    ]
+   }
+  ],
+  "affiliation_parsing_errors_found": [
+   {
+    "work": "W7222959925",
+    "raw": "Redwire Space Technologies, Inc., 401 Exploration Wy, Georgetown, IN",
+    "resolved_to": "SpaceX (United States)"
+   },
+   {
+    "work": "W4206088203",
+    "raw": "Bigelow Aerospace Robert Bigelow 1998 Las Vegas, Nevada, USA (a parsed reference, not an affiliation)",
+    "resolved_to": "SpaceX (United States)"
+   },
+   {
+    "work": "W4405587250",
+    "raw": "Design & Development, Redwire Space N. V., Kruibeke, Belgium",
+    "resolved_to": "Macquarie University"
+   },
+   {
+    "work": "W1667042808",
+    "raw": "NASDA, 2-2-1 Sengen, Tsukuba, Japan",
+    "resolved_to": "National Association of State Departments of Agriculture"
+   },
+   {
+    "work": "W2069195367",
+    "raw": "National Space Development Agency of Japan, Tsukuba, Japan",
+    "resolved_to": "Iwate Prefectural University"
+   }
+  ],
+  "union_per_million_openalex_works_by_decade": {
+   "1980-1989": 21.1,
+   "1990-1999": 33.0,
+   "2000-2009": 19.1,
+   "2010-2019": 10.5,
+   "2020-2025": 12.8
+  },
+  "materials_topics_per_million_openalex_works_by_decade": {
+   "1980-1989": 16.6,
+   "1990-1999": 31.5,
+   "2000-2009": 18.3,
+   "2010-2019": 8.3,
+   "2020-2025": 7.5
+  },
+  "small_molecule_frontier_affiliations": {
+   "redwire": [
+    "W4410896693",
+    "W7222959925",
+    "W7160987556",
+    "W4414409735",
+    "W4412486415"
+   ],
+   "butler": [
+    "W4410896693",
+    "W7222959925",
+    "W7160987556",
+    "W4414409735",
+    "W4412486415"
+   ],
+   "no_affiliation_data": [
+    "W7116284342"
+   ]
+  },
+  "openalex_all_works_by_year": {
+   "1960": 497258,
+   "1961": 486488,
+   "1962": 512948,
+   "1963": 564679,
+   "1964": 597054,
+   "1965": 644019,
+   "1966": 697171,
+   "1967": 749493,
+   "1968": 802704,
+   "1969": 854419,
+   "1970": 1004173,
+   "1971": 926603,
+   "1972": 967339,
+   "1973": 987081,
+   "1974": 1030082,
+   "1975": 1071736,
+   "1976": 1093235,
+   "1977": 1139003,
+   "1978": 1190110,
+   "1979": 1236029,
+   "1980": 1356444,
+   "1981": 1346542,
+   "1982": 1378572,
+   "1983": 1434454,
+   "1984": 1501292,
+   "1985": 1552437,
+   "1986": 1631618,
+   "1987": 1717892,
+   "1988": 1798250,
+   "1989": 1915719,
+   "1990": 2076273,
+   "1991": 2072038,
+   "1992": 2169636,
+   "1993": 2263278,
+   "1994": 2387591,
+   "1995": 2535018,
+   "1996": 2730976,
+   "1997": 2825653,
+   "1998": 3008546,
+   "1999": 3120742,
+   "2000": 3770008,
+   "2001": 3770373,
+   "2002": 4396693,
+   "2003": 4678168,
+   "2004": 5076959,
+   "2005": 5440350,
+   "2006": 5921135,
+   "2007": 6464611,
+   "2008": 6955657,
+   "2009": 7517958,
+   "2010": 8062027,
+   "2011": 8658891,
+   "2012": 8935163,
+   "2013": 9398466,
+   "2014": 9937297,
+   "2015": 10152107,
+   "2016": 10553497,
+   "2017": 10396700,
+   "2018": 10315256,
+   "2019": 10638506,
+   "2020": 11210942,
+   "2021": 10630076,
+   "2022": 10218268,
+   "2023": 10910518,
+   "2024": 10967263,
+   "2025": 14626210,
+   "2026": 34440546
+  },
+  "space_terms_by_year": {
+   "1960": 89,
+   "1961": 117,
+   "1962": 127,
+   "1963": 210,
+   "1964": 232,
+   "1965": 226,
+   "1966": 276,
+   "1967": 254,
+   "1968": 214,
+   "1969": 258,
+   "1970": 300,
+   "1971": 294,
+   "1972": 256,
+   "1973": 227,
+   "1974": 233,
+   "1975": 249,
+   "1976": 245,
+   "1977": 271,
+   "1978": 240,
+   "1979": 280,
+   "1980": 267,
+   "1981": 361,
+   "1982": 338,
+   "1983": 520,
+   "1984": 648,
+   "1985": 932,
+   "1986": 1147,
+   "1987": 1266,
+   "1988": 1342,
+   "1989": 1225,
+   "1990": 1633,
+   "1991": 1590,
+   "1992": 1839,
+   "1993": 1734,
+   "1994": 1706,
+   "1995": 1519,
+   "1996": 1742,
+   "1997": 1618,
+   "1998": 1791,
+   "1999": 2205,
+   "2000": 2253,
+   "2001": 2357,
+   "2002": 2779,
+   "2003": 2638,
+   "2004": 2399,
+   "2005": 2433,
+   "2006": 2235,
+   "2007": 2211,
+   "2008": 2354,
+   "2009": 2304,
+   "2010": 2510,
+   "2011": 2661,
+   "2012": 2499,
+   "2013": 3128,
+   "2014": 3021,
+   "2015": 3395,
+   "2016": 3273,
+   "2017": 3309,
+   "2018": 3356,
+   "2019": 3850,
+   "2020": 3156,
+   "2021": 2947,
+   "2022": 2720,
+   "2023": 2963,
+   "2024": 3332,
+   "2025": 4164,
+   "2026": 5128
+  },
+  "api_budget": {
+   "credits_used_logged": 301,
+   "live_requests_logged": 31,
+   "last_remaining": "659",
+   "note": "Logged on the Mac IP only; single-work lookups used to read unclear abstracts are free and are not logged."
+  }
+ },
+ "findings": [
+  "4532 distinct OpenAlex works pair a space-environment term with one of the six foundry processes in their title or abstract (keyword hits; 110401 works match the space terms alone).",
+  "Solidification/alloy dominates the keyword set (2709 works, spot-check precision 15/20), followed by in-space manufacturing (978, 13/20) and protein crystallization (576, 14/20).",
+  "Only 11 works concern small-molecule crystals (APIs, pharmaceutical seed crystals, one pigment polymorph) or pharmaceutical-ingredient manufacturing in microgravity, after hand-reading all 132 pharma keyword hits; 10 of them appeared in 2024 or later. This is a new and very thin literature.",
+  "MOF growth in (simulated) microgravity has 3 records (2 distinct studies). 9 of the 13 MOF+space hits are about using MOFs aboard spacecraft. Zeolites, the closest porous-crystal precedent, have 141 keyword hits with spot-check precision 8/20, much of it from 1987-2003 Shuttle/EURECA work.",
+  "Top institutions by distinct papers: Marshall Space Flight Center (434), Glenn Research Center (172), Deutsches Zentrum für Luft- und Raumfahrt e. V. (DLR) (156).",
+  "Companies are on 354 of 4532 works (7.8%). The most frequent are Maruwa Foods and Biosciences (Japan) (21), Confocal Science (Japan) (17), Boeing (United States) (16), Advanced Engineering Services (Japan) (13), Northrop Grumman (United States) (12).",
+  "Company share by era (works with at least one company affiliation): 1980-1999 98/1161; 2000-2014 115/1436; 2015-2025 107/1494.",
+  "In-space manufacturing papers peaked in 2025 among complete years: 529 in 2016-2025 vs 80 in 2006-2015.",
+  "Candidate partners with zero affiliated works in this set: Merck KGaA (Darmstadt), Space Tango, ACME Advanced Materials / Astral Materials, Sierra Space / Sierra Nevada Corp. A zero is not evidence of no activity.",
+  "The small-molecule frontier is concentrated: Redwire is on 5 and Butler University on 5 of the 11 papers, Varda on 1, and 1 carries no affiliation data at all.",
+  "Normalised to all OpenAlex works, the six-topic union went from 33.0 per million works in the 1990s (the Shuttle/Spacelab era) to 10.5 in the 2010s and 12.8 in 2020-2025. The five materials topics alone went 31.5 to 8.3 to 7.5, so the recent uptick is mostly in-space manufacturing, while materials-in-microgravity research is a steady niche.",
+  "SpaceX is a verified author affiliation on 0 union works and 1 in the narrow pharma set (drug content after a commercial EVA). OpenAlex attributes two other works to SpaceX by mistake, so its institution field alone cannot be trusted here."
+ ],
+ "limitations": [
+  "Keyword search over titles and abstracts (OpenAlex stemmed title_and_abstract.search). Precision was measured by reading a seeded random sample of 20 titles per topic (all 13 for MOF); recall was not measured, so works that never use our phrases are missed.",
+  "Precision varies widely: Protein crystallization 14/20 (95% Wilson 0.481-0.855); Pharmaceutical crystallization / polymorph 2/20 (95% Wilson 0.028-0.301); Solidification / alloy 15/20 (95% Wilson 0.531-0.888); Colloid / photonic crystal 12/20 (95% Wilson 0.387-0.781); Metal-organic framework 3/13 (95% Wilson 0.082-0.503); In-space manufacturing 13/20 (95% Wilson 0.433-0.819); Pharmaceutical crystallization, narrow phrase set 5/20 (95% Wilson 0.112-0.469); Zeolite (porous-crystal precedent for MOFs) 8/20 (95% Wilson 0.219-0.613).",
+  "The on-topic judgements and the small-molecule/MOF classification are ours (an AI agent reading titles, plus abstracts from free single-work lookups where unclear). They are not peer-reviewed.",
+  "OpenAlex mis-resolves some affiliation strings (hand-verified examples in stats.affiliation_parsing_errors_found: a Redwire author resolved to SpaceX, NASDA to an agricultural association). Institution counts therefore carry noise of a few works per organisation.",
+  "OpenAlex affiliation coverage is incomplete: 70% of works have at least one resolved institution, and 5510 of 17388 authorships have none (1358 of those still carry a raw affiliation string, which we search for partners). Institution parsing errors and mergers (e.g. Techshot and Made In Space into Redwire) split counts.",
+  "2026 is a partial year, and recent works are still being indexed.",
+  "The per-million normalisation divides by every OpenAlex record, and OpenAlex's coverage of non-article records grows over time, so the normalised decline partly reflects indexing, not only attention.",
+  "Records include conference abstracts, NASA technical reports, journal covers, corrections and duplicates (e.g. three 'Manufacturing in the Void' records), so counts are works, not independent studies.",
+  "Company affiliation counts undercount industry work: most pharma and materials process data is unpublished, patented, or released as press material.",
+  "Without an API key OpenAlex refuses cursor paging past page 1, so pages 2+ used basic page=N paging. For solidification this returned 2709 of 2712 works (the API's own group_by counts per year are stored in stats for comparison).",
+  "A correlation between publication volume and any market is not established here. Paper counts measure research attention, not demand or technical maturity."
+ ],
+ "future_big_data": [
+  "Run the same queries on the OpenAlex S3 snapshot (s3://openalex, about 0.5 TB of works) on Engaging. It has no API budget, and would allow full-text-free recall checks and citation-network analysis (who cites the pembrolizumab and PIL-BOX papers).",
+  "Add patents (USPTO PatentsView, Lens.org) and NASA Technical Reports Server records, where most industrial microgravity process work lives.",
+  "Link to the ISS National Lab and NASA Physical Sciences Informatics payload lists to connect each paper to a flown experiment and its return vehicle.",
+  "Replace keyword matching with an embedding classifier trained on our hand labels, and measure recall against a curated bibliography such as the NASA protein crystal growth reviews."
+ ],
+ "partners": [
+  {
+   "name": "Merck & Co. / MSD",
+   "why": "Ran the pembrolizumab (Keytruda) crystallization experiments on the ISS, the anchor for crystalline-suspension antibody formulations.",
+   "evidence": "Our computation: 4 OpenAlex works in the 4532-work union carry this affiliation (4 via a resolved institution, 0 via the raw affiliation string only); 1989-2019; by topic: Protein crystallization 2, Pharmaceutical crystallization / polymorph 2. Examples: W2115267298 (1989) \"Protein Crystal Growth in Microgravity\"; W2993431654 (2019) \"Pembrolizumab microgravity crystallization experimentation\"."
+  },
+  {
+   "name": "Redwire",
+   "why": "Owns the ISS PIL-BOX pharmaceutical crystallization and in-space manufacturing hardware lines (Made In Space, Techshot).",
+   "evidence": "Our computation: 10 OpenAlex works in the 4532-work union carry this affiliation (0 via a resolved institution, 10 via the raw affiliation string only); 2024-2026; by topic: Pharmaceutical crystallization / polymorph 5, Solidification / alloy 2, Colloid / photonic crystal 2, Protein crystallization 1. Examples: W4394853226 (2024) \"Autoclave Design for Microgravity Hydrothermal Synthesis\"; W4410896693 (2025) \"Crystallization of Small Molecules in Microgravity Using Pharmaceutical In-Space Laborator\"."
+  },
+  {
+   "name": "Made In Space (now Redwire)",
+   "why": "Ran the first ISS 3D printers; acquired by Redwire in 2020.",
+   "evidence": "Our computation: 4 OpenAlex works in the 4532-work union carry this affiliation (4 via a resolved institution, 0 via the raw affiliation string only); 2017-2020; by topic: In-space manufacturing 4. Examples: W2755893968 (2017) \"Archinaut: In-Space Manufacturing and Assembly for Next-Generation Space Habitats\"; W2754177056 (2017) \"Applications for the Archinaut In Space Manufacturing and Assembly Capability\"."
+  },
+  {
+   "name": "Techshot (now Redwire)",
+   "why": "ISS BioFabrication Facility and furnace hardware; acquired by Redwire in 2021.",
+   "evidence": "Our computation: 2 OpenAlex works in the 4532-work union carry this affiliation (2 via a resolved institution, 0 via the raw affiliation string only); 2015-2015; by topic: Colloid / photonic crystal 2. Examples: W2499036410 (2015) \"Remotely Controlled Mixers for Light Microscopy Module (LMM) Colloid Samples\"; W2345218615 (2015) \"Observation Platform for Dynamic Biomedical and Biotechnology Experiments Using the Intern\"."
+  },
+  {
+   "name": "Varda Space Industries",
+   "why": "Free-flying pharmaceutical processing capsule (W-series).",
+   "evidence": "Our computation: 1 OpenAlex works in the 4532-work union carry this affiliation (0 via a resolved institution, 1 via the raw affiliation string only); 2024-2024; by topic: Protein crystallization 1, Pharmaceutical crystallization / polymorph 1. Examples: W4392594909 (2024) \"Gravity as a Knob for Tuning Particle Size Distributions of Small Molecules\"."
+  },
+  {
+   "name": "Axiom Space",
+   "why": "Private astronaut missions and a planned commercial station.",
+   "evidence": "Our computation: 4 OpenAlex works in the 4532-work union carry this affiliation (0 via a resolved institution, 4 via the raw affiliation string only); 2024-2026; by topic: In-space manufacturing 3, Solidification / alloy 2. Examples: W4411944582 (2025) \"In space fabrication of Janus base nano matrix for improved assembly and bioactivity\"; W7163520544 (2026) \"Multi-Omics Characterization of Human Molecular Responses to Spaceflight Across Two Indepe\"."
+  },
+  {
+   "name": "Voyager / Nanoracks",
+   "why": "Commercial ISS access (Nanoracks) and the planned Starlab station.",
+   "evidence": "Our computation: 2 OpenAlex works in the 4532-work union carry this affiliation (0 via a resolved institution, 2 via the raw affiliation string only); 2013-2022; by topic: Protein crystallization 1, Solidification / alloy 1. Examples: W2070399984 (2013) \"A Microfluidic, High Throughput Protein Crystal Growth Method for Microgravity\"; W4205760158 (2022) \"Free-Flying StarLabs as Platforms for In-Space Developmental Test\"."
+  },
+  {
+   "name": "LambdaVision",
+   "why": "Layer-by-layer protein retinal implant manufacturing on the ISS.",
+   "evidence": "Our computation: 1 OpenAlex works in the 4532-work union carry this affiliation (0 via a resolved institution, 1 via the raw affiliation string only); 2022-2022; by topic: Protein crystallization 1, Pharmaceutical crystallization / polymorph 1. Examples: W4283775007 (2022) \"Layer‐by‐Layer Deposition in Microgravity for Enhanced Thin‐Film Production\"."
+  },
+  {
+   "name": "Boeing",
+   "why": "ISS prime contractor; Starliner.",
+   "evidence": "Our computation: 18 OpenAlex works in the 4532-work union carry this affiliation (16 via a resolved institution, 2 via the raw affiliation string only); 1974-2015; by topic: Solidification / alloy 10, Protein crystallization 3, In-space manufacturing 3, Metal-organic framework 2. Examples: W2169015115 (2002) \"Telerobotic remote handling of protein crystals\"; W2330660444 (2006) \"The In-Space Soldering Investigation (ISSI): Melting and Solidification Experiments Aboard\"."
+  },
+  {
+   "name": "Airbus",
+   "why": "Columbus/ESA payload hardware and space-grown materials furnaces.",
+   "evidence": "Our computation: 4 OpenAlex works in the 4532-work union carry this affiliation (2 via a resolved institution, 2 via the raw affiliation string only); 2009-2023; by topic: Solidification / alloy 2, In-space manufacturing 2. Examples: W2053721711 (2010) \"The Development of a Microgravity Experiment Involving Columnar to Equiaxed Transition for\"; W4382582435 (2023) \"Outcomes of the PERIOD project on In-Space Manufacturing, Assembly and Refuelling Technolo\"."
+  },
+  {
+   "name": "Bristol-Myers Squibb",
+   "why": "Pharma ISS protein crystallization user.",
+   "evidence": "Our computation: 1 OpenAlex works in the 4532-work union carry this affiliation (1 via a resolved institution, 0 via the raw affiliation string only); 1996-1996; by topic: Protein crystallization 1. Examples: W1507943980 (1996) \"Appraising the benefits of protein crystal growth in microgravity\"."
+  },
+  {
+   "name": "Eli Lilly",
+   "why": "Pharma ISS crystallization user.",
+   "evidence": "Our computation: 5 OpenAlex works in the 4532-work union carry this affiliation (5 via a resolved institution, 0 via the raw affiliation string only); 1999-2018; by topic: Protein crystallization 3, Solidification / alloy 1, In-space manufacturing 1. Examples: W2044902269 (1999) \"PCAM: a multi-user facility-based protein crystallization apparatus for microgravity\"; W2085373192 (2001) \"Presintering effects on ground-based and microgravity liquid phase sintering\"."
+  },
+  {
+   "name": "JAXA",
+   "why": "Runs the Kibo high-quality protein crystal growth programme.",
+   "evidence": "Our computation: 77 OpenAlex works in the 4532-work union carry this affiliation (63 via a resolved institution, 14 via the raw affiliation string only); 1986-2025; by topic: Solidification / alloy 45, Protein crystallization 27, Pharmaceutical crystallization / polymorph 3, Colloid / photonic crystal 3, In-space manufacturing 2. Examples: W2767762012 (2017) \"On-orbit demonstration of oscillating heat pipe with check valves for space application\"; W1970515127 (2001) \"Containerless solidification of oxide material using an electrostatic levitation furnace i\"."
+  },
+  {
+   "name": "ESA",
+   "why": "Runs the Material Science Laboratory, the Electromagnetic Levitator and the Fluid Science Laboratory on Columbus.",
+   "evidence": "Our computation: 75 OpenAlex works in the 4532-work union carry this affiliation (75 via a resolved institution, 0 via the raw affiliation string only); 1980-2026; by topic: Solidification / alloy 43, In-space manufacturing 14, Protein crystallization 13, Colloid / photonic crystal 7, Pharmaceutical crystallization / polymorph 1. Examples: W3104993528 (2020) \"Space station biomining experiment demonstrates rare earth element extraction in micrograv\"; W2058922657 (2013) \"XRMON-GF: A novel facility for solidification of metallic alloys with in situ and time-res\"."
+  },
+  {
+   "name": "NASA Marshall Space Flight Center",
+   "why": "NASA's microgravity materials and protein crystal growth centre.",
+   "evidence": "Our computation: 434 OpenAlex works in the 4532-work union carry this affiliation (434 via a resolved institution, 0 via the raw affiliation string only); 1967-2026; by topic: Solidification / alloy 293, In-space manufacturing 81, Protein crystallization 60, Pharmaceutical crystallization / polymorph 9, Colloid / photonic crystal 5, Metal-organic framework 1. Examples: W2115267298 (1989) \"Protein Crystal Growth in Microgravity\"; W2059790465 (1998) \"Particle engulfment and pushing by solidifying interfaces: Part II. Microgravity experimen\"."
+  },
+  {
+   "name": "NASA Glenn Research Center",
+   "why": "NASA's microgravity fluids and combustion centre.",
+   "evidence": "Our computation: 172 OpenAlex works in the 4532-work union carry this affiliation (172 via a resolved institution, 0 via the raw affiliation string only); 1977-2025; by topic: Solidification / alloy 126, Colloid / photonic crystal 54, Protein crystallization 11, In-space manufacturing 3. Examples: W1579170559 (1997) \"Crystallization of hard-sphere colloids in microgravity\"; W2002434822 (1994) \"Dendritic Growth Velocities in Microgravity\"."
+  },
+  {
+   "name": "CASIS / ISS National Lab",
+   "why": "Manages the US ISS National Laboratory; selects and sponsors commercial payloads.",
+   "evidence": "Our computation: 4 OpenAlex works in the 4532-work union carry this affiliation (1 via a resolved institution, 3 via the raw affiliation string only); 2019-2025; by topic: In-space manufacturing 2, Protein crystallization 1, Pharmaceutical crystallization / polymorph 1. Examples: W2993431654 (2019) \"Pembrolizumab microgravity crystallization experimentation\"; W2997193453 (2019) \"A real-time protein crystal growth approach to crystallization on the International Space \"."
+  },
+  {
+   "name": "DLR",
+   "why": "Runs electromagnetic levitation (TEMPUS/EML) solidification research.",
+   "evidence": "Our computation: 156 OpenAlex works in the 4532-work union carry this affiliation (156 via a resolved institution, 0 via the raw affiliation string only); 1991-2026; by topic: Solidification / alloy 137, In-space manufacturing 7, Colloid / photonic crystal 6, Protein crystallization 5, Pharmaceutical crystallization / polymorph 4. Examples: W2019878687 (1994) \"Non-equilibrium solidification of undercooled metallic metls\"; W2053225053 (1995) \"Liquid immiscible alloys\"."
+  },
+  {
+   "name": "CNES",
+   "why": "French space agency (DECLIC fluid-physics instrument).",
+   "evidence": "Our computation: 9 OpenAlex works in the 4532-work union carry this affiliation (9 via a resolved institution, 0 via the raw affiliation string only); 1997-2026; by topic: Solidification / alloy 4, Colloid / photonic crystal 2, In-space manufacturing 2, Pharmaceutical crystallization / polymorph 1. Examples: W2563084545 (2016) \"The NEUF-DIX space project - Non-EquilibriUm Fluctuations during DIffusion in compleX liqu\"; W3043618068 (2020) \"Giant Fluctuations Induced by Thermal Diffusion in Complex Liquids\"."
+  },
+  {
+   "name": "China Manned Space / CAS",
+   "why": "Tiangong station materials and life-science racks.",
+   "evidence": "Our computation: 99 OpenAlex works in the 4532-work union carry this affiliation (99 via a resolved institution, 0 via the raw affiliation string only); 1991-2026; by topic: Solidification / alloy 62, Colloid / photonic crystal 17, Protein crystallization 13, In-space manufacturing 10. Examples: W2568770849 (2017) \"Solidification of Immiscible Alloys: A Review\"; W2564618331 (2016) \"Superwettable Microchips as a Platform toward Microgravity Biosensing\"."
+  },
+  {
+   "name": "SpaceX",
+   "why": "Dragon is the only routine pressurised cargo-return vehicle to the ISS; the foundry's launch and return provider. (Published fact about Dragon; the literature link is thin.)",
+   "evidence": "Our computation: 0 verified SpaceX-affiliated works in the six-topic union and 1 in the narrow pharma set: W7138937255 (2026) \"Comparative Analysis of Pharmaceutical Content Following Spaceflight and Vacuum Exposure During Commercial Ext\". Two further OpenAlex 'SpaceX' attributions are parsing errors (W7222959925 is a Redwire author; W4206088203 is a parsed table)."
+  },
+  {
+   "name": "Maruwa Foods and Biosciences (Japan)",
+   "why": "Surfaced by the data. Co-author on JAXA Kibo high-quality protein crystal growth papers: a company with repeated flight protein-crystallization experience.",
+   "evidence": "Our computation: 21 works in the union list this company (OpenAlex I4210086526, JP); by topic: Protein crystallization 21, Pharmaceutical crystallization / polymorph 3. Examples: W2070487668 (2011) \"High-Quality Protein Crystal Growth of Mouse Lipocalin-Type Prostaglandin D Synthase in Mi\"; W2136458794 (2013) \"JAXA protein crystallization in space: ongoing improvements for growing high-quality cryst\"."
+  },
+  {
+   "name": "Confocal Science (Japan)",
+   "why": "Surfaced by the data. Co-author on the same JAXA Kibo protein crystal growth papers: a protein-crystallization service company with flight heritage.",
+   "evidence": "Our computation: 17 works in the union list this company (OpenAlex I4210135339, JP); by topic: Protein crystallization 17, Pharmaceutical crystallization / polymorph 3. Examples: W2070487668 (2011) \"High-Quality Protein Crystal Growth of Mouse Lipocalin-Type Prostaglandin D Synthase in Mi\"; W2136458794 (2013) \"JAXA protein crystallization in space: ongoing improvements for growing high-quality cryst\"."
+  },
+  {
+   "name": "Advanced Engineering Services (Japan)",
+   "why": "Surfaced by the data. Japanese engineering firm on JAXA microgravity papers spanning SiGe crystal growth, protein crystallization and colloids.",
+   "evidence": "Our computation: 13 works in the union list this company (OpenAlex I4210129977, JP); by topic: Protein crystallization 5, Solidification / alloy 5, Colloid / photonic crystal 3. Examples: W2020934490 (2013) \"Growth of a Si0.50Ge0.50 crystal by the traveling liquidus-zone (TLZ) method in microgravi\"; W2069195367 (2004) \"Scientific Approach to the Optimization of Protein Crystallization Conditions for Microgra\"."
+  },
+  {
+   "name": "Northrop Grumman (United States)",
+   "why": "Surfaced by the data. Authors on high-vacuum fused-filament 3D printer papers (in-space manufacturing hardware).",
+   "evidence": "Our computation: 12 works in the union list this company (OpenAlex I2948394018, US); by topic: Solidification / alloy 7, In-space manufacturing 5. Examples: W4387736807 (2023) \"High Vacuum Capable Fused Filament Fabrication 3D Printer, Part I: Low-Temperature Polymer\"; W4388574129 (2023) \"High Vacuum Capable Fused Filament Fabrication 3D Printer, Part II: High-Temperature Polym\"."
+  },
+  {
+   "name": "ZIN Technologies (United States)",
+   "why": "Surfaced by the data. NASA Glenn contractor on ISS colloid physics experiments (colloid-polymer mixtures, colloidal aggregation).",
+   "evidence": "Our computation: 12 works in the union list this company (OpenAlex I4210089224, US); by topic: Colloid / photonic crystal 10, Solidification / alloy 2, Protein crystallization 1. Examples: W2068264419 (2007) \"Spinodal Decomposition in a Model Colloid-Polymer Mixture in Microgravity\"; W2018150134 (2004) \"Limits to Gelation in Colloidal Aggregation\"."
+  },
+  {
+   "name": "Tec-Masters (United States)",
+   "why": "Surfaced by the data. Operated ISS Microgravity Science Glovebox furnace experiments (SUBSA, PFMI transparent directional-solidification furnaces).",
+   "evidence": "Our computation: 9 works in the union list this company (OpenAlex I4210151020, US); by topic: Solidification / alloy 8, Protein crystallization 1. Examples: W2096673387 (2003) \"SUBSA and PFMI Transparent Furnace Systems Currently in use in the International Space Sta\"; W3179266824 (2001) \"Toward understanding pore formation and mobility during controlled directional solidificat\"."
+  },
+  {
+   "name": "Butler University (with Redwire PIL-BOX)",
+   "why": "The academic group behind most published small-molecule crystallization results from Redwire's PIL-BOX on the ISS.",
+   "evidence": "Our computation: Butler University is on 5 of the 11 hand-classified small-molecule microgravity papers, and Redwire is on 5: W4410896693 (2025); W7222959925 (2026); W7160987556 (2026); W4414409735 (2025); W4412486415 (2025)."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/logistics_literature.py"
+ ],
+ "reproduce": [
+  "python3 -I analysis/bigdata/logistics_literature.py --raw-dir <cache-dir> --out data/results/bigdata/literature-map.json --max-pages 20",
+  "# rerun from the cached responses with zero API calls:",
+  "python3 -I analysis/bigdata/logistics_literature.py --raw-dir <cache-dir> --out data/results/bigdata/literature-map.json --max-pages 20 --offline"
+ ],
+ "generated_at": "2026-10-25T03:11:49+00:00"
+}

@@ -1,0 +1,1917 @@
+{
+ "id": "pdb-microgravity",
+ "tab": "materials",
+ "material": "protein",
+ "title": "Every space-grown protein crystal in the PDB",
+ "question": "Across the whole Protein Data Bank, do protein crystals grown in microgravity give better diffraction data than Earth-grown crystals of the same protein?",
+ "headline": {
+  "value": "67",
+  "unit": "space-grown PDB entries",
+  "text": "67 PDB structures came from crystals grown in orbit. Against same-era Earth crystals of the same protein, the space one was the sharpest for 54% of 28 proteins (chance: 21%); against Earth controls from the same paper, no clear difference."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "wwPDB / RCSB PDB archive, PDBx/mmCIF files (structures/divided/mmCIF)",
+   "url": "https://files.wwpdb.org/pub/pdb/data/structures/divided/mmCIF/",
+   "license": "CC0 1.0 (PDB data are free of all copyright restrictions)",
+   "records": 261139,
+   "bytes": 92622392630,
+   "accessed": "2026-10-24",
+   "notes": "Full mirror of every entry released as of 2026-10-24 (261,139 files, 92.6 GB gzipped, 393 GB uncompressed), via rsync (rsync.rcsb.org::ftp_data, port 33444) plus parallel HTTPS from files.wwpdb.org. Parse failures: 0."
+  },
+  {
+   "name": "SIFTS chain-level PDB to UniProt mapping (pdb_chain_uniprot.tsv.gz)",
+   "url": "https://ftp.ebi.ac.uk/pub/databases/msd/sifts/flatfiles/tsv/pdb_chain_uniprot.tsv.gz",
+   "license": "CC BY 4.0 (EMBL-EBI / PDBe)",
+   "records": 1047374,
+   "bytes": 6293000,
+   "accessed": "2026-10-24",
+   "notes": "Release dated 2026-10-18; defines the protein (UniProt accession set) used for matching."
+  },
+  {
+   "name": "RCSB Search API full-text queries (recall cross-check only)",
+   "url": "https://search.rcsb.org/rcsbsearch/v2/query",
+   "license": "CC0 1.0",
+   "records": 101,
+   "bytes": 0,
+   "accessed": "2026-10-24",
+   "notes": "RCSB full-text search queried 2026-10-24 for: microgravity, space shuttle, international space station, JAXA, Kibo"
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging (ORCD)",
+  "partitions": [
+   "mit_data_transfer",
+   "mit_normal",
+   "mit_quicktest"
+  ],
+  "job_ids": [
+   "26812993",
+   "26813253",
+   "26813438",
+   "26813881_0",
+   "26813881_1",
+   "26813881_2",
+   "26813881_3",
+   "26813881_4",
+   "26813881_5",
+   "26813881_6",
+   "26813881_7",
+   "26813881_8",
+   "26813881_9",
+   "26813881_10",
+   "26813881_11",
+   "26813881_31",
+   "26813910",
+   "26814079",
+   "26814481",
+   "26814652",
+   "26815026",
+   "26815259",
+   "26815943",
+   "26816122",
+   "26816613",
+   "26817195",
+   "26817670",
+   "26817788",
+   "26818180",
+   "26818492",
+   "26818724"
+  ],
+  "cpu_hours": 7.27,
+  "wall_minutes": 78.8,
+  "sum_job_minutes": 92.4,
+  "peak_storage_gb": 92.8,
+  "jobs": [
+   {
+    "JobID": "26812993",
+    "JobName": "of-pdb-mirror",
+    "Partition": "mit_data_transfer",
+    "State": "COMPLETED",
+    "Elapsed": "00:33:03",
+    "NCPUS": "8",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813253",
+    "JobName": "of-pdb-test",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:02",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813438",
+    "JobName": "of-pdb-test",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:02",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_0",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "COMPLETED",
+    "Elapsed": "00:06:23",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_1",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "COMPLETED",
+    "Elapsed": "00:07:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_2",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "COMPLETED",
+    "Elapsed": "00:07:53",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_3",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "COMPLETED",
+    "Elapsed": "00:05:58",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_4",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_5",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_6",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_7",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_8",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:06",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_9",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:07",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_10",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:07",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_11",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:07",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813881_31",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_normal",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:00:00",
+    "NCPUS": "0",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26813910",
+    "JobName": "of-pdb-test",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:58",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26814079",
+    "JobName": "of-pdb-test",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:04",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26814481",
+    "JobName": "of-pdb-mirror-http",
+    "Partition": "mit_data_transfer",
+    "State": "CANCELLED by 161810",
+    "Elapsed": "00:07:23",
+    "NCPUS": "4",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26814652",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:01:46",
+    "NCPUS": "16",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26815026",
+    "JobName": "of-pdb-classify-test",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:46",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26815259",
+    "JobName": "of-pdb-parse",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:03:07",
+    "NCPUS": "16",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26815943",
+    "JobName": "of-pdb-fixup",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:03",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26816122",
+    "JobName": "of-pdb-classify",
+    "Partition": "mit_quicktest",
+    "State": "FAILED",
+    "Elapsed": "00:02:14",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26816613",
+    "JobName": "of-pdb-recall",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:00:40",
+    "NCPUS": "1",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26817195",
+    "JobName": "of-pdb-analyze",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:02:58",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26817670",
+    "JobName": "of-pdb-pack",
+    "Partition": "mit_data_transfer",
+    "State": "COMPLETED",
+    "Elapsed": "00:05:47",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26817788",
+    "JobName": "of-pdb-analyze",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:01:06",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26818180",
+    "JobName": "of-pdb-analyze",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:01:13",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26818492",
+    "JobName": "of-pdb-analyze",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:01:22",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   },
+   {
+    "JobID": "26818724",
+    "JobName": "of-pdb-analyze",
+    "Partition": "mit_quicktest",
+    "State": "COMPLETED",
+    "Elapsed": "00:01:39",
+    "NCPUS": "2",
+    "MaxRSS": ""
+   }
+  ]
+ },
+ "method": [
+  "Mirrored the complete PDB mmCIF archive to MIT Engaging scratch (261,139 entries, 92.6 GB gzipped).",
+  "Parsed every file with gemmi in Slurm jobs (coordinates cut out first): dates, experimental method, every _exptl_crystal_grow and _exptl_crystal text field, resolution, R-free, Wilson B, beamline, citation and polymer entities.",
+  "Scanned the full header text of every entry for space vocabulary (microgravity, Space Shuttle, STS-nn, ISS, Kibo, JAXA, NASDA, Mir, Spacehab, Spacelab/IML/USML, APCF, PCF, HDPCG, CPCG, PCAM/DCAM, GCB, JCB, PCDF, 'in space', 'on orbit', spaceflight...) and dropped known false contexts ('space group', MIR = multiple isomorphous replacement phasing, 'Fourier space', 'chemical space').",
+  "Applied an automatic rule (space words inside the crystal-growth fields), then read the deposited text of every candidate by hand (382 entries) and recorded verdicts in analysis/bigdata/pdb_review_labels.py.",
+  "Defined each protein as its set of UniProt accessions (SIFTS), falling back to polymer sequence hashes when no UniProt mapping exists; one protein = one independent unit.",
+  "For each protein with space- and Earth-grown X-ray entries: best space resolution minus best Earth resolution (any year, and Earth entries within \u00b13 years), and whether a space entry is the protein's best. Medians with 10,000-resample bootstrap 95% CIs over proteins, Wilcoxon signed-rank tests, and a 2,000-permutation null that shuffles which entries of a protein are called 'space' (this corrects for comparing one space crystal with the best of many Earth crystals).",
+  "Counted space-grown depositions per year by platform and tallied the programs and organisations named in the text."
+ ],
+ "charts": [
+  {
+   "id": "census",
+   "kind": "stacked",
+   "title": "Space-grown PDB depositions per year",
+   "subtitle": "67 entries whose own deposited text says the crystal grew in orbit (incl. 2 merged space+Earth data sets), by the platform the text names",
+   "x": {
+    "label": "Deposition year",
+    "unit": "",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Entries",
+    "unit": "count",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Shuttle",
+     "color": "orange",
+     "points": [
+      [
+       1995,
+       1
+      ],
+      [
+       1996,
+       1
+      ],
+      [
+       1997,
+       1
+      ],
+      [
+       1998,
+       2
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       2
+      ],
+      [
+       2001,
+       1
+      ],
+      [
+       2002,
+       2
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       1
+      ],
+      [
+       2019,
+       0
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       0
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       0
+      ],
+      [
+       2025,
+       0
+      ]
+     ]
+    },
+    {
+     "name": "ISS",
+     "color": "cyan",
+     "points": [
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       3
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       5
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       1
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       2
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       2
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       1
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       0
+      ],
+      [
+       2025,
+       0
+      ]
+     ]
+    },
+    {
+     "name": "Unknown",
+     "color": "grey",
+     "points": [
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       1
+      ],
+      [
+       1999,
+       1
+      ],
+      [
+       2000,
+       1
+      ],
+      [
+       2001,
+       1
+      ],
+      [
+       2002,
+       4
+      ],
+      [
+       2003,
+       2
+      ],
+      [
+       2004,
+       6
+      ],
+      [
+       2005,
+       2
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       1
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       1
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       3
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       1
+      ],
+      [
+       2015,
+       1
+      ],
+      [
+       2016,
+       2
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       1
+      ],
+      [
+       2019,
+       0
+      ],
+      [
+       2020,
+       2
+      ],
+      [
+       2021,
+       1
+      ],
+      [
+       2022,
+       2
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       7
+      ],
+      [
+       2025,
+       1
+      ]
+     ]
+    }
+   ],
+   "caption": "Counts entries, not proteins (several entries can come from one flight). Platform comes from the deposited text; 'Unknown' means the text says microgravity or space without naming the vehicle. No entry names Mir. Depositors are not required to report where crystals grew, so this is a lower bound, and the deposition year lags the flight by months to years."
+  },
+  {
+   "id": "res-delta",
+   "kind": "hist",
+   "title": "Space best minus Earth best, per protein",
+   "subtitle": "33 proteins with both space- and Earth-grown X-ray entries; negative = space better",
+   "x": {
+    "label": "Resolution difference (space - Earth)",
+    "unit": "\u00c5",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Proteins",
+    "unit": "count",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "vs best Earth entry, any year",
+     "color": "orange",
+     "points": [
+      [
+       -1.9,
+       0
+      ],
+      [
+       -1.7,
+       0
+      ],
+      [
+       -1.5,
+       0
+      ],
+      [
+       -1.3,
+       0
+      ],
+      [
+       -1.1,
+       0
+      ],
+      [
+       -0.9,
+       1
+      ],
+      [
+       -0.7,
+       1
+      ],
+      [
+       -0.5,
+       1
+      ],
+      [
+       -0.3,
+       2
+      ],
+      [
+       -0.1,
+       6
+      ],
+      [
+       0.1,
+       8
+      ],
+      [
+       0.3,
+       7
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.7,
+       3
+      ],
+      [
+       0.9,
+       0
+      ],
+      [
+       1.1,
+       2
+      ],
+      [
+       1.3,
+       0
+      ],
+      [
+       1.5,
+       0
+      ],
+      [
+       1.7,
+       1
+      ],
+      [
+       1.9,
+       0
+      ]
+     ]
+    },
+    {
+     "name": "vs best Earth entry within \u00b13 years",
+     "color": "cyan",
+     "points": [
+      [
+       -1.9,
+       0
+      ],
+      [
+       -1.7,
+       0
+      ],
+      [
+       -1.5,
+       0
+      ],
+      [
+       -1.3,
+       0
+      ],
+      [
+       -1.1,
+       0
+      ],
+      [
+       -0.9,
+       1
+      ],
+      [
+       -0.7,
+       0
+      ],
+      [
+       -0.5,
+       1
+      ],
+      [
+       -0.3,
+       3
+      ],
+      [
+       -0.1,
+       10
+      ],
+      [
+       0.1,
+       6
+      ],
+      [
+       0.3,
+       5
+      ],
+      [
+       0.5,
+       0
+      ],
+      [
+       0.7,
+       1
+      ],
+      [
+       0.9,
+       0
+      ],
+      [
+       1.1,
+       0
+      ],
+      [
+       1.3,
+       1
+      ],
+      [
+       1.5,
+       0
+      ],
+      [
+       1.7,
+       0
+      ],
+      [
+       1.9,
+       0
+      ]
+     ]
+    }
+   ],
+   "annotations": [
+    {
+     "x": 0,
+     "y": 0,
+     "text": "no difference"
+    }
+   ],
+   "caption": "Each protein (UniProt accession set) counts once. Values beyond \u00b12 \u00c5 are put in the end bins. The Earth side is the best of often many entries, so even with no microgravity effect the difference skews positive; the permutation null in the stats corrects for that."
+  },
+  {
+   "id": "space-vs-ground",
+   "kind": "scatter",
+   "title": "Best space vs best Earth resolution",
+   "subtitle": "One point per protein; below the line = the space crystal set the record",
+   "x": {
+    "label": "Best Earth-grown resolution",
+    "unit": "\u00c5",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Best space-grown resolution",
+    "unit": "\u00c5",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "proteins",
+     "color": "orange",
+     "points": [
+      [
+       1.65,
+       1.2
+      ],
+      [
+       1.808,
+       1.5
+      ],
+      [
+       0.64,
+       0.83
+      ],
+      [
+       1.5,
+       1.4
+      ],
+      [
+       1.895,
+       1.898
+      ],
+      [
+       1.6,
+       1.73
+      ],
+      [
+       1.07,
+       2.75
+      ],
+      [
+       0.65,
+       0.94
+      ],
+      [
+       2.6,
+       2.62
+      ],
+      [
+       0.92,
+       1.4
+      ],
+      [
+       1.16,
+       1.8
+      ],
+      [
+       0.77,
+       1.04
+      ],
+      [
+       1.9,
+       2.5
+      ],
+      [
+       1.65,
+       0.91
+      ],
+      [
+       0.89,
+       1.2
+      ],
+      [
+       0.83,
+       1.02
+      ],
+      [
+       1.9,
+       1.03
+      ],
+      [
+       1.8,
+       1.7
+      ],
+      [
+       0.9,
+       0.95
+      ],
+      [
+       2.0,
+       1.8
+      ],
+      [
+       2.4,
+       2.01
+      ],
+      [
+       1.0,
+       1.04
+      ],
+      [
+       1.74,
+       1.65
+      ],
+      [
+       1.4,
+       1.7
+      ],
+      [
+       1.17,
+       2.2
+      ],
+      [
+       1.4,
+       2.0
+      ],
+      [
+       1.94,
+       1.89
+      ],
+      [
+       2.23,
+       2.57
+      ],
+      [
+       1.08,
+       1.3
+      ],
+      [
+       1.246,
+       2.3
+      ],
+      [
+       1.03,
+       1.04
+      ],
+      [
+       2.0,
+       2.3
+      ],
+      [
+       1.5,
+       1.4
+      ]
+     ]
+    },
+    {
+     "name": "y = x",
+     "color": "grey",
+     "points": [
+      [
+       0.6,
+       0.6
+      ],
+      [
+       0.7,
+       0.7
+      ],
+      [
+       0.8,
+       0.8
+      ],
+      [
+       0.9,
+       0.9
+      ],
+      [
+       1.0,
+       1.0
+      ],
+      [
+       1.1,
+       1.1
+      ],
+      [
+       1.2,
+       1.2
+      ],
+      [
+       1.3,
+       1.3
+      ],
+      [
+       1.4,
+       1.4
+      ],
+      [
+       1.5,
+       1.5
+      ],
+      [
+       1.6,
+       1.6
+      ],
+      [
+       1.7,
+       1.7
+      ],
+      [
+       1.8,
+       1.8
+      ],
+      [
+       1.9,
+       1.9
+      ],
+      [
+       2.0,
+       2.0
+      ],
+      [
+       2.1,
+       2.1
+      ],
+      [
+       2.2,
+       2.2
+      ],
+      [
+       2.3,
+       2.3
+      ],
+      [
+       2.4,
+       2.4
+      ],
+      [
+       2.5,
+       2.5
+      ],
+      [
+       2.6,
+       2.6
+      ],
+      [
+       2.7,
+       2.7
+      ],
+      [
+       2.8,
+       2.8
+      ],
+      [
+       2.9,
+       2.9
+      ],
+      [
+       3.0,
+       3.0
+      ],
+      [
+       3.1,
+       3.1
+      ],
+      [
+       3.2,
+       3.2
+      ],
+      [
+       3.3,
+       3.3
+      ],
+      [
+       3.4,
+       3.4
+      ],
+      [
+       3.5,
+       3.5
+      ],
+      [
+       3.6,
+       3.6
+      ],
+      [
+       3.7,
+       3.7
+      ],
+      [
+       3.8,
+       3.8
+      ],
+      [
+       3.9,
+       3.9
+      ],
+      [
+       4.0,
+       4.0
+      ]
+     ]
+    }
+   ],
+   "caption": "Lower is better. Points are not independent of era, construct, ligand or beamline."
+  },
+  {
+   "id": "space-best-share",
+   "kind": "bar",
+   "title": "How often is the space crystal the protein's best?",
+   "subtitle": "Observed share of proteins vs the share expected if growth site made no difference",
+   "x": {
+    "label": "",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Proteins where a space entry is the best",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "observed",
+     "color": "orange",
+     "points": [
+      [
+       "Any year",
+       33.3
+      ],
+      [
+       "Earth entries within \u00b13 y",
+       53.6
+      ]
+     ]
+    },
+    {
+     "name": "expected with no effect (label permutation)",
+     "color": "grey",
+     "points": [
+      [
+       "Any year",
+       16.0
+      ],
+      [
+       "Earth entries within \u00b13 y",
+       21.2
+      ]
+     ]
+    }
+   ],
+   "caption": "Expected shares come from shuffling which entries of each protein are called 'space' (2,000 times). Exceeding it means space entries rank better than a random entry of the same protein; it does not prove microgravity caused it."
+  }
+ ],
+ "stats": {
+  "n_entries_scanned": 261139,
+  "n_xray_entries": 208134,
+  "n_candidates_reviewed_pool": 382,
+  "n_manually_reviewed": 382,
+  "n_space_entries": 67,
+  "n_space_label_space": 65,
+  "n_mixed_entries": 2,
+  "n_keyword_tier": 7,
+  "n_ground_control_entries": 12,
+  "n_unclear_entries": 11,
+  "n_noncrystal_microgravity_entries": 4,
+  "methods_space_entries": {
+   "X-RAY DIFFRACTION": 62,
+   "NEUTRON DIFFRACTION": 4,
+   "X-RAY DIFFRACTION | NEUTRON DIFFRACTION": 1
+  },
+  "precision_audit": {
+   "n_candidates_any_vocabulary": 382,
+   "n_true_in_candidates": 67,
+   "precision_any_vocabulary_hit": 0.175,
+   "auto_rule_flagged": 53,
+   "auto_rule_correct": 32,
+   "auto_rule_precision": 0.604,
+   "auto_rule_recall_vs_final": 0.478,
+   "n_sample": 40,
+   "n_correct": 23,
+   "sample_ids": "12PL 1914 1A34 1AR5 1B24 1B9H 1BDX 1BEN 1BWJ 1DGW 1E05 1ECL 1EGA 1HF4 1IEE 1JFM 1K6F 1KQP 1M2T 1MVQ 1OJT 1P7V 1P7W 1SPP 1TVQ 2GAW 2HLC 2IUM 2PGO 2W8M 3UG1 3X2L 4NIA 4RIL 5YRH 6COA 7X4O 9BVY 9BW2 9YT3",
+   "false_positive_causes": "MIR = multiple isomorphous replacement phasing (17 of the auto rule's errors), LMS = sulfamoyl-adenosine ligand, 'orbital mixing plate', crystal size 'in space'",
+   "missed_by_auto_rule": "space-grown entries saying so only in the title/keywords/citation, a typo ('microgavity'), or flight labels without the word microgravity"
+  },
+  "strict_mode": false,
+  "partner_mentions_entries": {
+   "JAXA / NASDA / Kibo / JEM / JCB": 4,
+   "NASA / Shuttle mission named": 12,
+   "ESA / APCF / PCDF": 12,
+   "Granada GCB / GCF": 1,
+   "ISS named": 13
+  },
+  "growth_method_mix": {
+   "n_since_2010": 35,
+   "n_counter_or_liquid_diffusion_since_2010": 24,
+   "n_before_2010": 32,
+   "n_counter_or_liquid_diffusion_before_2010": 7
+  },
+  "space_entries_by_funder": {
+   "NASA": [
+    "9BVY",
+    "9BW2",
+    "9BWM"
+   ],
+   "JAXA": [],
+   "ESA": [],
+   "CASIS": [
+    "5TY5"
+   ]
+  },
+  "pdb_entries_by_space_agency_funder": {
+   "NASA": 166,
+   "JAXA": 2,
+   "ESA": 1,
+   "CASIS": 2
+  },
+  "n_space_nasa_funded": 3,
+  "n_space_casis": 1,
+  "n_space_xray_with_resolution": 60,
+  "n_space_xray": 62,
+  "n_space_proteins": 41,
+  "n_proteins_with_ground_match": 33,
+  "label_counts": {
+   "none": 288,
+   "space": 65,
+   "ground_control": 12,
+   "unclear": 11,
+   "noncrystal": 4,
+   "mixed": 2
+  },
+  "platform_counts": {
+   "Unknown": 41,
+   "ISS": 14,
+   "Shuttle": 12
+  },
+  "key_type_counts_space": {
+   "uniprot_sifts": 65,
+   "sequence": 2
+  },
+  "resolution": {
+   "all_proteins": {
+    "delta_all_time": {
+     "n_proteins": 33,
+     "median": 0.13,
+     "median_ci95": [
+      0.003,
+      0.29
+     ],
+     "mean": 0.162,
+     "share_space_better": 0.333,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.07251105682873889
+    },
+    "delta_era_pm3y": {
+     "n_proteins": 28,
+     "median": -0.055,
+     "median_ci95": [
+      -0.105,
+      0.085
+     ],
+     "mean": 0.016,
+     "share_space_better": 0.536,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.8197880257627382
+    },
+    "space_best": {
+     "n_proteins": 33,
+     "share": 0.333,
+     "share_ci95": [
+      0.182,
+      0.515
+     ]
+    },
+    "space_best_era": {
+     "n_proteins": 28,
+     "share": 0.536,
+     "share_ci95": [
+      0.357,
+      0.714
+     ]
+    },
+    "permutation_null": {
+     "n_perm": 2000,
+     "null_median_delta_all": 0.39,
+     "null_median_delta_all_95": [
+      0.25,
+      0.57
+     ],
+     "p_delta_all_lower": 0.0004997501249375312,
+     "null_share_space_best": 0.16,
+     "null_share_space_best_95": [
+      0.061,
+      0.273
+     ],
+     "p_share_space_best_higher": 0.00849575212393803,
+     "null_median_delta_era": 0.295,
+     "null_median_delta_era_95": [
+      0.12,
+      0.398
+     ],
+     "p_delta_era_lower": 0.0004997501249375312,
+     "null_share_space_best_era": 0.212,
+     "p_share_space_best_era_higher": 0.0004997501249375312
+    },
+    "same_study_delta": {
+     "n_proteins": 14,
+     "median": -0.04,
+     "median_ci95": [
+      -0.3,
+      0.19
+     ],
+     "mean": -0.055,
+     "share_space_better": 0.5,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.729826958312354
+    }
+   },
+   "single_entity_uniprot": {
+    "delta_all_time": {
+     "n_proteins": 24,
+     "median": 0.09,
+     "median_ci95": [
+      -0.025,
+      0.29
+     ],
+     "mean": 0.16,
+     "share_space_better": 0.292,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.1355280876159668
+    },
+    "delta_era_pm3y": {
+     "n_proteins": 19,
+     "median": 0.003,
+     "median_ci95": [
+      -0.11,
+      0.19
+     ],
+     "mean": 0.032,
+     "share_space_better": 0.474,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.8404858691771451
+    },
+    "space_best": {
+     "n_proteins": 24,
+     "share": 0.292,
+     "share_ci95": [
+      0.125,
+      0.5
+     ]
+    },
+    "space_best_era": {
+     "n_proteins": 19,
+     "share": 0.474,
+     "share_ci95": [
+      0.263,
+      0.684
+     ]
+    },
+    "permutation_null": {
+     "n_perm": 2000,
+     "null_median_delta_all": 0.4,
+     "null_median_delta_all_95": [
+      0.254,
+      0.597
+     ],
+     "p_delta_all_lower": 0.0004997501249375312,
+     "null_share_space_best": 0.153,
+     "null_share_space_best_95": [
+      0.042,
+      0.292
+     ],
+     "p_share_space_best_higher": 0.038980509745127435,
+     "null_median_delta_era": 0.3,
+     "null_median_delta_era_95": [
+      0.11,
+      0.42
+     ],
+     "p_delta_era_lower": 0.0009995002498750624,
+     "null_share_space_best_era": 0.195,
+     "p_share_space_best_era_higher": 0.0004997501249375312
+    },
+    "same_study_delta": {
+     "n_proteins": 9,
+     "median": 0.07,
+     "median_ci95": [
+      -0.3,
+      0.34
+     ],
+     "mean": 0.015,
+     "share_space_better": 0.333,
+     "share_equal": 0.0,
+     "wilcoxon_p_two_sided": 0.734375
+    }
+   }
+  },
+  "secondary_metrics": {
+   "r_free": {
+    "n_proteins": 30,
+    "coverage": 0.909,
+    "median_space_minus_ground": 0.005,
+    "median_ci95": [
+     -0.004,
+     0.018
+    ]
+   },
+   "wilson_b": {
+    "n_proteins": 6,
+    "coverage": 0.182,
+    "median_space_minus_ground": 6.175,
+    "median_ci95": [
+     0.51,
+     15.05
+    ]
+   }
+  },
+  "programs_mentioned": {
+   "APCF (ESA)": 8,
+   "PCF": 4,
+   "PCDF (ESA)": 4,
+   "IML / USML / LMS Spacelab": 3,
+   "Spacehab": 2,
+   "JAXA PCG / Kibo": 2,
+   "GCB / GCF (Granada)": 1,
+   "JCB": 1
+  },
+  "orgs_mentioned": {
+   "NASA": 3,
+   "ESA": 3,
+   "JAXA": 2
+  },
+  "top_authors_space_entries": {
+   "Evrard, C.": 5,
+   "Otalora, F.": 5,
+   "Decanniere, K.": 4,
+   "Patino-Lopez, L.-D.": 4,
+   "Sleutel, M.": 4,
+   "Van De Weerdt, C.": 4,
+   "Haumont, E.": 4,
+   "Gavira, J.A.": 4,
+   "Betzel, C.": 4,
+   "Inaka, K.": 4,
+   "Aibara, S.": 4,
+   "Suzuki, A.": 4,
+   "Kidera, A.": 4,
+   "Shibata, K.": 4,
+   "Yamane, T.": 4
+  },
+  "synchrotron_sites_space_entries": {
+   "SPring-8": 15,
+   "EMBL/DESY, HAMBURG": 12,
+   "ESRF": 7,
+   "ELETTRA": 6,
+   "Photon Factory": 5,
+   "ORNL Spallation Neutron Source": 4,
+   "LURE": 3,
+   "NSLS": 1,
+   "SRS": 1,
+   "ILL": 1
+  },
+  "sensitivity_strict_explicit_text_only": {
+   "delta_all_time": {
+    "n_proteins": 29,
+    "median": 0.04,
+    "median_ci95": [
+     -0.09,
+     0.22
+    ],
+    "mean": 0.095,
+    "share_space_better": 0.379,
+    "share_equal": 0.0,
+    "wilcoxon_p_two_sided": 0.3146097534298652
+   },
+   "delta_era_pm3y": {
+    "n_proteins": 24,
+    "median": -0.1,
+    "median_ci95": [
+     -0.16,
+     0.02
+    ],
+    "mean": -0.048,
+    "share_space_better": 0.625,
+    "share_equal": 0.0,
+    "wilcoxon_p_two_sided": 0.1612351572856221
+   },
+   "space_best": {
+    "n_proteins": 29,
+    "share": 0.379,
+    "share_ci95": [
+     0.207,
+     0.552
+    ]
+   },
+   "space_best_era": {
+    "n_proteins": 24,
+    "share": 0.625,
+    "share_ci95": [
+     0.417,
+     0.792
+    ]
+   },
+   "permutation_null": {
+    "n_perm": 2000,
+    "null_median_delta_all": 0.39,
+    "null_median_delta_all_95": [
+     0.24,
+     0.55
+    ],
+    "p_delta_all_lower": 0.0004997501249375312,
+    "null_share_space_best": 0.147,
+    "null_share_space_best_95": [
+     0.034,
+     0.276
+    ],
+    "p_share_space_best_higher": 0.0009995002498750624,
+    "null_median_delta_era": 0.295,
+    "null_median_delta_era_95": [
+     0.125,
+     0.4
+    ],
+    "p_delta_era_lower": 0.0004997501249375312,
+    "null_share_space_best_era": 0.198,
+    "p_share_space_best_era_higher": 0.0004997501249375312
+   },
+   "same_study_delta": {
+    "n_proteins": 13,
+    "median": -0.1,
+    "median_ci95": [
+     -0.3,
+     0.13
+    ],
+    "mean": -0.109,
+    "share_space_better": 0.538,
+    "share_equal": 0.0,
+    "wilcoxon_p_two_sided": 0.4443359375
+   }
+  },
+  "rcsb_fulltext_check": {
+   "queries": {
+    "microgravity": 86,
+    "space shuttle": 16,
+    "international space station": 2,
+    "JAXA": 7,
+    "Kibo": 2
+   },
+   "n_ids": 101,
+   "rcsb_ids_in_our_set": 61,
+   "rcsb_ids_not_in_our_set": [
+    "193L",
+    "1AZF",
+    "1B0D",
+    "1B2K",
+    "1BVX",
+    "1BWH",
+    "1BWI",
+    "1G9W",
+    "1N9F",
+    "1N9I",
+    "1VDQ",
+    "2ANT",
+    "2DEB",
+    "2FYO",
+    "3S3M",
+    "3S3N",
+    "3S3O",
+    "4OQ8",
+    "4OQ9",
+    "4PJ1",
+    "5XP6",
+    "5XP9",
+    "5Y3B",
+    "5Y3C",
+    "6HXL",
+    "6HXM",
+    "6HXN",
+    "6HXO",
+    "6W7P",
+    "7DKB",
+    "7DKC",
+    "7DKD",
+    "7DKE",
+    "8EYS",
+    "8EZC",
+    "8ZST",
+    "9M5P",
+    "9M5Q",
+    "9M5R",
+    "9UMH"
+   ],
+   "n_our_set": 67,
+   "our_ids_not_found_by_rcsb_fulltext": 6,
+   "missed_by_rcsb_examples": [
+    "1BEN",
+    "3X2L",
+    "4FMP",
+    "4I5Y",
+    "9KL1",
+    "9L3S"
+   ],
+   "note": "RCSB full-text search queried 2026-10-24 for: microgravity, space shuttle, international space station, JAXA, Kibo",
+   "rcsb_not_ours_labels": {
+    "193L": "ground_control",
+    "1AZF": "none",
+    "1B0D": "none",
+    "1B2K": "none",
+    "1BVX": "ground_control",
+    "1BWH": "ground_control",
+    "1BWI": "ground_control",
+    "1G9W": "none",
+    "1N9F": "ground_control",
+    "1N9I": "ground_control",
+    "1VDQ": "unclear",
+    "2ANT": "unclear",
+    "2DEB": "outside pool: title 'in space group C2221'",
+    "2FYO": "outside pool: title 'in space group P43212'",
+    "3S3M": "outside pool: citation author Jaxa-Chamiec",
+    "3S3N": "outside pool: citation author Jaxa-Chamiec",
+    "3S3O": "outside pool: citation author Jaxa-Chamiec",
+    "4OQ8": "ground_control",
+    "4OQ9": "ground_control",
+    "4PJ1": "outside pool: E. coli-Thermus shuttle vector",
+    "5XP6": "outside pool: E. coli-Pichia shuttle vector",
+    "5XP9": "outside pool: E. coli-Pichia shuttle vector",
+    "5Y3B": "outside pool: JAXA listed as funder; crystals grown by hanging drop",
+    "5Y3C": "outside pool: JAXA listed as funder",
+    "6HXL": "none",
+    "6HXM": "none",
+    "6HXN": "none",
+    "6HXO": "none",
+    "6W7P": "ground_control",
+    "7DKB": "unclear",
+    "7DKC": "unclear",
+    "7DKD": "unclear",
+    "7DKE": "unclear",
+    "8EYS": "unclear",
+    "8EZC": "unclear",
+    "8ZST": "ground_control",
+    "9M5P": "noncrystal",
+    "9M5Q": "noncrystal",
+    "9M5R": "noncrystal",
+    "9UMH": "noncrystal"
+   },
+   "finding": "Cross-check: RCSB's own full-text search for 5 space terms returns 101 entries; 61 are in our list, 30 others were in our reviewed candidate pool and judged not space-grown (Earth controls, unclear cases, other entries' mentions), and 10 were outside our pool and, read by hand, are false hits ('space group', shuttle vectors, an author named Jaxa-Chamiec, JAXA as funder). Our archive scan finds 6 of our 67 space-grown entries that this full-text search does not return."
+  }
+ },
+ "findings": [
+  "67 of 261,139 PDB entries (208,134 X-ray) say in their own deposited text (crystal-growth fields, title or keywords) that the crystal was grown in microgravity; they cover 41 distinct proteins or nucleic acids. 2 of them merge space- and Earth-grown crystals.",
+  "Platforms named in the text: Shuttle 12, ISS 14, Unknown 41.",
+  "33 proteins have both space- and Earth-grown X-ray entries. Median best-space minus best-Earth resolution: 0.13 \u00c5 (95% CI 0.00 to 0.29; Wilcoxon p = 0.073). Negative means the space crystal diffracted further.",
+  "Against Earth entries deposited within \u00b13 years (28 proteins): median -0.06 \u00c5 (95% CI -0.10 to 0.09; Wilcoxon p = 0.82).",
+  "A space-grown entry is the protein's best-resolution entry for 33% of proteins (95% CI 18-52%). Shuffling the space/Earth labels within each protein gives 16% (permutation p = 0.0085); within \u00b13 years: 54% observed vs 21% expected (p < 0.001).",
+  "Permutation null for the median difference: 0.39 \u00c5 expected with no effect vs 0.13 \u00c5 observed (one-sided p < 0.001).",
+  "Where one paper deposited both space- and Earth-grown crystals of the same protein (14 proteins), the median space-minus-Earth difference is -0.04 \u00c5 (95% CI -0.30 to 0.19).",
+  "Single-chain, single-UniProt proteins only (24): median 0.09 \u00c5 (95% CI -0.03 to 0.29); space best for 29% vs 15% expected.",
+  "R-free of the best space entry minus the best Earth entry (30 proteins): median 0.005 (95% CI -0.004 to 0.018), i.e. no difference in model agreement. Wilson B is reported for too few pairs (6) to compare.",
+  "Hardware and programmes named in the deposited text: APCF (ESA) (8), PCF (4), PCDF (ESA) (4), IML / USML / LMS Spacelab (3), Spacehab (2), JAXA PCG / Kibo (2), GCB / GCF (Granada) (1), JCB (1).",
+  "Text matching alone is unreliable: of 382 entries with any space vocabulary, 67 were really space-grown. The automatic growth-field rule flagged 53, of which 32 were right (60%; a random sample of 40 gave 23/40), and it found only 48% of the final list. Every candidate was therefore read by hand.",
+  "Cross-check: RCSB's own full-text search for 5 space terms returns 101 entries; 61 are in our list, 30 others were in our reviewed candidate pool and judged not space-grown (Earth controls, unclear cases, other entries' mentions), and 10 were outside our pool and, read by hand, are false hits ('space group', shuttle vectors, an author named Jaxa-Chamiec, JAXA as funder). Our archive scan finds 6 of our 67 space-grown entries that this full-text search does not return.",
+  "Dropping the 7 entries whose evidence is only a keyword or citation title: space best within \u00b13 years for 62% of 24 proteins vs 20% expected; all-time median difference 0.04 \u00c5 (95% CI -0.09 to 0.22).",
+  "No space-grown entry names Mir as its platform; 4 further microgravity entries are cryo-EM fibrils rather than crystals and are not counted."
+ ],
+ "limitations": [
+  "This is an archive correlation, not a controlled experiment: it does not show that microgravity caused any difference.",
+  "Depositors are not required to say where crystals grew. Space-grown entries whose text does not say so are missed, and were counted as Earth-grown; the census is a lower bound.",
+  "Publication and deposition selection: space crystals that failed to diffract were rarely deposited, while every ordinary Earth structure is. This biases toward space looking good; the long Earth tail biases the other way.",
+  "Matching by UniProt accession set does not hold construct boundaries, mutations, ligands, space group, crystal form, cryo vs room temperature, beamline or detector fixed. Earth 'best' entries are often decades newer with better sources.",
+  "Many flight programmes optimised the Earth controls in parallel, and some 'Earth' entries are those controls, so Earth crystals of flown proteins are not typical Earth crystals.",
+  "Resolution limits are author-reported (refine.ls_d_res_high) and cutoff conventions changed over time (I/\u03c3 vs CC1/2).",
+  "Ranking above a random entry of the same protein is not specific to space: any dedicated high-resolution effort (a methods paper, a showcase data set) would outrank ligand-soak and mutant entries. The same-paper pairs are the fairer test, and there are only 14 proteins with such pairs.",
+  "The platform is unstated for 41 of 67 entries; 7 entries rest on a keyword or citation title only (a sensitivity analysis drops them); 2 entries merge space- and Earth-grown crystals and 5 are neutron structures, all excluded from the resolution comparison.",
+  "Proteins with many Earth entries (lysozyme, thaumatin, insulin) are one unit each, but their best Earth entry is an extreme of a large sample; the label-permutation null is the fair comparison for that."
+ ],
+ "future_big_data": [
+  "Pull the raw diffraction images behind space and matched Earth entries (SBGrid Data Bank, IRRMC / proteindiffraction.org, Zenodo) and reprocess them identically (XDS/DIALS, same CC1/2 cutoff) to remove author-cutoff and software-era effects.",
+  "Add PDB validation reports (wwPDB XML: Wilson B, anisotropy, Rfree-R, clashscore) for all matched entries to compare more than one number per crystal.",
+  "Model the effect per protein family (Pfam/CATH) and per crystallisation method (counter-diffusion vs vapour diffusion) with a mixed model: protein as random effect, era/beamline/temperature as covariates.",
+  "Text-mine the cited papers (PubMed Central full text) for flight crystals that were never deposited, to measure the selection bias directly.",
+  "Link each space entry to its flight (STS / Mir / ISS increment, JAXA PCG run) to estimate time-in-orbit and hardware effects."
+ ],
+ "partners": [
+  {
+   "name": "JAXA (Kibo protein crystallisation)",
+   "why": "Operates protein crystallisation on the ISS Kibo module with sample return to Earth; the closest existing service to a protein cartridge.",
+   "evidence": "14 space-grown entries name the ISS as platform; 4 name JAXA, NASDA, Kibo/JEM or the JAXA Crystallisation Box; 15 space-grown data sets were collected at SPring-8 (Japan)."
+  },
+  {
+   "name": "ESA (APCF / PCDF hardware)",
+   "why": "Built reactors behind many flight crystals; heritage for sealed, automated crystallisation cartridges.",
+   "evidence": "12 space-grown entries name ESA, APCF or PCDF (APCF 8, PCDF 4)."
+  },
+  {
+   "name": "NASA",
+   "why": "Shuttle-era programmes produced the earliest space-grown structures in the PDB.",
+   "evidence": "12 space-grown entries name NASA or a Shuttle mission (STS / Spacehab / IML / USML / LMS); NASA is a listed funder of 3 more recent ones (9BVY, 9BW2, 9BWM)."
+  },
+  {
+   "name": "Laboratorio de Estudios Cristalogr\u00e1ficos, Granada (CSIC)",
+   "why": "Counter-diffusion in capillaries, the growth method behind most recent flight crystals, came out of this group.",
+   "evidence": "Ot\u00e1lora F. and Gavira J.A. are authors on 5 and 4 space-grown entries; counter/liquid diffusion is the growth method of 24 of 35 space-grown entries deposited since 2010."
+  },
+  {
+   "name": "Synchrotron and neutron facilities (SPring-8, EMBL/DESY, HAMBURG, ESRF, ORNL Spallation Neutron Source)",
+   "why": "Where returned crystals are measured; partners for an identical-processing benchmark.",
+   "evidence": "SPring-8: 15 space-grown entries; EMBL/DESY, HAMBURG: 12 space-grown entries; ESRF: 7 space-grown entries; ORNL Spallation Neutron Source: 4 space-grown entries"
+  },
+  {
+   "name": "CASIS / ISS National Lab",
+   "why": "Current US route to fly commercial crystallisation.",
+   "evidence": "listed as funder of 1 space-grown entry (5TY5)."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/pdb_parse.py",
+  "analysis/bigdata/pdb_classify.py",
+  "analysis/bigdata/pdb_review_labels.py",
+  "analysis/bigdata/pdb_analyze.py",
+  "analysis/bigdata/pdb_recall_sweep.py",
+  "analysis/bigdata/pdb_rcsb_check.py",
+  "analysis/bigdata/pdb_writeup.py",
+  "cluster/bigdata/pdb-mirror.sbatch",
+  "cluster/bigdata/pdb-mirror-http.sbatch",
+  "cluster/bigdata/pdb-parse.sbatch",
+  "cluster/bigdata/pdb-parse-multi.sbatch",
+  "cluster/bigdata/pdb-analyze.sbatch",
+  "cluster/bigdata/pdb-pack.sbatch"
+ ],
+ "reproduce": [
+  "rsync -az analysis/bigdata cluster/bigdata engaging:~/orcd/scratch/orbital-foundry-20261024-01a170b7/   # code to cluster",
+  "cd ~/orcd/scratch/orbital-foundry-20261024-01a170b7/bigdata/pdb && sbatch ../../cluster/bigdata/pdb-mirror.sbatch && sbatch ../../cluster/bigdata/pdb-mirror-http.sbatch",
+  "wget -P raw/sifts https://ftp.ebi.ac.uk/pub/databases/msd/sifts/flatfiles/tsv/pdb_chain_uniprot.tsv.gz",
+  "sbatch --export=ALL,FIRST=0,LAST=100000,TAG=,NTASKS=32,T0=0,T1=31 ../../cluster/bigdata/pdb-parse-multi.sbatch",
+  "sbatch --export=ALL,STAGE=all ../../cluster/bigdata/pdb-analyze.sbatch",
+  "env/bin/python -I ../../analysis/bigdata/pdb_writeup.py --result work/results/pdb-microgravity.json --classify-summary work/analysis/classify_summary.json --sacct work/results/sacct.txt"
+ ],
+ "generated_at": "2026-10-25T04:14:02+00:00"
+}

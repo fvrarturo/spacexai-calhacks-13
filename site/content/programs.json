@@ -1,0 +1,217 @@
+[
+  {
+    "id": "protein",
+    "name": "Protein crystals",
+    "short": "Cancer therapy formulations",
+    "family": "Solution growth",
+    "color": "#7695ff",
+    "icon": "protein",
+    "grade": "Flight result",
+    "org": "MERCK · ISS NATIONAL LAB",
+    "headline": "A different crystal suspension. A new formulation possibility.",
+    "body": "Merck researchers crystallized pembrolizumab, an anticancer antibody, on the ISS. The published study reported a more homogeneous crystal-size distribution and lower suspension viscosity than the compared ground preparations.",
+    "evidence": "Flight insights also informed improvements to Earth processing. This is evidence for valuable process development; it does not establish commercial orbital production or a clinical benefit.",
+    "application": "Develop concentrated, manageable formulations of valuable biologics. The target is an agreed particle distribution and retained biological function.",
+    "bridge": "A solution-growth cartridge could standardize liquid handling, temperature history, observation, recovery and batch records across successive research campaigns.",
+    "gate": "Show the advantage survives an optimized Earth comparison, handling and functional testing. Protein integrity and pharmaceutical qualification remain specific to the product.",
+    "people": "Merck is the demonstrated research participant. Future customer programs are proposed; no partnership is claimed.",
+    "controls": [
+      "Solution conditions",
+      "Temperature history",
+      "Nucleation timing"
+    ],
+    "stages": [
+      "Contained protein solution",
+      "Controlled concentration and temperature",
+      "Nucleate and grow crystals",
+      "Image size distribution",
+      "Preserve the suspension",
+      "Test form, viscosity and function"
+    ],
+    "sources": [
+      "merck"
+    ],
+    "plain": "Proteins can form crystals. Their size and distribution affect how concentrated suspensions behave and flow."
+  },
+  {
+    "id": "small",
+    "name": "Small-molecule crystals",
+    "short": "Drug forms & solubility research",
+    "family": "Thermal / solution",
+    "color": "#e8af78",
+    "icon": "crystal",
+    "grade": "Flight result + new research",
+    "org": "VARDA · IMPROVED PHARMA · W-7",
+    "headline": "Orbit is already becoming a pharmaceutical process environment.",
+    "body": "Varda’s ritonavir work demonstrated recovery of orbital-processed Form III; a 2026 paper examines its stability. Ritonavir is an antiviral and is separate from Merck’s antibody study.",
+    "evidence": "On 20 October 2026, Varda announced W-7’s launch with a PROTAC cancer-drug crystallization experiment focused on solubility. The announcement establishes launched research, with performance results still to come.",
+    "application": "Explore solid forms and processing routes for valuable drug candidates whose formulation is difficult.",
+    "bridge": "Use a qualified thermal or solution recipe, sealed containment and a complete processing record. W-7’s mixing approach and a thermal crystallization route require different cartridge internals.",
+    "gate": "Identify the returned form, stability, reproducibility and functional advantage. One successful compound does not validate every drug.",
+    "people": "Varda is an existing operator and a potential competitor or ecosystem participant—not our customer.",
+    "controls": [
+      "Thermal or solution route",
+      "Controlled initiation",
+      "Return conditions"
+    ],
+    "stages": [
+      "Contained compound and feedstock",
+      "Program temperature or liquid mixing",
+      "Induce a selected solid form",
+      "Observe available state signals",
+      "Preserve material for return",
+      "Identify form, stability and performance"
+    ],
+    "sources": [
+      "varda",
+      "w7"
+    ],
+    "plain": "The same drug molecule can pack into different solid forms, changing properties such as stability and how it dissolves."
+  },
+  {
+    "id": "cooling",
+    "name": "Cooling materials",
+    "short": "The solid heart of a refrigerator",
+    "family": "Thermal processing",
+    "color": "#83d8e2",
+    "icon": "thermal",
+    "grade": "Flight research + Earth function",
+    "org": "ACCESS E.V. · CAMBRIDGE / GLASGOW · BAROCAL",
+    "headline": "Can an orbital process improve a material that moves heat?",
+    "body": "NPG–camphor model alloys have been directionally solidified on the ISS. Separately, NPG has a strong pressure-driven caloric response on Earth. The flight study measured solidification, not refrigerator performance.",
+    "evidence": "Research connects NPG microstructure with thermal hysteresis. Cycling can erase starting structures; useful heterogeneity can aid nucleation. Barocal is a real terrestrial company developing the broader barocaloric approach.",
+    "application": "A durable solid-state cooling component for specialized thermal control, with household refrigeration as a longer-term ambition.",
+    "bridge": "Test whether controlled solidification and phase distribution can create a persistent, useful nucleation structure. The flight mixture is not automatically the final refrigerant.",
+    "gate": "Repeated-cycle thermal and pressure tests must show an advantage after preconditioning. Orbit-grown cooling improvement remains our hypothesis.",
+    "people": "Barocal is an application-market example, not an orbital manufacturer or announced partner.",
+    "controls": [
+      "Temperature gradient",
+      "Growth and cooling rates",
+      "Annealing history"
+    ],
+    "stages": [
+      "Defined mixture and initial state",
+      "Set temperature gradient",
+      "Solidify controlled microstructure",
+      "Track front and grain evolution",
+      "Controlled cooling and preservation",
+      "Measure repeated-cycle thermal function"
+    ],
+    "sources": [
+      "npgflight",
+      "caloric",
+      "hysteresis",
+      "barocal"
+    ],
+    "plain": "Neopentyl glycol (NPG) is a research material that exchanges heat through pressure-driven phase changes. The aim is a solid working material for cooling."
+  },
+  {
+    "id": "mof",
+    "name": "MOF membranes",
+    "short": "Recover valuable ions from liquids",
+    "family": "Solution growth",
+    "color": "#b6dc86",
+    "icon": "membrane",
+    "grade": "Flight research + Earth function",
+    "org": "STANFORD · BERKELEY · NANJING / MONASH",
+    "headline": "A small selective layer could process a much larger stream.",
+    "body": "Stanford and Berkeley are studying metal–organic framework growth in microgravity. Ground researchers have demonstrated oriented UiO-67 membranes with selective lithium transport.",
+    "evidence": "BASF and Svante supply an industrial anchor: Earth-made MOF sorbents for carbon capture. Those sorbents are different from lithium membranes. Cemsica’s adjacent ISS membrane work used calcium-silicate, not MOFs.",
+    "application": "A high-value, durable selective layer for lithium recovery or a precisely defined separation. Its value would accumulate over its service life.",
+    "bridge": "Connect precursor dosing, growth on a substrate, defect inspection and post-return testing. Investigate whether orbital growth improves useful membrane performance.",
+    "gate": "Beat optimized ground synthesis on selectivity, flux, adhesion, fouling and lifetime. Ground microfluidics already provides an important competing approach.",
+    "people": "The organizations establish research and industrial relevance; none is represented as our customer.",
+    "controls": [
+      "Precursor dosing",
+      "Substrate conditions",
+      "Growth temperature"
+    ],
+    "stages": [
+      "Precursors and supported substrate",
+      "Control concentration and temperature",
+      "Grow connected crystalline channels",
+      "Inspect coverage and defects",
+      "Finish and preserve selective layer",
+      "Measure selectivity, flux and lifetime"
+    ],
+    "sources": [
+      "stanford",
+      "berkeley",
+      "limof",
+      "basf",
+      "cemsica",
+      "groundmof"
+    ],
+    "plain": "A metal–organic framework is a crystalline network with molecular-sized pores. Its chemistry and channel structure can enable selective separation."
+  },
+  {
+    "id": "bijel",
+    "name": "Bijel reactor structures",
+    "short": "Two intertwined networks. One tiny reactor.",
+    "family": "Particle assembly",
+    "color": "#f2a1b0",
+    "icon": "bijel",
+    "grade": "Flight research + Earth function",
+    "org": "NASA · UC IRVINE · PENN / ROWAN / POSTECH",
+    "headline": "Build the internal plumbing of a chemical factory.",
+    "body": "ACE-T5 investigated bicontinuous interfacially jammed emulsion gels: two continuous phases separated by a particle-stabilized interface. Ground researchers have used bijels for enzymatic reactive separation.",
+    "evidence": "NASA’s investigation links structure, rheology and stability. This supports a manufacturing question; it does not establish a returned orbital reactor with better performance.",
+    "application": "A small reusable reactor insert with connected flow paths and useful interfacial area for a specific chemical process.",
+    "bridge": "Control mixing and thermal history, observe evolving geometry, and stabilize the network at the right moment.",
+    "gate": "The structure must survive fixation and return, then improve transport, reaction performance and lifetime against an Earth-made core.",
+    "people": "Named research groups are the evidence here. A commercial orbital bijel manufacturer was not verified.",
+    "controls": [
+      "Phase composition",
+      "Mixing and separation",
+      "Fixation timing"
+    ],
+    "stages": [
+      "Multiphase mixture and particles",
+      "Set mixing and thermal history",
+      "Separate phases and jam interfaces",
+      "Measure connectivity and coarsening",
+      "Stabilize the network",
+      "Test flow, reaction and durability"
+    ],
+    "sources": [
+      "ace5",
+      "bijel"
+    ],
+    "plain": "Two liquids form intertwined, continuous networks. Small particles help hold their shared boundary in place."
+  },
+  {
+    "id": "photonic",
+    "name": "Photonic colloids",
+    "short": "Ordered structures that shape light",
+    "family": "Particle assembly",
+    "color": "#c1aff5",
+    "icon": "lattice",
+    "grade": "Flight result",
+    "org": "NYU · NJIT · NASA GLENN / USRA",
+    "headline": "An ordered three-dimensional structure, grown in orbit and returned.",
+    "body": "ACE-T11 researchers reported large FCC colloidal crystals formed on the ISS and returned to Earth. The primary paper explicitly discusses optical-element applications.",
+    "evidence": "The demonstrated result is the ordered colloidal structure. A stable, packaged chemical-sensing component is a proposed engineering extension.",
+    "application": "A compact wavelength-selective element for environmental or industrial sensing.",
+    "bridge": "Use controlled dispersion handling, thermal history, microscopy and an endpoint defined by structural order. Preserve that order through later processing.",
+    "gate": "Demonstrate suitable optical contrast, low unwanted scattering, stability and integration after return.",
+    "people": "Paper affiliations establish research participation, not commercial optical-device manufacturing.",
+    "controls": [
+      "Particle concentration",
+      "Assembly conditions",
+      "Structural endpoint"
+    ],
+    "stages": [
+      "Defined particle dispersion",
+      "Establish assembly conditions",
+      "Grow ordered domains",
+      "Measure order and defects",
+      "Stabilize and return structure",
+      "Measure optical response and stability"
+    ],
+    "sources": [
+      "photonic",
+      "ace11data"
+    ],
+    "plain": "A regular three-dimensional array of small particles can shape how light travels. The structure itself becomes part of an optical component."
+  }
+]

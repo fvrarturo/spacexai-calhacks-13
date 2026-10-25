@@ -1,0 +1,9 @@
+{
+  "python": "3.13.7",
+  "platform": "macOS-26.2-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "numpy": "2.2.3",
+    "Pillow": "11.3.0"
+  },
+  "scope": "Local raw-image QC and offline reference simulation; cluster accounting is recorded separately."
+}

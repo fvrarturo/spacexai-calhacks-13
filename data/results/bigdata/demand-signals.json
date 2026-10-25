@@ -1,0 +1,4893 @@
+{
+ "id": "demand-signals",
+ "tab": "network",
+ "material": "protein",
+ "title": "Who needs high-concentration protein formulations, and how fast is that growing?",
+ "question": "Is there real, growing demand for the formulations orbit-grown protein crystals could serve (subcutaneous high-dose antibodies), and for the commodities our other candidates touch (lithium)?",
+ "headline": {
+  "value": "16",
+  "unit": "antibodies",
+  "text": "Since 2020 the FDA has licensed subcutaneous versions of 16 antibodies first licensed as IV infusions (Keytruda Qlex in Sep 2025), and registered SC antibody trials grew from 31 starting in 2005 to about 248 a year in 2021-2025."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "ClinicalTrials.gov full registry, bulk JSON (API v2 download)",
+   "url": "https://clinicaltrials.gov/api/v2/studies/download?format=json.zip",
+   "license": "U.S. National Library of Medicine; public registry data (clinicaltrials.gov terms and conditions)",
+   "records": 608415,
+   "bytes": 2772470590,
+   "accessed": "2026-10-24",
+   "notes": "608415 study files, 10532097591 bytes uncompressed, 0 parse errors; 464253 interventional; 25470 interventional studies with an INN '-mab' antibody; 48265 with any biologic. Streamed inside the zip on MIT Engaging; sha256 004e182c6f5d391a257b794de78e19c3813a90612d43b03f544cbb06a4cebc3a."
+  },
+  {
+   "name": "FDA Purple Book, monthly data download (September 2026)",
+   "url": "https://www.accessdata.fda.gov/drugsatfda_docs/PurpleBook/2026/purplebook-search-September-data-download.csv",
+   "license": "U.S. Government work (public domain)",
+   "records": 2251,
+   "bytes": 487303,
+   "accessed": "2026-10-24",
+   "notes": "All licensed biologics (CDER and CBER) with route and approval date; 561 antibody product rows in 250 BLAs. sha256 b9d04a8b1ea9c6605fdeff01127f0de32cb092534a40441b036e39c9665974e6."
+  },
+  {
+   "name": "openFDA Drugs@FDA bulk file",
+   "url": "https://download.open.fda.gov/drug/drugsfda/drug-drugsfda-0001-of-0001.json.zip",
+   "license": "openFDA, CC0 / public domain",
+   "records": 29416,
+   "bytes": 9236258,
+   "accessed": "2026-10-24",
+   "notes": "Cross-check of antibody BLA first-approval dates (openFDA last_updated 2026-10-23). sha256 d218e3d6ced00a6d117612529faa1eafa223ee65668a69f8139b5cd35054b3de."
+  },
+  {
+   "name": "USGS Data Series 140, lithium historical statistics (2021 edition)",
+   "url": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/files/ds140-lithium-2021.xlsx",
+   "license": "U.S. Government work (public domain)",
+   "records": 26,
+   "bytes": 37148,
+   "accessed": "2026-10-24",
+   "notes": "World production, lithium content, 2000-2021; US estimated consumption to 2021."
+  },
+  {
+   "name": "USGS Mineral Commodity Summaries lithium data releases 2022-2024 and MCS 2026 commodities table",
+   "url": "https://www.sciencebase.gov/catalog/item/696a75d5d4be0228872d3bf8",
+   "license": "U.S. Government work (public domain)",
+   "records": 8886,
+   "bytes": 3194099,
+   "accessed": "2026-10-24",
+   "notes": "World mine production 2022-2025 (2023 from the MCS 2024 estimate; the MCS 2025 lithium release has no world table). US consumption is withheld (W) in MCS 2026."
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging (ClinicalTrials.gov download and parse); laptop (FDA, USGS, assembly)",
+  "partitions": [
+   "mit_normal",
+   "mit_quicktest"
+  ],
+  "job_ids": [
+   "26813088",
+   "26813288",
+   "26813498",
+   "26813631",
+   "26813894",
+   "26814209",
+   "26814260"
+  ],
+  "jobs": [
+   {
+    "job_id": "26813088",
+    "name": "of-logistics-ctgov-dl",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed": "00:00:52",
+    "cpus": 1,
+    "max_rss": "2095736K"
+   },
+   {
+    "job_id": "26813288",
+    "name": "of-logistics-ctgov-test",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed": "00:00:23",
+    "cpus": 4,
+    "max_rss": "2310488K"
+   },
+   {
+    "job_id": "26813498",
+    "name": "of-logistics-ctgov-parse",
+    "partition": "mit_normal",
+    "state": "CANCELLED+",
+    "elapsed": "00:00:00",
+    "cpus": 0,
+    "max_rss": null
+   },
+   {
+    "job_id": "26813631",
+    "name": "of-logistics-ctgov-parse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed": "00:00:49",
+    "cpus": 6,
+    "max_rss": "5660472K"
+   },
+   {
+    "job_id": "26813894",
+    "name": "of-logistics-ctgov-parse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed": "00:00:47",
+    "cpus": 6,
+    "max_rss": "5687404K"
+   },
+   {
+    "job_id": "26814209",
+    "name": "of-logistics-ctgov-parse",
+    "partition": "mit_quicktest",
+    "state": "CANCELLED+",
+    "elapsed": "00:00:00",
+    "cpus": 0,
+    "max_rss": null
+   },
+   {
+    "job_id": "26814260",
+    "name": "of-logistics-ctgov-parse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed": "00:00:45",
+    "cpus": 6,
+    "max_rss": "5721828K"
+   }
+  ],
+  "cpu_hours": 0.275,
+  "wall_minutes": 3.6,
+  "peak_storage_gb": 2.77
+ },
+ "method": [
+  "Downloaded the full ClinicalTrials.gov registry as one bulk JSON zip on MIT Engaging and streamed all study files inside the zip with 6 worker processes (no extraction).",
+  "Kept interventional studies. An antibody intervention is one whose name or other names contain an INN monoclonal-antibody stem word (-mab), 'monoclonal antibody' or 'mAb'; a biologic is interventionType BIOLOGICAL or an antibody.",
+  "Route text is attributed to the antibody itself: its own name, other names and description, and text windows around its name in arm descriptions and titles, cut at the nearest mention of any other intervention so the route of co-administered chemotherapy or vaccines is not counted.",
+  "Primary route definition: full words (subcutaneous, intravenous) plus abbreviations in a dosing context (SC/IV after a dose unit or before injection/infusion/dose/every/q3w..., s.c., i.v., subQ) plus 'infusion' for IV (not subcutaneous infusion or infusion reactions). Sensitivity: full words only, and a crude trial-wide match.",
+  "Counted one study once per start year (startDateStruct); SC share = studies with an SC antibody route / studies with any stated SC or IV antibody route, with Wilson 95% intervals. 2026 is partial and includes planned start dates.",
+  "Hand-checked the classifier on a deterministic 2% hash sample of antibody studies (20 SC-positive, 20 IV-positive).",
+  "Counted antibody interventions co-formulated with a hyaluronidase or named by an SC brand/code (Faspro, Hybreza, Qvantig, Qlex, Zunovo, Phesgo, MK-3475A...) as a high-precision marker of IV-to-SC reformulation programmes.",
+  "From the FDA Purple Book (every licensed biologic), took antibody BLAs (INN -mab in the proper name), dated each by its first approval date and its route then; for originator products found each antibody's first IV and first SC licence and listed those that went IV first, SC later. Cross-checked first-approval dates against openFDA Drugs@FDA.",
+  "Joined USGS DS140 world lithium-content production (2000-2021) with MCS 2022, 2024 and 2026 world totals (2020-2025), latest edition winning."
+ ],
+ "charts": [
+  {
+   "id": "ct-sc-share",
+   "kind": "line",
+   "title": "Share of antibody trials that give the antibody subcutaneously",
+   "subtitle": "ClinicalTrials.gov, interventional studies with an INN '-mab' antibody, by start year; share of trials whose text states a route",
+   "x": {
+    "label": "Study start year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Subcutaneous share",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Route linked to the antibody, words + abbreviations (primary)",
+     "color": "orange",
+     "points": [
+      [
+       2005,
+       13.4
+      ],
+      [
+       2006,
+       13.5
+      ],
+      [
+       2007,
+       11.2
+      ],
+      [
+       2008,
+       16.2
+      ],
+      [
+       2009,
+       18.8
+      ],
+      [
+       2010,
+       19.1
+      ],
+      [
+       2011,
+       23.1
+      ],
+      [
+       2012,
+       31.4
+      ],
+      [
+       2013,
+       32.3
+      ],
+      [
+       2014,
+       34.4
+      ],
+      [
+       2015,
+       28.3
+      ],
+      [
+       2016,
+       22.7
+      ],
+      [
+       2017,
+       17.5
+      ],
+      [
+       2018,
+       20.2
+      ],
+      [
+       2019,
+       22.2
+      ],
+      [
+       2020,
+       19.7
+      ],
+      [
+       2021,
+       23.5
+      ],
+      [
+       2022,
+       22.8
+      ],
+      [
+       2023,
+       20.6
+      ],
+      [
+       2024,
+       22.7
+      ],
+      [
+       2025,
+       18.5
+      ],
+      [
+       2026,
+       18.1
+      ]
+     ]
+    },
+    {
+     "name": "Route linked to the antibody, full words only",
+     "color": "cyan",
+     "points": [
+      [
+       2005,
+       28.0
+      ],
+      [
+       2006,
+       22.7
+      ],
+      [
+       2007,
+       19.6
+      ],
+      [
+       2008,
+       31.5
+      ],
+      [
+       2009,
+       28.5
+      ],
+      [
+       2010,
+       34.2
+      ],
+      [
+       2011,
+       33.1
+      ],
+      [
+       2012,
+       43.2
+      ],
+      [
+       2013,
+       48.0
+      ],
+      [
+       2014,
+       49.5
+      ],
+      [
+       2015,
+       38.5
+      ],
+      [
+       2016,
+       34.4
+      ],
+      [
+       2017,
+       27.3
+      ],
+      [
+       2018,
+       30.4
+      ],
+      [
+       2019,
+       33.0
+      ],
+      [
+       2020,
+       28.9
+      ],
+      [
+       2021,
+       33.3
+      ],
+      [
+       2022,
+       32.5
+      ],
+      [
+       2023,
+       28.2
+      ],
+      [
+       2024,
+       28.4
+      ],
+      [
+       2025,
+       24.6
+      ],
+      [
+       2026,
+       21.5
+      ]
+     ]
+    },
+    {
+     "name": "Any route word anywhere in the trial (crude)",
+     "color": "grey",
+     "points": [
+      [
+       2005,
+       15.9
+      ],
+      [
+       2006,
+       18.2
+      ],
+      [
+       2007,
+       13.6
+      ],
+      [
+       2008,
+       17.9
+      ],
+      [
+       2009,
+       22.9
+      ],
+      [
+       2010,
+       22.4
+      ],
+      [
+       2011,
+       26.6
+      ],
+      [
+       2012,
+       31.7
+      ],
+      [
+       2013,
+       34.5
+      ],
+      [
+       2014,
+       35.0
+      ],
+      [
+       2015,
+       31.4
+      ],
+      [
+       2016,
+       25.0
+      ],
+      [
+       2017,
+       22.0
+      ],
+      [
+       2018,
+       23.8
+      ],
+      [
+       2019,
+       25.5
+      ],
+      [
+       2020,
+       23.0
+      ],
+      [
+       2021,
+       26.0
+      ],
+      [
+       2022,
+       25.8
+      ],
+      [
+       2023,
+       22.3
+      ],
+      [
+       2024,
+       24.0
+      ],
+      [
+       2025,
+       19.0
+      ],
+      [
+       2026,
+       20.2
+      ]
+     ]
+    }
+   ],
+   "annotations": [
+    {
+     "x": 2014,
+     "y": 34.4,
+     "text": "peak 34.4% (2014)"
+    },
+    {
+     "x": 2026,
+     "y": 18.1,
+     "text": "2026 partial (registry of 24 Oct 2026; includes planned start dates)"
+    }
+   ],
+   "caption": "Share = trials whose antibody-linked text says subcutaneous / trials that state any SC or IV route. The SC share rose until the mid-2010s, then fell as IV checkpoint-inhibitor oncology trials multiplied. It is a registry proxy for formulation demand, not a market share, and 30-40% of trials state no route."
+  },
+  {
+   "id": "ct-route-counts",
+   "kind": "stacked",
+   "title": "Antibody trials per start year, by stated route of the antibody",
+   "subtitle": "ClinicalTrials.gov full registry (608,415 studies parsed); primary definition",
+   "x": {
+    "label": "Study start year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Interventional trials",
+    "unit": "trials",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Subcutaneous only",
+     "color": "orange",
+     "points": [
+      [
+       2005,
+       24
+      ],
+      [
+       2006,
+       38
+      ],
+      [
+       2007,
+       28
+      ],
+      [
+       2008,
+       48
+      ],
+      [
+       2009,
+       61
+      ],
+      [
+       2010,
+       65
+      ],
+      [
+       2011,
+       73
+      ],
+      [
+       2012,
+       115
+      ],
+      [
+       2013,
+       113
+      ],
+      [
+       2014,
+       138
+      ],
+      [
+       2015,
+       146
+      ],
+      [
+       2016,
+       133
+      ],
+      [
+       2017,
+       119
+      ],
+      [
+       2018,
+       141
+      ],
+      [
+       2019,
+       182
+      ],
+      [
+       2020,
+       173
+      ],
+      [
+       2021,
+       227
+      ],
+      [
+       2022,
+       189
+      ],
+      [
+       2023,
+       172
+      ],
+      [
+       2024,
+       186
+      ],
+      [
+       2025,
+       158
+      ],
+      [
+       2026,
+       143
+      ]
+     ]
+    },
+    {
+     "name": "Both SC and IV",
+     "color": "violet",
+     "points": [
+      [
+       2005,
+       7
+      ],
+      [
+       2006,
+       7
+      ],
+      [
+       2007,
+       7
+      ],
+      [
+       2008,
+       15
+      ],
+      [
+       2009,
+       17
+      ],
+      [
+       2010,
+       10
+      ],
+      [
+       2011,
+       22
+      ],
+      [
+       2012,
+       17
+      ],
+      [
+       2013,
+       20
+      ],
+      [
+       2014,
+       22
+      ],
+      [
+       2015,
+       32
+      ],
+      [
+       2016,
+       33
+      ],
+      [
+       2017,
+       39
+      ],
+      [
+       2018,
+       56
+      ],
+      [
+       2019,
+       51
+      ],
+      [
+       2020,
+       57
+      ],
+      [
+       2021,
+       70
+      ],
+      [
+       2022,
+       65
+      ],
+      [
+       2023,
+       64
+      ],
+      [
+       2024,
+       63
+      ],
+      [
+       2025,
+       45
+      ],
+      [
+       2026,
+       73
+      ]
+     ]
+    },
+    {
+     "name": "Intravenous only",
+     "color": "cyan",
+     "points": [
+      [
+       2005,
+       201
+      ],
+      [
+       2006,
+       289
+      ],
+      [
+       2007,
+       279
+      ],
+      [
+       2008,
+       326
+      ],
+      [
+       2009,
+       338
+      ],
+      [
+       2010,
+       317
+      ],
+      [
+       2011,
+       317
+      ],
+      [
+       2012,
+       288
+      ],
+      [
+       2013,
+       279
+      ],
+      [
+       2014,
+       305
+      ],
+      [
+       2015,
+       451
+      ],
+      [
+       2016,
+       565
+      ],
+      [
+       2017,
+       743
+      ],
+      [
+       2018,
+       777
+      ],
+      [
+       2019,
+       817
+      ],
+      [
+       2020,
+       935
+      ],
+      [
+       2021,
+       964
+      ],
+      [
+       2022,
+       859
+      ],
+      [
+       2023,
+       907
+      ],
+      [
+       2024,
+       848
+      ],
+      [
+       2025,
+       896
+      ],
+      [
+       2026,
+       974
+      ]
+     ]
+    },
+    {
+     "name": "No route stated",
+     "color": "grey",
+     "points": [
+      [
+       2005,
+       216
+      ],
+      [
+       2006,
+       258
+      ],
+      [
+       2007,
+       288
+      ],
+      [
+       2008,
+       229
+      ],
+      [
+       2009,
+       234
+      ],
+      [
+       2010,
+       228
+      ],
+      [
+       2011,
+       219
+      ],
+      [
+       2012,
+       189
+      ],
+      [
+       2013,
+       190
+      ],
+      [
+       2014,
+       200
+      ],
+      [
+       2015,
+       241
+      ],
+      [
+       2016,
+       286
+      ],
+      [
+       2017,
+       350
+      ],
+      [
+       2018,
+       388
+      ],
+      [
+       2019,
+       417
+      ],
+      [
+       2020,
+       544
+      ],
+      [
+       2021,
+       600
+      ],
+      [
+       2022,
+       532
+      ],
+      [
+       2023,
+       573
+      ],
+      [
+       2024,
+       687
+      ],
+      [
+       2025,
+       629
+      ],
+      [
+       2026,
+       578
+      ]
+     ]
+    }
+   ],
+   "annotations": [
+    {
+     "x": 2026,
+     "y": 1768,
+     "text": "partial year"
+    }
+   ],
+   "caption": "Trials with an SC antibody arm grew from 31 (2005 start) to 247.8 per year on average in 2021-2025. Counts are registered studies, not patients or doses; one study counts once."
+  },
+  {
+   "id": "ct-hyaluronidase",
+   "kind": "bar",
+   "title": "Trials of antibodies reformulated for subcutaneous injection",
+   "subtitle": "ClinicalTrials.gov: antibody interventions co-formulated with a hyaluronidase or named by an SC brand/code",
+   "x": {
+    "label": "Study start year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Trials",
+    "unit": "trials",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Hyaluronidase / SC-brand antibody trials",
+     "color": "violet",
+     "points": [
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       1
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       1
+      ],
+      [
+       2015,
+       3
+      ],
+      [
+       2016,
+       2
+      ],
+      [
+       2017,
+       3
+      ],
+      [
+       2018,
+       8
+      ],
+      [
+       2019,
+       9
+      ],
+      [
+       2020,
+       5
+      ],
+      [
+       2021,
+       25
+      ],
+      [
+       2022,
+       15
+      ],
+      [
+       2023,
+       16
+      ],
+      [
+       2024,
+       18
+      ],
+      [
+       2025,
+       6
+      ],
+      [
+       2026,
+       30
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "A high-precision but incomplete marker of IV-to-SC reformulation programmes (e.g. daratumumab Faspro, pembrolizumab MK-3475A). Programmes that reach high concentration without an enzyme are not captured."
+  },
+  {
+   "id": "fda-new-antibodies",
+   "kind": "stacked",
+   "title": "New FDA antibody licences by route at first approval",
+   "subtitle": "FDA Purple Book (Sep 2026 download): originator (351(a)) BLAs whose proper name carries an INN '-mab' stem",
+   "x": {
+    "label": "Year of first licensure",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "New originator antibody BLAs",
+    "unit": "BLAs",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "SC only",
+     "color": "orange",
+     "points": [
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       1
+      ],
+      [
+       2003,
+       2
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       1
+      ],
+      [
+       2009,
+       3
+      ],
+      [
+       2010,
+       1
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       4
+      ],
+      [
+       2016,
+       2
+      ],
+      [
+       2017,
+       8
+      ],
+      [
+       2018,
+       6
+      ],
+      [
+       2019,
+       4
+      ],
+      [
+       2020,
+       3
+      ],
+      [
+       2021,
+       2
+      ],
+      [
+       2022,
+       1
+      ],
+      [
+       2023,
+       7
+      ],
+      [
+       2024,
+       7
+      ],
+      [
+       2025,
+       5
+      ],
+      [
+       2026,
+       3
+      ]
+     ]
+    },
+    {
+     "name": "SC and IV",
+     "color": "violet",
+     "points": [
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       0
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       1
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       0
+      ],
+      [
+       2023,
+       2
+      ],
+      [
+       2024,
+       1
+      ],
+      [
+       2025,
+       0
+      ],
+      [
+       2026,
+       0
+      ]
+     ]
+    },
+    {
+     "name": "IV only",
+     "color": "cyan",
+     "points": [
+      [
+       1994,
+       1
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       1
+      ],
+      [
+       1997,
+       2
+      ],
+      [
+       1998,
+       4
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       1
+      ],
+      [
+       2002,
+       2
+      ],
+      [
+       2003,
+       1
+      ],
+      [
+       2004,
+       4
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       1
+      ],
+      [
+       2007,
+       1
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       1
+      ],
+      [
+       2010,
+       1
+      ],
+      [
+       2011,
+       3
+      ],
+      [
+       2012,
+       2
+      ],
+      [
+       2013,
+       3
+      ],
+      [
+       2014,
+       6
+      ],
+      [
+       2015,
+       5
+      ],
+      [
+       2016,
+       6
+      ],
+      [
+       2017,
+       5
+      ],
+      [
+       2018,
+       6
+      ],
+      [
+       2019,
+       4
+      ],
+      [
+       2020,
+       11
+      ],
+      [
+       2021,
+       7
+      ],
+      [
+       2022,
+       9
+      ],
+      [
+       2023,
+       5
+      ],
+      [
+       2024,
+       8
+      ],
+      [
+       2025,
+       7
+      ],
+      [
+       2026,
+       3
+      ]
+     ]
+    },
+    {
+     "name": "Other route",
+     "color": "grey",
+     "points": [
+      [
+       1994,
+       0
+      ],
+      [
+       1995,
+       0
+      ],
+      [
+       1996,
+       0
+      ],
+      [
+       1997,
+       0
+      ],
+      [
+       1998,
+       1
+      ],
+      [
+       1999,
+       0
+      ],
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       1
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       1
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       1
+      ],
+      [
+       2022,
+       1
+      ],
+      [
+       2023,
+       1
+      ],
+      [
+       2024,
+       0
+      ],
+      [
+       2025,
+       1
+      ],
+      [
+       2026,
+       1
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "Route of the products licensed on the BLA's first approval date. Biosimilars (351(k)) are excluded here and reported in stats. A count of licences, not of sales or doses."
+  },
+  {
+   "id": "fda-iv-to-sc",
+   "kind": "hbar",
+   "title": "Antibodies first licensed IV that later gained an FDA-licensed SC product",
+   "subtitle": "FDA Purple Book, originator products; years from first IV licence to first SC licence",
+   "x": {
+    "label": "Antibody (first SC licence)",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Years from first IV to first SC licence",
+    "unit": "years",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "IV-to-SC lag",
+     "color": "orange",
+     "points": [
+      [
+       "tocilizumab (2013, Actemra)",
+       3.8
+      ],
+      [
+       "daclizumab (2016, Zinbryta)",
+       18.5
+      ],
+      [
+       "rituximab (2017, Rituxan Hycela)",
+       19.6
+      ],
+      [
+       "belimumab (2017, Benlysta)",
+       6.4
+      ],
+      [
+       "trastuzumab (2019, Herceptin Hylecta)",
+       20.4
+      ],
+      [
+       "daratumumab (2020, Darzalex Faspro)",
+       4.5
+      ],
+      [
+       "pertuzumab (2020, Phesgo)",
+       8.1
+      ],
+      [
+       "ofatumumab (2020, Kesimpta)",
+       10.8
+      ],
+      [
+       "ravulizumab (2022, Ultomiris)",
+       3.5
+      ],
+      [
+       "vedolizumab (2023, Entyvio)",
+       9.4
+      ],
+      [
+       "infliximab (2023, Zymfentra)",
+       25.2
+      ],
+      [
+       "spesolimab (2024, Spevigo)",
+       1.5
+      ],
+      [
+       "atezolizumab (2024, Tecentriq Hybreza)",
+       8.3
+      ],
+      [
+       "ocrelizumab (2024, Ocrevus Zunovo)",
+       7.5
+      ],
+      [
+       "nivolumab (2024, Opdivo Qvantig)",
+       10.0
+      ],
+      [
+       "lecanemab (2025, Leqembi IQLIK)",
+       2.6
+      ],
+      [
+       "pembrolizumab (2025, Keytruda Qlex)",
+       11.0
+      ],
+      [
+       "mosunetuzumab (2025, Lunsumio Velo)",
+       3.0
+      ],
+      [
+       "amivantamab (2026, Rybrevant Faspro)",
+       4.7
+      ],
+      [
+       "anifrolumab (2026, Saphnelo)",
+       4.7
+      ],
+      [
+       "isatuximab (2026, Sarclisa Escena)",
+       6.4
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "Each bar is one antibody (INN) licensed IV first that later gained a subcutaneous product under a 351(a) licence (biosimilars excluded); usually the same company, but SC infliximab (Zymfentra) is Celltrion's and daclizumab/ofatumumab changed indication. Most recent SC versions are co-formulated with a hyaluronidase, an existing competitor route to high-dose SC delivery; crystalline suspensions are an alternative, not yet a licensed one for antibodies."
+  },
+  {
+   "id": "lithium-world",
+   "kind": "line",
+   "title": "World lithium mine production",
+   "subtitle": "USGS, metric tons of contained lithium, excluding US production (withheld)",
+   "x": {
+    "label": "Year",
+    "unit": "year",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Mine production",
+    "unit": "t Li",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "World mine production (Li content)",
+     "color": "green",
+     "points": [
+      [
+       2000,
+       14100.0
+      ],
+      [
+       2001,
+       13100.0
+      ],
+      [
+       2002,
+       14100.0
+      ],
+      [
+       2003,
+       16600.0
+      ],
+      [
+       2004,
+       17700.0
+      ],
+      [
+       2005,
+       20300.0
+      ],
+      [
+       2006,
+       22400.0
+      ],
+      [
+       2007,
+       23300.0
+      ],
+      [
+       2008,
+       24700.0
+      ],
+      [
+       2009,
+       17500.0
+      ],
+      [
+       2010,
+       24400.0
+      ],
+      [
+       2011,
+       31000.0
+      ],
+      [
+       2012,
+       32700.0
+      ],
+      [
+       2013,
+       30300.0
+      ],
+      [
+       2014,
+       31600.0
+      ],
+      [
+       2015,
+       32200.0
+      ],
+      [
+       2016,
+       40200.0
+      ],
+      [
+       2017,
+       76400.0
+      ],
+      [
+       2018,
+       91800.0
+      ],
+      [
+       2019,
+       83800.0
+      ],
+      [
+       2020,
+       82700.0
+      ],
+      [
+       2021,
+       107000.0
+      ],
+      [
+       2022,
+       146000.0
+      ],
+      [
+       2023,
+       180000.0
+      ],
+      [
+       2024,
+       222000.0
+      ],
+      [
+       2025,
+       290000.0
+      ]
+     ]
+    }
+   ],
+   "annotations": [
+    {
+     "x": 2023,
+     "y": 180000.0,
+     "text": "USGS estimate"
+    },
+    {
+     "x": 2024,
+     "y": 222000.0,
+     "text": "USGS estimate"
+    },
+    {
+     "x": 2025,
+     "y": 290000.0,
+     "text": "USGS estimate"
+    }
+   ],
+   "caption": "Demand context for lithium-selective separation (MOF membranes). It shows supply growth of the commodity, not demand for membranes and not any role for orbit-made MOFs."
+  }
+ ],
+ "stats": {
+  "ctgov_totals": {
+   "n_members": 608415,
+   "n_parsed": 608415,
+   "n_errors": 0,
+   "bytes": 10532097591,
+   "n_interventional": 464253,
+   "uncompressed_bytes": 10532097591,
+   "antibody_interventional_trials": 25470,
+   "biologic_interventional_trials": 48265,
+   "parse_elapsed_s": 43.3,
+   "workers": 6
+  },
+  "antibody_sc_share_pooled_primary": [
+   {
+    "years": [
+     2005,
+     2009
+    ],
+    "trials": 2910,
+    "classified": 1685,
+    "sc_any": 252,
+    "iv_only": 1433,
+    "sc_share": 0.1496,
+    "ci95": [
+     0.1333,
+     0.1674
+    ],
+    "sc_any_per_year": 50.4
+   },
+   {
+    "years": [
+     2010,
+     2014
+    ],
+    "trials": 3127,
+    "classified": 2101,
+    "sc_any": 595,
+    "iv_only": 1506,
+    "sc_share": 0.2832,
+    "ci95": [
+     0.2643,
+     0.3028
+    ],
+    "sc_any_per_year": 119.0
+   },
+   {
+    "years": [
+     2015,
+     2019
+    ],
+    "trials": 5967,
+    "classified": 4285,
+    "sc_any": 932,
+    "iv_only": 3353,
+    "sc_share": 0.2175,
+    "ci95": [
+     0.2054,
+     0.2301
+    ],
+    "sc_any_per_year": 186.4
+   },
+   {
+    "years": [
+     2020,
+     2025
+    ],
+    "trials": 10443,
+    "classified": 6878,
+    "sc_any": 1469,
+    "iv_only": 5409,
+    "sc_share": 0.2136,
+    "ci95": [
+     0.2041,
+     0.2234
+    ],
+    "sc_any_per_year": 244.8
+   }
+  ],
+  "antibody_sc_share_pooled_strict": [
+   {
+    "years": [
+     2005,
+     2009
+    ],
+    "trials": 2910,
+    "classified": 830,
+    "sc_any": 218,
+    "iv_only": 612,
+    "sc_share": 0.2627,
+    "ci95": [
+     0.2339,
+     0.2936
+    ],
+    "sc_any_per_year": 43.6
+   },
+   {
+    "years": [
+     2010,
+     2014
+    ],
+    "trials": 3127,
+    "classified": 1255,
+    "sc_any": 529,
+    "iv_only": 726,
+    "sc_share": 0.4215,
+    "ci95": [
+     0.3945,
+     0.449
+    ],
+    "sc_any_per_year": 105.8
+   },
+   {
+    "years": [
+     2015,
+     2019
+    ],
+    "trials": 5967,
+    "classified": 2453,
+    "sc_any": 796,
+    "iv_only": 1657,
+    "sc_share": 0.3245,
+    "ci95": [
+     0.3063,
+     0.3433
+    ],
+    "sc_any_per_year": 159.2
+   },
+   {
+    "years": [
+     2020,
+     2025
+    ],
+    "trials": 10443,
+    "classified": 4275,
+    "sc_any": 1256,
+    "iv_only": 3019,
+    "sc_share": 0.2938,
+    "ci95": [
+     0.2803,
+     0.3076
+    ],
+    "sc_any_per_year": 209.3
+   }
+  ],
+  "antibody_sc_share_pooled_trialwide": [
+   {
+    "years": [
+     2005,
+     2009
+    ],
+    "trials": 2910,
+    "classified": 1851,
+    "sc_any": 334,
+    "iv_only": 1517,
+    "sc_share": 0.1804,
+    "ci95": [
+     0.1636,
+     0.1986
+    ],
+    "sc_any_per_year": 66.8
+   },
+   {
+    "years": [
+     2010,
+     2014
+    ],
+    "trials": 3127,
+    "classified": 2235,
+    "sc_any": 675,
+    "iv_only": 1560,
+    "sc_share": 0.302,
+    "ci95": [
+     0.2833,
+     0.3214
+    ],
+    "sc_any_per_year": 135.0
+   },
+   {
+    "years": [
+     2015,
+     2019
+    ],
+    "trials": 5967,
+    "classified": 4508,
+    "sc_any": 1134,
+    "iv_only": 3374,
+    "sc_share": 0.2516,
+    "ci95": [
+     0.2391,
+     0.2644
+    ],
+    "sc_any_per_year": 226.8
+   },
+   {
+    "years": [
+     2020,
+     2025
+    ],
+    "trials": 10443,
+    "classified": 7217,
+    "sc_any": 1689,
+    "iv_only": 5528,
+    "sc_share": 0.234,
+    "ci95": [
+     0.2244,
+     0.2439
+    ],
+    "sc_any_per_year": 281.5
+   }
+  ],
+  "biologic_sc_share_pooled_primary": [
+   {
+    "years": [
+     2005,
+     2009
+    ],
+    "trials": 6016,
+    "classified": 2571,
+    "sc_any": 733,
+    "iv_only": 1838,
+    "sc_share": 0.2851,
+    "ci95": [
+     0.268,
+     0.3029
+    ],
+    "sc_any_per_year": 146.6
+   },
+   {
+    "years": [
+     2010,
+     2014
+    ],
+    "trials": 7226,
+    "classified": 3324,
+    "sc_any": 1108,
+    "iv_only": 2216,
+    "sc_share": 0.3333,
+    "ci95": [
+     0.3175,
+     0.3495
+    ],
+    "sc_any_per_year": 221.6
+   },
+   {
+    "years": [
+     2015,
+     2019
+    ],
+    "trials": 10783,
+    "classified": 5848,
+    "sc_any": 1439,
+    "iv_only": 4409,
+    "sc_share": 0.2461,
+    "ci95": [
+     0.2352,
+     0.2573
+    ],
+    "sc_any_per_year": 287.8
+   },
+   {
+    "years": [
+     2020,
+     2025
+    ],
+    "trials": 17848,
+    "classified": 9380,
+    "sc_any": 2089,
+    "iv_only": 7291,
+    "sc_share": 0.2227,
+    "ci95": [
+     0.2144,
+     0.2312
+    ],
+    "sc_any_per_year": 348.2
+   }
+  ],
+  "antibody_by_year_primary": [
+   {
+    "year": 2005,
+    "total": 448,
+    "sc_only": 24,
+    "iv_only": 201,
+    "both": 7,
+    "unclassified": 216,
+    "sc_any": 31,
+    "classified": 232,
+    "sc_share": 0.1336,
+    "sc_share_ci95": [
+     0.0958,
+     0.1834
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2006,
+    "total": 592,
+    "sc_only": 38,
+    "iv_only": 289,
+    "both": 7,
+    "unclassified": 258,
+    "sc_any": 45,
+    "classified": 334,
+    "sc_share": 0.1347,
+    "sc_share_ci95": [
+     0.1022,
+     0.1755
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2007,
+    "total": 602,
+    "sc_only": 28,
+    "iv_only": 279,
+    "both": 7,
+    "unclassified": 288,
+    "sc_any": 35,
+    "classified": 314,
+    "sc_share": 0.1115,
+    "sc_share_ci95": [
+     0.0812,
+     0.1511
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2008,
+    "total": 618,
+    "sc_only": 48,
+    "iv_only": 326,
+    "both": 15,
+    "unclassified": 229,
+    "sc_any": 63,
+    "classified": 389,
+    "sc_share": 0.162,
+    "sc_share_ci95": [
+     0.1287,
+     0.2018
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2009,
+    "total": 650,
+    "sc_only": 61,
+    "iv_only": 338,
+    "both": 17,
+    "unclassified": 234,
+    "sc_any": 78,
+    "classified": 416,
+    "sc_share": 0.1875,
+    "sc_share_ci95": [
+     0.1529,
+     0.2278
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2010,
+    "total": 620,
+    "sc_only": 65,
+    "iv_only": 317,
+    "both": 10,
+    "unclassified": 228,
+    "sc_any": 75,
+    "classified": 392,
+    "sc_share": 0.1913,
+    "sc_share_ci95": [
+     0.1555,
+     0.2332
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2011,
+    "total": 631,
+    "sc_only": 73,
+    "iv_only": 317,
+    "both": 22,
+    "unclassified": 219,
+    "sc_any": 95,
+    "classified": 412,
+    "sc_share": 0.2306,
+    "sc_share_ci95": [
+     0.1925,
+     0.2736
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2012,
+    "total": 609,
+    "sc_only": 115,
+    "iv_only": 288,
+    "both": 17,
+    "unclassified": 189,
+    "sc_any": 132,
+    "classified": 420,
+    "sc_share": 0.3143,
+    "sc_share_ci95": [
+     0.2717,
+     0.3602
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2013,
+    "total": 602,
+    "sc_only": 113,
+    "iv_only": 279,
+    "both": 20,
+    "unclassified": 190,
+    "sc_any": 133,
+    "classified": 412,
+    "sc_share": 0.3228,
+    "sc_share_ci95": [
+     0.2795,
+     0.3694
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2014,
+    "total": 665,
+    "sc_only": 138,
+    "iv_only": 305,
+    "both": 22,
+    "unclassified": 200,
+    "sc_any": 160,
+    "classified": 465,
+    "sc_share": 0.3441,
+    "sc_share_ci95": [
+     0.3023,
+     0.3884
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2015,
+    "total": 870,
+    "sc_only": 146,
+    "iv_only": 451,
+    "both": 32,
+    "unclassified": 241,
+    "sc_any": 178,
+    "classified": 629,
+    "sc_share": 0.283,
+    "sc_share_ci95": [
+     0.2492,
+     0.3194
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2016,
+    "total": 1017,
+    "sc_only": 133,
+    "iv_only": 565,
+    "both": 33,
+    "unclassified": 286,
+    "sc_any": 166,
+    "classified": 731,
+    "sc_share": 0.2271,
+    "sc_share_ci95": [
+     0.1982,
+     0.2588
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2017,
+    "total": 1251,
+    "sc_only": 119,
+    "iv_only": 743,
+    "both": 39,
+    "unclassified": 350,
+    "sc_any": 158,
+    "classified": 901,
+    "sc_share": 0.1754,
+    "sc_share_ci95": [
+     0.1519,
+     0.2016
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2018,
+    "total": 1362,
+    "sc_only": 141,
+    "iv_only": 777,
+    "both": 56,
+    "unclassified": 388,
+    "sc_any": 197,
+    "classified": 974,
+    "sc_share": 0.2023,
+    "sc_share_ci95": [
+     0.1782,
+     0.2286
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2019,
+    "total": 1467,
+    "sc_only": 182,
+    "iv_only": 817,
+    "both": 51,
+    "unclassified": 417,
+    "sc_any": 233,
+    "classified": 1050,
+    "sc_share": 0.2219,
+    "sc_share_ci95": [
+     0.1978,
+     0.248
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2020,
+    "total": 1709,
+    "sc_only": 173,
+    "iv_only": 935,
+    "both": 57,
+    "unclassified": 544,
+    "sc_any": 230,
+    "classified": 1165,
+    "sc_share": 0.1974,
+    "sc_share_ci95": [
+     0.1756,
+     0.2213
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2021,
+    "total": 1861,
+    "sc_only": 227,
+    "iv_only": 964,
+    "both": 70,
+    "unclassified": 600,
+    "sc_any": 297,
+    "classified": 1261,
+    "sc_share": 0.2355,
+    "sc_share_ci95": [
+     0.2129,
+     0.2597
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2022,
+    "total": 1645,
+    "sc_only": 189,
+    "iv_only": 859,
+    "both": 65,
+    "unclassified": 532,
+    "sc_any": 254,
+    "classified": 1113,
+    "sc_share": 0.2282,
+    "sc_share_ci95": [
+     0.2045,
+     0.2538
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2023,
+    "total": 1716,
+    "sc_only": 172,
+    "iv_only": 907,
+    "both": 64,
+    "unclassified": 573,
+    "sc_any": 236,
+    "classified": 1143,
+    "sc_share": 0.2065,
+    "sc_share_ci95": [
+     0.184,
+     0.2309
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2024,
+    "total": 1784,
+    "sc_only": 186,
+    "iv_only": 848,
+    "both": 63,
+    "unclassified": 687,
+    "sc_any": 249,
+    "classified": 1097,
+    "sc_share": 0.227,
+    "sc_share_ci95": [
+     0.2032,
+     0.2527
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2025,
+    "total": 1728,
+    "sc_only": 158,
+    "iv_only": 896,
+    "both": 45,
+    "unclassified": 629,
+    "sc_any": 203,
+    "classified": 1099,
+    "sc_share": 0.1847,
+    "sc_share_ci95": [
+     0.1629,
+     0.2087
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2026,
+    "total": 1768,
+    "sc_only": 143,
+    "iv_only": 974,
+    "both": 73,
+    "unclassified": 578,
+    "sc_any": 216,
+    "classified": 1190,
+    "sc_share": 0.1815,
+    "sc_share_ci95": [
+     0.1606,
+     0.2044
+    ],
+    "partial_year": true
+   }
+  ],
+  "biologic_by_year_primary": [
+   {
+    "year": 2005,
+    "total": 913,
+    "sc_only": 91,
+    "iv_only": 247,
+    "both": 19,
+    "unclassified": 556,
+    "sc_any": 110,
+    "classified": 357,
+    "sc_share": 0.3081,
+    "sc_share_ci95": [
+     0.2625,
+     0.3579
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2006,
+    "total": 1142,
+    "sc_only": 107,
+    "iv_only": 346,
+    "both": 22,
+    "unclassified": 667,
+    "sc_any": 129,
+    "classified": 475,
+    "sc_share": 0.2716,
+    "sc_share_ci95": [
+     0.2335,
+     0.3133
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2007,
+    "total": 1228,
+    "sc_only": 106,
+    "iv_only": 347,
+    "both": 28,
+    "unclassified": 747,
+    "sc_any": 134,
+    "classified": 481,
+    "sc_share": 0.2786,
+    "sc_share_ci95": [
+     0.2404,
+     0.3203
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2008,
+    "total": 1300,
+    "sc_only": 148,
+    "iv_only": 439,
+    "both": 32,
+    "unclassified": 681,
+    "sc_any": 180,
+    "classified": 619,
+    "sc_share": 0.2908,
+    "sc_share_ci95": [
+     0.2564,
+     0.3278
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2009,
+    "total": 1433,
+    "sc_only": 144,
+    "iv_only": 459,
+    "both": 36,
+    "unclassified": 794,
+    "sc_any": 180,
+    "classified": 639,
+    "sc_share": 0.2817,
+    "sc_share_ci95": [
+     0.2482,
+     0.3178
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2010,
+    "total": 1412,
+    "sc_only": 162,
+    "iv_only": 435,
+    "both": 25,
+    "unclassified": 790,
+    "sc_any": 187,
+    "classified": 622,
+    "sc_share": 0.3006,
+    "sc_share_ci95": [
+     0.2659,
+     0.3378
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2011,
+    "total": 1394,
+    "sc_only": 172,
+    "iv_only": 443,
+    "both": 44,
+    "unclassified": 735,
+    "sc_any": 216,
+    "classified": 659,
+    "sc_share": 0.3278,
+    "sc_share_ci95": [
+     0.293,
+     0.3645
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2012,
+    "total": 1424,
+    "sc_only": 193,
+    "iv_only": 444,
+    "both": 39,
+    "unclassified": 748,
+    "sc_any": 232,
+    "classified": 676,
+    "sc_share": 0.3432,
+    "sc_share_ci95": [
+     0.3084,
+     0.3798
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2013,
+    "total": 1419,
+    "sc_only": 189,
+    "iv_only": 413,
+    "both": 38,
+    "unclassified": 779,
+    "sc_any": 227,
+    "classified": 640,
+    "sc_share": 0.3547,
+    "sc_share_ci95": [
+     0.3186,
+     0.3925
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2014,
+    "total": 1577,
+    "sc_only": 201,
+    "iv_only": 481,
+    "both": 45,
+    "unclassified": 850,
+    "sc_any": 246,
+    "classified": 727,
+    "sc_share": 0.3384,
+    "sc_share_ci95": [
+     0.3049,
+     0.3735
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2015,
+    "total": 1804,
+    "sc_only": 225,
+    "iv_only": 634,
+    "both": 64,
+    "unclassified": 881,
+    "sc_any": 289,
+    "classified": 923,
+    "sc_share": 0.3131,
+    "sc_share_ci95": [
+     0.284,
+     0.3438
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2016,
+    "total": 1966,
+    "sc_only": 211,
+    "iv_only": 788,
+    "both": 55,
+    "unclassified": 912,
+    "sc_any": 266,
+    "classified": 1054,
+    "sc_share": 0.2524,
+    "sc_share_ci95": [
+     0.2271,
+     0.2795
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2017,
+    "total": 2197,
+    "sc_only": 185,
+    "iv_only": 950,
+    "both": 72,
+    "unclassified": 990,
+    "sc_any": 257,
+    "classified": 1207,
+    "sc_share": 0.2129,
+    "sc_share_ci95": [
+     0.1908,
+     0.2369
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2018,
+    "total": 2349,
+    "sc_only": 215,
+    "iv_only": 981,
+    "both": 90,
+    "unclassified": 1063,
+    "sc_any": 305,
+    "classified": 1286,
+    "sc_share": 0.2372,
+    "sc_share_ci95": [
+     0.2147,
+     0.2612
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2019,
+    "total": 2467,
+    "sc_only": 241,
+    "iv_only": 1056,
+    "both": 81,
+    "unclassified": 1089,
+    "sc_any": 322,
+    "classified": 1378,
+    "sc_share": 0.2337,
+    "sc_share_ci95": [
+     0.2121,
+     0.2567
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2020,
+    "total": 2969,
+    "sc_only": 232,
+    "iv_only": 1275,
+    "both": 92,
+    "unclassified": 1370,
+    "sc_any": 324,
+    "classified": 1599,
+    "sc_share": 0.2026,
+    "sc_share_ci95": [
+     0.1836,
+     0.223
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2021,
+    "total": 3256,
+    "sc_only": 308,
+    "iv_only": 1280,
+    "both": 101,
+    "unclassified": 1567,
+    "sc_any": 409,
+    "classified": 1689,
+    "sc_share": 0.2422,
+    "sc_share_ci95": [
+     0.2223,
+     0.2632
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2022,
+    "total": 2878,
+    "sc_only": 270,
+    "iv_only": 1142,
+    "both": 82,
+    "unclassified": 1384,
+    "sc_any": 352,
+    "classified": 1494,
+    "sc_share": 0.2356,
+    "sc_share_ci95": [
+     0.2148,
+     0.2578
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2023,
+    "total": 2877,
+    "sc_only": 262,
+    "iv_only": 1189,
+    "both": 82,
+    "unclassified": 1344,
+    "sc_any": 344,
+    "classified": 1533,
+    "sc_share": 0.2244,
+    "sc_share_ci95": [
+     0.2042,
+     0.246
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2024,
+    "total": 2881,
+    "sc_only": 255,
+    "iv_only": 1158,
+    "both": 87,
+    "unclassified": 1381,
+    "sc_any": 342,
+    "classified": 1500,
+    "sc_share": 0.228,
+    "sc_share_ci95": [
+     0.2075,
+     0.2499
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2025,
+    "total": 2987,
+    "sc_only": 253,
+    "iv_only": 1247,
+    "both": 65,
+    "unclassified": 1422,
+    "sc_any": 318,
+    "classified": 1565,
+    "sc_share": 0.2032,
+    "sc_share_ci95": [
+     0.184,
+     0.2238
+    ],
+    "partial_year": false
+   },
+   {
+    "year": 2026,
+    "total": 2997,
+    "sc_only": 243,
+    "iv_only": 1319,
+    "both": 95,
+    "unclassified": 1340,
+    "sc_any": 338,
+    "classified": 1657,
+    "sc_share": 0.204,
+    "sc_share_ci95": [
+     0.1853,
+     0.2241
+    ],
+    "partial_year": true
+   }
+  ],
+  "sc_antibody_trials_2005": 31,
+  "sc_antibody_trials_per_year_2021_2025": 247.8,
+  "growth_multiple_sc_2005_to_2021_25_mean": 8.0,
+  "peak_sc_share_year": 2014,
+  "peak_sc_share": 0.3441,
+  "checkpoint_inhibitor_iv_mentions_by_year": [
+   {
+    "year": 2005,
+    "checkpoint_iv_mentions": 5,
+    "all_iv_mentions": 253,
+    "checkpoint_share_of_iv": 0.02,
+    "sc_share_excluding_checkpoint": 0.136
+   },
+   {
+    "year": 2006,
+    "checkpoint_iv_mentions": 3,
+    "all_iv_mentions": 373,
+    "checkpoint_share_of_iv": 0.008,
+    "sc_share_excluding_checkpoint": 0.131
+   },
+   {
+    "year": 2007,
+    "checkpoint_iv_mentions": 3,
+    "all_iv_mentions": 355,
+    "checkpoint_share_of_iv": 0.008,
+    "sc_share_excluding_checkpoint": 0.12
+   },
+   {
+    "year": 2008,
+    "checkpoint_iv_mentions": 3,
+    "all_iv_mentions": 428,
+    "checkpoint_share_of_iv": 0.007,
+    "sc_share_excluding_checkpoint": 0.178
+   },
+   {
+    "year": 2009,
+    "checkpoint_iv_mentions": 15,
+    "all_iv_mentions": 461,
+    "checkpoint_share_of_iv": 0.033,
+    "sc_share_excluding_checkpoint": 0.193
+   },
+   {
+    "year": 2010,
+    "checkpoint_iv_mentions": 15,
+    "all_iv_mentions": 433,
+    "checkpoint_share_of_iv": 0.035,
+    "sc_share_excluding_checkpoint": 0.217
+   },
+   {
+    "year": 2011,
+    "checkpoint_iv_mentions": 21,
+    "all_iv_mentions": 449,
+    "checkpoint_share_of_iv": 0.047,
+    "sc_share_excluding_checkpoint": 0.246
+   },
+   {
+    "year": 2012,
+    "checkpoint_iv_mentions": 47,
+    "all_iv_mentions": 390,
+    "checkpoint_share_of_iv": 0.121,
+    "sc_share_excluding_checkpoint": 0.365
+   },
+   {
+    "year": 2013,
+    "checkpoint_iv_mentions": 59,
+    "all_iv_mentions": 380,
+    "checkpoint_share_of_iv": 0.155,
+    "sc_share_excluding_checkpoint": 0.355
+   },
+   {
+    "year": 2014,
+    "checkpoint_iv_mentions": 105,
+    "all_iv_mentions": 448,
+    "checkpoint_share_of_iv": 0.234,
+    "sc_share_excluding_checkpoint": 0.4
+   },
+   {
+    "year": 2015,
+    "checkpoint_iv_mentions": 258,
+    "all_iv_mentions": 677,
+    "checkpoint_share_of_iv": 0.381,
+    "sc_share_excluding_checkpoint": 0.353
+   },
+   {
+    "year": 2016,
+    "checkpoint_iv_mentions": 383,
+    "all_iv_mentions": 805,
+    "checkpoint_share_of_iv": 0.476,
+    "sc_share_excluding_checkpoint": 0.342
+   },
+   {
+    "year": 2017,
+    "checkpoint_iv_mentions": 611,
+    "all_iv_mentions": 1080,
+    "checkpoint_share_of_iv": 0.566,
+    "sc_share_excluding_checkpoint": 0.277
+   },
+   {
+    "year": 2018,
+    "checkpoint_iv_mentions": 677,
+    "all_iv_mentions": 1190,
+    "checkpoint_share_of_iv": 0.569,
+    "sc_share_excluding_checkpoint": 0.321
+   },
+   {
+    "year": 2019,
+    "checkpoint_iv_mentions": 661,
+    "all_iv_mentions": 1184,
+    "checkpoint_share_of_iv": 0.558,
+    "sc_share_excluding_checkpoint": 0.34
+   },
+   {
+    "year": 2020,
+    "checkpoint_iv_mentions": 655,
+    "all_iv_mentions": 1312,
+    "checkpoint_share_of_iv": 0.499,
+    "sc_share_excluding_checkpoint": 0.299
+   },
+   {
+    "year": 2021,
+    "checkpoint_iv_mentions": 691,
+    "all_iv_mentions": 1426,
+    "checkpoint_share_of_iv": 0.485,
+    "sc_share_excluding_checkpoint": 0.326
+   },
+   {
+    "year": 2022,
+    "checkpoint_iv_mentions": 652,
+    "all_iv_mentions": 1257,
+    "checkpoint_share_of_iv": 0.519,
+    "sc_share_excluding_checkpoint": 0.342
+   },
+   {
+    "year": 2023,
+    "checkpoint_iv_mentions": 687,
+    "all_iv_mentions": 1356,
+    "checkpoint_share_of_iv": 0.507,
+    "sc_share_excluding_checkpoint": 0.282
+   },
+   {
+    "year": 2024,
+    "checkpoint_iv_mentions": 596,
+    "all_iv_mentions": 1217,
+    "checkpoint_share_of_iv": 0.49,
+    "sc_share_excluding_checkpoint": 0.323
+   },
+   {
+    "year": 2025,
+    "checkpoint_iv_mentions": 595,
+    "all_iv_mentions": 1336,
+    "checkpoint_share_of_iv": 0.445,
+    "sc_share_excluding_checkpoint": 0.243
+   },
+   {
+    "year": 2026,
+    "checkpoint_iv_mentions": 647,
+    "all_iv_mentions": 1486,
+    "checkpoint_share_of_iv": 0.435,
+    "sc_share_excluding_checkpoint": 0.22
+   }
+  ],
+  "hyaluronidase_or_sc_brand_trials_total_2005_2026": 143,
+  "hyaluronidase_or_sc_brand_top_sponsors": [
+   [
+    "National Cancer Institute (NCI)",
+    12
+   ],
+   [
+    "Merck Sharp & Dohme LLC",
+    12
+   ],
+   [
+    "Hoffmann-La Roche",
+    10
+   ],
+   [
+    "SWOG Cancer Research Network",
+    6
+   ],
+   [
+    "Janssen Research & Development, LLC",
+    4
+   ],
+   [
+    "Bristol-Myers Squibb",
+    4
+   ],
+   [
+    "Regeneron Pharmaceuticals",
+    4
+   ],
+   [
+    "Celgene",
+    3
+   ],
+   [
+    "Georgetown University",
+    3
+   ],
+   [
+    "Dana-Farber Cancer Institute",
+    2
+   ],
+   [
+    "Emory University",
+    2
+   ],
+   [
+    "Roswell Park Cancer Institute",
+    2
+   ]
+  ],
+  "hyaluronidase_or_sc_brand_trials": [
+   [
+    "NCT00950300",
+    2009,
+    "Hoffmann-La Roche",
+    [
+     "trastuzumab"
+    ],
+    "Herceptin SC [trastuzumab]"
+   ],
+   [
+    "NCT01875367",
+    2013,
+    "Spanish Breast Cancer Research Group",
+    [
+     "trastuzumab"
+    ],
+    "Trastuzumab Injectable Solution"
+   ],
+   [
+    "NCT02568839",
+    2014,
+    "Thomas Hatschek",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "docetaxel + trastuzumab sc + pertuzumab"
+   ],
+   [
+    "NCT02042391",
+    2015,
+    "Diako Ev. Diakonie-Krankenhaus gemeinnützige GmbH",
+    [
+     "rituximab"
+    ],
+    "Rituximab sc"
+   ],
+   [
+    "NCT02303119",
+    2015,
+    "The Lymphoma Academic Research Organisation",
+    [
+     "rituximab"
+    ],
+    "Rituximab SC"
+   ],
+   [
+    "NCT02519452",
+    2015,
+    "Janssen Research & Development, LLC",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab Subcutaneous (SC) Administration"
+   ],
+   [
+    "NCT02667223",
+    2016,
+    "Pfizer",
+    [
+     "bococizumab"
+    ],
+    "Cohort 1: bococizumab 150 mg + rHuPH20"
+   ],
+   [
+    "NCT02773030",
+    2016,
+    "Celgene",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab- 1800mg"
+   ],
+   [
+    "NCT02972840",
+    2017,
+    "Acerta Pharma BV",
+    [
+     "rituximab"
+    ],
+    "Rituximab"
+   ],
+   [
+    "NCT03267433",
+    2017,
+    "ECOG-ACRIN Cancer Research Group",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT03301220",
+    2017,
+    "Janssen Research & Development, LLC",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab SC: daratumumab + rHuPH20"
+   ],
+   [
+    "NCT03058939",
+    2018,
+    "University of Chicago",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Herceptin SC"
+   ],
+   [
+    "NCT03467867",
+    2018,
+    "Georgetown University",
+    [
+     "rituximab"
+    ],
+    "Rituximab/Hyaluronidase Human"
+   ],
+   [
+    "NCT03486873",
+    2018,
+    "Merck Sharp & Dohme LLC",
+    [
+     "favezelimab",
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT03493854",
+    2018,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "FDC of Pertuzumab and Trastuzumab SC"
+   ],
+   [
+    "NCT03500328",
+    2018,
+    "Johns Hopkins University",
+    [
+     "alemtuzumab",
+     "natalizumab",
+     "ocrelizumab",
+     "ofatumumab"
+    ],
+    "Natalizumab/natalizumab-sztn, Alemtuzumab, Ocrelizumab, Rituximab/rituximab-arrx/rituximab-abbs/rituximab-pvvr, Cladribi"
+   ],
+   [
+    "NCT03590652",
+    2018,
+    "University of California, San Diego",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab-Hyaluronidase-Fihj@1,800 Mg-30,000 Unit/15 mL@SUBCUT@VIAL (ML)"
+   ],
+   [
+    "NCT03623373",
+    2018,
+    "Washington University School of Medicine",
+    [
+     "rituximab"
+    ],
+    "Rituximab"
+   ],
+   [
+    "NCT03674112",
+    2018,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab and Trastuzumab Fixed-Dose Combination for Subcutaneous Administration (PH FDC SC)"
+   ],
+   [
+    "NCT03719131",
+    2019,
+    "Emory University",
+    [
+     "ipilimumab",
+     "nivolumab",
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT03837509",
+    2019,
+    "Incyte Corporation",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab SC"
+   ],
+   [
+    "NCT03864419",
+    2019,
+    "Fred Hutchinson Cancer Center",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04045028",
+    2019,
+    "Genentech, Inc.",
+    [
+     "atezolizumab",
+     "daratumumab",
+     "rituximab",
+     "tiragolumab"
+    ],
+    "Daratumumab/rHuPH20"
+   ],
+   [
+    "NCT04070378",
+    2019,
+    "Marc L Gordon, MD",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab Injection"
+   ],
+   [
+    "NCT04071457",
+    2019,
+    "SWOG Cancer Research Network",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab/rHuPH20"
+   ],
+   [
+    "NCT04121260",
+    2019,
+    "Janssen Research & Development, LLC",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04131309",
+    2019,
+    "Stichting European Myeloma Network",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04136756",
+    2019,
+    "Nektar Therapeutics",
+    [
+     "daratumumab",
+     "rituximab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04024462",
+    2020,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab and Trastuzumab FDC SC"
+   ],
+   [
+    "NCT04253964",
+    2020,
+    "Wake Forest University Health Sciences",
+    [
+     "atezolizumab",
+     "cemiplimab",
+     "pembrolizumab"
+    ],
+    "Atezolizumab"
+   ],
+   [
+    "NCT04447716",
+    2020,
+    "Thomas Jefferson University",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04649060",
+    2020,
+    "Oncopeptides AB",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04762160",
+    2020,
+    "Epizyme, Inc.",
+    [
+     "rituximab"
+    ],
+    "Rituximab"
+   ],
+   [
+    "NCT04270175",
+    2021,
+    "Weill Medical College of Cornell University",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab SC"
+   ],
+   [
+    "NCT04302324",
+    2021,
+    "Weill Medical College of Cornell University",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab SC"
+   ],
+   [
+    "NCT04566328",
+    2021,
+    "ECOG-ACRIN Cancer Research Group",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT04569747",
+    2021,
+    "Dana-Farber Cancer Institute",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab+TRASTUZUMAB"
+   ],
+   [
+    "NCT04626791",
+    2021,
+    "Academic and Community Cancer Research United",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04632992",
+    2021,
+    "Genentech, Inc.",
+    [
+     "atezolizumab",
+     "pertuzumab",
+     "tiragolumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab, Trastuzumab, and Hyaluronidase-zzxf"
+   ],
+   [
+    "NCT04659044",
+    2021,
+    "Academic and Community Cancer Research United",
+    [
+     "polatuzumab",
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04714372",
+    2021,
+    "Masonic Cancer Center, University of Minnesota",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab/rHuPH20"
+   ],
+   [
+    "NCT04733118",
+    2021,
+    "MedSIR",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Trastuzumab and Pertuzumab (FDC SC) and T-DM1"
+   ],
+   [
+    "NCT04759586",
+    2021,
+    "National Cancer Institute (NCI)",
+    [
+     "nivolumab",
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04775550",
+    2021,
+    "Omar Nadeem, MD",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04776018",
+    2021,
+    "Takeda",
+    [
+     "daratumumab",
+     "mezagitamab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT04782687",
+    2021,
+    "US Oncology Research",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04799275",
+    2021,
+    "National Cancer Institute (NCI)",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT04802759",
+    2021,
+    "Hoffmann-La Roche",
+    [
+     "atezolizumab",
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "PH FDC SC"
+   ],
+   [
+    "NCT04810078",
+    2021,
+    "Bristol-Myers Squibb",
+    [
+     "nivolumab"
+    ],
+    "Nivolumab and rHuPH20"
+   ],
+   [
+    "NCT04817956",
+    2021,
+    "Oslo University Hospital",
+    [
+     "atezolizumab",
+     "bevacizumab",
+     "dostarlimab",
+     "pertuzumab"
+    ],
+    "Atezolizumab"
+   ],
+   [
+    "NCT04824794",
+    2021,
+    "Genmab",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04956302",
+    2021,
+    "Abdullah Khan",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT05017012",
+    2021,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT05020236",
+    2021,
+    "Pfizer",
+    [
+     "daratumumab",
+     "elranatamab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT05041842",
+    2021,
+    "UNICANCER",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab/ Trastuzumab"
+   ],
+   [
+    "NCT05139225",
+    2021,
+    "Memorial Sloan Kettering Cancer Center",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab Hyaluronidase-fihj"
+   ],
+   [
+    "NCT05159245",
+    2021,
+    "Helsinki University Central Hospital",
+    [
+     "atezolizumab",
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Trastuzumab+Pertuzumab"
+   ],
+   [
+    "NCT05182073",
+    2021,
+    "Fate Therapeutics",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04975997",
+    2022,
+    "Celgene",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT04998669",
+    2022,
+    "Juan P. Alderuccio, MD",
+    [
+     "loncastuximab",
+     "rituximab"
+    ],
+    "Rituximab"
+   ],
+   [
+    "NCT05004259",
+    2022,
+    "Dartmouth-Hitchcock Medical Center",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab / Hyaluronidase Injection"
+   ],
+   [
+    "NCT05132582",
+    2022,
+    "Seagen, a wholly owned subsidiary of Pfizer",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Combination product: Trastuzumab + Pertuzumab"
+   ],
+   [
+    "NCT05137054",
+    2022,
+    "Regeneron Pharmaceuticals",
+    [
+     "cemiplimab",
+     "cevostamab",
+     "daratumumab",
+     "fianlimab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT05256225",
+    2022,
+    "National Cancer Institute (NCI)",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Hyaluronidase-zzxf/Pertuzumab/Trastuzumab"
+   ],
+   [
+    "NCT05275010",
+    2022,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Fixed-Dose Combination of Pertuzumab and Trastuzumab SC (PH FDC SC)"
+   ],
+   [
+    "NCT05296798",
+    2022,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Phesgo"
+   ],
+   [
+    "NCT05297565",
+    2022,
+    "Bristol-Myers Squibb",
+    [
+     "nivolumab"
+    ],
+    "Nivolumab/rHuPH20"
+   ],
+   [
+    "NCT05300451",
+    2022,
+    "Barry A. Boilson",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and hyaluronidase-fihj"
+   ],
+   [
+    "NCT05340309",
+    2022,
+    "University of Southern California",
+    [
+     "atezolizumab"
+    ],
+    "Atezolizumab and Recombinant Human Hyaluronidase"
+   ],
+   [
+    "NCT05388669",
+    2022,
+    "Janssen Research & Development, LLC",
+    [
+     "amivantamab"
+    ],
+    "Amivantamab Subcutaneous and Co-Formulated with Recombinant Human Hyaluronidase (SC CF)"
+   ],
+   [
+    "NCT05408026",
+    2022,
+    "Alliance Foundation Trials, LLC.",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT05415215",
+    2022,
+    "Hoffmann-La Roche",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Fixed Dose Combination of Pertuzumab and Trastuzumab for Subcutaneous Use (PH FDC SC)"
+   ],
+   [
+    "NCT05511428",
+    2022,
+    "Thomas Jefferson University",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT05020860",
+    2023,
+    "Baylor Breast Care Center",
+    [
+     "pembrolizumab",
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab/Trastuzumab/Hyaluronidase-zzxf"
+   ],
+   [
+    "NCT05238831",
+    2023,
+    "OHSU Knight Cancer Institute",
+    [
+     "atezolizumab",
+     "bevacizumab",
+     "pertuzumab",
+     "rhumab"
+    ],
+    "Hyaluronidase-zzxf/Pertuzumab/Trastuzumab"
+   ],
+   [
+    "NCT05289687",
+    2023,
+    "Eastern Cooperative Oncology Group",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab / Hyaluronidase Injection"
+   ],
+   [
+    "NCT05332561",
+    2023,
+    "German Cancer Research Center",
+    [
+     "atezolizumab",
+     "pertuzumab",
+     "sacituzumab",
+     "trastuzumab"
+    ],
+    "Trastuzumab/pertuzumab"
+   ],
+   [
+    "NCT05455697",
+    2023,
+    "University of Washington",
+    [
+     "polatuzumab",
+     "retifanlimab",
+     "rituximab",
+     "tafasitamab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT05496192",
+    2023,
+    "Bristol-Myers Squibb",
+    [
+     "nivolumab"
+    ],
+    "Nivolumab/rHuPH20"
+   ],
+   [
+    "NCT05561387",
+    2023,
+    "SWOG Cancer Research Network",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT05722015",
+    2023,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab Formulated with Berahyaluronidase Alfa"
+   ],
+   [
+    "NCT05807048",
+    2023,
+    "NYU Langone Health",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT06041802",
+    2023,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT06099782",
+    2023,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT06100874",
+    2023,
+    "Adrienne G. Waks",
+    [
+     "sacituzumab",
+     "trastuzumab"
+    ],
+    "Trastuzumab and Hyaluronidase-oysk"
+   ],
+   [
+    "NCT06101134",
+    2023,
+    "Bristol-Myers Squibb",
+    [
+     "nivolumab",
+     "relatlimab"
+    ],
+    "relatlimab+nivolumab+rHuPH20"
+   ],
+   [
+    "NCT06107738",
+    2023,
+    "Barbara Ann Karmanos Cancer Institute",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab/rHuPH20 Co-formulation"
+   ],
+   [
+    "NCT06212752",
+    2023,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab Formulated with Berahyaluronidase Alfa"
+   ],
+   [
+    "NCT06376214",
+    2023,
+    "Nanjing University School of Medicine",
+    [
+     "dratumumab"
+    ],
+    "Dratumumab / Hyaluronidase Injection [Darzalex Faspro]"
+   ],
+   [
+    "NCT05730712",
+    2024,
+    "Mayo Clinic",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Hyaluronidase-zzxf/Pertuzumab/Trastuzumab"
+   ],
+   [
+    "NCT05886036",
+    2024,
+    "National Cancer Institute (NCI)",
+    [
+     "mosunetuzumab",
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT05907759",
+    2024,
+    "National Cancer Institute (NCI)",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab SC"
+   ],
+   [
+    "NCT06015724",
+    2024,
+    "Georgetown University",
+    [
+     "daratumumab",
+     "nivolumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT06022939",
+    2024,
+    "SWOG Cancer Research Network",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT06142396",
+    2024,
+    "Augusta University",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab-hyaluronidase in Combination with Bortezomib, Cyclophosphamide, and Dexamethasone"
+   ],
+   [
+    "NCT06169215",
+    2024,
+    "National Cancer Institute (NCI)",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Recombinant Human Hyaluronidase"
+   ],
+   [
+    "NCT06172127",
+    2024,
+    "MedSIR",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Phesgo 1,200 MG / 600 MG / 30,000 UNT Per 15 ML Injection"
+   ],
+   [
+    "NCT06192979",
+    2024,
+    "Jin Lu, MD",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT06232707",
+    2024,
+    "Celgene",
+    [
+     "alnuctamab",
+     "daratumumab",
+     "elotuzumab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT06337318",
+    2024,
+    "National Cancer Institute (NCI)",
+    [
+     "mosunetuzumab",
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT06398457",
+    2024,
+    "Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins",
+    [
+     "daratumumab"
+    ],
+    "Darzalex Faspro (Daratumumab and hyaluronidase-fihj)"
+   ],
+   [
+    "NCT06439693",
+    2024,
+    "Dana-Farber Cancer Institute",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Phesgo"
+   ],
+   [
+    "NCT06455748",
+    2024,
+    "Yongyong MA",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab/daratumumab and hyaluronidase-fihj"
+   ],
+   [
+    "NCT06504394",
+    2024,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT06510465",
+    2024,
+    "RenJi Hospital",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Pertuzumab"
+   ],
+   [
+    "NCT06698042",
+    2024,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT07667322",
+    2024,
+    "Hoffmann-La Roche",
+    [
+     "ocrelizumab"
+    ],
+    "Ocrelizumab Co-formulated With rHuPH20"
+   ],
+   [
+    "NCT06046287",
+    2025,
+    "Georgetown University",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and hyaluronidase-fihj"
+   ],
+   [
+    "NCT06622005",
+    2025,
+    "Roswell Park Cancer Institute",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Recombinant Human Hyaluronidase"
+   ],
+   [
+    "NCT06952478",
+    2025,
+    "Celltrion",
+    [
+     "daratumumab"
+    ],
+    "Darzalex Faspro(Daratumumab)"
+   ],
+   [
+    "NCT07095023",
+    2025,
+    "Sun Yat-Sen Memorial Hospital of Sun Yat-Sen University",
+    [
+     "pertuzumab",
+     "trastuzumab"
+    ],
+    "Paclitaxel oral solution plus Subcutaneous Pertuzumab/Trastuzumab"
+   ],
+   [
+    "NCT07110844",
+    2025,
+    "Rajshekhar Chakraborty, MD",
+    [
+     "daratumumab",
+     "teclistamab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ],
+   [
+    "NCT07190248",
+    2025,
+    "Merck Sharp & Dohme LLC",
+    [
+     "pembrolizumab"
+    ],
+    "Pembrolizumab (+) Berahyaluronidase alfa"
+   ],
+   [
+    "NCT07042295",
+    2026,
+    "National Cancer Institute (NCI)",
+    [
+     "amivantamab",
+     "cetuximab"
+    ],
+    "Amivantamab and Recombinant Human Hyaluronidase"
+   ],
+   [
+    "NCT07062354",
+    2026,
+    "SWOG Cancer Research Network",
+    [
+     "amivantamab"
+    ],
+    "Amivantamab Subcutaneous and Co-Formulated with Recombinant Human Hyaluronidase (SC CF)"
+   ],
+   [
+    "NCT07082270",
+    2026,
+    "Roswell Park Cancer Institute",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab and Recombinant Human Hyaluronidase"
+   ],
+   [
+    "NCT07085728",
+    2026,
+    "Eastern Cooperative Oncology Group",
+    [
+     "daratumumab"
+    ],
+    "Daratumumab-hyaluronidase"
+   ],
+   [
+    "NCT07220187",
+    2026,
+    "SWOG Cancer Research Network",
+    [
+     "rituximab"
+    ],
+    "Rituximab and Hyaluronidase Human"
+   ],
+   [
+    "NCT07222761",
+    2026,
+    "Regeneron Pharmaceuticals",
+    [
+     "daratumumab",
+     "linvoseltamab"
+    ],
+    "Daratumumab"
+   ],
+   [
+    "NCT07247097",
+    2026,
+    "Massachusetts General Hospital",
+    [
+     "daratumumab",
+     "elranatamab"
+    ],
+    "Daratumumab and Hyaluronidase-fihj"
+   ]
+  ],
+  "top_lead_sponsors_sc_antibody_trials": [
+   [
+    "Novartis Pharmaceuticals",
+    176
+   ],
+   [
+    "Amgen",
+    171
+   ],
+   [
+    "Hoffmann-La Roche",
+    160
+   ],
+   [
+    "Janssen Research & Development, LLC",
+    152
+   ],
+   [
+    "Sanofi",
+    145
+   ],
+   [
+    "Eli Lilly and Company",
+    140
+   ],
+   [
+    "AbbVie",
+    109
+   ],
+   [
+    "AstraZeneca",
+    97
+   ],
+   [
+    "Regeneron Pharmaceuticals",
+    78
+   ],
+   [
+    "GlaxoSmithKline",
+    65
+   ],
+   [
+    "Pfizer",
+    60
+   ],
+   [
+    "Genentech, Inc.",
+    56
+   ],
+   [
+    "National Cancer Institute (NCI)",
+    34
+   ],
+   [
+    "Takeda",
+    31
+   ],
+   [
+    "UCB Biopharma SRL",
+    30
+   ]
+  ],
+  "sc_antibody_trial_sponsor_class": {
+   "INDUSTRY": 2292,
+   "OTHER": 1121,
+   "NIH": 70,
+   "NETWORK": 29,
+   "OTHER_GOV": 21,
+   "INDIV": 2,
+   "FED": 9
+  },
+  "precision_check": {
+   "sample": "deterministic hash sample (~2%) of interventional antibody studies; 545 studies",
+   "sc_n": 20,
+   "sc_correct": 18,
+   "sc_errors": [
+    "NCT01373229: SC refers to co-administered plerixafor",
+    "NCT02089685: SC refers to co-administered PEG-IFN; pembrolizumab is IV"
+   ],
+   "sc_checked": [
+    "NCT00235833",
+    "NCT00390221",
+    "NCT01059435",
+    "NCT01302795",
+    "NCT01373229",
+    "NCT01448239",
+    "NCT01845740",
+    "NCT01859988",
+    "NCT01882491",
+    "NCT01894360",
+    "NCT01989468",
+    "NCT02017639",
+    "NCT02089685",
+    "NCT02135640",
+    "NCT02272946",
+    "NCT02385110",
+    "NCT02443298",
+    "NCT02497469",
+    "NCT02684370",
+    "NCT02852694"
+   ],
+   "iv_n": 20,
+   "iv_correct": 19,
+   "iv_errors": [
+    "NCT00004143: 'infused' refers to stem cells, not alemtuzumab"
+   ],
+   "iv_checked": [
+    "NCT00004143",
+    "NCT00583830",
+    "NCT00927615",
+    "NCT01121939",
+    "NCT01763645",
+    "NCT02409355",
+    "NCT02807103",
+    "NCT03077828",
+    "NCT03308396",
+    "NCT03705858",
+    "NCT03971474",
+    "NCT04246086",
+    "NCT04483739",
+    "NCT04782791",
+    "NCT05045716",
+    "NCT05534646",
+    "NCT05897268",
+    "NCT06171178",
+    "NCT06695013",
+    "NCT07069712"
+   ],
+   "sample_studies": 545,
+   "sample_sc_positive": 58,
+   "sample_iv_positive": 291,
+   "sample_unclassified": 208,
+   "unclassified_share_pct": 38.2,
+   "note": "All three errors attach a co-administered agent's route to the antibody. Recall was not measured; 38% of sampled antibody studies state no route in the fields read.",
+   "sc_precision_ci95": [
+    0.699,
+    0.9721
+   ],
+   "iv_precision_ci95": [
+    0.7639,
+    0.9911
+   ]
+  },
+  "purple_book": {
+   "products_rows": 2251,
+   "antibody_product_rows": 561,
+   "antibody_bla": 250,
+   "originator_by_period": [
+    {
+     "years": [
+      1994,
+      2004
+     ],
+     "new_bla": 20,
+     "sc_or_both": 3,
+     "iv_only": 16,
+     "other": 1,
+     "sc_share": 0.15
+    },
+    {
+     "years": [
+      2005,
+      2014
+     ],
+     "new_bla": 25,
+     "sc_or_both": 6,
+     "iv_only": 18,
+     "other": 1,
+     "sc_share": 0.24
+    },
+    {
+     "years": [
+      2015,
+      2019
+     ],
+     "new_bla": 52,
+     "sc_or_both": 25,
+     "iv_only": 26,
+     "other": 1,
+     "sc_share": 0.481
+    },
+    {
+     "years": [
+      2020,
+      2026
+     ],
+     "new_bla": 86,
+     "sc_or_both": 31,
+     "iv_only": 50,
+     "other": 5,
+     "sc_share": 0.36
+    }
+   ],
+   "biosimilar_by_period": [
+    {
+     "years": [
+      2015,
+      2019
+     ],
+     "new_bla": 18,
+     "sc_or_both": 5,
+     "iv_only": 13,
+     "other": 0,
+     "sc_share": 0.278
+    },
+    {
+     "years": [
+      2020,
+      2026
+     ],
+     "new_bla": 49,
+     "sc_or_both": 29,
+     "iv_only": 16,
+     "other": 4,
+     "sc_share": 0.592
+    }
+   ],
+   "iv_to_sc_switches": [
+    {
+     "inn": "tocilizumab",
+     "first_iv": "2010-01-08",
+     "iv_product": "Actemra",
+     "first_sc": "2013-10-21",
+     "sc_product": "Actemra",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 3.8
+    },
+    {
+     "inn": "daclizumab",
+     "first_iv": "1997-12-10",
+     "iv_product": "Zenapax",
+     "first_sc": "2016-05-27",
+     "sc_product": "Zinbryta",
+     "sc_applicant": "Biogen Inc.",
+     "lag_years": 18.5
+    },
+    {
+     "inn": "rituximab",
+     "first_iv": "1997-11-26",
+     "iv_product": "Rituxan",
+     "first_sc": "2017-06-22",
+     "sc_product": "Rituxan Hycela",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 19.6
+    },
+    {
+     "inn": "belimumab",
+     "first_iv": "2011-03-09",
+     "iv_product": "Benlysta",
+     "first_sc": "2017-07-20",
+     "sc_product": "Benlysta",
+     "sc_applicant": "GlaxoSmithKline LLC",
+     "lag_years": 6.4
+    },
+    {
+     "inn": "trastuzumab",
+     "first_iv": "1998-09-25",
+     "iv_product": "Herceptin",
+     "first_sc": "2019-02-28",
+     "sc_product": "Herceptin Hylecta",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 20.4
+    },
+    {
+     "inn": "daratumumab",
+     "first_iv": "2015-11-16",
+     "iv_product": "Darzalex",
+     "first_sc": "2020-05-01",
+     "sc_product": "Darzalex Faspro",
+     "sc_applicant": "Janssen Biotech, Inc.",
+     "lag_years": 4.5
+    },
+    {
+     "inn": "pertuzumab",
+     "first_iv": "2012-06-08",
+     "iv_product": "Perjeta",
+     "first_sc": "2020-06-29",
+     "sc_product": "Phesgo",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 8.1
+    },
+    {
+     "inn": "ofatumumab",
+     "first_iv": "2009-10-26",
+     "iv_product": "Arzerra",
+     "first_sc": "2020-08-20",
+     "sc_product": "Kesimpta",
+     "sc_applicant": "Novartis Pharmaceuticals Corporation",
+     "lag_years": 10.8
+    },
+    {
+     "inn": "ravulizumab",
+     "first_iv": "2018-12-21",
+     "iv_product": "Ultomiris",
+     "first_sc": "2022-06-22",
+     "sc_product": "Ultomiris",
+     "sc_applicant": "Alexion Pharmaceuticals, Inc.",
+     "lag_years": 3.5
+    },
+    {
+     "inn": "vedolizumab",
+     "first_iv": "2014-05-20",
+     "iv_product": "Entyvio",
+     "first_sc": "2023-09-27",
+     "sc_product": "Entyvio",
+     "sc_applicant": "Takeda Pharmaceuticals U.S.A., Inc.",
+     "lag_years": 9.4
+    },
+    {
+     "inn": "infliximab",
+     "first_iv": "1998-08-24",
+     "iv_product": "Remicade",
+     "first_sc": "2023-10-20",
+     "sc_product": "Zymfentra",
+     "sc_applicant": "CELLTRION, Inc.",
+     "lag_years": 25.2
+    },
+    {
+     "inn": "spesolimab",
+     "first_iv": "2022-09-01",
+     "iv_product": "Spevigo",
+     "first_sc": "2024-03-18",
+     "sc_product": "Spevigo",
+     "sc_applicant": "LEO Pharma A/S",
+     "lag_years": 1.5
+    },
+    {
+     "inn": "atezolizumab",
+     "first_iv": "2016-05-18",
+     "iv_product": "Tecentriq",
+     "first_sc": "2024-09-12",
+     "sc_product": "Tecentriq Hybreza",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 8.3
+    },
+    {
+     "inn": "ocrelizumab",
+     "first_iv": "2017-03-28",
+     "iv_product": "Ocrevus",
+     "first_sc": "2024-09-13",
+     "sc_product": "Ocrevus Zunovo",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 7.5
+    },
+    {
+     "inn": "nivolumab",
+     "first_iv": "2014-12-22",
+     "iv_product": "Opdivo",
+     "first_sc": "2024-12-27",
+     "sc_product": "Opdivo Qvantig",
+     "sc_applicant": "Bristol-Myers Squibb Company",
+     "lag_years": 10.0
+    },
+    {
+     "inn": "lecanemab",
+     "first_iv": "2023-01-06",
+     "iv_product": "Leqembi",
+     "first_sc": "2025-08-29",
+     "sc_product": "Leqembi IQLIK",
+     "sc_applicant": "Eisai, Incorporated",
+     "lag_years": 2.6
+    },
+    {
+     "inn": "pembrolizumab",
+     "first_iv": "2014-09-04",
+     "iv_product": "Keytruda",
+     "first_sc": "2025-09-19",
+     "sc_product": "Keytruda Qlex",
+     "sc_applicant": "Merck Sharp & Dohme LLC",
+     "lag_years": 11.0
+    },
+    {
+     "inn": "mosunetuzumab",
+     "first_iv": "2022-12-22",
+     "iv_product": "Lunsumio",
+     "first_sc": "2025-12-19",
+     "sc_product": "Lunsumio Velo",
+     "sc_applicant": "Genentech, Inc.",
+     "lag_years": 3.0
+    },
+    {
+     "inn": "amivantamab",
+     "first_iv": "2021-05-21",
+     "iv_product": "Rybrevant",
+     "first_sc": "2026-02-13",
+     "sc_product": "Rybrevant Faspro",
+     "sc_applicant": "Janssen Biotech, Inc.",
+     "lag_years": 4.7
+    },
+    {
+     "inn": "anifrolumab",
+     "first_iv": "2021-07-30",
+     "iv_product": "Saphnelo",
+     "first_sc": "2026-04-24",
+     "sc_product": "Saphnelo",
+     "sc_applicant": "AstraZeneca AB",
+     "lag_years": 4.7
+    },
+    {
+     "inn": "isatuximab",
+     "first_iv": "2020-03-02",
+     "iv_product": "Sarclisa",
+     "first_sc": "2026-07-09",
+     "sc_product": "Sarclisa Escena",
+     "sc_applicant": "Sanofi-Aventis U.S. LLC",
+     "lag_years": 6.4
+    }
+   ],
+   "hyaluronidase_coformulated_products": [
+    [
+     "Rituxan Hycela",
+     "rituximab and hyaluronidase human",
+     "Genentech, Inc.",
+     "2017-06-22"
+    ],
+    [
+     "Herceptin Hylecta",
+     "trastuzumab and hyaluronidase-oysk",
+     "Genentech, Inc.",
+     "2019-02-28"
+    ],
+    [
+     "Darzalex Faspro",
+     "daratumumab and hyaluronidase-fihj",
+     "Janssen Biotech, Inc.",
+     "2020-05-01"
+    ],
+    [
+     "Phesgo",
+     "pertuzumab, trastuzumab, and hyaluronidase-zzxf",
+     "Genentech, Inc.",
+     "2020-06-29"
+    ],
+    [
+     "Tecentriq Hybreza",
+     "atezolizumab and hyaluronidase-tqjs",
+     "Genentech, Inc.",
+     "2024-09-12"
+    ],
+    [
+     "Ocrevus Zunovo",
+     "ocrelizumab and hyaluronidase-ocsq",
+     "Genentech, Inc.",
+     "2024-09-13"
+    ],
+    [
+     "Opdivo Qvantig",
+     "nivolumab and hyaluronidase-nvhy",
+     "Bristol-Myers Squibb Company",
+     "2024-12-27"
+    ],
+    [
+     "Keytruda Qlex",
+     "pembrolizumab and berahyaluronidase alfa-pmph",
+     "Merck Sharp & Dohme LLC",
+     "2025-09-19"
+    ],
+    [
+     "Rybrevant Faspro",
+     "amivantamab and hyaluronidase-lpuj",
+     "Janssen Biotech, Inc.",
+     "2026-02-13"
+    ]
+   ]
+  },
+  "drugsfda_crosscheck": {
+   "drugsfda_records": 29416,
+   "drugsfda_mab_bla": 258,
+   "purplebook_cder_mab_bla": 250,
+   "found_in_drugsfda": 243,
+   "same_first_approval_date": 242,
+   "keytruda_qlex_BLA761467": "20250919",
+   "last_updated": "2026-10-23"
+  },
+  "lithium_world_production_t": {
+   "2000": {
+    "t": 14100.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2001": {
+    "t": 13100.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2002": {
+    "t": 14100.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2003": {
+    "t": 16600.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2004": {
+    "t": 17700.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2005": {
+    "t": 20300.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2006": {
+    "t": 22400.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2007": {
+    "t": 23300.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2008": {
+    "t": 24700.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2009": {
+    "t": 17500.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2010": {
+    "t": 24400.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2011": {
+    "t": 31000.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2012": {
+    "t": 32700.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2013": {
+    "t": 30300.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2014": {
+    "t": 31600.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2015": {
+    "t": 32200.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2016": {
+    "t": 40200.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2017": {
+    "t": 76400.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2018": {
+    "t": 91800.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2019": {
+    "t": 83800.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2020": {
+    "t": 82700.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2021": {
+    "t": 107000.0,
+    "source": "USGS DS140 (2021 ed., modified 2023-08-02)",
+    "estimated": false
+   },
+   "2022": {
+    "t": 146000.0,
+    "source": "USGS MCS 2024",
+    "estimated": false
+   },
+   "2023": {
+    "t": 180000.0,
+    "source": "USGS MCS 2024",
+    "estimated": true
+   },
+   "2024": {
+    "t": 222000.0,
+    "source": "USGS MCS 2026",
+    "estimated": true
+   },
+   "2025": {
+    "t": 290000.0,
+    "source": "USGS MCS 2026",
+    "estimated": true
+   }
+  },
+  "lithium_us_estimated_consumption_t": {
+   "2000": 2800.0,
+   "2001": 1400.0,
+   "2002": 1100.0,
+   "2003": 1400.0,
+   "2004": 1900.0,
+   "2005": 2500.0,
+   "2006": 2500.0,
+   "2007": 2400.0,
+   "2008": 2300.0,
+   "2009": 1300.0,
+   "2010": 1100.0,
+   "2011": 2000.0,
+   "2012": 2000.0,
+   "2013": 1800.0,
+   "2014": 2000.0,
+   "2015": 2000.0,
+   "2016": 3000.0,
+   "2017": 3000.0,
+   "2018": 3000.0,
+   "2019": 2000.0,
+   "2020": 2000.0,
+   "2021": 2000.0
+  },
+  "lithium_price_mcs2026": {
+   "2021": {
+    "value": "11,700",
+    "unit": "dollars per metric ton",
+    "detail": "Price, annual average-real, battery-grade lithium carbonate, dollars per metric ton"
+   },
+   "2022": {
+    "value": "63,700",
+    "unit": "dollars per metric ton",
+    "detail": "Price, annual average-real, battery-grade lithium carbonate, dollars per metric ton"
+   },
+   "2023": {
+    "value": "39,000",
+    "unit": "dollars per metric ton",
+    "detail": "Price, annual average-real, battery-grade lithium carbonate, dollars per metric ton"
+   },
+   "2024": {
+    "value": "11,800",
+    "unit": "dollars per metric ton",
+    "detail": "Price, annual average-real, battery-grade lithium carbonate, dollars per metric ton"
+   },
+   "2025": {
+    "value": "9,000",
+    "unit": "dollars per metric ton",
+    "detail": "Price, annual average-real, battery-grade lithium carbonate, dollars per metric ton"
+   }
+  },
+  "lithium_growth_2015_to_2025": 9.0
+ },
+ "findings": [
+  "Across the full ClinicalTrials.gov registry (608,415 studies), 25,470 interventional studies test an INN '-mab' antibody.",
+  "Studies that give an antibody subcutaneously grew from 31 starting in 2005 to 248 a year on average in 2021-2025 (about 8.0x).",
+  "The SC share of route-stated antibody studies was 15% in 2005-2009, peaked at 34% in 2014, and was 21% in 2020-2025 (95% CI 20-22%).",
+  "Part of that dip is the IV checkpoint-inhibitor boom: PD-1/PD-L1/CTLA-4/LAG-3 antibodies went from 2% of antibody-level IV mentions in 2005 to 50% in 2020; excluding them the SC share is 30% in 2020 (vs 40% in 2014), so it still fell, but less. These IV checkpoint antibodies are the pool now being converted to SC (nivolumab, atezolizumab, pembrolizumab).",
+  "With full words only (no abbreviations) the shares are higher (26% in 2005-2009, 29% in 2020-2025) because IV is more often abbreviated; the rise-then-plateau shape is the same.",
+  "The FDA Purple Book lists 21 antibodies licensed IV first that later gained an SC product under a 351(a) (non-biosimilar) licence; 16 of those SC licences came in 2020 or later: daratumumab (Darzalex Faspro, 2020-05), pertuzumab (Phesgo, 2020-06), ofatumumab (Kesimpta, 2020-08), ravulizumab (Ultomiris, 2022-06), vedolizumab (Entyvio, 2023-09), infliximab (Zymfentra, 2023-10), spesolimab (Spevigo, 2024-03), atezolizumab (Tecentriq Hybreza, 2024-09), ocrelizumab (Ocrevus Zunovo, 2024-09), nivolumab (Opdivo Qvantig, 2024-12), lecanemab (Leqembi IQLIK, 2025-08), pembrolizumab (Keytruda Qlex, 2025-09), mosunetuzumab (Lunsumio Velo, 2025-12), amivantamab (Rybrevant Faspro, 2026-02), anifrolumab (Saphnelo, 2026-04), isatuximab (Sarclisa Escena, 2026-07).",
+  "New originator antibody licences that include an SC product at first approval: 3/20 in 1994-2004, 6/25 in 2005-2014, 25/52 in 2015-2019 and 31/86 in 2020-2026 (FDA Purple Book).",
+  "9 licensed antibody products are co-formulated with a hyaluronidase: today's main route to high-dose SC antibodies is enzyme-assisted injection, not crystalline suspensions.",
+  "ClinicalTrials.gov holds 143 studies (start 2005-2026) of antibodies co-formulated with a hyaluronidase or named by an SC brand/code, a direct count of IV-to-SC reformulation programmes.",
+  "World lithium mine production rose from 32,200 t (2015) to an estimated 290,000 t in 2025 (9.0x, USGS, lithium content, excluding the US).",
+  "Hand check of the route classifier: 18/20 SC calls and 19/20 IV calls were correct on a deterministic sample; 38.2% of sampled antibody studies state no route at all."
+ ],
+ "limitations": [
+  "Registered trials are a proxy for formulation demand. They do not measure doses, patients, sales or willingness to pay, and they say nothing yet about demand for orbit-grown crystals specifically.",
+  "Route is inferred from free text with regular expressions. Precision is reported from a hand check, recall is lower: 30-40% of antibody studies state no route in the fields we read, and those are excluded from the share.",
+  "The '-mab' INN stem misses antibodies known only by code names (e.g. MK-3475 alone) and antibodies named under the 2021+ INN scheme (-tug, -bart, -mig, -ment); 'biologic' (interventionType BIOLOGICAL) also includes vaccines and cell therapies.",
+  "Start year is not approval year; 2026 is a partial year and includes planned (estimated) start dates. Registration practice changed over time (ICMJE 2005, FDAAA 2007, the 2017 Final Rule), so early-year counts are not strictly comparable.",
+  "One study counts once even if it has many arms; studies are not independent of each other (one sponsor runs many related trials of one molecule).",
+  "Purple Book counts are licences by route, not sales; route is read from the product listing, and our IV-to-SC list is restricted to originator (351(a)) products. Drugs@FDA covers only CDER BLAs and its route field is often just 'INJECTION', so it is used only as a date cross-check.",
+  "SC demand is being met today mainly by hyaluronidase co-formulation and high-concentration liquids. Crystalline suspensions (Merck's published pembrolizumab work) are one alternative; this analysis does not show they will win.",
+  "Lithium: production is a supply series, US consumption is withheld after 2021, the 2023 value is an MCS 2024 estimate, and 2024-2025 are USGS estimates. It does not show demand for MOF membranes.",
+  "No solid-state / barocaloric cooling demand series was added: we found no quick, real public market series and did not substitute one."
+ ],
+ "future_big_data": [
+  "Link ClinicalTrials.gov interventions to RxNorm/UNII and to the FDA SPL label corpus (openFDA label bulk, ~1.8 GB zipped) to read the route and concentration (mg/mL) of every antibody product, instead of free-text regex.",
+  "Add the EU Clinical Trials Register / CTIS and WHO ICTRP to cover non-US registrations, and the AACT relational snapshot for a dated history of protocol changes (IV-to-SC amendments).",
+  "Use IQVIA-type or CMS Part B/Part D spending data to turn trial counts into dollars spent on IV infusion chair-time that SC conversion would remove.",
+  "Text-mine patents (USPTO/EPO full text) for 'crystalline suspension' antibody formulations to size the specific crystal-formulation pipeline.",
+  "For lithium, add USGS country-level production, IEA battery demand and direct-lithium-extraction project databases to size the separation-membrane market."
+ ],
+ "partners": [
+  {
+   "name": "Merck & Co. (MSD)",
+   "why": "Owns pembrolizumab, the project's published protein-crystal anchor, and has just moved it from IV to SC; a crystalline high-concentration suspension is a direct alternative formulation route.",
+   "evidence": "FDA Purple Book: Keytruda Qlex licensed 2025-09-19 (11.0 years after IV Keytruda); ClinicalTrials.gov: 12 Merck-sponsored hyaluronidase/SC-brand antibody studies, e.g. NCT03486873, NCT05017012, NCT05722015, NCT06041802. Merck's ISS pembrolizumab crystallization is a published result (Reichert et al., npj Microgravity 2019)."
+  },
+  {
+   "name": "Johnson & Johnson (Janssen)",
+   "why": "Runs IV-to-SC antibody reformulation programmes, i.e. is already paying to make high-dose SC antibody formulations.",
+   "evidence": "FDA Purple Book SC licences: daratumumab (Darzalex Faspro, 2020-05-01); amivantamab (Rybrevant Faspro, 2026-02-13). ClinicalTrials.gov: 4 hyaluronidase/SC-brand antibody studies with this lead sponsor."
+  },
+  {
+   "name": "Roche / Genentech",
+   "why": "Runs IV-to-SC antibody reformulation programmes, i.e. is already paying to make high-dose SC antibody formulations.",
+   "evidence": "FDA Purple Book SC licences: atezolizumab (Tecentriq Hybreza, 2024-09-12); ocrelizumab (Ocrevus Zunovo, 2024-09-13); trastuzumab (Herceptin Hylecta, 2019-02-28); rituximab (Rituxan Hycela, 2017-06-22); pertuzumab (Phesgo, 2020-06-29). ClinicalTrials.gov: 12 hyaluronidase/SC-brand antibody studies with this lead sponsor."
+  },
+  {
+   "name": "Bristol Myers Squibb",
+   "why": "Runs IV-to-SC antibody reformulation programmes, i.e. is already paying to make high-dose SC antibody formulations.",
+   "evidence": "FDA Purple Book SC licences: nivolumab (Opdivo Qvantig, 2024-12-27). ClinicalTrials.gov: 4 hyaluronidase/SC-brand antibody studies with this lead sponsor."
+  },
+  {
+   "name": "Large SC-antibody trial sponsors: Novartis Pharmaceuticals, Amgen, Hoffmann-La Roche, Janssen Research & Development, LLC, Sanofi, Eli Lilly and Company",
+   "why": "The industrial sponsors that register the most studies giving an antibody subcutaneously, i.e. the buyers of high-concentration formulation capacity.",
+   "evidence": "ClinicalTrials.gov lead-sponsor counts of SC antibody studies (primary definition): Novartis Pharmaceuticals 176, Amgen 171, Hoffmann-La Roche 160, Janssen Research & Development, LLC 152, Sanofi 145, Eli Lilly and Company 140."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/logistics_ctgov.py",
+  "analysis/bigdata/logistics_demand.py",
+  "cluster/bigdata/logistics-ctgov.sbatch"
+ ],
+ "reproduce": [
+  "rsync -azR analysis/bigdata/logistics_ctgov.py cluster/bigdata/logistics-ctgov.sbatch engaging:~/orcd/scratch/orbital-foundry-20261024-01a170b7/",
+  "ssh engaging 'cd ~/orcd/scratch/orbital-foundry-20261024-01a170b7 && sbatch -c 1 --mem=2G -J of-logistics-ctgov-dl cluster/bigdata/logistics-ctgov.sbatch download'",
+  "ssh engaging 'cd ~/orcd/scratch/orbital-foundry-20261024-01a170b7 && sbatch -p mit_quicktest -t 00:15:00 -c 6 --mem=12G -J of-logistics-ctgov-parse cluster/bigdata/logistics-ctgov.sbatch parse'",
+  "rsync -az engaging:~/orcd/scratch/orbital-foundry-20261024-01a170b7/bigdata/logistics/work/ctgov-route*.json <work>/",
+  "python3 -I analysis/bigdata/logistics_demand.py --raw <raw dir> --ctgov <work>/ctgov-routes.json --samples <work>/ctgov-route-samples.json --sacct <work>/sacct.txt --ctgov-meta <work>/ctgov-meta.json --out data/results/bigdata/demand-signals.json"
+ ],
+ "generated_at": "2026-10-25T03:16:13+00:00"
+}

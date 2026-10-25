@@ -1,0 +1,14 @@
+{
+  "name": "orbital-foundry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 scripts/dev.py",
+    "build": "python3 scripts/build.py",
+    "test": "python3 -m unittest discover -s tests -v && node tests/compatibility.test.mjs",
+    "analyze": "python3 -m analysis.run_all",
+    "analyze:sweep": "python3 -m analysis.sweep && python3 -m analysis.summarize_sweep",
+    "report": "python3 -m analysis.report"
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id":"protein","number":"01","title":"Protein crystals","subtitle":"A better suspension starts with its structure.","application":"THERAPEUTIC FORMULATIONS","color":"#8bcedb","visual":"protein",
+    "opportunity":"Control crystal size and distribution to make concentrated protein suspensions easier to handle. Pembrolizumab is our evidence anchor, not a qualified product of this project.",
+    "evidence":"A 2019 flight study reported more homogeneous crystals and lower suspension viscosity. Insights from the flight also improved Earth processing.",
+    "status":"PUBLISHED FLIGHT RESULT",
+    "test":"Reproduce the strongest ground recipe, compare independent flight and Earth batches, and measure viscosity, size distribution, stability and retained protein function.",
+    "hardware":"Sealed, sterile solution-growth cartridge with controlled temperature history and optical monitoring.",
+    "metric":"Viscosity at matched concentration","constraint":"Protein integrity & sterility","source":"https://www.nature.com/articles/s41526-019-0090-3","sourceLabel":"Merck / npj Microgravity · 2019"
+  },
+  {
+    "id":"small","number":"02","title":"Drug crystals","subtitle":"Explore a different solid form.","application":"SMALL-MOLECULE PHARMACEUTICALS","color":"#ffb482","visual":"small",
+    "opportunity":"Use controlled crystallization to investigate useful drug solid forms. A different crystal form may change stability or dissolution, but the useful property must be demonstrated.",
+    "evidence":"Varda recovered orbital ritonavir Form III; a 2026 paper studies its stability. This is an external operator’s result, not our experiment or a partnership.",
+    "status":"PUBLISHED FLIGHT RESULT",
+    "test":"Compare form identity, purity, dissolution, stability and batch reproducibility against optimized terrestrial crystallization under matched analytical methods.",
+    "hardware":"Chemically compatible sealed cell, temperature program and nucleation control. Solvent handling and return preservation need separate qualification.",
+    "metric":"Form identity, stability & dissolution","constraint":"Solvent compatibility & phase retention","source":"https://www.nature.com/articles/s41526-026-00594-0","sourceLabel":"Orbital ritonavir stability · 2026"
+  },
+  {
+    "id":"cooling","number":"03","title":"Cooling materials","subtitle":"Engineer the transition. Test the cycle.","application":"SOLID-STATE THERMAL MANAGEMENT","color":"#ef9b72","visual":"cooling",
+    "opportunity":"Investigate whether solidification under reduced convection produces microstructures useful for barocaloric cooling. NPG-based systems offer a research starting point.",
+    "evidence":"NPG–camphor solidification has been studied in microgravity. Separate Earth studies show NPG barocaloric behavior; the flight study does not establish better cooling performance.",
+    "status":"CROSS-STUDY HYPOTHESIS",
+    "test":"Measure thermal hysteresis, caloric response and durability over repeated cycles. Compare with preconditioned Earth controls and test whether any structural advantage persists.",
+    "hardware":"Dedicated gradient furnace and thermal sensors, with enough isolation and heat-rejection margin to protect neighboring experiments.",
+    "metric":"Cycling hysteresis & caloric response","constraint":"Heat load & structure survival in cycling","source":"https://doi.org/10.1016/j.jcrysgro.2025.128090","sourceLabel":"NPG–camphor solidification · 2025","secondSource":"https://www.nature.com/articles/s41586-019-1042-5","secondSourceLabel":"Terrestrial barocaloric study · 2019"
+  },
+  {
+    "id":"mof","number":"04","title":"MOF membranes","subtitle":"Build selectivity, one pore at a time.","application":"SELECTIVE ION SEPARATION","color":"#b4dcb3","visual":"mof",
+    "opportunity":"Grow metal–organic framework layers with controlled orientation and fewer transport defects. Selective lithium recovery is one functional target to evaluate.",
+    "evidence":"Orbital MOF research motivates the growth question. Lithium-selective UiO-67 transport has been demonstrated on Earth; an orbital selectivity advantage remains unproven.",
+    "status":"APPLICATION HYPOTHESIS",
+    "test":"Measure ion selectivity, flux, adhesion, fouling and lifetime against optimized ground membranes, including relevant microfluidic growth controls.",
+    "hardware":"A precursor-compatible solution cell with a dedicated substrate mount, temperature control and sealed wetted paths.",
+    "metric":"Selectivity at useful flux & lifetime","constraint":"Defects, adhesion & precursor isolation","source":"https://doi.org/10.1002/anie.202115443","sourceLabel":"UiO-67 lithium transport · Earth study","secondSource":"https://xlab.stanford.edu/news","secondSourceLabel":"Stanford XLab · orbital MOF research"
+  },
+  {
+    "id":"photonic","number":"05","title":"Photonic crystals","subtitle":"Let order shape the light.","application":"OPTICAL MATERIALS","color":"#b7b2f2","visual":"photonic",
+    "opportunity":"Assemble ordered colloidal structures for optical elements. Reduced settling can enable large ordered domains; the next challenge is a stable, useful optical material.",
+    "evidence":"The ACE-T11 study reports a large FCC colloidal crystal grown on the ISS and returned to Earth. It motivates optical applications without establishing a finished-device advantage.",
+    "status":"PUBLISHED FLIGHT RESULT",
+    "test":"Quantify defects, scattering, optical loss and reproducibility after stabilization and return. Compare with the best practical Earth self-assembly process.",
+    "hardware":"Quiet colloidal assembly cell, controlled temperature and concentration, calibrated optical metrology and a stabilization step.",
+    "metric":"Optical loss, order & return stability","constraint":"Disturbance & preserving the lattice","source":"https://arxiv.org/abs/2404.07291","sourceLabel":"Large FCC colloidal crystals · 2024"
+  }
+]

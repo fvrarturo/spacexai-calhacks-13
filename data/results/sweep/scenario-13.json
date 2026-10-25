@@ -1,0 +1,4421 @@
+{
+  "schema_version": 1,
+  "kind": "synthetic simulation",
+  "config": {
+    "seeds": 100,
+    "start_seed": 10000,
+    "jobs": 72,
+    "horizon_hours": 120,
+    "capsules": 3,
+    "return_cadence_hours": 12,
+    "changeover_hours": 2,
+    "failure_rate": 0.1,
+    "arrival_window_hours": 72
+  },
+  "input_hash": "767d6f156c968f6baab3b7345ccf4620c453db3cd32cc33cca1208828bc308ec",
+  "code_hash": "36e637c791cd2d3fa93503175c5f16ca834143ae9518c1f6fb8252c7fcb3537d",
+  "uncertainty": "95% percentile bootstrap across seeds; paired policy differences use the same workload seeds. Intervals describe this model only.",
+  "assumptions": [
+    "Synthetic arrivals, durations, failures, capacity and costs; not measured flight operations.",
+    "One chamber per capsule; fixed capability sets; switching families incurs setup time.",
+    "Periodic return is an abstract transport service; no deorbit, relaunch, launch-window, mass, power or orbital dynamics model.",
+    "No retries; all failed or undelivered jobs remain in the denominator. Cost uses normalized units, not dollars.",
+    "Policies know arrivals only when they occur and use nominal duration; actual duration and success are hidden until completion.",
+    "Dedicated baseline uses the same hardware but reserves one family per capsule. No optimality claim."
+  ],
+  "policies": {
+    "fifo": {
+      "on_time_rate": {
+        "mean": 0.3715277777777778,
+        "low": 0.3566666666666667,
+        "high": 0.3859722222222222
+      },
+      "delivered": {
+        "mean": 59.49,
+        "low": 58.84,
+        "high": 60.17
+      },
+      "delivery_wait": {
+        "mean": 39.187535069202475,
+        "low": 38.51346134879475,
+        "high": 39.92122723779807
+      },
+      "utilization": {
+        "mean": 0.9684985525689537,
+        "low": 0.964439259917424,
+        "high": 0.9724189418379942
+      },
+      "setup_hours": {
+        "mean": 61.965876547907634,
+        "low": 60.178135639112114,
+        "high": 63.67823201221169
+      },
+      "cost_per_delivered": {
+        "mean": 6.3325155206097135,
+        "low": 6.259291549920229,
+        "high": 6.403813883266029
+      }
+    },
+    "earliest_due": {
+      "on_time_rate": {
+        "mean": 0.3511111111111111,
+        "low": 0.33694444444444444,
+        "high": 0.36541666666666667
+      },
+      "delivered": {
+        "mean": 59.31,
+        "low": 58.66,
+        "high": 59.98
+      },
+      "delivery_wait": {
+        "mean": 39.333646180313586,
+        "low": 38.64028766662726,
+        "high": 40.003487912445
+      },
+      "utilization": {
+        "mean": 0.9689915835597539,
+        "low": 0.965065672898525,
+        "high": 0.9725963006607644
+      },
+      "setup_hours": {
+        "mean": 63.384861102774686,
+        "low": 61.83722812583607,
+        "high": 64.82774202159128
+      },
+      "cost_per_delivered": {
+        "mean": 6.357844004212199,
+        "low": 6.28361342409797,
+        "high": 6.431824792932482
+      }
+    },
+    "dedicated": {
+      "on_time_rate": {
+        "mean": 0.5538888888888889,
+        "low": 0.5397222222222222,
+        "high": 0.5670833333333334
+      },
+      "delivered": {
+        "mean": 60.09,
+        "low": 59.22,
+        "high": 60.97
+      },
+      "delivery_wait": {
+        "mean": 33.04920173586914,
+        "low": 32.358808198852856,
+        "high": 33.778937821223515
+      },
+      "utilization": {
+        "mean": 0.7813638979603081,
+        "low": 0.7748064383653287,
+        "high": 0.7875736053402422
+      },
+      "setup_hours": {
+        "mean": 0.0,
+        "low": 0.0,
+        "high": 0.0
+      },
+      "cost_per_delivered": {
+        "mean": 6.024258218820556,
+        "low": 5.9334978123343465,
+        "high": 6.115632841777406
+      }
+    },
+    "coordinated": {
+      "on_time_rate": {
+        "mean": 0.34402777777777777,
+        "low": 0.3304166666666667,
+        "high": 0.35791666666666666
+      },
+      "delivered": {
+        "mean": 59.17,
+        "low": 58.48,
+        "high": 59.89
+      },
+      "delivery_wait": {
+        "mean": 39.65531284698025,
+        "low": 38.98344508212574,
+        "high": 40.29303572848977
+      },
+      "utilization": {
+        "mean": 0.9689717842076746,
+        "low": 0.9651305855915422,
+        "high": 0.9727376691303233
+      },
+      "setup_hours": {
+        "mean": 63.803047916409156,
+        "low": 62.26916999181457,
+        "high": 65.24084340987523
+      },
+      "cost_per_delivered": {
+        "mean": 6.378542004188183,
+        "low": 6.299971140149107,
+        "high": 6.457410287979314
+      }
+    }
+  },
+  "paired_on_time_delta": {
+    "fifo": {
+      "mean": -0.027499999999999997,
+      "low": -0.03763888888888889,
+      "high": -0.01722222222222222
+    },
+    "earliest_due": {
+      "mean": -0.0070833333333333295,
+      "low": -0.01472222222222222,
+      "high": 0.00027777777777778065
+    },
+    "dedicated": {
+      "mean": -0.2098611111111111,
+      "low": -0.22374999999999998,
+      "high": -0.1961111111111111
+    }
+  },
+  "replicates": {
+    "fifo": [
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 54,
+        "delivery_wait": 41.90992946363881,
+        "utilization": 0.9444786015196586,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.962962962962963
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 62,
+        "delivery_wait": 40.11532428117751,
+        "utilization": 0.9678169617462837,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.008064516129032
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 61,
+        "delivery_wait": 39.603568887196815,
+        "utilization": 0.9734181702381022,
+        "setup_hours": 76.0,
+        "cost_per_delivered": 6.213114754098361
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 62,
+        "delivery_wait": 31.36877150519125,
+        "utilization": 0.9716168522156898,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.008064516129032
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 65,
+        "delivery_wait": 32.14827811132041,
+        "utilization": 0.928814465495784,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 5.753846153846154
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 61,
+        "delivery_wait": 36.374765300222556,
+        "utilization": 0.9930819005668348,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.163934426229508
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 61,
+        "delivery_wait": 35.50156760928647,
+        "utilization": 0.9822489204127619,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.180327868852459
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 61,
+        "delivery_wait": 36.92133885308347,
+        "utilization": 0.954409844195366,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.139344262295082
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 60,
+        "delivery_wait": 38.20029658021282,
+        "utilization": 0.9814481031365412,
+        "setup_hours": 75.24487168953652,
+        "cost_per_delivered": 6.313520298706402
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 55,
+        "delivery_wait": 46.35473620932873,
+        "utilization": 0.9921262385420577,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.8545454545454545
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 60,
+        "delivery_wait": 38.20767970252299,
+        "utilization": 0.9724176516229182,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 62,
+        "delivery_wait": 37.145753475995974,
+        "utilization": 0.9738173998173374,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.07258064516129
+      },
+      {
+        "on_time_rate": 0.25,
+        "delivered": 57,
+        "delivery_wait": 44.944632469265144,
+        "utilization": 0.9948740724830573,
+        "setup_hours": 68.00401464153953,
+        "cost_per_delivered": 6.614052695796226
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 57,
+        "delivery_wait": 35.433381636854854,
+        "utilization": 0.9650968950006019,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.587719298245614
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 57,
+        "delivery_wait": 41.584976218476,
+        "utilization": 0.9452568522321555,
+        "setup_hours": 54.12322712909133,
+        "cost_per_delivered": 6.553172048811804
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 60,
+        "delivery_wait": 38.34939354282408,
+        "utilization": 0.9830318145722351,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.266666666666667
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 35.32378775395102,
+        "utilization": 0.9802381066454392,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.155737704918033
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 55,
+        "delivery_wait": 40.34503700991275,
+        "utilization": 0.973421204214933,
+        "setup_hours": 86.0858487711778,
+        "cost_per_delivered": 6.936753858050808
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 60,
+        "delivery_wait": 34.608998876064376,
+        "utilization": 0.9619649209323159,
+        "setup_hours": 48.0,
+        "cost_per_delivered": 6.2
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 63,
+        "delivery_wait": 37.47995378779777,
+        "utilization": 0.9733303624244241,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 5.936507936507937
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 58,
+        "delivery_wait": 40.59449958733678,
+        "utilization": 0.9442879220694801,
+        "setup_hours": 50.10851629092957,
+        "cost_per_delivered": 6.4228815357367655
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 63,
+        "delivery_wait": 36.47515105646004,
+        "utilization": 0.9714335276373582,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 5.912698412698413
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 60,
+        "delivery_wait": 40.81438440124624,
+        "utilization": 0.9913484387493456,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.275
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 62,
+        "delivery_wait": 38.96499735707418,
+        "utilization": 0.9008544733805499,
+        "setup_hours": 44.0,
+        "cost_per_delivered": 5.983870967741935
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 62,
+        "delivery_wait": 32.80255753399059,
+        "utilization": 0.9762952797231785,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.016129032258065
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 37.305237228324096,
+        "utilization": 0.9506057404936062,
+        "setup_hours": 71.75465531427527,
+        "cost_per_delivered": 6.516183859113255
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 61,
+        "delivery_wait": 46.81610755627233,
+        "utilization": 0.9876932406996992,
+        "setup_hours": 76.0,
+        "cost_per_delivered": 6.213114754098361
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 58,
+        "delivery_wait": 36.89256903491025,
+        "utilization": 0.9636406620728087,
+        "setup_hours": 42.0,
+        "cost_per_delivered": 6.387931034482759
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 58,
+        "delivery_wait": 37.586878111733455,
+        "utilization": 0.9708621611296198,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.456896551724138
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 65,
+        "delivery_wait": 33.781470876222,
+        "utilization": 0.9606162360257604,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.7615384615384615
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 59,
+        "delivery_wait": 40.9867618285892,
+        "utilization": 0.9742821874111336,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.338983050847458
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 52,
+        "delivery_wait": 47.5619789814348,
+        "utilization": 0.9552286961753665,
+        "setup_hours": 62.175257590588686,
+        "cost_per_delivered": 7.221996430723984
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 57,
+        "delivery_wait": 39.9070500710734,
+        "utilization": 0.9508185894074854,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.578947368421052
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 57,
+        "delivery_wait": 43.02488859862894,
+        "utilization": 0.9457762483598045,
+        "setup_hours": 53.68716708791271,
+        "cost_per_delivered": 6.551259504771547
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 62,
+        "delivery_wait": 39.43867590941019,
+        "utilization": 0.9917675626946473,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.080645161290323
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 60,
+        "delivery_wait": 41.17560472752207,
+        "utilization": 0.9535268043902165,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 64,
+        "delivery_wait": 36.913260315172344,
+        "utilization": 0.9765406535208841,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.8515625
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 59,
+        "delivery_wait": 43.68562494073681,
+        "utilization": 0.985266227716335,
+        "setup_hours": 80.17064094040855,
+        "cost_per_delivered": 6.4414010209339345
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 64,
+        "delivery_wait": 33.201118208849586,
+        "utilization": 0.9814049596733322,
+        "setup_hours": 70.47539204165429,
+        "cost_per_delivered": 5.900294500162712
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 40.23311485523282,
+        "utilization": 0.9623867495675302,
+        "setup_hours": 74.01195489324657,
+        "cost_per_delivered": 6.758981941487709
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 62,
+        "delivery_wait": 34.1081338489996,
+        "utilization": 0.9791465922620441,
+        "setup_hours": 74.0,
+        "cost_per_delivered": 6.104838709677419
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 59,
+        "delivery_wait": 42.02874107994283,
+        "utilization": 0.9661217415823649,
+        "setup_hours": 63.732585631256896,
+        "cost_per_delivered": 6.371748244200241
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 55,
+        "delivery_wait": 39.936202777599725,
+        "utilization": 0.9396775655865605,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.8
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 65,
+        "delivery_wait": 38.920990580449924,
+        "utilization": 0.9897242036997339,
+        "setup_hours": 74.2713235451641,
+        "cost_per_delivered": 5.824120475173708
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 63,
+        "delivery_wait": 38.67499173817507,
+        "utilization": 0.9860472968933834,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 55,
+        "delivery_wait": 38.4184301955742,
+        "utilization": 0.9579923491563076,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 6.790909090909091
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 60,
+        "delivery_wait": 37.894316251794564,
+        "utilization": 0.9224157050602511,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.275
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 57,
+        "delivery_wait": 40.307033988663896,
+        "utilization": 0.9933832512415522,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.631578947368421
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 59,
+        "delivery_wait": 42.06725538817588,
+        "utilization": 0.9819922738168982,
+        "setup_hours": 61.74542966566149,
+        "cost_per_delivered": 6.36332809180365
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 57,
+        "delivery_wait": 37.523432015770645,
+        "utilization": 0.9659307217053892,
+        "setup_hours": 48.0,
+        "cost_per_delivered": 6.526315789473684
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 55,
+        "delivery_wait": 42.24787206806878,
+        "utilization": 0.9629227614425788,
+        "setup_hours": 78.0,
+        "cost_per_delivered": 6.9
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 61,
+        "delivery_wait": 37.65534913634962,
+        "utilization": 0.9806126330213042,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.163934426229508
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 58,
+        "delivery_wait": 37.492028712355975,
+        "utilization": 0.9842255392542335,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.491379310344827
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 55,
+        "delivery_wait": 42.08507477929353,
+        "utilization": 0.969228262770812,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.818181818181818
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 58,
+        "delivery_wait": 38.511432724956386,
+        "utilization": 0.9689913599045161,
+        "setup_hours": 71.3746795559749,
+        "cost_per_delivered": 6.514546032568857
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 39.955180469545304,
+        "utilization": 0.9661914395686463,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.5
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 62,
+        "delivery_wait": 36.46132685816518,
+        "utilization": 0.941230720604461,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.048387096774194
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 60,
+        "delivery_wait": 41.04346583531901,
+        "utilization": 0.9875901525345603,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.283333333333333
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 57,
+        "delivery_wait": 42.37894816818096,
+        "utilization": 0.9819435835392203,
+        "setup_hours": 67.60421015250684,
+        "cost_per_delivered": 6.612299167335556
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 59,
+        "delivery_wait": 42.10193499946468,
+        "utilization": 0.9813731022067151,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.389830508474576
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 58,
+        "delivery_wait": 37.31254939327421,
+        "utilization": 0.9753509487661546,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.448275862068965
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 60,
+        "delivery_wait": 39.13205872823394,
+        "utilization": 0.9767867693682162,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 66,
+        "delivery_wait": 34.85880676788994,
+        "utilization": 0.9516003186060503,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 5.696969696969697
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 36.060243554998436,
+        "utilization": 0.9790248863012918,
+        "setup_hours": 67.45543117815576,
+        "cost_per_delivered": 6.178096029418671
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 57,
+        "delivery_wait": 41.05040122931604,
+        "utilization": 0.9748828863948253,
+        "setup_hours": 48.0,
+        "cost_per_delivered": 6.526315789473684
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 33.171242579368936,
+        "utilization": 0.9519298975398746,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.10655737704918
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 58,
+        "delivery_wait": 47.15810871003954,
+        "utilization": 0.9940821558578317,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.4655172413793105
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 62,
+        "delivery_wait": 33.25829918450965,
+        "utilization": 0.9738197537485992,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.008064516129032
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 67,
+        "delivery_wait": 33.843513693144565,
+        "utilization": 0.9104753667385639,
+        "setup_hours": 46.0,
+        "cost_per_delivered": 5.544776119402985
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 50,
+        "delivery_wait": 48.013136497184284,
+        "utilization": 0.9394112285119129,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 7.52
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 39.02269078960826,
+        "utilization": 0.9459488716927312,
+        "setup_hours": 58.87124309623434,
+        "cost_per_delivered": 6.460651909897562
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 40.791909344788664,
+        "utilization": 0.9782826302124208,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.431034482758621
+      },
+      {
+        "on_time_rate": 0.20833333333333334,
+        "delivered": 53,
+        "delivery_wait": 44.91094119808392,
+        "utilization": 0.9857558324181238,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 7.113207547169812
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 64,
+        "delivery_wait": 39.186847576840115,
+        "utilization": 0.9859520372636735,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 5.8984375
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 60,
+        "delivery_wait": 41.79718813602071,
+        "utilization": 0.9719977478153663,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.291666666666667
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 61,
+        "delivery_wait": 39.26902916308658,
+        "utilization": 0.9590923926810433,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.114754098360656
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 40.6631162934452,
+        "utilization": 0.9327983212816041,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.322033898305085
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 53,
+        "delivery_wait": 44.44758023623034,
+        "utilization": 0.9672160901787462,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 7.028301886792453
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 54,
+        "delivery_wait": 40.80720033531167,
+        "utilization": 0.988276878963338,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.925925925925926
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 64,
+        "delivery_wait": 37.178703969755055,
+        "utilization": 0.9544039865312676,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.8515625
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 61,
+        "delivery_wait": 42.192492261213324,
+        "utilization": 0.9554837824025915,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.10655737704918
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 66,
+        "delivery_wait": 34.08407505933881,
+        "utilization": 0.948007905741891,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 5.659090909090909
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 57,
+        "delivery_wait": 40.75803514651052,
+        "utilization": 0.9797779277409379,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.605263157894737
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 38.485104307410246,
+        "utilization": 0.9819346154066702,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.723214285714286
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 43.78217693573972,
+        "utilization": 0.9898193396389956,
+        "setup_hours": 77.69120557544822,
+        "cost_per_delivered": 6.775407167747537
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 56,
+        "delivery_wait": 40.44107820899632,
+        "utilization": 0.9855027341280655,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.696428571428571
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 63,
+        "delivery_wait": 38.684177159221335,
+        "utilization": 0.9537704563117677,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.944444444444445
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 60,
+        "delivery_wait": 43.59177974408061,
+        "utilization": 0.9931272361192366,
+        "setup_hours": 74.0,
+        "cost_per_delivered": 6.308333333333334
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 58,
+        "delivery_wait": 41.452645008830174,
+        "utilization": 0.9889903055285438,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.482758620689655
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 66,
+        "delivery_wait": 34.19386644320115,
+        "utilization": 0.9315794486489093,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.6893939393939394
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 41.27006470824711,
+        "utilization": 0.9892643895313141,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.3474576271186445
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 63,
+        "delivery_wait": 35.25217591595543,
+        "utilization": 0.9772855924898011,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 5.936507936507937
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 62,
+        "delivery_wait": 41.62444695422432,
+        "utilization": 0.9929314948607171,
+        "setup_hours": 76.0,
+        "cost_per_delivered": 6.112903225806452
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 55,
+        "delivery_wait": 40.36138462049817,
+        "utilization": 0.9789887464379572,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.836363636363636
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 65,
+        "delivery_wait": 35.89730645560205,
+        "utilization": 0.9291486069852695,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 5.7384615384615385
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 58,
+        "delivery_wait": 39.731262486754424,
+        "utilization": 0.9671549920485026,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.4655172413793105
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 58,
+        "delivery_wait": 42.47517576849177,
+        "utilization": 0.973514601890574,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.491379310344827
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 60,
+        "delivery_wait": 40.72656600344741,
+        "utilization": 0.9595558607467606,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.275
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 59,
+        "delivery_wait": 32.09204293271576,
+        "utilization": 0.9771483320878165,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.389830508474576
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 63,
+        "delivery_wait": 39.82783934724913,
+        "utilization": 0.9854929325132329,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 5.984126984126984
+      }
+    ],
+    "earliest_due": [
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 54,
+        "delivery_wait": 40.96548501919437,
+        "utilization": 0.9444786015196587,
+        "setup_hours": 59.21430575531821,
+        "cost_per_delivered": 6.940806971089437
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 58,
+        "delivery_wait": 43.226435392288614,
+        "utilization": 0.9813680284553864,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.5
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 65,
+        "delivery_wait": 35.603568887196815,
+        "utilization": 0.9517594711500332,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.7615384615384615
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 62,
+        "delivery_wait": 31.53543817185792,
+        "utilization": 0.9716168522156902,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.032258064516129
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 65,
+        "delivery_wait": 34.75938922243152,
+        "utilization": 0.9454811321624508,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.776923076923077
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 59,
+        "delivery_wait": 36.374765300222556,
+        "utilization": 0.9877692566342683,
+        "setup_hours": 61.06650307060072,
+        "cost_per_delivered": 6.3604512841974605
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 62,
+        "delivery_wait": 36.612678720397575,
+        "utilization": 0.9843018183490806,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.080645161290323
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 60,
+        "delivery_wait": 38.03244996419458,
+        "utilization": 0.9617730544252677,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 60,
+        "delivery_wait": 38.53362991354616,
+        "utilization": 0.9887421035583063,
+        "setup_hours": 71.7038122426714,
+        "cost_per_delivered": 6.298765884344464
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 55,
+        "delivery_wait": 47.07695843155095,
+        "utilization": 0.992126238542058,
+        "setup_hours": 73.17253952995024,
+        "cost_per_delivered": 6.87805699786341
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 58,
+        "delivery_wait": 40.76323525807854,
+        "utilization": 0.9724176516229182,
+        "setup_hours": 76.99134475001144,
+        "cost_per_delivered": 6.538755796336256
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 61,
+        "delivery_wait": 37.312420142662646,
+        "utilization": 0.9795143165507968,
+        "setup_hours": 72.37471519346269,
+        "cost_per_delivered": 6.198257029481404
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 59,
+        "delivery_wait": 43.38907691370959,
+        "utilization": 0.9784610593499884,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.3474576271186445
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 55,
+        "delivery_wait": 37.48893719241041,
+        "utilization": 0.9584020901787482,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.8090909090909095
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 56,
+        "delivery_wait": 41.529420662920444,
+        "utilization": 0.9452568522321556,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.678571428571429
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 57,
+        "delivery_wait": 39.460504653935196,
+        "utilization": 0.9865682068760577,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.62280701754386
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 61,
+        "delivery_wait": 36.43489886506213,
+        "utilization": 0.9864279777436126,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.163934426229508
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 60,
+        "delivery_wait": 36.956148121023865,
+        "utilization": 0.967015779953032,
+        "setup_hours": 62.78878367361098,
+        "cost_per_delivered": 6.26161993197338
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 60,
+        "delivery_wait": 36.22010998717548,
+        "utilization": 0.9527736962574257,
+        "setup_hours": 46.0,
+        "cost_per_delivered": 6.191666666666666
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 58,
+        "delivery_wait": 39.535509343353326,
+        "utilization": 0.9733303624244241,
+        "setup_hours": 71.76924371540642,
+        "cost_per_delivered": 6.516246740152614
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 56,
+        "delivery_wait": 41.872277365114556,
+        "utilization": 0.9396406548046279,
+        "setup_hours": 61.61526504057859,
+        "cost_per_delivered": 6.7036395760740115
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 59,
+        "delivery_wait": 37.919595500904485,
+        "utilization": 0.9745490914834556,
+        "setup_hours": 64.8631482490243,
+        "cost_per_delivered": 6.376538763767052
+      },
+      {
+        "on_time_rate": 0.20833333333333334,
+        "delivered": 61,
+        "delivery_wait": 41.092162179024015,
+        "utilization": 0.9812372355807324,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.139344262295082
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 61,
+        "delivery_wait": 40.52055291262974,
+        "utilization": 0.9168359525677854,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.114754098360656
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 61,
+        "delivery_wait": 33.52477975621281,
+        "utilization": 0.9843493748348041,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.155737704918033
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 57,
+        "delivery_wait": 37.86079278387965,
+        "utilization": 0.9488625874941861,
+        "setup_hours": 70.5757206387716,
+        "cost_per_delivered": 6.625332108064788
+      },
+      {
+        "on_time_rate": 0.20833333333333334,
+        "delivered": 61,
+        "delivery_wait": 44.149440889605664,
+        "utilization": 0.9796892688138937,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.19672131147541
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 54,
+        "delivery_wait": 39.55923570157692,
+        "utilization": 0.9535085646396639,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.935185185185185
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 37.253544778400126,
+        "utilization": 0.9608201563776514,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.491379310344827
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 64,
+        "delivery_wait": 34.725915320666445,
+        "utilization": 0.9606162360257602,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.8515625
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 57,
+        "delivery_wait": 43.431206273033645,
+        "utilization": 0.9929989101969776,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.605263157894737
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 53,
+        "delivery_wait": 46.17309009254591,
+        "utilization": 0.9552286961753664,
+        "setup_hours": 63.6848845209352,
+        "cost_per_delivered": 7.092853228872336
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 39.18482784885118,
+        "utilization": 0.9508185894074853,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.322033898305085
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 58,
+        "delivery_wait": 40.969333043073384,
+        "utilization": 0.9426373644269532,
+        "setup_hours": 46.0,
+        "cost_per_delivered": 6.405172413793103
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 61,
+        "delivery_wait": 39.43867590941019,
+        "utilization": 0.9917675626946468,
+        "setup_hours": 70.6438255335868,
+        "cost_per_delivered": 6.191163219399946
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 59,
+        "delivery_wait": 40.84227139418874,
+        "utilization": 0.9697077528750763,
+        "setup_hours": 69.34129754217858,
+        "cost_per_delivered": 6.39551397263635
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 60,
+        "delivery_wait": 37.74659364850568,
+        "utilization": 0.97822221232709,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.291666666666667
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 60,
+        "delivery_wait": 42.85229160740348,
+        "utilization": 0.9706876693935972,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.3
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 65,
+        "delivery_wait": 32.201118208849586,
+        "utilization": 0.9814049596733323,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 5.8
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 39.399781521899484,
+        "utilization": 0.9581043270813,
+        "setup_hours": 66.69696905564624,
+        "cost_per_delivered": 6.384309190913755
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 63,
+        "delivery_wait": 33.55257829344404,
+        "utilization": 0.9791465922620441,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 5.976190476190476
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 58,
+        "delivery_wait": 40.86207441327616,
+        "utilization": 0.9778884774870916,
+        "setup_hours": 69.43699864657277,
+        "cost_per_delivered": 6.506193959683504
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 55,
+        "delivery_wait": 41.26953611093306,
+        "utilization": 0.9396775655865608,
+        "setup_hours": 58.85667779140398,
+        "cost_per_delivered": 6.812984899051837
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 68,
+        "delivery_wait": 37.36543502489437,
+        "utilization": 0.9642839523999029,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 5.5
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 62,
+        "delivery_wait": 37.619436182619516,
+        "utilization": 0.9860472968933834,
+        "setup_hours": 69.01045867559353,
+        "cost_per_delivered": 6.084719591433845
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 56,
+        "delivery_wait": 39.47398575112975,
+        "utilization": 0.9579923491563077,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.678571428571429
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 36.7276495851279,
+        "utilization": 0.9224157050602517,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.131147540983607
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 58,
+        "delivery_wait": 37.25147843310834,
+        "utilization": 0.9932199069144941,
+        "setup_hours": 72.76637523873896,
+        "cost_per_delivered": 6.520544720856633
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 56,
+        "delivery_wait": 43.2894776103981,
+        "utilization": 0.9819922738168976,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.732142857142857
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 56,
+        "delivery_wait": 38.467876460215095,
+        "utilization": 0.9700027592448552,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.678571428571429
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 41.470094290291,
+        "utilization": 0.962922761442579,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.75
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 59,
+        "delivery_wait": 39.266460247460735,
+        "utilization": 0.9861764161252612,
+        "setup_hours": 69.50926436343845,
+        "cost_per_delivered": 6.3962256964552475
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 59,
+        "delivery_wait": 39.04758426791153,
+        "utilization": 0.9802084129893538,
+        "setup_hours": 63.21081669457263,
+        "cost_per_delivered": 6.369537358875308
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 55,
+        "delivery_wait": 42.80729700151575,
+        "utilization": 0.9740933306944585,
+        "setup_hours": 64.32183075530287,
+        "cost_per_delivered": 6.837826503433195
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 63,
+        "delivery_wait": 35.73365494717861,
+        "utilization": 0.968991359904516,
+        "setup_hours": 61.08620635040717,
+        "cost_per_delivered": 5.956691295041298
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 58,
+        "delivery_wait": 42.23295824732308,
+        "utilization": 0.9661914395686463,
+        "setup_hours": 71.44138709592461,
+        "cost_per_delivered": 6.514833565068641
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 64,
+        "delivery_wait": 34.40577130260963,
+        "utilization": 0.9143507205360207,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 5.8203125
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 60,
+        "delivery_wait": 39.59902139087457,
+        "utilization": 0.9875901525345603,
+        "setup_hours": 60.864003747001874,
+        "cost_per_delivered": 6.253600015612507
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 57,
+        "delivery_wait": 42.045614834847626,
+        "utilization": 0.98194358353922,
+        "setup_hours": 70.16986391764021,
+        "cost_per_delivered": 6.623552034726492
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 43.15749055502023,
+        "utilization": 0.9837215425369875,
+        "setup_hours": 69.8729793761152,
+        "cost_per_delivered": 6.3977668617632
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 52,
+        "delivery_wait": 40.81254939327421,
+        "utilization": 0.9875110176306409,
+        "setup_hours": 78.0,
+        "cost_per_delivered": 7.298076923076923
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 61,
+        "delivery_wait": 40.18761428378949,
+        "utilization": 0.9788335337093677,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.155737704918033
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 68,
+        "delivery_wait": 34.136584545667716,
+        "utilization": 0.9182669852727171,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 5.485294117647059
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 62,
+        "delivery_wait": 35.50468799944288,
+        "utilization": 0.979024886301292,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.096774193548387
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 54,
+        "delivery_wait": 41.05040122931604,
+        "utilization": 0.9748828863948253,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.944444444444445
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 59,
+        "delivery_wait": 35.171242579368936,
+        "utilization": 0.956305204817714,
+        "setup_hours": 63.71710337105448,
+        "cost_per_delivered": 6.371682641402773
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 58,
+        "delivery_wait": 44.99144204337287,
+        "utilization": 0.9738866784815762,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.422413793103448
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 35.480521406731874,
+        "utilization": 0.9852963785289985,
+        "setup_hours": 58.61610058595181,
+        "cost_per_delivered": 6.141869264696523
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 64,
+        "delivery_wait": 35.06573591536679,
+        "utilization": 0.9805783848161429,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 5.90625
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 53,
+        "delivery_wait": 45.45758094162873,
+        "utilization": 0.939411228511913,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 7.028301886792453
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 56,
+        "delivery_wait": 37.967135234052705,
+        "utilization": 0.9587675671340823,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.714285714285714
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 59,
+        "delivery_wait": 38.34746490034422,
+        "utilization": 0.9761269722720852,
+        "setup_hours": 52.0,
+        "cost_per_delivered": 6.322033898305085
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 56,
+        "delivery_wait": 44.13316342030614,
+        "utilization": 0.9672494359200007,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.714285714285714
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 64,
+        "delivery_wait": 38.075736465729,
+        "utilization": 0.9770476652891729,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 5.8828125
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 62,
+        "delivery_wait": 40.74163258046515,
+        "utilization": 0.9518787889361509,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.040322580645161
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 62,
+        "delivery_wait": 39.26902916308658,
+        "utilization": 0.9595403973665003,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.008064516129032
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 44.218671849000756,
+        "utilization": 0.9827983212816036,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.398305084745763
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 52,
+        "delivery_wait": 45.725358014008116,
+        "utilization": 0.9744657082799955,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 7.230769230769231
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 54,
+        "delivery_wait": 40.02942255753389,
+        "utilization": 0.9882768789633379,
+        "setup_hours": 53.56843652851859,
+        "cost_per_delivered": 6.91466868763203
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 64,
+        "delivery_wait": 36.90092619197728,
+        "utilization": 0.9607249927106905,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 5.859375
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 61,
+        "delivery_wait": 43.80360337232443,
+        "utilization": 0.9789232263878329,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.139344262295082
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 64,
+        "delivery_wait": 35.08407505933881,
+        "utilization": 0.970230127964113,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.8671875
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 57,
+        "delivery_wait": 41.09136847984386,
+        "utilization": 0.9797779277409382,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.62280701754386
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 58,
+        "delivery_wait": 37.09621541852135,
+        "utilization": 0.9819346154066703,
+        "setup_hours": 59.20564796391922,
+        "cost_per_delivered": 6.462093310189307
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 60,
+        "delivery_wait": 41.948843602406384,
+        "utilization": 0.9799375367075789,
+        "setup_hours": 63.55284556689767,
+        "cost_per_delivered": 6.264803523195408
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 56,
+        "delivery_wait": 41.99663376455188,
+        "utilization": 0.9862748421341152,
+        "setup_hours": 67.84625017201485,
+        "cost_per_delivered": 6.731456473982209
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 61,
+        "delivery_wait": 40.96195493699911,
+        "utilization": 0.9537704563117677,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.180327868852459
+      },
+      {
+        "on_time_rate": 0.25,
+        "delivered": 61,
+        "delivery_wait": 42.81400196630283,
+        "utilization": 0.9813366142400952,
+        "setup_hours": 64.13423771815947,
+        "cost_per_delivered": 6.164484580812129
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 57,
+        "delivery_wait": 43.508200564385724,
+        "utilization": 0.9903535403363057,
+        "setup_hours": 72.00270179758952,
+        "cost_per_delivered": 6.631590797357848
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 68,
+        "delivery_wait": 31.749421998756706,
+        "utilization": 0.9053746539605989,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 5.477941176470588
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 59,
+        "delivery_wait": 41.10339804158044,
+        "utilization": 0.9853799631321414,
+        "setup_hours": 62.81275764198698,
+        "cost_per_delivered": 6.367850667974521
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 61,
+        "delivery_wait": 36.14106480484432,
+        "utilization": 0.977820165869832,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.155737704918033
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 63,
+        "delivery_wait": 40.56889139866876,
+        "utilization": 0.9929314948607176,
+        "setup_hours": 71.89431473548076,
+        "cost_per_delivered": 5.999580614029686
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 55,
+        "delivery_wait": 39.47249573160928,
+        "utilization": 0.9789887464379572,
+        "setup_hours": 62.73065767577113,
+        "cost_per_delivered": 6.830593898526232
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 63,
+        "delivery_wait": 38.39730645560205,
+        "utilization": 0.9624819403186027,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 5.968253968253968
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 57,
+        "delivery_wait": 42.731262486754424,
+        "utilization": 0.9752199768811629,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.614035087719298
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 60,
+        "delivery_wait": 38.419620212936216,
+        "utilization": 0.951361621672007,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.233333333333333
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 61,
+        "delivery_wait": 39.67101044789185,
+        "utilization": 0.9500857471813846,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.131147540983607
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 33.98093182160465,
+        "utilization": 0.9791581638593486,
+        "setup_hours": 78.0,
+        "cost_per_delivered": 6.432203389830509
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 59,
+        "delivery_wait": 41.38339490280469,
+        "utilization": 0.9868147661842771,
+        "setup_hours": 81.35583535565837,
+        "cost_per_delivered": 6.446423031168044
+      }
+    ],
+    "dedicated": [
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 56,
+        "delivery_wait": 37.63215168586103,
+        "utilization": 0.7984783875868261,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 60,
+        "delivery_wait": 35.393102058955286,
+        "utilization": 0.7756862022423724,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5972222222222222,
+        "delivered": 66,
+        "delivery_wait": 30.603568887196815,
+        "utilization": 0.7906483600389221,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 59,
+        "delivery_wait": 30.090993727413473,
+        "utilization": 0.7953778515588089,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 66,
+        "delivery_wait": 26.926055889098187,
+        "utilization": 0.7732589099402285,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 58,
+        "delivery_wait": 33.59698752244478,
+        "utilization": 0.7393638534041533,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.206896551724138
+      },
+      {
+        "on_time_rate": 0.6805555555555556,
+        "delivered": 64,
+        "delivery_wait": 28.501567609286468,
+        "utilization": 0.8069612729469446,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 63,
+        "delivery_wait": 29.976894408639026,
+        "utilization": 0.7951063877586013,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 60,
+        "delivery_wait": 31.25585213576838,
+        "utilization": 0.7618345403068507,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 58,
+        "delivery_wait": 37.74362509821761,
+        "utilization": 0.8179919761691358,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.206896551724138
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 55,
+        "delivery_wait": 34.26323525807854,
+        "utilization": 0.7197583459714837,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.545454545454546
+      },
+      {
+        "on_time_rate": 0.6944444444444444,
+        "delivered": 64,
+        "delivery_wait": 27.47908680932931,
+        "utilization": 0.8054612424001151,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 58,
+        "delivery_wait": 35.166854691487366,
+        "utilization": 0.7977726950592736,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.206896551724138
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 56,
+        "delivery_wait": 31.65560385907708,
+        "utilization": 0.7450031975894584,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 57,
+        "delivery_wait": 35.251642885142665,
+        "utilization": 0.7766538167931919,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.5972222222222222,
+        "delivered": 62,
+        "delivery_wait": 31.849393542824085,
+        "utilization": 0.8071739114372349,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 62,
+        "delivery_wait": 30.101565531728795,
+        "utilization": 0.8135052263871825,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.6527777777777778,
+        "delivered": 62,
+        "delivery_wait": 28.567259232134976,
+        "utilization": 0.8038713982495646,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.5972222222222222,
+        "delivered": 59,
+        "delivery_wait": 32.386776653842155,
+        "utilization": 0.7843856066069217,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.6111111111111112,
+        "delivered": 60,
+        "delivery_wait": 31.70217601001999,
+        "utilization": 0.7522951500931769,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 60,
+        "delivery_wait": 35.98338847622567,
+        "utilization": 0.7971507652119096,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 61,
+        "delivery_wait": 33.752928834237814,
+        "utilization": 0.7957316162017752,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 64,
+        "delivery_wait": 31.75882884569068,
+        "utilization": 0.8190587074916135,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 60,
+        "delivery_wait": 33.29833069040752,
+        "utilization": 0.7592449945308067,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 57,
+        "delivery_wait": 32.96922420065725,
+        "utilization": 0.7148306812620787,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 59,
+        "delivery_wait": 30.583015006101874,
+        "utilization": 0.7575492301803443,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 65,
+        "delivery_wait": 35.53832977849455,
+        "utilization": 0.7930470298449235,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.538461538461538
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 51,
+        "delivery_wait": 36.00368014602136,
+        "utilization": 0.7384076377786353,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 7.0588235294117645
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 57,
+        "delivery_wait": 32.253544778400126,
+        "utilization": 0.7743986854518987,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 66,
+        "delivery_wait": 27.33702643177756,
+        "utilization": 0.7995051249146496,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 59,
+        "delivery_wait": 33.54231738414476,
+        "utilization": 0.8141496567882595,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 56,
+        "delivery_wait": 39.617534536990355,
+        "utilization": 0.8055704008322034,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 60,
+        "delivery_wait": 34.4070500710734,
+        "utilization": 0.7710278173557995,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 52,
+        "delivery_wait": 39.80266637640672,
+        "utilization": 0.7261376986544076,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.923076923076923
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 63,
+        "delivery_wait": 30.549787020521304,
+        "utilization": 0.8003360677932038,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 61,
+        "delivery_wait": 34.73116028307763,
+        "utilization": 0.8027077580325614,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.6111111111111112,
+        "delivered": 66,
+        "delivery_wait": 29.35770475961679,
+        "utilization": 0.8321601424836901,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.6111111111111112,
+        "delivered": 61,
+        "delivery_wait": 33.46340271851459,
+        "utilization": 0.7766172343908155,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.6944444444444444,
+        "delivered": 66,
+        "delivery_wait": 24.645562653294032,
+        "utilization": 0.8052548494829697,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 56,
+        "delivery_wait": 33.399781521899484,
+        "utilization": 0.7223612482717886,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.7222222222222222,
+        "delivered": 67,
+        "delivery_wait": 25.163689404555154,
+        "utilization": 0.8032584306924829,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.373134328358209
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 61,
+        "delivery_wait": 33.306518857720604,
+        "utilization": 0.8007923519852026,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 54,
+        "delivery_wait": 34.2139805553775,
+        "utilization": 0.7181811670256988,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.666666666666667
+      },
+      {
+        "on_time_rate": 0.6111111111111112,
+        "delivered": 68,
+        "delivery_wait": 27.365435024894367,
+        "utilization": 0.8087283968443473,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.294117647058823
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 63,
+        "delivery_wait": 30.063880627063963,
+        "utilization": 0.791978239592001,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 56,
+        "delivery_wait": 33.52954130668531,
+        "utilization": 0.7748851910070526,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 63,
+        "delivery_wait": 29.56098291846123,
+        "utilization": 0.7714304035002556,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 56,
+        "delivery_wait": 35.918145099775,
+        "utilization": 0.7459065277025463,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 60,
+        "delivery_wait": 36.17836649928699,
+        "utilization": 0.8163847513394791,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 56,
+        "delivery_wait": 39.023432015770645,
+        "utilization": 0.7835600922171482,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 59,
+        "delivery_wait": 32.74787206806878,
+        "utilization": 0.7952757314646445,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 59,
+        "delivery_wait": 32.82201580301629,
+        "utilization": 0.7662536498818174,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.5,
+        "delivered": 60,
+        "delivery_wait": 32.32536204568931,
+        "utilization": 0.7817184639618959,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 60,
+        "delivery_wait": 37.08507477929353,
+        "utilization": 0.836137259259924,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 64,
+        "delivery_wait": 27.95587716940083,
+        "utilization": 0.8297936144030399,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 60,
+        "delivery_wait": 32.621847136211976,
+        "utilization": 0.7898638407381524,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.6111111111111112,
+        "delivered": 61,
+        "delivery_wait": 32.85021574705407,
+        "utilization": 0.7391440324061704,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 61,
+        "delivery_wait": 32.98791027976346,
+        "utilization": 0.8180669516730071,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 59,
+        "delivery_wait": 33.26783705706985,
+        "utilization": 0.7810152872466793,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 59,
+        "delivery_wait": 34.99082388835357,
+        "utilization": 0.7643314443379409,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 61,
+        "delivery_wait": 33.25699383771865,
+        "utilization": 0.8289163573571039,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.6388888888888888,
+        "delivered": 62,
+        "delivery_wait": 32.02094761712283,
+        "utilization": 0.8129254046580737,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 66,
+        "delivery_wait": 29.581028990112163,
+        "utilization": 0.7728272079960985,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.454545454545454
+      },
+      {
+        "on_time_rate": 0.5972222222222222,
+        "delivered": 65,
+        "delivery_wait": 29.00468799944288,
+        "utilization": 0.8091343046705601,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.538461538461538
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 57,
+        "delivery_wait": 36.05040122931604,
+        "utilization": 0.8062128576377988,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 58,
+        "delivery_wait": 33.39346480159116,
+        "utilization": 0.7790104419070903,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.206896551724138
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 59,
+        "delivery_wait": 39.65810871003954,
+        "utilization": 0.8221810010789974,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.101694915254237
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 58,
+        "delivery_wait": 30.147188073398542,
+        "utilization": 0.7311776249768525,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.206896551724138
+      },
+      {
+        "on_time_rate": 0.6805555555555556,
+        "delivered": 67,
+        "delivery_wait": 28.121291470922344,
+        "utilization": 0.7826975889607861,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.373134328358209
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 50,
+        "delivery_wait": 43.513136497184284,
+        "utilization": 0.746559124690436,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 7.2
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 55,
+        "delivery_wait": 35.02269078960826,
+        "utilization": 0.7100708841324235,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.545454545454546
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 56,
+        "delivery_wait": 35.84746490034422,
+        "utilization": 0.7803862823291041,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 55,
+        "delivery_wait": 37.744274531417254,
+        "utilization": 0.774925939451417,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.545454545454546
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 64,
+        "delivery_wait": 32.63129202128456,
+        "utilization": 0.7934883641504562,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 63,
+        "delivery_wait": 31.63052146935404,
+        "utilization": 0.7907676778250392,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.625,
+        "delivered": 57,
+        "delivery_wait": 35.21347360753103,
+        "utilization": 0.7223572784479462,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 60,
+        "delivery_wait": 35.774227404556314,
+        "utilization": 0.7820274657559909,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 45,
+        "delivery_wait": 42.44758023623034,
+        "utilization": 0.7017136212276809,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 8.0
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 50,
+        "delivery_wait": 39.41831144642278,
+        "utilization": 0.722372961428825,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 7.2
+      },
+      {
+        "on_time_rate": 0.6805555555555556,
+        "delivered": 61,
+        "delivery_wait": 30.178703969755052,
+        "utilization": 0.7483336767145483,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 56,
+        "delivery_wait": 39.13693670565777,
+        "utilization": 0.7289627478463507,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.428571428571429
+      },
+      {
+        "on_time_rate": 0.7222222222222222,
+        "delivered": 68,
+        "delivery_wait": 27.36185283711659,
+        "utilization": 0.7980079057418912,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.294117647058823
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 55,
+        "delivery_wait": 36.59136847984386,
+        "utilization": 0.715542058379896,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.545454545454546
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 57,
+        "delivery_wait": 34.20732652963247,
+        "utilization": 0.7984350695486249,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 60,
+        "delivery_wait": 35.33773249129527,
+        "utilization": 0.8016703360418401,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 52,
+        "delivery_wait": 36.99663376455188,
+        "utilization": 0.7160639615120014,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.923076923076923
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 64,
+        "delivery_wait": 33.184177159221335,
+        "utilization": 0.7955989568929548,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 64,
+        "delivery_wait": 33.202890855191725,
+        "utilization": 0.8119933774326819,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 60,
+        "delivery_wait": 37.174867231052396,
+        "utilization": 0.7885215199930905,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 70,
+        "delivery_wait": 27.304977554312263,
+        "utilization": 0.7746699410536485,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.142857142857143
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 62,
+        "delivery_wait": 33.54784248602489,
+        "utilization": 0.8230300390402588,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 61,
+        "delivery_wait": 32.25217591595543,
+        "utilization": 0.7833678549973984,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 68,
+        "delivery_wait": 28.68000250977987,
+        "utilization": 0.8381379264481115,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.294117647058823
+      },
+      {
+        "on_time_rate": 0.5555555555555556,
+        "delivered": 57,
+        "delivery_wait": 33.6947179538315,
+        "utilization": 0.8074420498618121,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.315789473684211
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 65,
+        "delivery_wait": 29.286195344490938,
+        "utilization": 0.7847041625408252,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.538461538461538
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 60,
+        "delivery_wait": 35.5090402645322,
+        "utilization": 0.800488325381836,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5416666666666666,
+        "delivered": 62,
+        "delivery_wait": 31.752953546269552,
+        "utilization": 0.7976224545540517,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.806451612903226
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 63,
+        "delivery_wait": 32.78212155900296,
+        "utilization": 0.7985631253860839,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.714285714285714
+      },
+      {
+        "on_time_rate": 0.5694444444444444,
+        "delivered": 61,
+        "delivery_wait": 28.980931821604653,
+        "utilization": 0.7721969432254024,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.901639344262295
+      },
+      {
+        "on_time_rate": 0.5833333333333334,
+        "delivered": 64,
+        "delivery_wait": 30.161172680582464,
+        "utilization": 0.800743467980563,
+        "setup_hours": 0.0,
+        "cost_per_delivered": 5.625
+      }
+    ],
+    "coordinated": [
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 51,
+        "delivery_wait": 43.63215168586103,
+        "utilization": 0.9381480895748203,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 7.362745098039215
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 59,
+        "delivery_wait": 44.448657614510836,
+        "utilization": 0.9813680284553865,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.406779661016949
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 64,
+        "delivery_wait": 36.325791109419036,
+        "utilization": 0.9628705822611443,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.8671875
+      },
+      {
+        "on_time_rate": 0.5277777777777778,
+        "delivered": 64,
+        "delivery_wait": 30.090993727413473,
+        "utilization": 0.9703966698125754,
+        "setup_hours": 54.093095714169465,
+        "cost_per_delivered": 5.836301155133475
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 63,
+        "delivery_wait": 36.5371670002093,
+        "utilization": 0.9732589099402286,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.5138888888888888,
+        "delivered": 60,
+        "delivery_wait": 36.20809863355589,
+        "utilization": 0.9930819005668343,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.258333333333334
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 61,
+        "delivery_wait": 37.8349009426198,
+        "utilization": 0.9918168270483219,
+        "setup_hours": 77.65097070288482,
+        "cost_per_delivered": 6.21988102747084
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 59,
+        "delivery_wait": 38.03244996419458,
+        "utilization": 0.9708571890225023,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.38135593220339
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 39.644741024657264,
+        "utilization": 0.9887421035583065,
+        "setup_hours": 76.0,
+        "cost_per_delivered": 6.423728813559322
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 53,
+        "delivery_wait": 46.85473620932873,
+        "utilization": 0.990180370497923,
+        "setup_hours": 70.35774328671974,
+        "cost_per_delivered": 7.124328977767546
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 58,
+        "delivery_wait": 40.04101303585632,
+        "utilization": 0.9695137600149308,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.491379310344827
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 62,
+        "delivery_wait": 38.20130903155153,
+        "utilization": 0.9800586809778095,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.096774193548387
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 57,
+        "delivery_wait": 43.166854691487366,
+        "utilization": 0.9849936476986012,
+        "setup_hours": 61.48052011247289,
+        "cost_per_delivered": 6.585440877686285
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 56,
+        "delivery_wait": 36.933381636854854,
+        "utilization": 0.968110368388459,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 6.669642857142857
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 54,
+        "delivery_wait": 43.529420662920444,
+        "utilization": 0.9533300205378298,
+        "setup_hours": 76.0,
+        "cost_per_delivered": 7.018518518518518
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 59,
+        "delivery_wait": 39.238282431712975,
+        "utilization": 0.9894632068842104,
+        "setup_hours": 72.55231229464277,
+        "cost_per_delivered": 6.409119967350182
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 60,
+        "delivery_wait": 38.99045442061768,
+        "utilization": 0.9925673266963079,
+        "setup_hours": 74.74505218026871,
+        "cost_per_delivered": 6.311437717417786
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 38.17837034324609,
+        "utilization": 0.9790037816362547,
+        "setup_hours": 70.51766909785556,
+        "cost_per_delivered": 6.510852021973515
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 60,
+        "delivery_wait": 36.16455443161993,
+        "utilization": 0.9586328003328128,
+        "setup_hours": 48.0,
+        "cost_per_delivered": 6.2
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 62,
+        "delivery_wait": 38.14662045446443,
+        "utilization": 0.9722180595605475,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.048387096774194
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 52,
+        "delivery_wait": 43.09449958733678,
+        "utilization": 0.9390184978976803,
+        "setup_hours": 70.77298665312806,
+        "cost_per_delivered": 7.2633316666015775
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 59,
+        "delivery_wait": 38.252928834237814,
+        "utilization": 0.9750905209539025,
+        "setup_hours": 67.57891437341858,
+        "cost_per_delivered": 6.388046247344994
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 63,
+        "delivery_wait": 38.20327329013512,
+        "utilization": 0.9726932065590792,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 5.912698412698413
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 57,
+        "delivery_wait": 41.353886245963075,
+        "utilization": 0.904821824185244,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.5701754385964914
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 60,
+        "delivery_wait": 34.913668645101694,
+        "utilization": 0.9825365014991746,
+        "setup_hours": 59.8029126148908,
+        "cost_per_delivered": 6.249178802562045
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 36.97190389499076,
+        "utilization": 0.9560457099636324,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.5
+      },
+      {
+        "on_time_rate": 0.25,
+        "delivered": 63,
+        "delivery_wait": 44.48277422293899,
+        "utilization": 0.9708248076227013,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 5.968253968253968
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 53,
+        "delivery_wait": 38.89256903491025,
+        "utilization": 0.9590641201952197,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 7.0754716981132075
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 57,
+        "delivery_wait": 38.47576700062235,
+        "utilization": 0.9673069532467417,
+        "setup_hours": 69.00239329691536,
+        "cost_per_delivered": 6.618431549547875
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 64,
+        "delivery_wait": 35.61480420955534,
+        "utilization": 0.9606162360257604,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 5.8515625
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 59,
+        "delivery_wait": 42.208984050811424,
+        "utilization": 0.9742821874111338,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.338983050847458
+      },
+      {
+        "on_time_rate": 0.2222222222222222,
+        "delivered": 52,
+        "delivery_wait": 46.33975675921258,
+        "utilization": 0.9552286961753664,
+        "setup_hours": 66.25014853185203,
+        "cost_per_delivered": 7.2415872525569815
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 58,
+        "delivery_wait": 39.9070500710734,
+        "utilization": 0.9508185894074854,
+        "setup_hours": 55.17607303481583,
+        "cost_per_delivered": 6.444724452736275
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 57,
+        "delivery_wait": 41.52488859862894,
+        "utilization": 0.942744001397972,
+        "setup_hours": 46.0,
+        "cost_per_delivered": 6.517543859649122
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 63,
+        "delivery_wait": 38.99423146496574,
+        "utilization": 0.9917675626946472,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 5.9523809523809526
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 60,
+        "delivery_wait": 40.84227139418874,
+        "utilization": 0.9693843546391612,
+        "setup_hours": 65.72458279932492,
+        "cost_per_delivered": 6.27385242833052
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 62,
+        "delivery_wait": 37.635482537394566,
+        "utilization": 0.9795563692023914,
+        "setup_hours": 66.36545052586624,
+        "cost_per_delivered": 6.074054235991396
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 43.40784716295904,
+        "utilization": 0.9731157508147165,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.406779661016949
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 63,
+        "delivery_wait": 34.92334043107181,
+        "utilization": 0.9814049596733323,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 38.5108926330106,
+        "utilization": 0.9458545401919658,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.3474576271186445
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 62,
+        "delivery_wait": 33.21924496011071,
+        "utilization": 0.976452075902463,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.07258064516129
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 59,
+        "delivery_wait": 42.250963302165054,
+        "utilization": 0.9728599922532309,
+        "setup_hours": 72.14576437070184,
+        "cost_per_delivered": 6.407397306655516
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 55,
+        "delivery_wait": 41.658424999821946,
+        "utilization": 0.9396775655865602,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 6.8090909090909095
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 65,
+        "delivery_wait": 39.58765724711659,
+        "utilization": 0.982625693103448,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 5.8076923076923075
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 64,
+        "delivery_wait": 36.897213960397295,
+        "utilization": 0.9871722736334382,
+        "setup_hours": 67.19393910369978,
+        "cost_per_delivered": 5.887476324623827
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 55,
+        "delivery_wait": 39.140652417796424,
+        "utilization": 0.9579923491563076,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 6.790909090909091
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 60,
+        "delivery_wait": 37.50542736290568,
+        "utilization": 0.9224157050602514,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.4583333333333333,
+        "delivered": 60,
+        "delivery_wait": 37.69592287755278,
+        "utilization": 0.9781791970947609,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.25
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 57,
+        "delivery_wait": 42.733922054842544,
+        "utilization": 0.9806735277647066,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.5964912280701755
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 56,
+        "delivery_wait": 38.30120979354842,
+        "utilization": 0.9700027592448552,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 6.669642857142857
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 41.081205401402116,
+        "utilization": 0.9629227614425788,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.75
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 60,
+        "delivery_wait": 37.9331269141274,
+        "utilization": 0.9861681885768598,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.275
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 58,
+        "delivery_wait": 39.54758426791153,
+        "utilization": 0.9854035252672645,
+        "setup_hours": 71.81218305576846,
+        "cost_per_delivered": 6.5164318235162435
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 54,
+        "delivery_wait": 45.196185890404635,
+        "utilization": 0.9742772321929637,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 7.0
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 61,
+        "delivery_wait": 36.45587716940083,
+        "utilization": 0.9689913599045159,
+        "setup_hours": 63.84583521054847,
+        "cost_per_delivered": 6.16330260332192
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 58,
+        "delivery_wait": 40.677402691767526,
+        "utilization": 0.9692888206596005,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.517241379310345
+      },
+      {
+        "on_time_rate": 0.4722222222222222,
+        "delivered": 65,
+        "delivery_wait": 35.1835490803874,
+        "utilization": 0.9143507205360207,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 5.730769230769231
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 61,
+        "delivery_wait": 40.21013250198568,
+        "utilization": 0.9875901525345601,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.131147540983607
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 58,
+        "delivery_wait": 41.7122815015143,
+        "utilization": 0.9854791474943672,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.491379310344827
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 42.268601666131346,
+        "utilization": 0.9840844672772869,
+        "setup_hours": 69.78095005918486,
+        "cost_per_delivered": 6.397376907030444
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 55,
+        "delivery_wait": 39.09032717105199,
+        "utilization": 0.9792217342953595,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.845454545454546
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 61,
+        "delivery_wait": 40.854280950456165,
+        "utilization": 0.9794703251364427,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.163934426229508
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 66,
+        "delivery_wait": 37.80325121233439,
+        "utilization": 0.9602200410246434,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 5.712121212121212
+      },
+      {
+        "on_time_rate": 0.4305555555555556,
+        "delivered": 63,
+        "delivery_wait": 35.838021332776215,
+        "utilization": 0.9758178695121461,
+        "setup_hours": 64.09027198583067,
+        "cost_per_delivered": 5.968612190419963
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 54,
+        "delivery_wait": 43.38373456264937,
+        "utilization": 0.9748828863948256,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.9907407407407405
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 61,
+        "delivery_wait": 35.39346480159116,
+        "utilization": 0.9571295460624586,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.131147540983607
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 58,
+        "delivery_wait": 45.49144204337287,
+        "utilization": 0.9801126430470172,
+        "setup_hours": 50.0,
+        "cost_per_delivered": 6.422413793103448
+      },
+      {
+        "on_time_rate": 0.3888888888888889,
+        "delivered": 58,
+        "delivery_wait": 36.202743628954096,
+        "utilization": 0.9860291375344594,
+        "setup_hours": 68.0,
+        "cost_per_delivered": 6.5
+      },
+      {
+        "on_time_rate": 0.4166666666666667,
+        "delivered": 65,
+        "delivery_wait": 35.01018035981124,
+        "utilization": 0.9549198111830082,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.776923076923077
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 53,
+        "delivery_wait": 45.84646983051762,
+        "utilization": 0.9394112285119132,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 7.056603773584905
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 55,
+        "delivery_wait": 39.68935745627493,
+        "utilization": 0.9581917836899497,
+        "setup_hours": 69.06631307601367,
+        "cost_per_delivered": 6.859392332163698
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 56,
+        "delivery_wait": 40.68079823367755,
+        "utilization": 0.9888585285500562,
+        "setup_hours": 60.0,
+        "cost_per_delivered": 6.696428571428571
+      },
+      {
+        "on_time_rate": 0.20833333333333334,
+        "delivered": 55,
+        "delivery_wait": 42.91094119808392,
+        "utilization": 0.9661407597343266,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.836363636363636
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 62,
+        "delivery_wait": 39.85351424350678,
+        "utilization": 0.984048660618352,
+        "setup_hours": 74.19689082898884,
+        "cost_per_delivered": 6.105632624310439
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 63,
+        "delivery_wait": 40.1860770249096,
+        "utilization": 0.9463232333805952,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 5.936507936507937
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 65,
+        "delivery_wait": 38.21347360753103,
+        "utilization": 0.9373181751442778,
+        "setup_hours": 42.0,
+        "cost_per_delivered": 5.7
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 59,
+        "delivery_wait": 44.552005182334085,
+        "utilization": 0.9792332004195108,
+        "setup_hours": 70.0,
+        "cost_per_delivered": 6.398305084745763
+      },
+      {
+        "on_time_rate": 0.3333333333333333,
+        "delivered": 52,
+        "delivery_wait": 45.55869134734145,
+        "utilization": 0.9798043743012005,
+        "setup_hours": 72.22726336139216,
+        "cost_per_delivered": 7.270323381545155
+      },
+      {
+        "on_time_rate": 0.2361111111111111,
+        "delivered": 53,
+        "delivery_wait": 41.86275589086723,
+        "utilization": 0.983341035102341,
+        "setup_hours": 58.0,
+        "cost_per_delivered": 7.066037735849057
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 65,
+        "delivery_wait": 35.34537063642172,
+        "utilization": 0.9162805482662458,
+        "setup_hours": 44.0,
+        "cost_per_delivered": 5.707692307692308
+      },
+      {
+        "on_time_rate": 0.2638888888888889,
+        "delivered": 61,
+        "delivery_wait": 44.35915892787999,
+        "utilization": 0.9678121152767218,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 6.122950819672131
+      },
+      {
+        "on_time_rate": 0.4861111111111111,
+        "delivered": 65,
+        "delivery_wait": 34.639630614894365,
+        "utilization": 0.9702301279641132,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 5.776923076923077
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 58,
+        "delivery_wait": 39.09136847984386,
+        "utilization": 0.9727920914670725,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.448275862068965
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 56,
+        "delivery_wait": 39.15177097407691,
+        "utilization": 0.9854514350045019,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.75
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 59,
+        "delivery_wait": 41.28217693573972,
+        "utilization": 0.9944601829853627,
+        "setup_hours": 66.43480014522052,
+        "cost_per_delivered": 6.383198305700088
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 54,
+        "delivery_wait": 42.55218932010744,
+        "utilization": 0.9862748421341155,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 7.0
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 61,
+        "delivery_wait": 39.57306604811022,
+        "utilization": 0.9537704563117677,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.155737704918033
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 59,
+        "delivery_wait": 44.09177974408061,
+        "utilization": 0.9738567702498316,
+        "setup_hours": 66.0,
+        "cost_per_delivered": 6.38135593220339
+      },
+      {
+        "on_time_rate": 0.2777777777777778,
+        "delivered": 58,
+        "delivery_wait": 42.730422786607946,
+        "utilization": 0.9855670476393276,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.482758620689655
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 67,
+        "delivery_wait": 32.74942199875671,
+        "utilization": 0.917183105327328,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 5.574626865671642
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 58,
+        "delivery_wait": 41.32562026380267,
+        "utilization": 0.9892892466108965,
+        "setup_hours": 69.60129707258312,
+        "cost_per_delivered": 6.506902142554237
+      },
+      {
+        "on_time_rate": 0.4444444444444444,
+        "delivered": 60,
+        "delivery_wait": 35.474398138177655,
+        "utilization": 0.9778201658698317,
+        "setup_hours": 62.0,
+        "cost_per_delivered": 6.258333333333334
+      },
+      {
+        "on_time_rate": 0.19444444444444445,
+        "delivered": 63,
+        "delivery_wait": 40.680002509779875,
+        "utilization": 0.9929314948607176,
+        "setup_hours": 72.0,
+        "cost_per_delivered": 6.0
+      },
+      {
+        "on_time_rate": 0.3472222222222222,
+        "delivered": 56,
+        "delivery_wait": 41.97249573160928,
+        "utilization": 0.9774224832706564,
+        "setup_hours": 74.0,
+        "cost_per_delivered": 6.758928571428571
+      },
+      {
+        "on_time_rate": 0.375,
+        "delivered": 64,
+        "delivery_wait": 36.89730645560205,
+        "utilization": 0.9347041625408249,
+        "setup_hours": 54.0,
+        "cost_per_delivered": 5.8359375
+      },
+      {
+        "on_time_rate": 0.2916666666666667,
+        "delivered": 56,
+        "delivery_wait": 42.84237359786554,
+        "utilization": 0.974559984113708,
+        "setup_hours": 69.36037004026481,
+        "cost_per_delivered": 6.738215937679754
+      },
+      {
+        "on_time_rate": 0.3055555555555556,
+        "delivered": 59,
+        "delivery_wait": 41.47517576849177,
+        "utilization": 0.9671824520416876,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 6.372881355932203
+      },
+      {
+        "on_time_rate": 0.3611111111111111,
+        "delivered": 61,
+        "delivery_wait": 40.22656600344741,
+        "utilization": 0.9467956512236257,
+        "setup_hours": 56.0,
+        "cost_per_delivered": 6.131147540983607
+      },
+      {
+        "on_time_rate": 0.4027777777777778,
+        "delivered": 59,
+        "delivery_wait": 33.814265154937985,
+        "utilization": 0.9786846598622058,
+        "setup_hours": 76.47808811149241,
+        "cost_per_delivered": 6.425754610641918
+      },
+      {
+        "on_time_rate": 0.3194444444444444,
+        "delivered": 64,
+        "delivery_wait": 40.82783934724913,
+        "utilization": 0.9762391961948819,
+        "setup_hours": 64.0,
+        "cost_per_delivered": 5.875
+      }
+    ]
+  },
+  "example": [
+    {
+      "id": 58,
+      "family": "assembly",
+      "arrival": 0.04706997638102983,
+      "due": 30.365423717687847,
+      "nominal": 5.066520261113853,
+      "actual": 4.110848824236351,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 0.04706997638102983,
+      "setup": 0,
+      "finish": 4.157918800617381,
+      "delivery": 8.0,
+      "delivered": true
+    },
+    {
+      "id": 71,
+      "family": "assembly",
+      "arrival": 2.6611966391731032,
+      "due": 43.64212624526221,
+      "nominal": 4.56190363564521,
+      "actual": 4.329347135355497,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 2.6611966391731032,
+      "setup": 0,
+      "finish": 6.9905437745286,
+      "delivery": 16.0,
+      "delivered": true
+    },
+    {
+      "id": 30,
+      "family": "solution",
+      "arrival": 5.5412602762591625,
+      "due": 38.71629553069438,
+      "nominal": 3.2335021652731304,
+      "actual": 3.0791295161167063,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 5.5412602762591625,
+      "setup": 0,
+      "finish": 8.62038979237587,
+      "delivery": 12.0,
+      "delivered": true
+    },
+    {
+      "id": 4,
+      "family": "assembly",
+      "arrival": 8.448160540188132,
+      "due": 24.897162474875536,
+      "nominal": 3.0183442649713204,
+      "actual": 3.299865033686882,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 8.448160540188132,
+      "setup": 0,
+      "finish": 11.748025573875015,
+      "delivery": 16.0,
+      "delivered": true
+    },
+    {
+      "id": 24,
+      "family": "assembly",
+      "arrival": 8.97828664166247,
+      "due": 28.624192995005927,
+      "nominal": 3.8781952946634837,
+      "actual": 3.438834811293709,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 8.97828664166247,
+      "setup": 0,
+      "finish": 12.417121452956179,
+      "delivery": 20.0,
+      "delivered": true
+    },
+    {
+      "id": 64,
+      "family": "assembly",
+      "arrival": 10.102758900596733,
+      "due": 50.73993766979341,
+      "nominal": 4.728166101316948,
+      "actual": 3.911991903018519,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 11.748025573875015,
+      "setup": 0,
+      "finish": 15.660017476893534,
+      "delivery": 16.0,
+      "delivered": true
+    },
+    {
+      "id": 50,
+      "family": "solution",
+      "arrival": 12.904894340667305,
+      "due": 49.290131826539344,
+      "nominal": 3.2762089540995545,
+      "actual": 2.7389393940014166,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 12.904894340667305,
+      "setup": 2,
+      "finish": 17.64383373466872,
+      "delivery": 20.0,
+      "delivered": true
+    },
+    {
+      "id": 41,
+      "family": "assembly",
+      "arrival": 15.555849197697347,
+      "due": 37.04968640107055,
+      "nominal": 4.276911676484739,
+      "actual": 3.774474063400035,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 15.660017476893534,
+      "setup": 0,
+      "finish": 19.43449154029357,
+      "delivery": 28.0,
+      "delivered": true
+    },
+    {
+      "id": 52,
+      "family": "thermal",
+      "arrival": 15.871793159211583,
+      "due": 32.3474243895362,
+      "nominal": 5.472550318874164,
+      "actual": 4.898806044138632,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 15.871793159211583,
+      "setup": 2,
+      "finish": 22.770599203350216,
+      "delivery": 24.0,
+      "delivered": true
+    },
+    {
+      "id": 56,
+      "family": "assembly",
+      "arrival": 16.489028124637432,
+      "due": 43.44696615091755,
+      "nominal": 3.588279198318506,
+      "actual": 2.942436030797821,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 17.64383373466872,
+      "setup": 2,
+      "finish": 22.586269765466543,
+      "delivery": 32.0,
+      "delivered": true
+    },
+    {
+      "id": 36,
+      "family": "assembly",
+      "arrival": 19.016683619088926,
+      "due": 44.6855153002168,
+      "nominal": 4.8311717851130105,
+      "actual": 4.284394349713594,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 19.43449154029357,
+      "setup": 0,
+      "finish": 23.718885890007165,
+      "delivery": 28.0,
+      "delivered": true
+    },
+    {
+      "id": 25,
+      "family": "solution",
+      "arrival": 19.756378084805057,
+      "due": 37.994137463892905,
+      "nominal": 3.395015838981075,
+      "actual": 3.2151567070407414,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 22.586269765466543,
+      "setup": 2,
+      "finish": 27.801426472507284,
+      "delivery": 32.0,
+      "delivered": true
+    },
+    {
+      "id": 15,
+      "family": "thermal",
+      "arrival": 21.24873521147895,
+      "due": 43.06036872394683,
+      "nominal": 5.3338674849299235,
+      "actual": 6.512895165223939,
+      "succeeds": false,
+      "capsule": 0,
+      "start": 22.770599203350216,
+      "setup": 0,
+      "finish": 29.283494368574154,
+      "delivery": 36.0,
+      "delivered": false
+    },
+    {
+      "id": 69,
+      "family": "assembly",
+      "arrival": 13.364849434526946,
+      "due": 47.42941814594607,
+      "nominal": 4.3217824015080755,
+      "actual": 5.2696538149777385,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 23.718885890007165,
+      "setup": 0,
+      "finish": 28.988539704984902,
+      "delivery": 40.0,
+      "delivered": true
+    },
+    {
+      "id": 10,
+      "family": "assembly",
+      "arrival": 24.0336988545528,
+      "due": 40.9423252042979,
+      "nominal": 4.370797989071911,
+      "actual": 4.68634817241596,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 27.801426472507284,
+      "setup": 2,
+      "finish": 34.48777464492324,
+      "delivery": 44.0,
+      "delivered": false
+    },
+    {
+      "id": 35,
+      "family": "thermal",
+      "arrival": 23.762086979052835,
+      "due": 41.40205216869174,
+      "nominal": 5.682964887340754,
+      "actual": 5.717826584118592,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 28.988539704984902,
+      "setup": 2,
+      "finish": 36.70636628910349,
+      "delivery": 40.0,
+      "delivered": true
+    },
+    {
+      "id": 68,
+      "family": "solution",
+      "arrival": 24.07162085280314,
+      "due": 43.05549429754913,
+      "nominal": 3.5749535091577735,
+      "actual": 4.217828070803457,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 29.283494368574154,
+      "setup": 2,
+      "finish": 35.50132243937761,
+      "delivery": 36.0,
+      "delivered": true
+    },
+    {
+      "id": 29,
+      "family": "assembly",
+      "arrival": 32.71618934084518,
+      "due": 50.917476651062,
+      "nominal": 2.9484506874510847,
+      "actual": 3.0227265114893105,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 34.48777464492324,
+      "setup": 0,
+      "finish": 37.51050115641255,
+      "delivery": 44.0,
+      "delivered": true
+    },
+    {
+      "id": 65,
+      "family": "thermal",
+      "arrival": 30.03029335298458,
+      "due": 50.886015176450165,
+      "nominal": 6.253330064541864,
+      "actual": 6.781699915697175,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 35.50132243937761,
+      "setup": 2,
+      "finish": 44.283022355074785,
+      "delivery": 48.0,
+      "delivered": true
+    },
+    {
+      "id": 63,
+      "family": "thermal",
+      "arrival": 28.913016757471016,
+      "due": 50.85778929935411,
+      "nominal": 5.724251035351742,
+      "actual": 6.717173516765036,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 36.70636628910349,
+      "setup": 0,
+      "finish": 43.42353980586853,
+      "delivery": 52.0,
+      "delivered": true
+    },
+    {
+      "id": 51,
+      "family": "solution",
+      "arrival": 24.09044900646083,
+      "due": 51.802350015792506,
+      "nominal": 3.6632219644317643,
+      "actual": 4.045495151055246,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 37.51050115641255,
+      "setup": 2,
+      "finish": 43.5559963074678,
+      "delivery": 44.0,
+      "delivered": false
+    },
+    {
+      "id": 8,
+      "family": "assembly",
+      "arrival": 31.1132023089011,
+      "due": 52.99952329649521,
+      "nominal": 2.9864136765130374,
+      "actual": 2.4946265274505026,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 43.42353980586853,
+      "setup": 2,
+      "finish": 47.91816633331903,
+      "delivery": 52.0,
+      "delivered": true
+    },
+    {
+      "id": 28,
+      "family": "solution",
+      "arrival": 31.342045147463605,
+      "due": 53.159232536720694,
+      "nominal": 3.0633528233945495,
+      "actual": 2.7364794418599727,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 43.5559963074678,
+      "setup": 0,
+      "finish": 46.29247574932777,
+      "delivery": 56.0,
+      "delivered": false
+    },
+    {
+      "id": 40,
+      "family": "thermal",
+      "arrival": 26.433033568461575,
+      "due": 54.987207059028094,
+      "nominal": 3.753003972396728,
+      "actual": 3.465777442013603,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 44.283022355074785,
+      "setup": 0,
+      "finish": 47.74879979708839,
+      "delivery": 48.0,
+      "delivered": true
+    },
+    {
+      "id": 37,
+      "family": "assembly",
+      "arrival": 26.674504316506795,
+      "due": 55.53331547073053,
+      "nominal": 5.013743339727418,
+      "actual": 4.755622385172227,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 46.29247574932777,
+      "setup": 2,
+      "finish": 53.048098134499995,
+      "delivery": 56.0,
+      "delivered": true
+    },
+    {
+      "id": 14,
+      "family": "solution",
+      "arrival": 27.188033994359202,
+      "due": 54.19189318691629,
+      "nominal": 2.3939002544154504,
+      "actual": 1.993040072575293,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 47.74879979708839,
+      "setup": 2,
+      "finish": 51.74183986966368,
+      "delivery": 60.0,
+      "delivered": true
+    },
+    {
+      "id": 31,
+      "family": "thermal",
+      "arrival": 33.41072885918659,
+      "due": 60.29421181254955,
+      "nominal": 6.22455814179513,
+      "actual": 6.685729192442774,
+      "succeeds": false,
+      "capsule": 1,
+      "start": 47.91816633331903,
+      "setup": 2,
+      "finish": 56.6038955257618,
+      "delivery": 64.0,
+      "delivered": false
+    },
+    {
+      "id": 42,
+      "family": "solution",
+      "arrival": 23.5868930689784,
+      "due": 58.161423036931026,
+      "nominal": 2.9025990641506887,
+      "actual": 3.3970519736765077,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 51.74183986966368,
+      "setup": 0,
+      "finish": 55.13889184334019,
+      "delivery": 60.0,
+      "delivered": true
+    },
+    {
+      "id": 46,
+      "family": "assembly",
+      "arrival": 36.290823696600626,
+      "due": 60.972437545475344,
+      "nominal": 3.3635320710883407,
+      "actual": 3.387137140087816,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 53.048098134499995,
+      "setup": 0,
+      "finish": 56.43523527458781,
+      "delivery": 68.0,
+      "delivered": true
+    },
+    {
+      "id": 44,
+      "family": "thermal",
+      "arrival": 25.07547727662066,
+      "due": 62.60801837766736,
+      "nominal": 4.130152819937764,
+      "actual": 5.123058783352315,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 55.13889184334019,
+      "setup": 2,
+      "finish": 62.2619506266925,
+      "delivery": 72.0,
+      "delivered": true
+    },
+    {
+      "id": 18,
+      "family": "solution",
+      "arrival": 22.37179005989709,
+      "due": 62.94300222074209,
+      "nominal": 3.751520441290201,
+      "actual": 3.4233876955068117,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 56.43523527458781,
+      "setup": 2,
+      "finish": 61.85862297009462,
+      "delivery": 68.0,
+      "delivered": false
+    },
+    {
+      "id": 49,
+      "family": "assembly",
+      "arrival": 21.642792882878815,
+      "due": 62.64948366498589,
+      "nominal": 2.9190180844759537,
+      "actual": 2.774271142280828,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 56.6038955257618,
+      "setup": 2,
+      "finish": 61.37816666804263,
+      "delivery": 64.0,
+      "delivered": true
+    },
+    {
+      "id": 45,
+      "family": "thermal",
+      "arrival": 37.50214301296765,
+      "due": 65.88602177933396,
+      "nominal": 3.5272906506517576,
+      "actual": 3.0673238523115387,
+      "succeeds": false,
+      "capsule": 1,
+      "start": 61.37816666804263,
+      "setup": 2,
+      "finish": 66.44549052035417,
+      "delivery": 76.0,
+      "delivered": false
+    },
+    {
+      "id": 55,
+      "family": "assembly",
+      "arrival": 36.062138349716605,
+      "due": 68.37969453485402,
+      "nominal": 5.179812906113029,
+      "actual": 4.3003889707135,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 61.85862297009462,
+      "setup": 2,
+      "finish": 68.15901194080813,
+      "delivery": 80.0,
+      "delivered": true
+    },
+    {
+      "id": 57,
+      "family": "thermal",
+      "arrival": 50.31445673376701,
+      "due": 68.04404622783719,
+      "nominal": 5.522997900430512,
+      "actual": 6.422525094367193,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 62.2619506266925,
+      "setup": 0,
+      "finish": 68.6844757210597,
+      "delivery": 72.0,
+      "delivered": true
+    },
+    {
+      "id": 6,
+      "family": "thermal",
+      "arrival": 37.798947826943376,
+      "due": 70.14956563999075,
+      "nominal": 6.066449154129597,
+      "actual": 6.620707341946756,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 66.44549052035417,
+      "setup": 0,
+      "finish": 73.06619786230092,
+      "delivery": 76.0,
+      "delivered": true
+    },
+    {
+      "id": 11,
+      "family": "solution",
+      "arrival": 27.904649784579934,
+      "due": 66.89476379233656,
+      "nominal": 2.958510302050606,
+      "actual": 2.83269285857456,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 68.15901194080813,
+      "setup": 2,
+      "finish": 72.99170479938269,
+      "delivery": 80.0,
+      "delivered": true
+    },
+    {
+      "id": 66,
+      "family": "solution",
+      "arrival": 33.82619799252783,
+      "due": 66.64724649480924,
+      "nominal": 2.4810908952558517,
+      "actual": 2.0378601615464698,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 68.6844757210597,
+      "setup": 2,
+      "finish": 72.72233588260617,
+      "delivery": 84.0,
+      "delivered": true
+    },
+    {
+      "id": 13,
+      "family": "solution",
+      "arrival": 51.09643794735917,
+      "due": 68.85067325862804,
+      "nominal": 3.3099420703617213,
+      "actual": 3.804167970681703,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 72.72233588260617,
+      "setup": 0,
+      "finish": 76.52650385328788,
+      "delivery": 84.0,
+      "delivered": true
+    },
+    {
+      "id": 23,
+      "family": "assembly",
+      "arrival": 42.27032064686066,
+      "due": 70.19620965924892,
+      "nominal": 4.541711704786466,
+      "actual": 5.211476670800244,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 72.99170479938269,
+      "setup": 2,
+      "finish": 80.20318147018293,
+      "delivery": 92.0,
+      "delivered": true
+    },
+    {
+      "id": 7,
+      "family": "assembly",
+      "arrival": 39.945791870548945,
+      "due": 69.81111266619529,
+      "nominal": 2.9515765898864044,
+      "actual": 3.0348787163377025,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 73.06619786230092,
+      "setup": 2,
+      "finish": 78.10107657863863,
+      "delivery": 88.0,
+      "delivered": true
+    },
+    {
+      "id": 62,
+      "family": "solution",
+      "arrival": 42.219361804193525,
+      "due": 69.71172605987076,
+      "nominal": 2.1918994106465726,
+      "actual": 1.8140396016105755,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 76.52650385328788,
+      "setup": 0,
+      "finish": 78.34054345489845,
+      "delivery": 84.0,
+      "delivered": true
+    },
+    {
+      "id": 16,
+      "family": "assembly",
+      "arrival": 41.00201672558247,
+      "due": 73.46065342486509,
+      "nominal": 4.949064230197266,
+      "actual": 4.6185030198567905,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 78.10107657863863,
+      "setup": 0,
+      "finish": 82.71957959849541,
+      "delivery": 88.0,
+      "delivered": true
+    },
+    {
+      "id": 19,
+      "family": "thermal",
+      "arrival": 45.13457658557667,
+      "due": 74.84141883071598,
+      "nominal": 5.7674796175074,
+      "actual": 5.166726326400049,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 78.34054345489845,
+      "setup": 2,
+      "finish": 85.5072697812985,
+      "delivery": 96.0,
+      "delivered": true
+    },
+    {
+      "id": 43,
+      "family": "assembly",
+      "arrival": 54.68995973478887,
+      "due": 73.9316860932255,
+      "nominal": 3.3394719526883367,
+      "actual": 3.7568766575142,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 80.20318147018293,
+      "setup": 0,
+      "finish": 83.96005812769712,
+      "delivery": 92.0,
+      "delivered": true
+    },
+    {
+      "id": 9,
+      "family": "thermal",
+      "arrival": 42.91296390512199,
+      "due": 74.84676211376032,
+      "nominal": 5.182002407529777,
+      "actual": 5.878582660897048,
+      "succeeds": false,
+      "capsule": 1,
+      "start": 82.71957959849541,
+      "setup": 2,
+      "finish": 90.59816225939247,
+      "delivery": 100.0,
+      "delivered": false
+    },
+    {
+      "id": 48,
+      "family": "assembly",
+      "arrival": 48.56462068351069,
+      "due": 75.20548782710921,
+      "nominal": 4.129077235551785,
+      "actual": 4.819348353836205,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 83.96005812769712,
+      "setup": 0,
+      "finish": 88.77940648153333,
+      "delivery": 92.0,
+      "delivered": true
+    },
+    {
+      "id": 26,
+      "family": "solution",
+      "arrival": 44.09179002199485,
+      "due": 73.47001940892497,
+      "nominal": 2.234261904804354,
+      "actual": 1.804687601069947,
+      "succeeds": false,
+      "capsule": 0,
+      "start": 85.5072697812985,
+      "setup": 2,
+      "finish": 89.31195738236845,
+      "delivery": 96.0,
+      "delivered": false
+    },
+    {
+      "id": 20,
+      "family": "assembly",
+      "arrival": 56.43101053705322,
+      "due": 76.72984630370307,
+      "nominal": 5.03679796424272,
+      "actual": 4.122010949150255,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 88.77940648153333,
+      "setup": 0,
+      "finish": 92.90141743068358,
+      "delivery": 104.0,
+      "delivered": true
+    },
+    {
+      "id": 53,
+      "family": "solution",
+      "arrival": 45.89424680517719,
+      "due": 77.63507796277169,
+      "nominal": 3.491479805266349,
+      "actual": 3.2463848897207916,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 89.31195738236845,
+      "setup": 0,
+      "finish": 92.55834227208923,
+      "delivery": 96.0,
+      "delivered": true
+    },
+    {
+      "id": 54,
+      "family": "thermal",
+      "arrival": 51.920539805388024,
+      "due": 79.94466152154934,
+      "nominal": 5.105104307902827,
+      "actual": 5.513161727954573,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 90.59816225939247,
+      "setup": 0,
+      "finish": 96.11132398734703,
+      "delivery": 100.0,
+      "delivered": true
+    },
+    {
+      "id": 38,
+      "family": "thermal",
+      "arrival": 55.62183888989134,
+      "due": 79.59187279258555,
+      "nominal": 3.513308839476968,
+      "actual": 3.898485261854462,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 92.55834227208923,
+      "setup": 2,
+      "finish": 98.4568275339437,
+      "delivery": 108.0,
+      "delivered": true
+    },
+    {
+      "id": 0,
+      "family": "assembly",
+      "arrival": 65.0986701762171,
+      "due": 82.11921291200133,
+      "nominal": 3.5159359091239915,
+      "actual": 3.001987790392136,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 92.90141743068358,
+      "setup": 0,
+      "finish": 95.90340522107572,
+      "delivery": 104.0,
+      "delivered": false
+    },
+    {
+      "id": 27,
+      "family": "assembly",
+      "arrival": 56.68734796487321,
+      "due": 85.82089102351802,
+      "nominal": 3.426698219558758,
+      "actual": 4.139632071710175,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 95.90340522107572,
+      "setup": 0,
+      "finish": 100.0430372927859,
+      "delivery": 104.0,
+      "delivered": true
+    },
+    {
+      "id": 67,
+      "family": "thermal",
+      "arrival": 57.13796759371816,
+      "due": 84.42981549186541,
+      "nominal": 5.878232154098331,
+      "actual": 5.389849592157088,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 96.11132398734703,
+      "setup": 0,
+      "finish": 101.50117357950413,
+      "delivery": 112.0,
+      "delivered": true
+    },
+    {
+      "id": 70,
+      "family": "thermal",
+      "arrival": 60.99987568211438,
+      "due": 84.23804679206737,
+      "nominal": 5.33594583779283,
+      "actual": 4.297772304158626,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 98.4568275339437,
+      "setup": 0,
+      "finish": 102.75459983810232,
+      "delivery": 108.0,
+      "delivered": true
+    },
+    {
+      "id": 2,
+      "family": "solution",
+      "arrival": 48.89665577529313,
+      "due": 87.9819279694902,
+      "nominal": 3.1262289455205985,
+      "actual": 3.7020592888442807,
+      "succeeds": false,
+      "capsule": 2,
+      "start": 100.0430372927859,
+      "setup": 2,
+      "finish": 105.74509658163018,
+      "delivery": 116.0,
+      "delivered": false
+    },
+    {
+      "id": 60,
+      "family": "thermal",
+      "arrival": 53.45470577234244,
+      "due": 84.19595738223327,
+      "nominal": 4.242703841852298,
+      "actual": 4.816675905236451,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 101.50117357950413,
+      "setup": 0,
+      "finish": 106.31784948474058,
+      "delivery": 112.0,
+      "delivered": true
+    },
+    {
+      "id": 59,
+      "family": "thermal",
+      "arrival": 54.96582828231698,
+      "due": 94.39594047209519,
+      "nominal": 5.437713670960088,
+      "actual": 5.053650841618709,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 102.75459983810232,
+      "setup": 0,
+      "finish": 107.80825067972103,
+      "delivery": 108.0,
+      "delivered": true
+    },
+    {
+      "id": 39,
+      "family": "assembly",
+      "arrival": 70.65299014245821,
+      "due": 89.93793347409557,
+      "nominal": 4.813969748538241,
+      "actual": 5.985105676719999,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 105.74509658163018,
+      "setup": 2,
+      "finish": 113.73020225835018,
+      "delivery": 116.0,
+      "delivered": true
+    },
+    {
+      "id": 21,
+      "family": "assembly",
+      "arrival": 66.65298670732395,
+      "due": 90.51125915603947,
+      "nominal": 3.181419569804936,
+      "actual": 3.8215032737034087,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 106.31784948474058,
+      "setup": 2,
+      "finish": 112.13935275844399,
+      "delivery": 124.0,
+      "delivered": false
+    },
+    {
+      "id": 33,
+      "family": "solution",
+      "arrival": 68.85916365530706,
+      "due": 99.67169360106334,
+      "nominal": 3.775503593238446,
+      "actual": 4.1472203295851315,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 107.80825067972103,
+      "setup": 2,
+      "finish": 113.95547100930617,
+      "delivery": 120.0,
+      "delivered": true
+    },
+    {
+      "id": 22,
+      "family": "assembly",
+      "arrival": 53.773816595117104,
+      "due": 90.86545263517468,
+      "nominal": 3.1239052081151257,
+      "actual": 2.925272755879078,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 112.13935275844399,
+      "setup": 0,
+      "finish": 115.06462551432307,
+      "delivery": 124.0,
+      "delivered": false
+    },
+    {
+      "id": 17,
+      "family": "assembly",
+      "arrival": 65.97411465370243,
+      "due": 92.05789255175263,
+      "nominal": 4.157595675734161,
+      "actual": 4.168233890502098,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 113.73020225835018,
+      "setup": 0,
+      "finish": 117.89843614885227,
+      "delivery": 128.0,
+      "delivered": false
+    },
+    {
+      "id": 3,
+      "family": "solution",
+      "arrival": 67.06924797156834,
+      "due": 99.31793788716453,
+      "nominal": 2.691087930245165,
+      "actual": 3.1378791951650458,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 113.95547100930617,
+      "setup": 0,
+      "finish": 117.09335020447121,
+      "delivery": 120.0,
+      "delivered": true
+    },
+    {
+      "id": 12,
+      "family": "assembly",
+      "arrival": 67.78602644015263,
+      "due": 92.98295579676203,
+      "nominal": 3.3267111690135023,
+      "actual": 2.958664507393753,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 115.06462551432307,
+      "setup": 0,
+      "finish": 118.02329002171682,
+      "delivery": 124.0,
+      "delivered": false
+    },
+    {
+      "id": 47,
+      "family": "thermal",
+      "arrival": 60.143401674485,
+      "due": 101.22979002590444,
+      "nominal": 3.94848754227654,
+      "actual": 4.337500187037336,
+      "succeeds": true,
+      "capsule": 0,
+      "start": 117.09335020447121,
+      "setup": 2,
+      "finish": 123.43085039150854,
+      "delivery": 132.0,
+      "delivered": false
+    },
+    {
+      "id": 61,
+      "family": "assembly",
+      "arrival": 62.669976044859084,
+      "due": 95.74917838961498,
+      "nominal": 3.6982242121206452,
+      "actual": 3.6999843949141598,
+      "succeeds": true,
+      "capsule": 2,
+      "start": 117.89843614885227,
+      "setup": 0,
+      "finish": 121.59842054376642,
+      "delivery": 128.0,
+      "delivered": false
+    },
+    {
+      "id": 34,
+      "family": "assembly",
+      "arrival": 58.63896889455364,
+      "due": 97.62146266300873,
+      "nominal": 3.321052649859304,
+      "actual": 3.7427118276015205,
+      "succeeds": true,
+      "capsule": 1,
+      "start": 118.02329002171682,
+      "setup": 0,
+      "finish": 121.76600184931834,
+      "delivery": 124.0,
+      "delivered": false
+    }
+  ],
+  "scenario_index": 13
+}

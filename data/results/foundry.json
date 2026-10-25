@@ -1,0 +1,24 @@
+{
+  "kind": "published ISS infrastructure precedent; not our capsule specification",
+  "name": "NASA EXPRESS Rack",
+  "source": "https://www.nasa.gov/wp-content/uploads/2023/08/np-2022-06-009-jsc-iss-tech-demo-mini-book-proof-3.pdf",
+  "location": "EXPRESS Rack Resources table, printed page 13",
+  "publication": "NASA NP-2022-06-009-JSC",
+  "accessed_on": "2026-10-24",
+  "lockers": 8,
+  "drawers": 2,
+  "rack_power_w": 2000,
+  "position_power_w": 500,
+  "water_cooled_positions": 2,
+  "inference": "Shared interfaces do not mean every position can operate at its individual maximum simultaneously. This power-only bound ignores further cooling and integration limits.",
+  "boundary": "ISS rack services depend on station infrastructure and crew support. They do not establish the mass, power, thermal design or autonomy of a free-flying foundry capsule.",
+  "specialized_precedent": {
+    "name": "Materials Science Research Rack",
+    "source": "https://ntrs.nasa.gov/citations/20140011639",
+    "observation": "NASA describes shared support services feeding a materials laboratory with interchangeable furnace inserts. This supports modular infrastructure with specialized process hardware."
+  },
+  "positions": 10,
+  "simultaneous_full_power_upper_bound": 4,
+  "all_positions_max_w": 5000,
+  "input_sha256": "2eafa4adc30879a5a9e5ef8e9e715fdfc385aaa3d9bf477b136832210c79da60"
+}

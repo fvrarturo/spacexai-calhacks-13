@@ -1,0 +1,246 @@
+{
+  "updated": "24 October 2026",
+  "pillars": [
+    {
+      "id": "materials",
+      "number": "01",
+      "name": "Materials",
+      "claim": "Some processes deliver a valuable advantage in microgravity.",
+      "artifact": "Earth-control comparisons, uncertainty, and application-specific performance.",
+      "status": "Published comparison + raw-data pilot",
+      "next": "Establish independent experimental units and an optimized Earth control before estimating our own advantage."
+    },
+    {
+      "id": "foundry",
+      "number": "02",
+      "name": "Foundry design",
+      "claim": "Multiple processes can share infrastructure while retaining specialized equipment.",
+      "artifact": "A compatibility map, resource budgets, and explicit separation requirements.",
+      "status": "Published precedent + compatibility screen",
+      "next": "Replace placeholder loads with measured requirements; validate cross-contamination and disturbance boundaries."
+    },
+    {
+      "id": "fleet",
+      "number": "03",
+      "name": "Fleet operations",
+      "claim": "Coordinating production across capsules improves delivery, utilization, or cost.",
+      "artifact": "A seeded simulation against FIFO, earliest due date, and dedicated operation.",
+      "status": "Reproducible synthetic benchmark",
+      "next": "Stress-test changing demand and return cadence; calibrate workloads and logistics before operational claims."
+    }
+  ],
+  "phases": [
+    {
+      "id": "scope",
+      "label": "01 / Define the test",
+      "exit": "One material × process × application, with a measurable Earth benchmark.",
+      "tasks": [
+        {
+          "id": "scope-claim",
+          "title": "Lock the three claims and their evidence boundaries",
+          "owner": "Team",
+          "status": "done",
+          "deliverable": "Claim-to-evidence register in this workspace",
+          "depends": []
+        },
+        {
+          "id": "scope-anchor",
+          "title": "Choose one lead product for the demo",
+          "owner": "Science + product",
+          "status": "next",
+          "deliverable": "One-page target-product profile: customer, performance metric, comparator, qualification gate",
+          "depends": [
+            "scope-claim"
+          ]
+        },
+        {
+          "id": "scope-video",
+          "title": "Develop the problem and foundry story for the video",
+          "owner": "Teammate",
+          "status": "in-progress",
+          "deliverable": "Video storyboard using published, modeled and untested labels",
+          "depends": []
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "label": "02 / Establish the evidence",
+      "exit": "Traceable files, calibrated measurements, and independent experimental units.",
+      "tasks": [
+        {
+          "id": "data-published",
+          "title": "Recalculate one published flight / Earth comparison",
+          "owner": "Science",
+          "status": "done",
+          "deliverable": "Pembrolizumab Table 1 comparison with extraction notes",
+          "depends": [
+            "scope-claim"
+          ]
+        },
+        {
+          "id": "data-pilot",
+          "title": "Inventory NASA DSI and verify a bounded image pilot",
+          "owner": "Data",
+          "status": "done",
+          "deliverable": "Object manifest, SHA-256 checksums and descriptive image QC",
+          "depends": []
+        },
+        {
+          "id": "data-controls",
+          "title": "Map ground controls, run IDs and physical calibration",
+          "owner": "Science + data",
+          "status": "next",
+          "deliverable": "Inclusion/exclusion table and data dictionary; no frame-level pseudoreplication",
+          "depends": [
+            "data-pilot",
+            "scope-anchor"
+          ]
+        },
+        {
+          "id": "data-scale",
+          "title": "Extract validated features across complete runs",
+          "owner": "Data / Engaging",
+          "status": "blocked",
+          "deliverable": "Run-partitioned Parquet features, held-out runs, manual annotation audit",
+          "depends": [
+            "data-controls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "label": "03 / Test the shared foundry",
+      "exit": "A feasible schedule with explicit resource and isolation constraints.",
+      "tasks": [
+        {
+          "id": "design-map",
+          "title": "Map common services and dedicated cartridge internals",
+          "owner": "Systems",
+          "status": "done",
+          "deliverable": "Published EXPRESS/MSRR precedent, power bound and interactive compatibility map",
+          "depends": [
+            "scope-claim"
+          ]
+        },
+        {
+          "id": "design-loads",
+          "title": "Replace placeholder loads and characterize interference",
+          "owner": "Systems + science",
+          "status": "next",
+          "deliverable": "Stage-level power, heat, optics, field and vibration requirements with sources",
+          "depends": [
+            "design-map",
+            "scope-anchor"
+          ]
+        },
+        {
+          "id": "design-trade",
+          "title": "Compare dedicated, sequential and concurrent layouts",
+          "owner": "Systems",
+          "status": "next",
+          "deliverable": "Pareto trade-off: useful throughput, mass, heat margin, failure isolation",
+          "depends": [
+            "design-loads"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "label": "04 / Benchmark the fleet",
+      "exit": "A reproducible policy comparison that reports losses as well as gains.",
+      "tasks": [
+        {
+          "id": "fleet-baseline",
+          "title": "Implement identical-workload scheduling baselines",
+          "owner": "Operations",
+          "status": "done",
+          "deliverable": "FIFO, earliest due date, dedicated and coordinated policies; paired seed uncertainty",
+          "depends": [
+            "scope-claim"
+          ]
+        },
+        {
+          "id": "fleet-sweep",
+          "title": "Run demand, changeover, failure and return-cadence sweeps",
+          "owner": "Operations / Engaging",
+          "status": "done",
+          "deliverable": "24 scenarios × 100 paired evaluation seeds; scenario explorer and full raw outputs",
+          "depends": [
+            "fleet-baseline"
+          ]
+        },
+        {
+          "id": "fleet-calibrate",
+          "title": "Add measured workloads and credible return logistics",
+          "owner": "Operations + systems",
+          "status": "blocked",
+          "deliverable": "Calibrated capacities, downmass, launch/return windows and disruption assumptions",
+          "depends": [
+            "design-loads",
+            "data-controls"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "demo",
+      "label": "05 / Make the case",
+      "exit": "Every number can be traced to a source or a repeatable run.",
+      "tasks": [
+        {
+          "id": "demo-record",
+          "title": "Connect a lab request to a mission plan and batch record",
+          "owner": "Product",
+          "status": "next",
+          "deliverable": "One end-to-end demo: input, recommendation, constraints, evidence and uncertainty",
+          "depends": [
+            "scope-anchor",
+            "design-map",
+            "fleet-baseline"
+          ]
+        },
+        {
+          "id": "demo-review",
+          "title": "Audit the site and video against the evidence register",
+          "owner": "Team",
+          "status": "next",
+          "deliverable": "Reproducible demo package, source list, limitations and next experiment",
+          "depends": [
+            "demo-record",
+            "scope-video"
+          ]
+        }
+      ]
+    }
+  ],
+  "dataPlan": [
+    {
+      "step": "Inventory",
+      "action": "List metadata first; retain accession, object key, version, size, checksum and access date.",
+      "scale": "Kilobytes of metadata before gigabytes of images"
+    },
+    {
+      "step": "Calibrate",
+      "action": "Read run protocols; identify gravity, hardware, composition, temperature history, pixel scale and timing.",
+      "scale": "One complete run + matched Earth control"
+    },
+    {
+      "step": "Measure",
+      "action": "Validate interface, particle-order or connectivity features against blinded manual annotations.",
+      "scale": "CPU array per run; GPU only if a validated model needs it"
+    },
+    {
+      "step": "Compare",
+      "action": "Hold out entire runs or flights. Bootstrap independent samples; use hierarchical models only when replication supports them.",
+      "scale": "Run-level tables; never treat adjacent frames as independent trials"
+    },
+    {
+      "step": "Decide",
+      "action": "Connect structural proxies to an application test. Report effect, uncertainty, sensitivity and cost assumptions separately.",
+      "scale": "Compact evidence cards and next-experiment priorities"
+    }
+  ]
+}

@@ -1,0 +1,2747 @@
+{
+ "id": "mof-pore-screen",
+ "tab": "materials",
+ "material": "mof",
+ "title": "Which known MOFs have pore windows sized for lithium sieving?",
+ "question": "How many known MOFs have pore-limiting diameters in a range useful for separating lithium from magnesium in brine?",
+ "headline": {
+  "value": "10,804",
+  "unit": "MOFs",
+  "text": "10,804 of 12,863 distinct known MOFs (84%) have pore windows wider than a water molecule (2.65 A) but narrower than a hydrated Mg2+ ion (8.56 A), the geometric range for ion sieving; only 423 sit in the narrow band between hydrated Li+ and Mg2+. Candidate chemistry is plentiful; making oriented, defect-free membranes is the open problem. Geometry only, not selectivity."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "CoRE MOF 2024 public (SI) dataset v1.1",
+   "url": "https://zenodo.org/records/15055758",
+   "license": "CC-BY-4.0",
+   "records": 2664,
+   "bytes": 2716979,
+   "accessed": "2026-10-24",
+   "notes": "Computation-ready descriptor tables ASR (1372), FSR (1192), ION (100); 1385 unique MOFid-v1 strings. Public release covers only the SI-derived part of CoRE MOF 2024 (CSD-derived structures need a CSD licence). Includes ML-predicted water stability by the CoRE authors."
+  },
+  {
+   "name": "CoRE MOF 2019 dataset v1.1.4",
+   "url": "https://zenodo.org/records/7691378",
+   "license": "CC-BY-4.0",
+   "records": 14142,
+   "bytes": 1912130,
+   "accessed": "2026-10-24",
+   "notes": "ASR descriptor table, 14,142 structures, collapsed to 12,863 CSD refcode families (independent MOFs)."
+  },
+  {
+   "name": "Ion sizes",
+   "url": "https://doi.org/10.1021/j150579a011",
+   "license": "citation",
+   "records": 0,
+   "bytes": 0,
+   "accessed": "2026-10-24",
+   "notes": "Hydrated diameters (2 x hydrated radius): Nightingale, J. Phys. Chem. 63, 1381 (1959): Li+ 7.64, Na+ 7.16, K+ 6.62, Mg2+ 8.56, Ca2+ 8.24 A. Bare diameters (2 x ionic radius, CN 6): Shannon, Acta Cryst. A32, 751 (1976), doi:10.1107/S0567739476001551: Li+ 1.52, Mg2+ 1.44, Na+ 2.04, K+ 2.76 A. Water kinetic diameter 2.65 A: Breck, Zeolite Molecular Sieves (1974)."
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging",
+  "partitions": [
+   "mit_quicktest"
+  ],
+  "job_ids": [
+   "26814077",
+   "26814251"
+  ],
+  "cpu_hours": 0.0,
+  "wall_minutes": 0.0,
+  "peak_storage_gb": 0.01,
+  "jobs": [
+   {
+    "jobid": "26814077",
+    "name": "of-matdb-mof",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 1,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26814251",
+    "name": "of-matdb-mof",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 1,
+    "ncpus": 1
+   }
+  ],
+  "note": "wall_minutes sums the elapsed time of every job / array task (not the critical path)."
+ },
+ "method": [
+  "Downloaded the CoRE MOF 2024 public descriptor tables and the CoRE MOF 2019 ASR descriptor table from Zenodo onto MIT Engaging.",
+  "Collapsed duplicates: CoRE 2019 to 6-letter CSD refcode families (median PLD per family); CoRE 2024 to unique MOFid-v1 strings (ASR record preferred over FSR and ION).",
+  "Binned the pore-limiting diameter (PLD, the narrowest window along the best path through the framework) against water's kinetic diameter (2.65 A) and the hydrated diameters of Li+ (7.64 A) and Mg2+ (8.56 A).",
+  "Located UiO-66 (refcode family RUBTAK) and UiO-67 (WIZMAV) as reference points.",
+  "Wilson 95% intervals on shares; these describe the database, not all possible MOFs."
+ ],
+ "charts": [
+  {
+   "id": "pld-hist",
+   "kind": "hist",
+   "title": "Pore-limiting diameter of every known MOF in CoRE MOF",
+   "subtitle": "CoRE MOF 2019 (12,863 unique CSD refcode families) and CoRE MOF 2024 public SI set (1,385 unique MOFids); 0.25 A bins; PLD >= 20 A folded into the last bin",
+   "x": {
+    "label": "Pore-limiting diameter (PLD)",
+    "unit": "A",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Number of unique MOFs",
+    "unit": "",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "CoRE MOF 2019 (ASR)",
+     "color": "cyan",
+     "points": [
+      [
+       2.125,
+       0
+      ],
+      [
+       2.375,
+       377
+      ],
+      [
+       2.625,
+       905
+      ],
+      [
+       2.875,
+       832
+      ],
+      [
+       3.125,
+       855
+      ],
+      [
+       3.375,
+       940
+      ],
+      [
+       3.625,
+       927
+      ],
+      [
+       3.875,
+       967
+      ],
+      [
+       4.125,
+       827
+      ],
+      [
+       4.375,
+       698
+      ],
+      [
+       4.625,
+       588
+      ],
+      [
+       4.875,
+       505
+      ],
+      [
+       5.125,
+       439
+      ],
+      [
+       5.375,
+       358
+      ],
+      [
+       5.625,
+       338
+      ],
+      [
+       5.875,
+       341
+      ],
+      [
+       6.125,
+       233
+      ],
+      [
+       6.375,
+       223
+      ],
+      [
+       6.625,
+       313
+      ],
+      [
+       6.875,
+       239
+      ],
+      [
+       7.125,
+       195
+      ],
+      [
+       7.375,
+       182
+      ],
+      [
+       7.625,
+       143
+      ],
+      [
+       7.875,
+       161
+      ],
+      [
+       8.125,
+       90
+      ],
+      [
+       8.375,
+       91
+      ],
+      [
+       8.625,
+       115
+      ],
+      [
+       8.875,
+       80
+      ],
+      [
+       9.125,
+       89
+      ],
+      [
+       9.375,
+       56
+      ],
+      [
+       9.625,
+       61
+      ],
+      [
+       9.875,
+       84
+      ],
+      [
+       10.125,
+       46
+      ],
+      [
+       10.375,
+       47
+      ],
+      [
+       10.625,
+       46
+      ],
+      [
+       10.875,
+       75
+      ],
+      [
+       11.125,
+       43
+      ],
+      [
+       11.375,
+       19
+      ],
+      [
+       11.625,
+       25
+      ],
+      [
+       11.875,
+       16
+      ],
+      [
+       12.125,
+       24
+      ],
+      [
+       12.375,
+       11
+      ],
+      [
+       12.625,
+       11
+      ],
+      [
+       12.875,
+       12
+      ],
+      [
+       13.125,
+       20
+      ],
+      [
+       13.375,
+       16
+      ],
+      [
+       13.625,
+       15
+      ],
+      [
+       13.875,
+       15
+      ],
+      [
+       14.125,
+       6
+      ],
+      [
+       14.375,
+       18
+      ],
+      [
+       14.625,
+       5
+      ],
+      [
+       14.875,
+       8
+      ],
+      [
+       15.125,
+       1
+      ],
+      [
+       15.375,
+       4
+      ],
+      [
+       15.625,
+       7
+      ],
+      [
+       15.875,
+       8
+      ],
+      [
+       16.125,
+       1
+      ],
+      [
+       16.375,
+       6
+      ],
+      [
+       16.625,
+       5
+      ],
+      [
+       16.875,
+       9
+      ],
+      [
+       17.125,
+       5
+      ],
+      [
+       17.375,
+       4
+      ],
+      [
+       17.625,
+       5
+      ],
+      [
+       17.875,
+       0
+      ],
+      [
+       18.125,
+       0
+      ],
+      [
+       18.375,
+       2
+      ],
+      [
+       18.625,
+       1
+      ],
+      [
+       18.875,
+       1
+      ],
+      [
+       19.125,
+       2
+      ],
+      [
+       19.375,
+       1
+      ],
+      [
+       19.625,
+       4
+      ],
+      [
+       19.875,
+       67
+      ]
+     ]
+    },
+    {
+     "name": "CoRE MOF 2024 public SI",
+     "color": "orange",
+     "points": [
+      [
+       2.125,
+       0
+      ],
+      [
+       2.375,
+       27
+      ],
+      [
+       2.625,
+       62
+      ],
+      [
+       2.875,
+       74
+      ],
+      [
+       3.125,
+       63
+      ],
+      [
+       3.375,
+       74
+      ],
+      [
+       3.625,
+       112
+      ],
+      [
+       3.875,
+       111
+      ],
+      [
+       4.125,
+       101
+      ],
+      [
+       4.375,
+       69
+      ],
+      [
+       4.625,
+       66
+      ],
+      [
+       4.875,
+       55
+      ],
+      [
+       5.125,
+       68
+      ],
+      [
+       5.375,
+       50
+      ],
+      [
+       5.625,
+       61
+      ],
+      [
+       5.875,
+       51
+      ],
+      [
+       6.125,
+       35
+      ],
+      [
+       6.375,
+       36
+      ],
+      [
+       6.625,
+       23
+      ],
+      [
+       6.875,
+       14
+      ],
+      [
+       7.125,
+       25
+      ],
+      [
+       7.375,
+       11
+      ],
+      [
+       7.625,
+       10
+      ],
+      [
+       7.875,
+       14
+      ],
+      [
+       8.125,
+       6
+      ],
+      [
+       8.375,
+       13
+      ],
+      [
+       8.625,
+       17
+      ],
+      [
+       8.875,
+       17
+      ],
+      [
+       9.125,
+       8
+      ],
+      [
+       9.375,
+       5
+      ],
+      [
+       9.625,
+       8
+      ],
+      [
+       9.875,
+       7
+      ],
+      [
+       10.125,
+       9
+      ],
+      [
+       10.375,
+       8
+      ],
+      [
+       10.625,
+       4
+      ],
+      [
+       10.875,
+       10
+      ],
+      [
+       11.125,
+       5
+      ],
+      [
+       11.375,
+       4
+      ],
+      [
+       11.625,
+       3
+      ],
+      [
+       11.875,
+       4
+      ],
+      [
+       12.125,
+       4
+      ],
+      [
+       12.375,
+       1
+      ],
+      [
+       12.625,
+       3
+      ],
+      [
+       12.875,
+       0
+      ],
+      [
+       13.125,
+       2
+      ],
+      [
+       13.375,
+       1
+      ],
+      [
+       13.625,
+       4
+      ],
+      [
+       13.875,
+       2
+      ],
+      [
+       14.125,
+       3
+      ],
+      [
+       14.375,
+       3
+      ],
+      [
+       14.625,
+       3
+      ],
+      [
+       14.875,
+       1
+      ],
+      [
+       15.125,
+       0
+      ],
+      [
+       15.375,
+       0
+      ],
+      [
+       15.625,
+       2
+      ],
+      [
+       15.875,
+       0
+      ],
+      [
+       16.125,
+       0
+      ],
+      [
+       16.375,
+       0
+      ],
+      [
+       16.625,
+       0
+      ],
+      [
+       16.875,
+       1
+      ],
+      [
+       17.125,
+       0
+      ],
+      [
+       17.375,
+       0
+      ],
+      [
+       17.625,
+       1
+      ],
+      [
+       17.875,
+       0
+      ],
+      [
+       18.125,
+       0
+      ],
+      [
+       18.375,
+       0
+      ],
+      [
+       18.625,
+       0
+      ],
+      [
+       18.875,
+       0
+      ],
+      [
+       19.125,
+       0
+      ],
+      [
+       19.375,
+       0
+      ],
+      [
+       19.625,
+       1
+      ],
+      [
+       19.875,
+       13
+      ]
+     ]
+    }
+   ],
+   "vlines": [
+    {
+     "x": 2.65,
+     "text": "water 2.65 A"
+    },
+    {
+     "x": 7.64,
+     "text": "hydrated Li+ 7.64 A"
+    },
+    {
+     "x": 8.56,
+     "text": "hydrated Mg2+ 8.56 A"
+    }
+   ],
+   "annotations": [
+    {
+     "x": 3.87,
+     "y": 0,
+     "text": "UiO-66"
+    },
+    {
+     "x": 6.67,
+     "y": 0,
+     "text": "UiO-67"
+    }
+   ],
+   "caption": "Our computation on public descriptor tables (Zeo++ geometry computed by the CoRE MOF authors). CoRE only includes frameworks with PLD >= 2.4 A, so the smallest bins are cut by construction. Geometry only: no selectivity, stability or flux is implied."
+  },
+  {
+   "id": "pld-bands",
+   "kind": "bar",
+   "title": "How many MOFs have windows in each ion-sieving band",
+   "subtitle": "Bands set by water (2.65 A) and the hydrated diameters of Li+ (7.64 A) and Mg2+ (8.56 A)",
+   "x": {
+    "label": "Pore-limiting diameter band",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Share of unique MOFs",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "CoRE MOF 2019",
+     "color": "cyan",
+     "points": [
+      [
+       "< 2.65 A",
+       7.61
+      ],
+      [
+       "2.65-7.64 A",
+       80.7
+      ],
+      [
+       "7.64-8.56 A",
+       3.29
+      ],
+      [
+       ">= 8.56 A",
+       8.4
+      ]
+     ]
+    },
+    {
+     "name": "CoRE MOF 2024 public SI",
+     "color": "orange",
+     "points": [
+      [
+       "< 2.65 A",
+       4.62
+      ],
+      [
+       "2.65-7.64 A",
+       81.66
+      ],
+      [
+       "7.64-8.56 A",
+       2.89
+      ],
+      [
+       ">= 8.56 A",
+       10.83
+      ]
+     ]
+    }
+   ],
+   "caption": "Our computation on public data. A window narrower than the hydrated ion means the ion must shed water to pass; Mg2+ pays a much larger dehydration penalty than Li+, which is the usual rationale for sub-nm MOF windows in Li/Mg separation. This is a hypothesis for each MOF, not a prediction."
+  },
+  {
+   "id": "pld-lcd",
+   "kind": "scatter",
+   "title": "Window vs cavity: PLD against largest cavity diameter",
+   "subtitle": "Random sample of 400 CoRE MOF 2019 refcode families, plus UiO-66 and UiO-67",
+   "x": {
+    "label": "Pore-limiting diameter (PLD)",
+    "unit": "A",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Largest cavity diameter (LCD)",
+    "unit": "A",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "CoRE MOF 2019 sample",
+     "color": "grey",
+     "points": [
+      [
+       4.3,
+       9.11
+      ],
+      [
+       3.71,
+       5.12
+      ],
+      [
+       4.76,
+       10.79
+      ],
+      [
+       3.27,
+       7.67
+      ],
+      [
+       4.42,
+       7.19
+      ],
+      [
+       3.45,
+       4.09
+      ],
+      [
+       3.58,
+       4.17
+      ],
+      [
+       4.27,
+       7.83
+      ],
+      [
+       7.68,
+       8.14
+      ],
+      [
+       4.79,
+       5.92
+      ],
+      [
+       4.98,
+       6.87
+      ],
+      [
+       3.05,
+       5.06
+      ],
+      [
+       3.97,
+       4.41
+      ],
+      [
+       2.7,
+       3.19
+      ],
+      [
+       5.31,
+       6.33
+      ],
+      [
+       3.64,
+       6.08
+      ],
+      [
+       4.43,
+       5.21
+      ],
+      [
+       2.88,
+       5.12
+      ],
+      [
+       4.87,
+       9.72
+      ],
+      [
+       3.41,
+       11.39
+      ],
+      [
+       2.44,
+       5.01
+      ],
+      [
+       4.24,
+       6.05
+      ],
+      [
+       3.16,
+       5.02
+      ],
+      [
+       2.96,
+       5.21
+      ],
+      [
+       3.94,
+       4.39
+      ],
+      [
+       3.95,
+       5.11
+      ],
+      [
+       7.66,
+       8.46
+      ],
+      [
+       3.04,
+       4.86
+      ],
+      [
+       3.77,
+       5.12
+      ],
+      [
+       3.41,
+       4.94
+      ],
+      [
+       2.95,
+       3.86
+      ],
+      [
+       4.28,
+       9.61
+      ],
+      [
+       4.19,
+       4.99
+      ],
+      [
+       7.38,
+       8.44
+      ],
+      [
+       4.07,
+       4.41
+      ],
+      [
+       3.94,
+       5.03
+      ],
+      [
+       3.68,
+       4.86
+      ],
+      [
+       2.46,
+       3.81
+      ],
+      [
+       3.16,
+       4.72
+      ],
+      [
+       4.42,
+       5.13
+      ],
+      [
+       2.6,
+       4.72
+      ],
+      [
+       4.22,
+       4.87
+      ],
+      [
+       8.48,
+       13.69
+      ],
+      [
+       9.2,
+       14.81
+      ],
+      [
+       8.57,
+       10.07
+      ],
+      [
+       3.62,
+       5.7
+      ],
+      [
+       7.78,
+       9.73
+      ],
+      [
+       4.6,
+       5.46
+      ],
+      [
+       2.8,
+       4.09
+      ],
+      [
+       4.74,
+       6.87
+      ],
+      [
+       5.29,
+       5.87
+      ],
+      [
+       3.71,
+       4.14
+      ],
+      [
+       5.7,
+       7.45
+      ],
+      [
+       3.32,
+       5.21
+      ],
+      [
+       2.44,
+       4.32
+      ],
+      [
+       5.62,
+       9.38
+      ],
+      [
+       5.61,
+       9.39
+      ],
+      [
+       2.98,
+       4.08
+      ],
+      [
+       5.41,
+       9.58
+      ],
+      [
+       4.11,
+       8.58
+      ],
+      [
+       4.72,
+       5.91
+      ],
+      [
+       3.07,
+       3.4
+      ],
+      [
+       5.54,
+       7.08
+      ],
+      [
+       3.67,
+       5.05
+      ],
+      [
+       4.38,
+       5.59
+      ],
+      [
+       9.14,
+       10.62
+      ],
+      [
+       3.29,
+       6.1
+      ],
+      [
+       4.7,
+       6.57
+      ],
+      [
+       3.0,
+       6.48
+      ],
+      [
+       4.23,
+       15.01
+      ],
+      [
+       4.36,
+       9.85
+      ],
+      [
+       6.14,
+       7.17
+      ],
+      [
+       4.99,
+       6.55
+      ],
+      [
+       9.4,
+       9.69
+      ],
+      [
+       2.52,
+       4.21
+      ],
+      [
+       3.48,
+       4.35
+      ],
+      [
+       6.27,
+       6.59
+      ],
+      [
+       3.65,
+       4.56
+      ],
+      [
+       7.08,
+       7.23
+      ],
+      [
+       9.01,
+       20.36
+      ],
+      [
+       4.4,
+       5.8
+      ],
+      [
+       3.23,
+       3.51
+      ],
+      [
+       7.72,
+       9.52
+      ],
+      [
+       9.81,
+       11.01
+      ],
+      [
+       8.17,
+       8.47
+      ],
+      [
+       15.73,
+       25.32
+      ],
+      [
+       11.7,
+       13.35
+      ],
+      [
+       10.98,
+       11.77
+      ],
+      [
+       2.99,
+       3.92
+      ],
+      [
+       3.86,
+       5.6
+      ],
+      [
+       3.54,
+       5.24
+      ],
+      [
+       5.77,
+       7.23
+      ],
+      [
+       9.31,
+       17.92
+      ],
+      [
+       2.54,
+       3.31
+      ],
+      [
+       3.35,
+       8.02
+      ],
+      [
+       2.45,
+       9.99
+      ],
+      [
+       11.32,
+       17.37
+      ],
+      [
+       10.88,
+       11.49
+      ],
+      [
+       4.69,
+       5.87
+      ],
+      [
+       3.34,
+       4.69
+      ],
+      [
+       4.98,
+       8.97
+      ],
+      [
+       4.54,
+       6.46
+      ],
+      [
+       2.56,
+       4.62
+      ],
+      [
+       3.69,
+       11.33
+      ],
+      [
+       3.17,
+       4.13
+      ],
+      [
+       8.38,
+       16.87
+      ],
+      [
+       4.47,
+       5.98
+      ],
+      [
+       3.15,
+       4.43
+      ],
+      [
+       6.33,
+       11.44
+      ],
+      [
+       2.67,
+       3.41
+      ],
+      [
+       3.95,
+       5.77
+      ],
+      [
+       2.67,
+       3.71
+      ],
+      [
+       10.25,
+       11.33
+      ],
+      [
+       7.27,
+       14.58
+      ],
+      [
+       7.66,
+       9.48
+      ],
+      [
+       5.02,
+       6.23
+      ],
+      [
+       4.0,
+       5.31
+      ],
+      [
+       3.02,
+       3.66
+      ],
+      [
+       2.88,
+       4.3
+      ],
+      [
+       2.99,
+       4.1
+      ],
+      [
+       2.85,
+       4.14
+      ],
+      [
+       4.97,
+       7.61
+      ],
+      [
+       3.15,
+       5.54
+      ],
+      [
+       3.08,
+       3.86
+      ],
+      [
+       7.46,
+       8.76
+      ],
+      [
+       3.1,
+       4.59
+      ],
+      [
+       5.25,
+       7.98
+      ],
+      [
+       6.92,
+       10.02
+      ],
+      [
+       5.06,
+       12.13
+      ],
+      [
+       3.18,
+       5.19
+      ],
+      [
+       4.95,
+       6.71
+      ],
+      [
+       2.86,
+       3.35
+      ],
+      [
+       4.29,
+       6.0
+      ],
+      [
+       3.84,
+       12.82
+      ],
+      [
+       3.81,
+       7.12
+      ],
+      [
+       3.22,
+       4.07
+      ],
+      [
+       4.14,
+       5.91
+      ],
+      [
+       3.95,
+       6.14
+      ],
+      [
+       4.07,
+       4.99
+      ],
+      [
+       4.72,
+       9.53
+      ],
+      [
+       4.18,
+       6.35
+      ],
+      [
+       5.64,
+       13.5
+      ],
+      [
+       4.22,
+       6.37
+      ],
+      [
+       3.97,
+       6.13
+      ],
+      [
+       9.3,
+       10.35
+      ],
+      [
+       4.45,
+       6.87
+      ],
+      [
+       3.75,
+       4.88
+      ],
+      [
+       3.27,
+       4.83
+      ],
+      [
+       3.31,
+       4.32
+      ],
+      [
+       3.29,
+       4.0
+      ],
+      [
+       4.05,
+       4.85
+      ],
+      [
+       2.86,
+       5.06
+      ],
+      [
+       7.42,
+       14.19
+      ],
+      [
+       9.21,
+       10.2
+      ],
+      [
+       8.03,
+       9.13
+      ],
+      [
+       5.95,
+       8.26
+      ],
+      [
+       5.1,
+       6.09
+      ],
+      [
+       2.88,
+       5.59
+      ],
+      [
+       9.15,
+       10.84
+      ],
+      [
+       4.72,
+       6.83
+      ],
+      [
+       3.2,
+       4.71
+      ],
+      [
+       3.65,
+       5.11
+      ],
+      [
+       2.92,
+       3.32
+      ],
+      [
+       8.46,
+       11.44
+      ],
+      [
+       3.76,
+       4.81
+      ],
+      [
+       3.38,
+       6.44
+      ],
+      [
+       5.35,
+       6.88
+      ],
+      [
+       3.56,
+       5.22
+      ],
+      [
+       4.84,
+       6.13
+      ],
+      [
+       9.85,
+       11.89
+      ],
+      [
+       3.13,
+       4.92
+      ],
+      [
+       2.64,
+       4.43
+      ],
+      [
+       3.73,
+       16.89
+      ],
+      [
+       6.02,
+       8.54
+      ],
+      [
+       3.35,
+       5.18
+      ],
+      [
+       3.52,
+       4.58
+      ],
+      [
+       8.7,
+       10.26
+      ],
+      [
+       5.86,
+       12.8
+      ],
+      [
+       4.34,
+       5.29
+      ],
+      [
+       4.98,
+       5.97
+      ],
+      [
+       10.71,
+       11.39
+      ],
+      [
+       4.41,
+       5.69
+      ],
+      [
+       3.44,
+       6.91
+      ],
+      [
+       4.24,
+       6.2
+      ],
+      [
+       3.17,
+       4.17
+      ],
+      [
+       4.06,
+       4.68
+      ],
+      [
+       3.18,
+       3.42
+      ],
+      [
+       12.09,
+       25.72
+      ],
+      [
+       3.47,
+       4.29
+      ],
+      [
+       11.16,
+       27.8
+      ],
+      [
+       5.52,
+       9.2
+      ],
+      [
+       2.6,
+       4.34
+      ],
+      [
+       6.59,
+       9.8
+      ],
+      [
+       2.74,
+       3.98
+      ],
+      [
+       5.73,
+       6.88
+      ],
+      [
+       5.85,
+       8.77
+      ],
+      [
+       4.94,
+       5.93
+      ],
+      [
+       4.7,
+       9.8
+      ],
+      [
+       5.77,
+       11.21
+      ],
+      [
+       2.64,
+       10.58
+      ],
+      [
+       3.64,
+       5.16
+      ],
+      [
+       9.02,
+       10.87
+      ],
+      [
+       3.25,
+       4.34
+      ],
+      [
+       5.15,
+       7.47
+      ],
+      [
+       4.48,
+       8.74
+      ],
+      [
+       2.56,
+       3.28
+      ],
+      [
+       4.16,
+       4.73
+      ],
+      [
+       5.8,
+       14.42
+      ],
+      [
+       5.84,
+       6.03
+      ],
+      [
+       3.67,
+       5.67
+      ],
+      [
+       2.94,
+       6.09
+      ],
+      [
+       2.54,
+       4.56
+      ],
+      [
+       2.53,
+       4.78
+      ],
+      [
+       6.22,
+       15.06
+      ],
+      [
+       7.1,
+       9.64
+      ],
+      [
+       10.11,
+       10.24
+      ],
+      [
+       2.64,
+       5.84
+      ],
+      [
+       5.0,
+       7.19
+      ],
+      [
+       3.96,
+       5.33
+      ],
+      [
+       2.87,
+       4.4
+      ],
+      [
+       3.58,
+       4.32
+      ],
+      [
+       6.14,
+       6.52
+      ],
+      [
+       4.7,
+       7.33
+      ],
+      [
+       12.1,
+       18.23
+      ],
+      [
+       4.24,
+       5.62
+      ],
+      [
+       4.34,
+       7.02
+      ],
+      [
+       6.77,
+       8.79
+      ],
+      [
+       5.74,
+       7.48
+      ],
+      [
+       3.14,
+       4.38
+      ],
+      [
+       4.19,
+       5.11
+      ],
+      [
+       7.36,
+       9.11
+      ],
+      [
+       5.39,
+       5.98
+      ],
+      [
+       4.17,
+       8.22
+      ],
+      [
+       2.59,
+       4.51
+      ],
+      [
+       3.71,
+       5.85
+      ],
+      [
+       6.52,
+       7.29
+      ],
+      [
+       4.91,
+       6.1
+      ],
+      [
+       4.42,
+       5.89
+      ],
+      [
+       4.6,
+       7.33
+      ],
+      [
+       9.82,
+       10.27
+      ],
+      [
+       3.14,
+       3.89
+      ],
+      [
+       3.51,
+       5.08
+      ],
+      [
+       4.37,
+       6.13
+      ],
+      [
+       4.06,
+       9.24
+      ],
+      [
+       5.16,
+       7.49
+      ],
+      [
+       3.74,
+       6.37
+      ],
+      [
+       4.05,
+       5.71
+      ],
+      [
+       10.82,
+       11.37
+      ],
+      [
+       7.17,
+       8.35
+      ],
+      [
+       3.76,
+       7.26
+      ],
+      [
+       3.68,
+       4.2
+      ],
+      [
+       7.15,
+       12.63
+      ],
+      [
+       3.13,
+       4.87
+      ],
+      [
+       2.57,
+       4.07
+      ],
+      [
+       7.89,
+       8.71
+      ],
+      [
+       4.61,
+       6.15
+      ],
+      [
+       13.71,
+       13.98
+      ],
+      [
+       4.22,
+       5.14
+      ],
+      [
+       3.33,
+       6.1
+      ],
+      [
+       5.56,
+       6.45
+      ],
+      [
+       2.64,
+       3.83
+      ],
+      [
+       8.9,
+       11.43
+      ],
+      [
+       3.57,
+       4.4
+      ],
+      [
+       5.43,
+       9.6
+      ],
+      [
+       4.07,
+       18.49
+      ],
+      [
+       3.03,
+       5.19
+      ],
+      [
+       3.29,
+       5.13
+      ],
+      [
+       5.49,
+       8.42
+      ],
+      [
+       3.62,
+       4.24
+      ],
+      [
+       5.65,
+       10.4
+      ],
+      [
+       8.64,
+       10.47
+      ],
+      [
+       5.25,
+       7.24
+      ],
+      [
+       2.86,
+       10.22
+      ],
+      [
+       7.88,
+       14.93
+      ],
+      [
+       4.49,
+       6.17
+      ],
+      [
+       5.52,
+       6.85
+      ],
+      [
+       2.59,
+       5.28
+      ],
+      [
+       3.78,
+       4.98
+      ],
+      [
+       2.83,
+       4.31
+      ],
+      [
+       8.18,
+       11.99
+      ],
+      [
+       4.94,
+       7.16
+      ],
+      [
+       2.65,
+       3.46
+      ],
+      [
+       3.63,
+       4.43
+      ],
+      [
+       2.83,
+       4.77
+      ],
+      [
+       4.92,
+       6.52
+      ],
+      [
+       7.23,
+       8.17
+      ],
+      [
+       3.12,
+       3.87
+      ],
+      [
+       3.94,
+       5.17
+      ],
+      [
+       5.15,
+       5.66
+      ],
+      [
+       3.19,
+       4.07
+      ],
+      [
+       4.93,
+       6.45
+      ],
+      [
+       3.27,
+       6.08
+      ],
+      [
+       3.58,
+       4.33
+      ],
+      [
+       4.81,
+       6.05
+      ],
+      [
+       2.78,
+       3.97
+      ],
+      [
+       4.17,
+       5.07
+      ],
+      [
+       2.46,
+       3.28
+      ],
+      [
+       2.95,
+       5.58
+      ],
+      [
+       5.69,
+       6.24
+      ],
+      [
+       5.39,
+       5.97
+      ],
+      [
+       3.57,
+       4.57
+      ],
+      [
+       2.79,
+       5.22
+      ],
+      [
+       4.21,
+       5.18
+      ],
+      [
+       3.7,
+       8.28
+      ],
+      [
+       2.56,
+       7.74
+      ],
+      [
+       3.17,
+       3.97
+      ],
+      [
+       3.42,
+       6.64
+      ],
+      [
+       6.74,
+       8.53
+      ],
+      [
+       7.13,
+       9.69
+      ],
+      [
+       7.11,
+       7.25
+      ],
+      [
+       3.42,
+       4.52
+      ],
+      [
+       2.59,
+       5.98
+      ],
+      [
+       5.79,
+       7.35
+      ],
+      [
+       2.66,
+       6.09
+      ],
+      [
+       2.94,
+       5.02
+      ],
+      [
+       7.89,
+       14.87
+      ],
+      [
+       5.2,
+       6.54
+      ],
+      [
+       3.72,
+       4.76
+      ],
+      [
+       4.05,
+       4.51
+      ],
+      [
+       4.97,
+       5.4
+      ],
+      [
+       2.94,
+       3.82
+      ],
+      [
+       3.85,
+       5.77
+      ],
+      [
+       3.87,
+       4.61
+      ],
+      [
+       5.05,
+       6.65
+      ],
+      [
+       3.52,
+       4.63
+      ],
+      [
+       8.96,
+       9.36
+      ],
+      [
+       2.43,
+       2.61
+      ],
+      [
+       3.98,
+       5.32
+      ],
+      [
+       6.64,
+       14.93
+      ],
+      [
+       3.06,
+       4.69
+      ],
+      [
+       2.61,
+       3.17
+      ],
+      [
+       3.65,
+       5.36
+      ],
+      [
+       2.66,
+       3.59
+      ],
+      [
+       4.67,
+       7.28
+      ],
+      [
+       3.13,
+       5.21
+      ],
+      [
+       3.88,
+       4.45
+      ],
+      [
+       2.93,
+       4.1
+      ],
+      [
+       4.93,
+       5.18
+      ],
+      [
+       25.44,
+       25.69
+      ],
+      [
+       5.62,
+       6.17
+      ],
+      [
+       6.95,
+       7.09
+      ],
+      [
+       10.72,
+       14.79
+      ],
+      [
+       7.66,
+       11.89
+      ],
+      [
+       7.5,
+       8.18
+      ],
+      [
+       3.76,
+       5.1
+      ],
+      [
+       3.24,
+       4.99
+      ],
+      [
+       3.61,
+       5.05
+      ],
+      [
+       3.09,
+       5.69
+      ],
+      [
+       5.4,
+       17.37
+      ],
+      [
+       4.99,
+       7.29
+      ],
+      [
+       5.1,
+       5.73
+      ],
+      [
+       2.77,
+       4.82
+      ],
+      [
+       5.05,
+       8.9
+      ],
+      [
+       2.89,
+       5.19
+      ],
+      [
+       13.28,
+       14.43
+      ],
+      [
+       5.29,
+       7.18
+      ],
+      [
+       3.59,
+       5.0
+      ],
+      [
+       5.3,
+       7.14
+      ],
+      [
+       7.77,
+       11.47
+      ],
+      [
+       4.79,
+       6.23
+      ],
+      [
+       3.25,
+       7.72
+      ],
+      [
+       3.32,
+       5.49
+      ],
+      [
+       3.78,
+       5.14
+      ],
+      [
+       3.46,
+       5.67
+      ],
+      [
+       2.43,
+       2.99
+      ],
+      [
+       4.58,
+       6.43
+      ],
+      [
+       4.36,
+       5.74
+      ],
+      [
+       3.38,
+       4.93
+      ],
+      [
+       8.57,
+       13.77
+      ],
+      [
+       2.77,
+       4.82
+      ],
+      [
+       3.37,
+       4.69
+      ],
+      [
+       7.5,
+       9.47
+      ],
+      [
+       2.56,
+       5.21
+      ],
+      [
+       4.05,
+       4.96
+      ],
+      [
+       7.04,
+       7.27
+      ],
+      [
+       3.78,
+       6.21
+      ],
+      [
+       4.48,
+       5.57
+      ],
+      [
+       2.91,
+       3.79
+      ],
+      [
+       3.01,
+       4.86
+      ],
+      [
+       4.06,
+       7.63
+      ],
+      [
+       2.5,
+       4.31
+      ],
+      [
+       6.62,
+       8.41
+      ],
+      [
+       2.55,
+       3.09
+      ],
+      [
+       5.28,
+       6.67
+      ],
+      [
+       7.81,
+       8.36
+      ],
+      [
+       2.6,
+       5.76
+      ],
+      [
+       3.3,
+       3.7
+      ],
+      [
+       2.46,
+       4.6
+      ],
+      [
+       2.93,
+       3.21
+      ],
+      [
+       3.02,
+       3.32
+      ],
+      [
+       3.56,
+       4.78
+      ],
+      [
+       4.12,
+       4.89
+      ],
+      [
+       3.85,
+       5.61
+      ],
+      [
+       3.85,
+       6.13
+      ],
+      [
+       4.2,
+       7.83
+      ],
+      [
+       10.84,
+       11.25
+      ],
+      [
+       2.93,
+       4.54
+      ],
+      [
+       6.68,
+       17.6
+      ],
+      [
+       3.46,
+       11.42
+      ],
+      [
+       3.57,
+       6.44
+      ]
+     ]
+    },
+    {
+     "name": "UiO-66 / UiO-67 entries",
+     "color": "orange",
+     "points": [
+      [
+       4.01,
+       8.7
+      ],
+      [
+       3.89,
+       8.5
+      ],
+      [
+       3.95,
+       8.46
+      ],
+      [
+       3.79,
+       8.88
+      ],
+      [
+       5.78,
+       12.74
+      ],
+      [
+       6.7,
+       13.0
+      ],
+      [
+       6.72,
+       13.01
+      ],
+      [
+       6.69,
+       12.98
+      ],
+      [
+       6.65,
+       12.92
+      ],
+      [
+       6.67,
+       12.94
+      ],
+      [
+       6.66,
+       12.93
+      ],
+      [
+       6.66,
+       12.93
+      ],
+      [
+       6.68,
+       12.97
+      ],
+      [
+       6.68,
+       12.97
+      ],
+      [
+       3.87,
+       8.74
+      ],
+      [
+       3.86,
+       8.72
+      ],
+      [
+       3.84,
+       8.73
+      ],
+      [
+       3.86,
+       8.72
+      ],
+      [
+       3.88,
+       8.75
+      ],
+      [
+       3.87,
+       8.74
+      ],
+      [
+       5.8,
+       13.03
+      ],
+      [
+       5.63,
+       13.23
+      ]
+     ]
+    }
+   ],
+   "vlines": [
+    {
+     "x": 2.65,
+     "text": "water 2.65 A"
+    },
+    {
+     "x": 7.64,
+     "text": "hydrated Li+ 7.64 A"
+    },
+    {
+     "x": 8.56,
+     "text": "hydrated Mg2+ 8.56 A"
+    }
+   ],
+   "caption": "Our computation on public data. Cage-and-window MOFs (LCD >> PLD) such as the UiO family have narrow windows into larger cages; the window (PLD) is what sieves."
+  }
+ ],
+ "stats": {
+  "core2019_structures": 14142,
+  "core2019_unique_families": 12863,
+  "core2024_records": 2664,
+  "core2024_unique_mofid": 1385,
+  "bands_core2019": [
+   {
+    "band": "PLD < 2.65 A (below water kinetic diameter)",
+    "short": "< 2.65 A",
+    "lo_A": 0,
+    "hi_A": 2.65,
+    "n": 979,
+    "pct": 7.61
+   },
+   {
+    "band": "2.65-7.64 A (water passes; hydrated Li+ must partly dehydrate)",
+    "short": "2.65-7.64 A",
+    "lo_A": 2.65,
+    "hi_A": 7.64,
+    "n": 10381,
+    "pct": 80.7
+   },
+   {
+    "band": "7.64-8.56 A (between hydrated Li+ and hydrated Mg2+)",
+    "short": "7.64-8.56 A",
+    "lo_A": 7.64,
+    "hi_A": 8.56,
+    "n": 423,
+    "pct": 3.29
+   },
+   {
+    "band": "PLD >= 8.56 A (both hydrated ions fit)",
+    "short": ">= 8.56 A",
+    "lo_A": 8.56,
+    "hi_A": null,
+    "n": 1080,
+    "pct": 8.4
+   }
+  ],
+  "bands_core2024": [
+   {
+    "band": "PLD < 2.65 A (below water kinetic diameter)",
+    "short": "< 2.65 A",
+    "lo_A": 0,
+    "hi_A": 2.65,
+    "n": 64,
+    "pct": 4.62
+   },
+   {
+    "band": "2.65-7.64 A (water passes; hydrated Li+ must partly dehydrate)",
+    "short": "2.65-7.64 A",
+    "lo_A": 2.65,
+    "hi_A": 7.64,
+    "n": 1131,
+    "pct": 81.66
+   },
+   {
+    "band": "7.64-8.56 A (between hydrated Li+ and hydrated Mg2+)",
+    "short": "7.64-8.56 A",
+    "lo_A": 7.64,
+    "hi_A": 8.56,
+    "n": 40,
+    "pct": 2.89
+   },
+   {
+    "band": "PLD >= 8.56 A (both hydrated ions fit)",
+    "short": ">= 8.56 A",
+    "lo_A": 8.56,
+    "hi_A": null,
+    "n": 150,
+    "pct": 10.83
+   }
+  ],
+  "bands_combined_possible_overlap": [
+   {
+    "band": "PLD < 2.65 A (below water kinetic diameter)",
+    "short": "< 2.65 A",
+    "lo_A": 0,
+    "hi_A": 2.65,
+    "n": 1043,
+    "pct": 7.32
+   },
+   {
+    "band": "2.65-7.64 A (water passes; hydrated Li+ must partly dehydrate)",
+    "short": "2.65-7.64 A",
+    "lo_A": 2.65,
+    "hi_A": 7.64,
+    "n": 11512,
+    "pct": 80.8
+   },
+   {
+    "band": "7.64-8.56 A (between hydrated Li+ and hydrated Mg2+)",
+    "short": "7.64-8.56 A",
+    "lo_A": 7.64,
+    "hi_A": 8.56,
+    "n": 463,
+    "pct": 3.25
+   },
+   {
+    "band": "PLD >= 8.56 A (both hydrated ions fit)",
+    "short": ">= 8.56 A",
+    "lo_A": 8.56,
+    "hi_A": null,
+    "n": 1230,
+    "pct": 8.63
+   }
+  ],
+  "window_2p65_to_8p56": {
+   "core2019": {
+    "n": 10804,
+    "of": 12863,
+    "pct": 84.0,
+    "ci95_pct": [
+     83.35,
+     84.62
+    ]
+   },
+   "core2024": {
+    "n": 1171,
+    "of": 1385,
+    "pct": 84.5,
+    "ci95_pct": [
+     82.55,
+     86.36
+    ]
+   }
+  },
+  "core2019_sub_hydrated_Li_2p65_to_7p64": 10381,
+  "core2019_between_hydrated_Li_and_Mg_7p64_to_8p56": 423,
+  "core2024_window_and_ml_water_stability_ge_0p5": {
+   "n": 874,
+   "of_window": 1171,
+   "with_prediction": 1087,
+   "note": "Water_stability is an ML prediction published with CoRE MOF 2024, not a measurement."
+  },
+  "pld_median_A": {
+   "core2019": 4.19,
+   "core2024": 4.5
+  },
+  "references": [
+   {
+    "name": "UiO-66",
+    "csd_refcode_family": "RUBTAK",
+    "n_entries": 10,
+    "PLD_median_A": 3.87,
+    "PLD_range_A": [
+     3.79,
+     4.01
+    ],
+    "LCD_median_A": 8.73,
+    "source": "CoRE MOF 2019 ASR"
+   },
+   {
+    "name": "UiO-67",
+    "csd_refcode_family": "WIZMAV",
+    "n_entries": 12,
+    "PLD_median_A": 6.67,
+    "PLD_range_A": [
+     5.63,
+     6.72
+    ],
+    "LCD_median_A": 12.97,
+    "source": "CoRE MOF 2019 ASR"
+   }
+  ],
+  "ion_diameters_A": {
+   "hydrated_Nightingale1959": {
+    "Li+": 7.64,
+    "Na+": 7.16,
+    "K+": 6.62,
+    "Mg2+": 8.56,
+    "Ca2+": 8.24
+   },
+   "bare_Shannon1976_CN6": {
+    "Li+": 1.52,
+    "Na+": 2.04,
+    "K+": 2.76,
+    "Mg2+": 1.44,
+    "Ca2+": 2.0
+   },
+   "water_kinetic_Breck1974": 2.65
+  }
+ },
+ "findings": [
+  "CoRE MOF 2019: 10,804 of 12,863 independent MOFs (84.0%, 95% CI 83.35-84.62%) have PLD between 2.65 and 8.56 A.",
+  "10,381 of those have windows narrower than hydrated Li+ (2.65-7.64 A), the partial-dehydration regime; only 423 fall in the narrow 7.64-8.56 A band between the hydrated Li+ and Mg2+ diameters.",
+  "CoRE MOF 2024 public SI set: 1,171 of 1,385 unique MOFs (84.5%) are in the same 2.65-8.56 A window.",
+  "UiO-66: PLD 3.87 A (LCD 8.73 A) in CoRE MOF 2019 ASR, 10 entries, range 3.79-4.01 A.",
+  "UiO-67: PLD 6.67 A (LCD 12.97 A) in CoRE MOF 2019 ASR, 12 entries, range 5.63-6.72 A.",
+  "The CoRE MOF 2024 authors' ML model predicts water stability >= 0.5 for 874 of the 1171 in-window 2024 MOFs; that is a model output, not a measurement."
+ ],
+ "limitations": [
+  "Geometric pre-screen only. PLD from rigid-framework Zeo++ geometry; real frameworks flex, swell and breathe in water, and windows shift by tenths of an angstrom.",
+  "PLD in a band does not imply Li/Mg selectivity: dehydration energetics, charge, functional groups and transport path all matter.",
+  "Membrane performance is dominated by growth orientation, intergrowth and defects (missing linkers, grain boundaries), none of which are in these crystal-structure databases. These are exactly what an orbital process might change, and that is a hypothesis, not a result.",
+  "CoRE only contains frameworks with PLD >= 2.4 A, so the 'below water' band is truncated by design.",
+  "Refcode-family and MOFid de-duplication is approximate; CoRE 2019 and CoRE 2024 may share some MOFs, so their counts are reported separately rather than summed.",
+  "Hydrated ion sizes are model-dependent (Nightingale's values are one standard set)."
+ ],
+ "future_big_data": [
+  "Add QMOF and the licensed CSD-derived part of CoRE MOF 2024 (~40,800 structures in total) to widen the screen.",
+  "Run molecular-dynamics ion-dehydration / transport screens on the in-window MOFs, then rank by predicted Li/Mg selectivity and water stability.",
+  "Mine the membrane literature (OpenAlex) for reported Li/Mg selectivities of grown MOF membranes and join them to these descriptors."
+ ],
+ "partners": [
+  {
+   "name": "CoRE MOF team (Chung group and co-authors)",
+   "why": "Maintainers of the descriptor database this screen is built on; the full 2024 set needs CSD-licensed structures.",
+   "evidence": "Data source of this analysis (Zenodo 15055758, 7691378)."
+  },
+  {
+   "name": "CCDC (Cambridge Structural Database)",
+   "why": "Owner of most experimental MOF structures; the CSD-derived 32,500 CoRE 2024 entries are not in the open release.",
+   "evidence": "CoRE MOF 2024 Zenodo record: public release covers the SI subset only."
+  },
+  {
+   "name": "NuMat Technologies",
+   "why": "Commercial MOF manufacturing at scale, which a space-grown membrane would have to beat or complement.",
+   "evidence": "Not from this dataset; named as an industry MOF producer in the project brief."
+  },
+  {
+   "name": "Lithium direct-lithium-extraction (DLE) companies, e.g. Lilac Solutions",
+   "why": "End users of Li/Mg separation from brine.",
+   "evidence": "Not from this dataset; the screen targets their separation problem. Lilac's published approach is ion exchange, not MOF membranes."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/matdb_mof.py",
+  "cluster/bigdata/matdb-mof.sbatch"
+ ],
+ "reproduce": [
+  "sbatch cluster/bigdata/matdb-mof.sbatch   # downloads Zenodo CSVs and runs the screen",
+  "python -I analysis/bigdata/matdb_mof.py bigdata/matdb/raw/mof data/results/bigdata/mof-pore-screen.json"
+ ],
+ "generated_at": "2026-10-25T03:13:17+00:00"
+}

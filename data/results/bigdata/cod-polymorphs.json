@@ -1,0 +1,1258 @@
+{
+ "id": "cod-polymorphs",
+ "tab": "materials",
+ "material": "small",
+ "title": "How common is polymorphism? Every crystal in the Crystallography Open Database",
+ "question": "How often does the same molecule crystallise in more than one solid form, and is that common among FDA-approved drugs?",
+ "headline": {
+  "value": "58",
+  "unit": "%",
+  "text": "Of the 123 FDA-approved drugs crystallised at least twice in the open Crystallography Open Database, 72 (58%) show two or more distinct solid forms, vs 34% for organic compounds in general. A lower bound: the open database misses many known forms."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "Crystallography Open Database (COD), bulk archive cod-cifs-mysql.zip",
+   "url": "https://www.crystallography.net/archives/",
+   "license": "CC0 (COD data are public domain)",
+   "records": 521901,
+   "bytes": 27107247440,
+   "accessed": "2026-10-24",
+   "notes": "Release of 2025-02-09 (SVN r297631), md5-verified. All CIFs parsed by our job array (108.9 GB uncompressed); COD's MySQL data table from the same archive used for duplicate/retraction flags and cross-checks. The live COD has grown since this release; we used the latest bulk archive."
+  },
+  {
+   "name": "FDA Orange Book (products.txt)",
+   "url": "https://www.fda.gov/media/76860/download",
+   "license": "public domain (US government)",
+   "records": 48864,
+   "bytes": 1099838,
+   "accessed": "2026-10-24",
+   "notes": "Monthly data file (Oct 2026 edition); RX, OTC and discontinued products; ingredients split on ';'."
+  },
+  {
+   "name": "PubChem PUG-REST (name -> structure)",
+   "url": "https://pubchem.ncbi.nlm.nih.gov/",
+   "license": "public",
+   "records": 2103,
+   "bytes": 0,
+   "accessed": "2026-10-24",
+   "notes": "Used only to get a structure (InChIKey) for each Orange Book ingredient."
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging",
+  "partitions": [
+   "mit_data_transfer",
+   "mit_normal",
+   "mit_quicktest"
+  ],
+  "job_ids": [
+   "26813010",
+   "26813661",
+   "26814249",
+   "26814250",
+   "26814637",
+   "26816035",
+   "26816358",
+   "26816547",
+   "26816712",
+   "26817191"
+  ],
+  "cpu_hours": 3.96,
+  "wall_minutes": 70.0,
+  "peak_storage_gb": 27.8,
+  "jobs": [
+   {
+    "jobid": "26813010",
+    "name": "of-matdb-fetch",
+    "partition": "mit_data_transfer",
+    "state": "FAILED",
+    "elapsed_s": 417,
+    "ncpus": 4
+   },
+   {
+    "jobid": "26813661",
+    "name": "of-matdb-fetch",
+    "partition": "mit_data_transfer",
+    "state": "COMPLETED",
+    "elapsed_s": 1761,
+    "ncpus": 4
+   },
+   {
+    "jobid": "26814249",
+    "name": "of-matdb-prep",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 106,
+    "ncpus": 8
+   },
+   {
+    "jobid": "26814250",
+    "name": "of-matdb-fda",
+    "partition": "mit_data_transfer",
+    "state": "COMPLETED",
+    "elapsed_s": 880,
+    "ncpus": 2
+   },
+   {
+    "jobid": "26814637",
+    "name": "of-matdb-analyse",
+    "partition": "mit_quicktest",
+    "state": "FAILED",
+    "elapsed_s": 18,
+    "ncpus": 2
+   },
+   {
+    "jobid": "26816035_0",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 83,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_1",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 55,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_2",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 55,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_3",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 58,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_4",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 58,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_5",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 52,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_6",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 52,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816035_7",
+    "name": "of-matdb-codparse",
+    "partition": "mit_normal",
+    "state": "COMPLETED",
+    "elapsed_s": 55,
+    "ncpus": 1
+   },
+   {
+    "jobid": "26816358",
+    "name": "of-matdb-codparse-burst",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 109,
+    "ncpus": 14
+   },
+   {
+    "jobid": "26816547",
+    "name": "of-matdb-analyse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 151,
+    "ncpus": 2
+   },
+   {
+    "jobid": "26816712",
+    "name": "of-matdb-analyse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 147,
+    "ncpus": 2
+   },
+   {
+    "jobid": "26817191",
+    "name": "of-matdb-analyse",
+    "partition": "mit_quicktest",
+    "state": "COMPLETED",
+    "elapsed_s": 146,
+    "ncpus": 2
+   }
+  ],
+  "note": "wall_minutes sums the elapsed time of every job / array task (not the critical path). 26813010 = first download attempt, cancelled after the COD server reset its 10 parallel connections (its finished byte ranges were reused by 26813661). 26816035 = 32-task parse array; with mit_normal congested, 8 tasks ran there and burst job 26816358 (mit_quicktest, 14 CPUs) parsed the other shards with the same script (3 shards were parsed by both at the same moment; outputs identical, written atomically), then the unstarted array tasks were cancelled. 26814637 = failed test run (bug fixed); 26816547 and 26816712 = superseded analysis runs; 26817191 = the run that produced this file."
+ },
+ "method": [
+  "Downloaded COD's single-file bulk archive (27.1 GB zip, 521,901 CIFs + MySQL dump) on mit_data_transfer; md5 verified. Chosen over the per-file rsync tree to avoid putting ~520k files on shared scratch.",
+  "Parsed every CIF straight from the zip with a 32-task job array (gemmi CIF parser, regex fallback): formula, names, space group, cell, Z, temperatures, pressures, COD id; COD's SQL table fills gaps and is used as a cross-check (agreement rates in stats.parse_qc).",
+  "Filtered out retracted / error-flagged, theoretical, duplicate and on-hold entries, entries with a recorded non-ambient pressure or a pressure study in the title, and non-integer (partial-occupancy) formulas; kept organic molecular crystals (C and H plus N, O, S, P, halogens, B, Si, Se only).",
+  "Same compound = same GCD-reduced Hill formula AND a shared normalised name (polymorph descriptors stripped); union-find within each formula. Cross-check: RDKit InChIKey connectivity block of COD's SMILES (single-component entries).",
+  "Same form = same space group (or a commonly mis-assigned or enantiomorphic pair such as Cc/C2/c or P3121/P3221) AND volume per non-H atom within 3% (+0.005% per K of temperature gap) after correcting to 293 K with the data-derived expansion coefficient (1.68e-4 /K); volume splits need recorded temperatures and are ignored at ~integer volume ratios (Z errors). Polymorphic = >= 2 forms, excluding cases whose only split is racemate vs enantiopure (one Sohncke, one non-Sohncke form).",
+  "FDA: Orange Book ingredients -> PubChem structure -> InChIKey of the active moiety; matched to neat COD entries by InChIKey connectivity (and by name + formula for entries without SMILES).",
+  "Validated on ritonavir, carbamazepine, paracetamol, sulfathiazole and ROY; sensitivity to tolerance, space-group-only rule and identity definition reported in stats."
+ ],
+ "charts": [
+  {
+   "id": "forms-per-compound",
+   "kind": "bar",
+   "title": "How many distinct solid forms each compound has",
+   "subtitle": "Organic molecular crystals in COD with at least two crystal-structure entries",
+   "x": {
+    "label": "Distinct forms found",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Share of compounds",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "All organic compounds (n = 1,803)",
+     "color": "cyan",
+     "points": [
+      [
+       "1",
+       66.0
+      ],
+      [
+       "2",
+       30.89
+      ],
+      [
+       "3",
+       2.61
+      ],
+      [
+       "4",
+       0.33
+      ],
+      [
+       "5+",
+       0.17
+      ]
+     ]
+    },
+    {
+     "name": "FDA active ingredients (n = 123)",
+     "color": "orange",
+     "points": [
+      [
+       "1",
+       41.46
+      ],
+      [
+       "2",
+       43.9
+      ],
+      [
+       "3",
+       9.76
+      ],
+      [
+       "4",
+       2.44
+      ],
+      [
+       "5+",
+       2.44
+      ]
+     ]
+    }
+   ],
+   "caption": "Our computation on public data. A form = same space group (allowing commonly mis-assigned pairs) and volume per non-H atom within 3% after correcting to 293 K. Forms seen in COD are a lower bound on forms that exist: most compounds are only crystallised once or twice."
+  },
+  {
+   "id": "polymorph-share",
+   "kind": "bar",
+   "title": "Share of compounds with two or more solid forms",
+   "subtitle": "Among compounds with at least two COD entries",
+   "x": {
+    "label": "Population",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Polymorphic",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Polymorphic (>= 2 forms)",
+     "color": "orange",
+     "points": [
+      [
+       "All organic, formula+name",
+       34.0
+      ],
+      [
+       "All organic, structure key",
+       34.4
+      ],
+      [
+       "FDA active ingredients",
+       58.5
+      ]
+     ]
+    }
+   ],
+   "caption": "Our computation on public data. Drugs are studied far more intensively than typical compounds (polymorph screens, regulatory filings), so the gap reflects attention as well as chemistry; see the stratified chart."
+  },
+  {
+   "id": "polymorph-share-by-entries",
+   "kind": "bar",
+   "title": "Polymorph share rises with how often a compound has been crystallised",
+   "subtitle": "Compounds stratified by number of COD entries; structure-key identity",
+   "x": {
+    "label": "COD entries per compound",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Polymorphic",
+    "unit": "%",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "FDA active ingredients",
+     "color": "orange",
+     "points": [
+      [
+       "2",
+       53.7
+      ],
+      [
+       "3-4",
+       58.6
+      ],
+      [
+       "5-9",
+       75.0
+      ],
+      [
+       "10+",
+       63.6
+      ]
+     ]
+    },
+    {
+     "name": "Other organic compounds",
+     "color": "cyan",
+     "points": [
+      [
+       "2",
+       31.3
+      ],
+      [
+       "3-4",
+       48.5
+      ],
+      [
+       "5-9",
+       38.7
+      ],
+      [
+       "10+",
+       36.0
+      ]
+     ]
+    }
+   ],
+   "caption": "Our computation on public data. Comparing like with like (same number of determinations) separates 'drugs are more polymorphic' from 'drugs are studied more'. Sample sizes and 95% intervals are in stats.stratified."
+  },
+  {
+   "id": "famous-cases",
+   "kind": "hbar",
+   "title": "Famous polymorphic compounds: forms in COD vs forms known",
+   "subtitle": "Validation of the heuristic on textbook cases",
+   "x": {
+    "label": "Number of forms",
+    "unit": "",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Compound",
+    "unit": "forms",
+    "scale": "category"
+   },
+   "series": [
+    {
+     "name": "Forms found by our heuristic in COD",
+     "color": "orange",
+     "points": [
+      [
+       "paracetamol",
+       3
+      ],
+      [
+       "carbamazepine",
+       3
+      ],
+      [
+       "ritonavir",
+       0
+      ],
+      [
+       "sulfathiazole",
+       2
+      ],
+      [
+       "ROY",
+       1
+      ]
+     ]
+    },
+    {
+     "name": "Forms known in the literature",
+     "color": "grey",
+     "points": [
+      [
+       "paracetamol",
+       3
+      ],
+      [
+       "carbamazepine",
+       5
+      ],
+      [
+       "ritonavir",
+       2
+      ],
+      [
+       "sulfathiazole",
+       5
+      ],
+      [
+       "ROY",
+       10
+      ]
+     ]
+    }
+   ],
+   "caption": "COD is an open subset of all published structures (the CSD has far more), so missing forms are expected. Literature counts are approximate and grow over time."
+  }
+ ],
+ "stats": {
+  "entries_total": 521901,
+  "entries_after_filters": 447032,
+  "organic_entries": 169988,
+  "organic_entries_with_name": 64768,
+  "generic_names_dropped": 118,
+  "filter_removed": {
+   "retracted or COD 'errors' status": 158,
+   "theoretical (computed) structure": 920,
+   "flagged duplicate of another COD entry": 5415,
+   "on hold (prepublication)": 387,
+   "no parsable sum formula": 362,
+   "no valid space group number": 2854,
+   "non-ambient pressure recorded (outside 80-120 kPa)": 4073,
+   "pressure study (title/name mentions pressure, GPa, kbar)": 4173,
+   "non-integer formula (partial occupancy / disorder)": 56527
+  },
+  "parse_qc": {
+   "cif_parsed": 521901,
+   "matched_to_sql": 521874,
+   "parse_modes": {
+    "gemmi": 521901
+   },
+   "sg_number_agree_pct": 99.36,
+   "volume_agree_0p1pct_pct": 99.99,
+   "formula_agree_pct": 99.89,
+   "uncompressed_cif_bytes": 108890632690
+  },
+  "alpha_V_per_K": {
+   "median": 0.00016823310606131284,
+   "iqr": [
+    0.00012284558298017141,
+    0.00021276300826472057
+   ],
+   "n_compounds": 663
+  },
+  "tolerance": 0.03,
+  "primary": {
+   "label": "formula + name (primary)",
+   "compounds": 166537,
+   "compounds_with_2plus_entries": 1803,
+   "polymorphic": 613,
+   "share_of_all_compounds_pct": 0.37,
+   "share_of_multi_entry_compounds_pct": 34.0,
+   "ci95_multi_entry_pct": [
+    31.8,
+    36.2
+   ],
+   "compounds_with_2plus_publications": 648,
+   "share_of_multi_publication_compounds_pct": 28.7,
+   "ci95_multi_publication_pct": [
+    25.4,
+    32.3
+   ],
+   "split_by_space_group": 546,
+   "excluded_racemate_vs_enantiopure_only": 113,
+   "share_incl_racemate_splits_pct": 40.3,
+   "forms_seen_at_similar_T": 497,
+   "n_forms_hist_multi_entry": {
+    "1": 1190,
+    "2": 557,
+    "3": 47,
+    "4": 6,
+    "5": 3
+   }
+  },
+  "primary_named_only": {
+   "label": "formula + name, named entries only",
+   "compounds": 61317,
+   "compounds_with_2plus_entries": 1803,
+   "polymorphic": 613,
+   "share_of_all_compounds_pct": 1.0,
+   "share_of_multi_entry_compounds_pct": 34.0,
+   "ci95_multi_entry_pct": [
+    31.8,
+    36.2
+   ],
+   "compounds_with_2plus_publications": 648,
+   "share_of_multi_publication_compounds_pct": 28.7,
+   "ci95_multi_publication_pct": [
+    25.4,
+    32.3
+   ],
+   "split_by_space_group": 546,
+   "excluded_racemate_vs_enantiopure_only": 113,
+   "share_incl_racemate_splits_pct": 40.3,
+   "forms_seen_at_similar_T": 497,
+   "n_forms_hist_multi_entry": {
+    "1": 1190,
+    "2": 557,
+    "3": 47,
+    "4": 6,
+    "5": 3
+   }
+  },
+  "structure_crosscheck": {
+   "label": "InChIKey connectivity (cross-check)",
+   "compounds": 76654,
+   "compounds_with_2plus_entries": 3549,
+   "polymorphic": 1221,
+   "share_of_all_compounds_pct": 1.59,
+   "share_of_multi_entry_compounds_pct": 34.4,
+   "ci95_multi_entry_pct": [
+    32.9,
+    36.0
+   ],
+   "compounds_with_2plus_publications": 1839,
+   "share_of_multi_publication_compounds_pct": 24.1,
+   "ci95_multi_publication_pct": [
+    22.2,
+    26.1
+   ],
+   "split_by_space_group": 1076,
+   "excluded_racemate_vs_enantiopure_only": 249,
+   "share_incl_racemate_splits_pct": 41.4,
+   "forms_seen_at_similar_T": 992,
+   "n_forms_hist_multi_entry": {
+    "1": 2328,
+    "2": 1110,
+    "3": 100,
+    "4": 6,
+    "5": 5
+   }
+  },
+  "formula_only_upper_bound": {
+   "label": "formula only (liberal upper bound; merges isomers)",
+   "compounds": 91926,
+   "compounds_with_2plus_entries": 22211,
+   "polymorphic": 15397,
+   "share_of_all_compounds_pct": 16.75,
+   "share_of_multi_entry_compounds_pct": 69.3,
+   "ci95_multi_entry_pct": [
+    68.7,
+    69.9
+   ],
+   "compounds_with_2plus_publications": 18927,
+   "share_of_multi_publication_compounds_pct": 72.4,
+   "ci95_multi_publication_pct": [
+    71.8,
+    73.0
+   ],
+   "split_by_space_group": 14244,
+   "excluded_racemate_vs_enantiopure_only": 2799,
+   "share_incl_racemate_splits_pct": 81.9,
+   "forms_seen_at_similar_T": 12225,
+   "n_forms_hist_multi_entry": {
+    "1": 6814,
+    "2": 7557,
+    "3": 3575,
+    "4": 1709,
+    "5": 2556
+   }
+  },
+  "sensitivity": {
+   "tol_2pct": {
+    "label": "formula + name, tol 2%",
+    "compounds": 166537,
+    "compounds_with_2plus_entries": 1803,
+    "polymorphic": 659,
+    "share_of_all_compounds_pct": 0.4,
+    "share_of_multi_entry_compounds_pct": 36.6,
+    "ci95_multi_entry_pct": [
+     34.4,
+     38.8
+    ],
+    "compounds_with_2plus_publications": 648,
+    "share_of_multi_publication_compounds_pct": 30.6,
+    "ci95_multi_publication_pct": [
+     27.1,
+     34.2
+    ],
+    "split_by_space_group": 550,
+    "excluded_racemate_vs_enantiopure_only": 115,
+    "share_incl_racemate_splits_pct": 42.9,
+    "forms_seen_at_similar_T": 531,
+    "n_forms_hist_multi_entry": {
+     "1": 1144,
+     "2": 592,
+     "3": 54,
+     "4": 9,
+     "5": 4
+    }
+   },
+   "tol_5pct": {
+    "label": "formula + name, tol 5%",
+    "compounds": 166537,
+    "compounds_with_2plus_entries": 1803,
+    "polymorphic": 570,
+    "share_of_all_compounds_pct": 0.34,
+    "share_of_multi_entry_compounds_pct": 31.6,
+    "ci95_multi_entry_pct": [
+     29.5,
+     33.8
+    ],
+    "compounds_with_2plus_publications": 648,
+    "share_of_multi_publication_compounds_pct": 27.9,
+    "ci95_multi_publication_pct": [
+     24.6,
+     31.5
+    ],
+    "split_by_space_group": 543,
+    "excluded_racemate_vs_enantiopure_only": 109,
+    "share_incl_racemate_splits_pct": 37.7,
+    "forms_seen_at_similar_T": 464,
+    "n_forms_hist_multi_entry": {
+     "1": 1233,
+     "2": 523,
+     "3": 41,
+     "4": 5,
+     "5": 1
+    }
+   },
+   "cell_shape_rule": {
+    "label": "formula + name, + Niggli reduced-cell shape",
+    "compounds": 166537,
+    "compounds_with_2plus_entries": 1803,
+    "polymorphic": 868,
+    "share_of_all_compounds_pct": 0.52,
+    "share_of_multi_entry_compounds_pct": 48.1,
+    "ci95_multi_entry_pct": [
+     45.8,
+     50.4
+    ],
+    "compounds_with_2plus_publications": 648,
+    "share_of_multi_publication_compounds_pct": 37.8,
+    "ci95_multi_publication_pct": [
+     34.2,
+     41.6
+    ],
+    "split_by_space_group": 562,
+    "excluded_racemate_vs_enantiopure_only": 121,
+    "share_incl_racemate_splits_pct": 54.9,
+    "forms_seen_at_similar_T": 684,
+    "n_forms_hist_multi_entry": {
+     "1": 935,
+     "2": 741,
+     "3": 81,
+     "4": 36,
+     "5": 10
+    }
+   },
+   "space_group_only": {
+    "polymorphic": 649,
+    "share_of_multi_entry_compounds_pct": 36.0
+   }
+  },
+  "fda": {
+   "orange_book_ingredient_strings": 2382,
+   "with_pubchem_structure": 2103,
+   "excluded_metal_complex_ingredients": 98,
+   "unique_active_moieties": 1838,
+   "moieties_with_neat_cod_structure": 295,
+   "moieties_with_salt_solvate_or_cocrystal_in_cod": 361,
+   "name_matched_entries_without_smiles": 135,
+   "summary": {
+    "label": "FDA active moieties (structure match)",
+    "compounds": 295,
+    "compounds_with_2plus_entries": 123,
+    "polymorphic": 72,
+    "share_of_all_compounds_pct": 24.41,
+    "share_of_multi_entry_compounds_pct": 58.5,
+    "ci95_multi_entry_pct": [
+     49.7,
+     66.9
+    ],
+    "compounds_with_2plus_publications": 83,
+    "share_of_multi_publication_compounds_pct": 57.8,
+    "ci95_multi_publication_pct": [
+     47.1,
+     67.9
+    ],
+    "split_by_space_group": 63,
+    "excluded_racemate_vs_enantiopure_only": 8,
+    "share_incl_racemate_splits_pct": 65.0,
+    "forms_seen_at_similar_T": 62,
+    "n_forms_hist_multi_entry": {
+     "1": 51,
+     "2": 54,
+     "3": 12,
+     "4": 3,
+     "5": 3
+    }
+   },
+   "summary_cell_shape_rule": {
+    "label": "FDA active moieties, + cell-shape rule",
+    "compounds": 295,
+    "compounds_with_2plus_entries": 123,
+    "polymorphic": 87,
+    "share_of_all_compounds_pct": 29.49,
+    "share_of_multi_entry_compounds_pct": 70.7,
+    "ci95_multi_entry_pct": [
+     62.2,
+     78.0
+    ],
+    "compounds_with_2plus_publications": 83,
+    "share_of_multi_publication_compounds_pct": 69.9,
+    "ci95_multi_publication_pct": [
+     59.3,
+     78.7
+    ],
+    "split_by_space_group": 66,
+    "excluded_racemate_vs_enantiopure_only": 9,
+    "share_incl_racemate_splits_pct": 78.0,
+    "forms_seen_at_similar_T": 72,
+    "n_forms_hist_multi_entry": {
+     "1": 36,
+     "2": 57,
+     "3": 14,
+     "4": 9,
+     "5": 7
+    }
+   },
+   "most_forms_in_cod": [
+    {
+     "drug": "chlorpropamide",
+     "forms_in_cod": 7,
+     "cod_entries": 12,
+     "space_groups": [
+      4,
+      13,
+      19,
+      33,
+      60,
+      61
+     ]
+    },
+    {
+     "drug": "sulfamerazine",
+     "forms_in_cod": 5,
+     "cod_entries": 46,
+     "space_groups": [
+      14,
+      33,
+      61
+     ]
+    },
+    {
+     "drug": "glycine",
+     "forms_in_cod": 5,
+     "cod_entries": 45,
+     "space_groups": [
+      4,
+      14,
+      144,
+      145
+     ]
+    },
+    {
+     "drug": "piroxicam",
+     "forms_in_cod": 4,
+     "cod_entries": 8,
+     "space_groups": [
+      2,
+      14,
+      29
+     ]
+    },
+    {
+     "drug": "nilutamide",
+     "forms_in_cod": 4,
+     "cod_entries": 5,
+     "space_groups": [
+      2,
+      14,
+      15
+     ]
+    },
+    {
+     "drug": "remdesivir",
+     "forms_in_cod": 4,
+     "cod_entries": 4,
+     "space_groups": [
+      1,
+      4
+     ]
+    },
+    {
+     "drug": "carbamazepine",
+     "forms_in_cod": 3,
+     "cod_entries": 16,
+     "space_groups": [
+      14,
+      15,
+      61
+     ]
+    },
+    {
+     "drug": "d-glucose",
+     "forms_in_cod": 3,
+     "cod_entries": 11,
+     "space_groups": [
+      19,
+      145
+     ]
+    },
+    {
+     "drug": "tolbutamide",
+     "forms_in_cod": 3,
+     "cod_entries": 9,
+     "space_groups": [
+      7,
+      14,
+      33,
+      60
+     ]
+    },
+    {
+     "drug": "fluconazole",
+     "forms_in_cod": 3,
+     "cod_entries": 5,
+     "space_groups": [
+      14,
+      15,
+      61
+     ]
+    },
+    {
+     "drug": "indomethacin",
+     "forms_in_cod": 3,
+     "cod_entries": 4,
+     "space_groups": [
+      2,
+      4,
+      15
+     ]
+    },
+    {
+     "drug": "mannitol",
+     "forms_in_cod": 3,
+     "cod_entries": 4,
+     "space_groups": [
+      4,
+      18,
+      19
+     ]
+    },
+    {
+     "drug": "gefitinib",
+     "forms_in_cod": 3,
+     "cod_entries": 4,
+     "space_groups": [
+      2
+     ]
+    },
+    {
+     "drug": "modafinil",
+     "forms_in_cod": 3,
+     "cod_entries": 4,
+     "space_groups": [
+      4,
+      14,
+      33,
+      43
+     ]
+    },
+    {
+     "drug": "nicotinamide",
+     "forms_in_cod": 3,
+     "cod_entries": 3,
+     "space_groups": [
+      2,
+      13,
+      14
+     ]
+    },
+    {
+     "drug": "ketoprofen",
+     "forms_in_cod": 3,
+     "cod_entries": 3,
+     "space_groups": [
+      2,
+      4,
+      19
+     ]
+    },
+    {
+     "drug": "chlorthalidone",
+     "forms_in_cod": 3,
+     "cod_entries": 3,
+     "space_groups": [
+      2,
+      4
+     ]
+    },
+    {
+     "drug": "sulfamethoxazole",
+     "forms_in_cod": 3,
+     "cod_entries": 3,
+     "space_groups": [
+      14,
+      15
+     ]
+    },
+    {
+     "drug": "acetaminophen",
+     "forms_in_cod": 2,
+     "cod_entries": 29,
+     "space_groups": [
+      14,
+      61
+     ]
+    },
+    {
+     "drug": "pyrazinamide",
+     "forms_in_cod": 2,
+     "cod_entries": 12,
+     "space_groups": [
+      2,
+      7,
+      14
+     ]
+    }
+   ]
+  },
+  "stratified_by_entries": {
+   "2": {
+    "drugs_n": 67,
+    "drugs_pct": 53.7,
+    "drugs_ci": [
+     41.9,
+     65.1
+    ],
+    "others_n": 2857,
+    "others_pct": 31.3,
+    "others_ci": [
+     29.6,
+     33.0
+    ]
+   },
+   "3-4": {
+    "drugs_n": 29,
+    "drugs_pct": 58.6,
+    "drugs_ci": [
+     40.7,
+     74.5
+    ],
+    "others_n": 439,
+    "others_pct": 48.5,
+    "others_ci": [
+     43.9,
+     53.2
+    ]
+   },
+   "5-9": {
+    "drugs_n": 16,
+    "drugs_pct": 75.0,
+    "drugs_ci": [
+     50.5,
+     89.8
+    ],
+    "others_n": 119,
+    "others_pct": 38.7,
+    "others_ci": [
+     30.4,
+     47.6
+    ]
+   },
+   "10+": {
+    "drugs_n": 11,
+    "drugs_pct": 63.6,
+    "drugs_ci": [
+     35.4,
+     84.8
+    ],
+    "others_n": 25,
+    "others_pct": 36.0,
+    "others_ci": [
+     20.2,
+     55.5
+    ]
+   }
+  },
+  "famous_cases": [
+   {
+    "name": "paracetamol",
+    "inchikey": "RZVAJINKPMORJF-UHFFFAOYSA-N",
+    "known_forms_literature": 3,
+    "literature_note": "forms I-III at ambient pressure (paracetamol)",
+    "cod_entries_structure_match": 21,
+    "forms_structure_match": 2,
+    "forms_structure_match_cell_rule": 2,
+    "cod_entries_name_match": 30,
+    "forms_name_match": 3,
+    "space_groups": [
+     14,
+     61
+    ],
+    "cod_ids": [
+     1548348,
+     2007205,
+     2104364,
+     2105052,
+     2300229,
+     2300230,
+     2300231,
+     2300232,
+     2300233,
+     2300234,
+     2300235,
+     2300236,
+     2300237,
+     2300238,
+     2300239,
+     2300241,
+     2300242,
+     2300455,
+     4510931,
+     7126913,
+     7243949
+    ],
+    "temperatures_K": [
+     100,
+     150,
+     293,
+     298
+    ]
+   },
+   {
+    "name": "carbamazepine",
+    "inchikey": "FFGPTBGBLSHEPO-UHFFFAOYSA-N",
+    "known_forms_literature": 5,
+    "literature_note": "anhydrous forms I-V; Form V: Arlin et al., Chem. Commun. 47, 7074 (2011)",
+    "cod_entries_structure_match": 16,
+    "forms_structure_match": 3,
+    "forms_structure_match_cell_rule": 3,
+    "cod_entries_name_match": 0,
+    "forms_name_match": 0,
+    "space_groups": [
+     14,
+     15,
+     61
+    ],
+    "cod_ids": [
+     2107460,
+     2108470,
+     2300327,
+     2311081,
+     2311083,
+     2311085,
+     4509215,
+     4509217,
+     4509220,
+     4509221,
+     4509222,
+     4510731,
+     4510732,
+     4510733,
+     7106548,
+     7227180
+    ],
+    "temperatures_K": [
+     100,
+     123,
+     173,
+     183,
+     293,
+     300
+    ]
+   },
+   {
+    "name": "ritonavir",
+    "inchikey": "NCDNCNXCDXHOMX-XGKFQTDJSA-N",
+    "known_forms_literature": 2,
+    "literature_note": "Forms I and II; Bauer et al., Pharm. Res. 18, 859 (2001)",
+    "cod_entries_structure_match": 0,
+    "forms_structure_match": 0,
+    "forms_structure_match_cell_rule": 0,
+    "cod_entries_name_match": 0,
+    "forms_name_match": 0,
+    "space_groups": [],
+    "cod_ids": [],
+    "temperatures_K": []
+   },
+   {
+    "name": "sulfathiazole",
+    "inchikey": "JNMRHUJNCSQMMB-UHFFFAOYSA-N",
+    "known_forms_literature": 5,
+    "literature_note": "forms I-V",
+    "cod_entries_structure_match": 14,
+    "forms_structure_match": 2,
+    "forms_structure_match_cell_rule": 5,
+    "cod_entries_name_match": 0,
+    "forms_name_match": 0,
+    "space_groups": [
+     14
+    ],
+    "cod_ids": [
+     1519740,
+     1519741,
+     1519742,
+     1519743,
+     2009117,
+     4510043,
+     4510048,
+     4510050,
+     7202239,
+     7202241,
+     7202242,
+     7202243,
+     7224732,
+     7224733
+    ],
+    "temperatures_K": [
+     100,
+     105,
+     150
+    ]
+   },
+   {
+    "name": "ROY",
+    "inchikey": "NPXUFPFFHANGDL-UHFFFAOYSA-N",
+    "known_forms_literature": 10,
+    "literature_note": ">= 10 forms; Yu, Acc. Chem. Res. 43, 1257 (2010); more reported since",
+    "cod_entries_structure_match": 4,
+    "forms_structure_match": 1,
+    "forms_structure_match_cell_rule": 3,
+    "cod_entries_name_match": 9,
+    "forms_name_match": 1,
+    "space_groups": [
+     4,
+     14
+    ],
+    "cod_ids": [
+     1549372,
+     1564511,
+     1564515,
+     4100586
+    ],
+    "temperatures_K": [
+     250,
+     293,
+     296
+    ]
+   }
+  ]
+ },
+ "findings": [
+  "COD archive: 521,901 CIFs parsed by our job array; 447,032 pass the quality filters, of which 169,988 are organic molecular crystals.",
+  "Formula + name identity groups these into 166,537 compounds; 1,803 have >= 2 entries and 613 of those are polymorphic (34.0%, 95% CI 31.8-36.2%).",
+  "Volumetric thermal expansion estimated from 663 same-compound same-space-group pairs: median 1.68e-4 per K (IQR 1.23-2.13e-4).",
+  "Structure-key cross-check (InChIKey connectivity, single-component entries): 34.4% of 3,549 multiply-crystallised compounds are polymorphic.",
+  "Liberal upper bound (formula only, which merges isomers): 69.3% - shows why name or structure matching matters.",
+  "FDA Orange Book: 1,838 unique active moieties with a PubChem structure; 295 have a neat (single-component) crystal structure in COD; 123 have >= 2 entries and 72 of those show >= 2 forms (58.5%, 95% CI 49.7-66.9%).",
+  "361 FDA moieties also appear in COD as salts, solvates, hydrates or cocrystals - further solid forms not counted as polymorphs here.",
+  "paracetamol (acetaminophen): 21 neat COD entries by structure (2 forms), 30 by name (3 forms); literature: 3 (forms I-III at ambient pressure (paracetamol)).",
+  "carbamazepine: 16 neat COD entries by structure (3 forms), 0 by name (0 forms); literature: 5 (anhydrous forms I-V; Form V: Arlin et al., Chem. Commun. 47, 7074 (2011)).",
+  "ritonavir: 0 neat COD entries by structure (0 forms), 0 by name (0 forms); literature: 2 (Forms I and II; Bauer et al., Pharm. Res. 18, 859 (2001)).",
+  "sulfathiazole: 14 neat COD entries by structure (2 forms), 0 by name (0 forms); literature: 5 (forms I-V).",
+  "ROY: 4 neat COD entries by structure (1 forms), 9 by name (1 forms); literature: 10 (>= 10 forms; Yu, Acc. Chem. Res. 43, 1257 (2010); more reported since)."
+ ],
+ "limitations": [
+  "COD is open but incomplete: the CSD holds ~1.3M+ structures vs COD's ~0.5M, and most pharmaceutical polymorph data sit in the CSD or in company files. Counts here are lower bounds.",
+  "Most compounds were crystallised only once, so 'no second form seen' is not evidence of no polymorphism.",
+  "Solvates, hydrates and salts have different formulas and are deliberately NOT counted as polymorphs; a mis-entered formula (e.g. solvent omitted) can still create a false polymorph.",
+  "Name normalisation can fail both ways: different authors' systematic names for one compound do not merge (undercount), and an over-generic name could merge isomers (guarded by requiring the same formula).",
+  "Racemate vs enantiopure crystals of one constitution can look like two forms (flagged in stats as chirality_only); temperature-induced phase transitions count as distinct forms (flagged as forms not seen at similar temperatures).",
+  "Space-group mis-assignment and pseudo-symmetry (Z' > 1 superstructures) can split or merge forms.",
+  "The FDA comparison is confounded by attention: drugs are screened for polymorphs on purpose. The stratified chart compares compounds with the same number of determinations, which helps but does not remove that bias.",
+  "The Orange Book also lists amino acids, sugars and polyols (e.g. glycine, dextrose, mannitol) as active ingredients; they are included. Salts are matched through their largest organic component, so a metal salt maps to its organic ligand.",
+  "Repeat determinations of a compound are often published because something new (a new form) was found, which inflates polymorph shares among multiply-crystallised compounds; compare with deliberate screens: Stahly, Cryst. Growth Des. 7, 1007 (2007) reports roughly half of ~245 industrially screened compounds as polymorphic (published result).",
+  "This is about solid forms on Earth; it says nothing direct about microgravity crystallisation."
+ ],
+ "future_big_data": [
+  "Repeat with the CSD (licensed, ~1.3M structures) and its curated polymorph and refcode-family fields.",
+  "Use full structure comparison (COMPACK / PXRD similarity) instead of cell volume to separate forms.",
+  "Join with FDA labels / DailyMed and patent data to find drugs whose approved form is metastable.",
+  "Mine the literature for polymorph screens and solid-form patents to estimate true form counts."
+ ],
+ "partners": [
+  {
+   "name": "CCDC (Cambridge Structural Database)",
+   "why": "Holds the most complete record of drug crystal forms; would turn these lower bounds into near-complete counts.",
+   "evidence": "COD (open) covers well under half of published organic structures; several famous forms are missing from COD (see famous_cases)."
+  },
+  {
+   "name": "Pharmaceutical solid-form teams (polymorph screening groups at drug makers and CROs)",
+   "why": "They decide which form is developed and would be the users of a form-controlled orbital process.",
+   "evidence": "Polymorphism is common among multiply-crystallised FDA active ingredients in this analysis."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/matdb_fetch.py",
+  "analysis/bigdata/matdb_cod_sql.py",
+  "analysis/bigdata/matdb_cod_parse.py",
+  "analysis/bigdata/matdb_cod_inchi.py",
+  "analysis/bigdata/matdb_fda_pubchem.py",
+  "analysis/bigdata/matdb_cod_polymorph.py",
+  "cluster/bigdata/matdb-fetch.sbatch",
+  "cluster/bigdata/matdb-prep.sbatch",
+  "cluster/bigdata/matdb-cod-parse.sbatch",
+  "cluster/bigdata/matdb-fda.sbatch",
+  "cluster/bigdata/matdb-analyse.sbatch"
+ ],
+ "reproduce": [
+  "sbatch cluster/bigdata/matdb-fetch.sbatch      # COD zip + Orange Book",
+  "sbatch cluster/bigdata/matdb-prep.sbatch       # SQL table -> parquet, SMILES -> InChIKeys",
+  "sbatch cluster/bigdata/matdb-fda.sbatch        # Orange Book -> PubChem",
+  "sbatch cluster/bigdata/matdb-cod-parse.sbatch  # 32-task CIF parse array",
+  "sbatch cluster/bigdata/matdb-analyse.sbatch    # this analysis"
+ ],
+ "generated_at": "2026-10-25T03:54:09+00:00"
+}

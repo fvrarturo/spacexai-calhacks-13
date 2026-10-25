@@ -1,0 +1,236 @@
+[
+  [
+    "merck",
+    "Merck · pembrolizumab crystal suspensions",
+    "2019 · primary research",
+    "https://www.nature.com/articles/s41526-019-0090-3"
+  ],
+  [
+    "varda",
+    "Varda · orbital ritonavir Form III stability",
+    "2026 · primary research",
+    "https://www.nature.com/articles/s41526-026-00594-0"
+  ],
+  [
+    "w7",
+    "Varda · W-7 oncology crystallization launch",
+    "20 Oct 2026 · company-issued announcement",
+    "https://www.prnewswire.com/news-releases/varda-space-industries-launches-w-7-to-study-cancer-drug-crystallization-in-orbit-302914014.html"
+  ],
+  [
+    "npgflight",
+    "NPG–camphor directional solidification in microgravity",
+    "2025 · Journal of Crystal Growth",
+    "https://doi.org/10.1016/j.jcrysgro.2025.128090"
+  ],
+  [
+    "caloric",
+    "NPG barocaloric materials research",
+    "2019 · Nature",
+    "https://www.nature.com/articles/s41586-019-1042-5"
+  ],
+  [
+    "hysteresis",
+    "NPG microstructure and thermal hysteresis",
+    "2024 · Journal of Physics: Energy",
+    "https://doi.org/10.1088/2515-7655/ad3985"
+  ],
+  [
+    "barocal",
+    "Barocal · terrestrial solid-state cooling",
+    "Cambridge Enterprise · application example",
+    "https://www.enterprise.cam.ac.uk/case-studies/barocal-powering-zero-carbon-heating-and-cooling-systems-of-the-future/"
+  ],
+  [
+    "stanford",
+    "Stanford XLab · orbital MOF research",
+    "Research group · experiment news",
+    "https://xlab.stanford.edu/news"
+  ],
+  [
+    "berkeley",
+    "Berkeley Maboudian Lab · microgravity MOFs",
+    "Research group · collaboration",
+    "https://maboudianlab.berkeley.edu/"
+  ],
+  [
+    "limof",
+    "Oriented UiO-67 membranes for lithium transport",
+    "2022 · Angewandte Chemie",
+    "https://doi.org/10.1002/anie.202115443"
+  ],
+  [
+    "basf",
+    "BASF / Svante · commercial MOF sorbents",
+    "2023 · company announcement",
+    "https://www.basf.com/global/en/media/news-releases/2023/10/p-23-327"
+  ],
+  [
+    "cemsica",
+    "Cemsica · emissions-related space research",
+    "ISS National Lab · calcium-silicate membranes",
+    "https://issnationallab.org/iss360/space-based-research-advance-technologies-reduce-harmful-emissions-earth/"
+  ],
+  [
+    "ace5",
+    "ACE-T5 · bijel morphology and stability",
+    "NASA · investigation",
+    "https://science.nasa.gov/biological-physical/investigations/ace-t-5/"
+  ],
+  [
+    "bijel",
+    "Bijels for enzymatic reactive separation",
+    "2019 · Scientific Reports · Earth study",
+    "https://www.nature.com/articles/s41598-019-42769-8"
+  ],
+  [
+    "photonic",
+    "ACE-T11 · large FCC colloidal crystals",
+    "2024 · primary research preprint",
+    "https://arxiv.org/abs/2404.07291"
+  ],
+  [
+    "psi",
+    "Physical Sciences Informatics catalogue",
+    "NASA · public repository",
+    "https://psi.nasa.gov/physci/repo/search?data_source=psi&data_type=investigation"
+  ],
+  [
+    "aws",
+    "NASA PSI public AWS access",
+    "Registry of Open Data",
+    "https://registry.opendata.aws/nasa-psi/"
+  ],
+  [
+    "dsi",
+    "DECLIC-DSI · PSI-64",
+    "NASA dataset · DOI 10.60555/j26y-gs37",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-64"
+  ],
+  [
+    "ace4data",
+    "ACE-T4 · PSI-188",
+    "NASA dataset · DOI 10.60555/a1k6-wt47",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-188"
+  ],
+  [
+    "ace11data",
+    "ACE-T11 · PSI-52",
+    "NASA dataset · DOI 10.60555/vkw0-me50",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-52"
+  ],
+  [
+    "inspace",
+    "InSPACE-4 · PSI-177",
+    "NASA dataset · DOI 10.60555/jq1d-x679",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-177"
+  ],
+  [
+    "oasis",
+    "OASIS · PSI-86",
+    "NASA dataset · DOI 10.60555/hq75-xv78",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-86"
+  ],
+  [
+    "famis",
+    "FAMIS · PSI-153",
+    "NASA dataset · DOI 10.60555/rjm7-5p94",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-153"
+  ],
+  [
+    "elf",
+    "ELF-6 PRONTO · PSI-178",
+    "NASA dataset · DOI 10.60555/dnga-vp70",
+    "https://psi.nasa.gov/physci/repo/data/investigations/PSI-178"
+  ],
+  [
+    "core",
+    "CoRE MOF 2024",
+    "Zenodo · terrestrial structure dataset",
+    "https://zenodo.org/records/15055758"
+  ],
+  [
+    "gspace",
+    "G-SPACE Microgravity Analytics Tool",
+    "NASA · existing analytics platform",
+    "https://science.nasa.gov/biological-physical/making-space-science-data-smarter-inside-the-microgravity-analytics-tool/"
+  ],
+  [
+    "forge",
+    "Space Forge · orbital seeds and Earth scale-up",
+    "14 Oct 2026 · company announcement",
+    "https://www.spaceforge.com/press-releases/forged-on-earth-space-forges-first-year-of-terrestrial-manufacturing"
+  ],
+  [
+    "rideshare",
+    "SpaceX Smallsat Rideshare Program",
+    "SpaceX · launch service",
+    "https://www.spacex.com/rideshare"
+  ],
+  [
+    "guide",
+    "Falcon Payload User’s Guide",
+    "SpaceX · engineering interface reference",
+    "https://www.spacex.com/assets/media/falcon-users-guide-2025-05-09.pdf"
+  ],
+  [
+    "dragon",
+    "Dragon research return",
+    "NASA · June 2026 mission logistics",
+    "https://www.nasa.gov/blogs/spacestation/2026/06/16/spacex-dragon-prepares-for-undocking-and-return-to-earth/"
+  ],
+  [
+    "starfall",
+    "Starfall Demo mission",
+    "SpaceX · 23 June 2026",
+    "https://www.spacex.com/launches/starfalldemo"
+  ],
+  [
+    "starfallrole",
+    "Starfall demonstration and return capabilities",
+    "U.S. Space Force · mission account",
+    "https://www.dvidshub.net/video/1012021/starfall-demo-launches-cape-canaveral-space-force-station"
+  ],
+  [
+    "starship",
+    "Starship design",
+    "SpaceX · design intent and future capacity",
+    "https://www.spacex.com/vehicles/starship/design"
+  ],
+  [
+    "structured",
+    "Grok structured outputs",
+    "xAI · official API documentation",
+    "https://docs.x.ai/developers/model-capabilities/text/structured-outputs"
+  ],
+  [
+    "tools",
+    "Grok function calling",
+    "xAI · official API documentation",
+    "https://docs.x.ai/developers/tools/function-calling"
+  ],
+  [
+    "vision",
+    "Grok image understanding",
+    "xAI · official API documentation",
+    "https://docs.x.ai/developers/model-capabilities/images/understanding"
+  ],
+  [
+    "bento",
+    "Space Cargo Unlimited · BentoBox",
+    "Company · modular platform description",
+    "https://space-cu.com/"
+  ],
+  [
+    "redwire",
+    "SpaceMD / Redwire · planned Starfall mission",
+    "6 Aug 2026 · company-issued announcement",
+    "https://www.businesswire.com/news/home/20260806498682/en/Redwires-SpaceMD-Announces-its-First-Commercial-Mission-on-SpaceXs-Starfall-Spacecraft-to-Scale-In-Space-Pharmaceutical-Development"
+  ],
+  [
+    "groundmof",
+    "Porous crystals in simulated microgravity",
+    "2021 · Advanced Materials · ground microfluidics",
+    "https://doi.org/10.1002/adma.202101777"
+  ]
+]

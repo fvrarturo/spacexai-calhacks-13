@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { evaluatePair } from '../site/static/js/workspace/compatibility.js';
+const quiet={power_w:100,heat_w:70,imagers:1,vibration:'quiet'};
+const budget={power:200,heat:140,imagers:1,stagger:true};
+assert.equal(evaluatePair(quiet,quiet,budget).pass,true);
+assert.equal(evaluatePair(quiet,quiet,{...budget,power:199}).pass,false);
+assert.equal(evaluatePair(quiet,quiet,{...budget,heat:139}).pass,false);
+assert.equal(evaluatePair(quiet,quiet,{...budget,stagger:false}).pass,false);
+assert.equal(evaluatePair(quiet,{...quiet,vibration:'active'},budget).pass,false);
+console.log('Compatibility boundaries, imaging contention and disturbance checks passed.');

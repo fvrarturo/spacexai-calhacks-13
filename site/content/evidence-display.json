@@ -1,0 +1,181 @@
+{
+ "_note": "Tab-level display choices only. Which charts and series each tab shows, plus short captions. The appendix always shows every chart with its full caption. Never change numbers here.",
+ "orbit-environment": {
+  "charts": [
+   "g-vs-altitude",
+   "lifetime-vs-altitude",
+   "thermal-cycles"
+  ],
+  "g-vs-altitude": {
+   "series": [
+    0,
+    1,
+    4,
+    5,
+    6
+   ],
+   "caption": "Orange and cyan: measured monthly medians for passive debris and rocket bodies at high and low solar activity. Violet and green: our foundry rescale (assumed ballistic coefficient 150 kg/m², density model checked on data). Grey: the published ISS requirement. Along-track drag only, so no vibration, crew or gravity gradient."
+  },
+  "lifetime-vs-altitude": {
+   "series": [
+    0,
+    3,
+    4,
+    5
+   ],
+   "caption": "Years until a dead foundry re-enters, integrated through the real 1990–2026 solar record. Green: measured Kaplan–Meier medians for real rocket bodies. Below about 443 km, a passive foundry meets the 5-year disposal rule on its own."
+  },
+  "thermal-cycles": {
+   "caption": "Dawn–dusk sun-synchronous orbits stay sunlit 94–96% of the time and cycle thermally far less often than ISS-like or Starlink-like orbits."
+  }
+ },
+ "orbit-crowding": {
+  "charts": [
+   "leo-by-year",
+   "profile-today"
+  ],
+  "leo-by-year": {
+   "caption": "Objects in the public catalogue below 2,000 km, by type. Counts, not collision risk."
+  },
+  "profile-today": {
+   "caption": "Objects per 25 km shell on 2026-10-23. The 450–500 km region is 92% Starlink."
+  }
+ },
+ "launch-scale": {
+  "charts": [
+   "launches-per-year",
+   "payloads-per-year",
+   "mass-per-year"
+  ],
+  "launches-per-year": {
+   "caption": "Orbital launch attempts per year from Jonathan McDowell's GCAT. 2026 runs to 24 October."
+  },
+  "payloads-per-year": {
+   "caption": "Payloads reaching orbit per year. In 2025, 85% rode on SpaceX launches."
+  },
+  "mass-per-year": {
+   "caption": "Payload mass reaching orbit per year, where GCAT records a mass."
+  }
+ },
+ "return-cadence": {
+  "charts": [
+   "gap-hist-us",
+   "median-gap-vs-model",
+   "returns-per-year"
+  ],
+  "gap-hist-us": {
+   "caption": "Days between landings of capsules a US commercial payload could ride, 2021 to 24 Oct 2026. Median 45 days."
+  },
+  "median-gap-vs-model": {
+   "caption": "Real median gaps between returns, compared with the 12–24 h return cadence our synthetic fleet model assumed."
+  },
+  "returns-per-year": {
+   "caption": "Recoverable vehicles landed on Earth per year, by vehicle family."
+  }
+ },
+ "demand-signals": {
+  "charts": [
+   "fda-iv-to-sc",
+   "ct-route-counts",
+   "lithium-world"
+  ],
+  "fda-iv-to-sc": {
+   "caption": "Antibodies first licensed as IV infusions that later gained an FDA-licensed subcutaneous product. 16 have done so since 2020, including Keytruda."
+  },
+  "ct-route-counts": {
+   "caption": "Antibody trials per start year, by route, from all 608,415 ClinicalTrials.gov records. The subcutaneous share is flat at about 21% in 2020–25, not rising."
+  },
+  "lithium-world": {
+   "caption": "World lithium mine production (USGS): 9× from 2015 to 2025. This shows a growing market, not demand for MOF membranes."
+  }
+ },
+ "literature-map": {
+  "charts": [
+   "lit-per-year",
+   "lit-frontier",
+   "lit-top-institutions"
+  ],
+  "lit-per-year": {
+   "caption": "OpenAlex works pairing microgravity or spaceflight with each foundry process. Keyword matches, so precision is below 100%."
+  },
+  "lit-frontier": {
+   "caption": "Hand-classified papers on making small-molecule drug crystals or MOFs in microgravity: 11 drug-crystal papers, 10 of them since 2024."
+  },
+  "lit-top-institutions": {
+   "caption": "Institutions on the most papers. NASA Marshall leads."
+  }
+ },
+ "psi-inventory": {
+  "charts": [
+   "psi-bytes-per-investigation",
+   "psi-gb-per-experiment-day"
+  ]
+ },
+ "mof-pore-screen": {
+  "charts": [
+   "pld-hist",
+   "pld-bands"
+  ]
+ },
+ "colloid-sedimentation": {
+  "charts": [
+   "pe-environments",
+   "d-crit"
+  ]
+ },
+ "dsi-morphology": {
+  "charts": [
+   "dsi-spacing-vs-distance",
+   "dsi-spacing-vs-velocity"
+  ],
+  "dsi-spacing-vs-distance": {
+   "caption": "Measured cell spacing along each run, from the 2-D FFT of every axial frame. Each run is the independent unit; frames within a run are correlated."
+  },
+  "dsi-spacing-vs-velocity": {
+   "caption": "Late-run spacing against pulling speed. Runs at the same speed from different 2010 sequences differ 1.6–1.8×. The thermal gradient per run is not in the archive, so no scaling law is claimed."
+  }
+ },
+ "cod-polymorphs": {
+  "charts": [
+   "polymorph-share-by-entries",
+   "famous-cases"
+  ],
+  "polymorph-share-by-entries": {
+   "caption": "Share of compounds with two or more distinct solid forms in the open COD, by how many times each compound was crystallised. FDA drugs are higher at every level, so this is not just extra attention. These are lower bounds: COD misses many known forms."
+  },
+  "famous-cases": {
+   "caption": "Forms our heuristic recovers from COD against forms known in the literature. Ritonavir is absent from the open database, which is why these are lower bounds."
+  }
+ },
+ "pdb-microgravity": {
+  "charts": [
+   "census",
+   "space-best-share",
+   "res-delta",
+   "space-vs-ground"
+  ],
+  "census": {
+   "caption": "PDB entries whose own text says the crystal grew in orbit, all 382 candidates read by hand. A lower bound: depositors don't have to say where a crystal grew."
+  },
+  "space-best-share": {
+   "caption": "How often the space crystal is its protein's sharpest structure, against what shuffling the space/Earth labels predicts. Same-era comparison: 54% of 28 proteins, against 21% expected."
+  },
+  "res-delta": {
+   "caption": "Best space resolution minus best Earth resolution per protein; negative means space is sharper. Against the all-time best the usual winner is a later Earth crystal."
+  },
+  "space-vs-ground": {
+   "caption": "One point per protein. Below the line, space is sharper. Archive correlation, not proof of a microgravity effect.",
+   "series": [
+    0
+   ],
+   "reference": [
+    "identity"
+   ]
+  },
+  "findings": [
+   4,
+   6,
+   10
+  ]
+ }
+}

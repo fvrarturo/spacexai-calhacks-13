@@ -2,3 +2,8 @@
 .env
 __pycache__/
 .venv/
+dist/
+data/raw/
+logs/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Shared services",
+    "subtitle": "A repeatable platform interface",
+    "body": "Power, heat rejection, mounting, computing, telemetry and a complete record of every batch. A common design can be reused across programs; actual hardware reuse depends on the mission and qualification.",
+    "tags": [
+      "Power allocation",
+      "Thermal budget",
+      "Mounting interface",
+      "Batch identity"
+    ],
+    "boundary": "The shared bus does not remove the need for product-specific containment or equipment validation."
+  },
+  {
+    "title": "Specialized cartridges",
+    "subtitle": "Three families, many recipes",
+    "body": "Thermal processing, solution growth and particle assembly each use appropriate internals. Materials stay independently contained. Cartridge-specific optics, fluid paths, coatings, actuators and sensors can plug into common services.",
+    "tags": [
+      "Thermal",
+      "Solution",
+      "Assembly",
+      "Independent containment"
+    ],
+    "boundary": "A shared interface does not mean the same chamber can handle every solvent, temperature or biologic."
+  },
+  {
+    "title": "Manufacturing OS",
+    "subtitle": "The same decision framework",
+    "body": "Recipes define permitted actions and acceptance measurements. Calibrated measurements estimate state; validated controllers act within limits. Scheduling coordinates compatible jobs, and Earth qualification updates the next campaign.",
+    "tags": [
+      "Typed recipes",
+      "Bounded controls",
+      "Scheduling",
+      "Quality history"
+    ],
+    "boundary": "Language models support research and tool use. Validated numerical and control systems execute physical decisions."
+  }
+]

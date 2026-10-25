@@ -1,0 +1,35 @@
+{
+  "source": "https://www.nature.com/articles/s41526-019-0090-3.pdf",
+  "doi": "10.1038/s41526-019-0090-3",
+  "location": "Table 1, PDF page 5; dynamic viscosity methods, PDF page 7",
+  "extracted_on": "2026-10-24",
+  "material": "Pembrolizumab crystalline suspension",
+  "unit": "cP",
+  "rows": [
+    {
+      "concentration_mg_ml": 50,
+      "earth": 5.48,
+      "flight": 3.66,
+      "earth_reported_spread": 0.23,
+      "flight_reported_spread": 0.2,
+      "absolute_reduction": 1.82,
+      "relative_reduction_pct": 33.2117,
+      "effect_ci": null
+    },
+    {
+      "concentration_mg_ml": 75,
+      "earth": 6.83,
+      "flight": 4.8,
+      "earth_reported_spread": 0.1,
+      "flight_reported_spread": 0.01,
+      "absolute_reduction": 2.03,
+      "relative_reduction_pct": 29.7218,
+      "effect_ci": null
+    }
+  ],
+  "spread_label": "Table labels spread as geometric SD; reproduced as reported, not a confidence interval.",
+  "extraction_note": "Table 1/methods used consistently. Results prose instead gives 3.67 and \u00b10.24 at 50 mg/ml. Pooled bottle counts also differ between results and methods; do not treat triplicate measurements as independent flights.",
+  "interpretation": "A formulation-specific comparison. Raw replicates and optimized Earth controls are needed for our own inference; flight insights also improved Earth processing. No clinical or economic benefit is inferred.",
+  "kind": "published comparison, independently recalculated",
+  "input_sha256": "beb21d36e4ed477cebac6d1adf4d8c922c0ad1b65db70b7bf3ac47af14950b49"
+}

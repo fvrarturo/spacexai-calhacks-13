@@ -1,0 +1,206 @@
+{
+ "materials": [
+  {
+   "name": "Merck & Co.",
+   "role": "BIOLOGICS · EVIDENCE ANCHOR",
+   "why": "Its 2019 npj Microgravity study of pembrolizumab crystalline suspensions is the published result our protein pillar starts from.",
+   "ask": "Matched ground-control recipes and viscosity methods, so a flight batch is compared with the strongest Earth process.",
+   "aliases": [
+    "merck",
+    "msd"
+   ]
+  },
+  {
+   "name": "JAXA",
+   "role": "AGENCY · PROTEIN CRYSTAL GROWTH",
+   "why": "Kibo's protein-crystallization programme is one of the largest sources of space-grown structures deposited in the PDB.",
+   "ask": "Growth logs and paired ground data for the proteins already in the archive, so effects can be estimated per protein.",
+   "aliases": [
+    "jaxa"
+   ]
+  },
+  {
+   "name": "ESA",
+   "role": "AGENCY · CRYSTALLIZATION HARDWARE",
+   "why": "ESA's APCF and PCDF protein-crystallization facilities are named in 12 of the 67 space-grown PDB entries we found.",
+   "ask": "Access to flight logs and the Earth controls behind those structures.",
+   "aliases": [
+    "esa (apcf",
+    "apcf",
+    "pcdf"
+   ]
+  },
+  {
+   "name": "Varda Space Industries",
+   "role": "IN-SPACE PHARMA PROCESSING",
+   "why": "Recovered orbit-grown ritonavir Form III, so small-molecule solid forms can come back from orbit.",
+   "ask": "Return-environment data and solid-form analytics after re-entry.",
+   "aliases": [
+    "varda"
+   ]
+  },
+  {
+   "name": "Redwire",
+   "role": "FLIGHT CRYSTALLIZATION HARDWARE",
+   "why": "Flies pharmaceutical crystallization hardware (PIL-BOX) on the ISS for biopharma customers.",
+   "ask": "Cartridge interface lessons and historical batch outcomes.",
+   "aliases": [
+    "redwire"
+   ]
+  },
+  {
+   "name": "RCSB PDB / wwPDB",
+   "role": "DATA INFRASTRUCTURE",
+   "why": "The archive we mined. Crystallization environment is free text today, so space-grown entries are hard to find.",
+   "ask": "A structured, searchable \"growth environment\" field for microgravity depositions.",
+   "aliases": [
+    "rcsb",
+    "wwpdb"
+   ]
+  },
+  {
+   "name": "Cambridge Crystallographic Data Centre",
+   "role": "SMALL-MOLECULE STRUCTURES",
+   "why": "The CSD is the reference archive for drug crystal forms; our open COD analysis is a proxy for it.",
+   "ask": "Polymorph statistics for approved drugs to size the solid-form opportunity.",
+   "aliases": [
+    "ccdc"
+   ]
+  },
+  {
+   "name": "EnergyX",
+   "role": "LITHIUM · MOF MEMBRANES",
+   "why": "Builds lithium-extraction membranes from MOF research, the application our MOF pillar targets.",
+   "ask": "Selectivity and flux targets that an orbit-grown membrane would have to beat.",
+   "aliases": [
+    "energyx"
+   ]
+  },
+  {
+   "name": "Stanford XLab",
+   "role": "ORBITAL MOF RESEARCH",
+   "why": "Academic group investigating MOF growth in orbit; our MOF dossier cites its work.",
+   "ask": "Shared growth protocols and ground controls.",
+   "aliases": [
+    "xlab"
+   ]
+  }
+ ],
+ "foundry": [
+  {
+   "name": "SpaceX",
+   "role": "LAUNCH · RETURN · CONNECTIVITY",
+   "why": "Transporter/Bandwagon rideshares are the most frequent route to orbit for small spacecraft, and Dragon is the main US route back for pressurised cargo.",
+   "ask": "A rideshare integration path, downmass on Dragon cargo returns, Starlink laser backhaul for foundry telemetry, and our ephemeris on the Starlink space-safety platform.",
+   "aliases": [
+    "spacex"
+   ]
+  },
+  {
+   "name": "SpaceXAI (xAI / Grok)",
+   "role": "RESEARCH & OPERATIONS INTELLIGENCE",
+   "why": "Structured outputs and tool calling fit our paper → evidence record → experiment pipeline. Grok Bot fits team planning.",
+   "ask": "Grok for Startups credits; Grok-in-the-loop review of every evidence record, with physical control kept in deterministic, tested logic.",
+   "aliases": [
+    "spacexai",
+    "xai"
+   ]
+  },
+  {
+   "name": "NASA Glenn · PIMS",
+   "role": "MICROGRAVITY MEASUREMENT",
+   "why": "The Principal Investigator Microgravity Services characterise ISS acceleration with SAMS/MAMS; quiet growth depends on that discipline.",
+   "ask": "Measurement methods and requirement curves for a free-flying foundry.",
+   "aliases": [
+    "pims"
+   ]
+  },
+  {
+   "name": "NASA Physical Sciences Informatics",
+   "role": "SPACE EXPERIMENT DATA",
+   "why": "Hosts public ISS physical-science data (DECLIC-DSI, OASIS, PK-4) that we inventoried and analysed.",
+   "ask": "Access to the full PSI catalogue, including colloid (ACE) and crystallization runs.",
+   "aliases": [
+    "physical sciences informatics",
+    "psi curation"
+   ]
+  },
+  {
+   "name": "Nvidia",
+   "role": "ONBOARD COMPUTE",
+   "why": "A single solidification experiment produces image volumes that favour onboard measurement over raw downlink.",
+   "ask": "Radiation-tolerant edge inference for in-situ crystal metrology.",
+   "aliases": [
+    "nvidia"
+   ]
+  },
+  {
+   "name": "LeoLabs",
+   "role": "SPACE SAFETY",
+   "why": "The orbit we choose sits in shells whose crowding we measured; independent conjunction screening is part of operating responsibly.",
+   "ask": "Conjunction screening for candidate foundry orbits.",
+   "aliases": [
+    "leolabs"
+   ]
+  }
+ ],
+ "network": [
+  {
+   "name": "SpaceX",
+   "role": "SCALE PRECEDENT · STARSHIP",
+   "why": "Its launch cadence and Starlink production show how reusable transport and serial manufacturing change what a fleet can cost.",
+   "ask": "Capacity planning for a multi-foundry campaign, and Starship as a future route for larger, returnable foundry modules.",
+   "aliases": [
+    "spacex"
+   ]
+  },
+  {
+   "name": "Varda Space Industries",
+   "role": "RETURN CAPSULES",
+   "why": "Repeated autonomous returns are the missing link between orbital production and Earth customers.",
+   "ask": "Return cadence and capsule capacity data to calibrate our fleet model.",
+   "aliases": [
+    "varda"
+   ]
+  },
+  {
+   "name": "Sierra Space",
+   "role": "RUNWAY CARGO RETURN",
+   "why": "Dream Chaser's gentle runway landing matters for fragile, temperature-sensitive products.",
+   "ask": "Downmass environment specifications for crystal suspensions and membranes.",
+   "aliases": [
+    "sierra space"
+   ]
+  },
+  {
+   "name": "ISS National Laboratory",
+   "role": "RESEARCH ALLOCATION",
+   "why": "It allocates in-space production research and connects biopharma users with flight hardware.",
+   "ask": "A sponsored campaign to run matched flight/ground batches across two of our five materials.",
+   "aliases": [
+    "casis",
+    "iss national lab"
+   ]
+  },
+  {
+   "name": "Axiom Space · Vast",
+   "role": "COMMERCIAL STATIONS",
+   "why": "Post-ISS commercial stations decide where crewed research capacity will exist after 2030.",
+   "ask": "Hosted-payload interfaces for foundry cartridges during the transition from the ISS.",
+   "aliases": [
+    "axiom",
+    "vast"
+   ]
+  },
+  {
+   "name": "Merck & Co.",
+   "role": "FIRST CUSTOMER SEGMENT",
+   "why": "The shift of biologics to subcutaneous delivery is the demand our protein pillar serves.",
+   "ask": "Volume, specification and acceptance criteria for a first commercial batch.",
+   "aliases": [
+    "merck",
+    "msd"
+   ]
+  }
+ ]
+}

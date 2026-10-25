@@ -1,0 +1,1556 @@
+{
+ "id": "psi-inventory",
+ "tab": "foundry",
+ "title": "How much ISS physical-science data NASA publishes openly (PSI bucket)",
+ "question": "How much raw data does one ISS physical-science experiment produce, and how much of it is openly available?",
+ "headline": {
+  "value": "30.3",
+  "unit": "TB",
+  "text": "NASA's open Physical Sciences Informatics bucket holds 30.3 TB in 388,602 files from just three ISS investigations; the PK-4 plasma lab alone recorded a median 702 GB of video per science day."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "NASA Physical Sciences Informatics (PSI) open-data bucket",
+   "url": "https://nasa-psi.s3.us-west-2.amazonaws.com/",
+   "license": "NASA open data (public domain); registry https://registry.opendata.aws/nasa-psi/",
+   "records": 388602,
+   "bytes": 30269667094536,
+   "accessed": "2026-10-24",
+   "scope": "inventoried",
+   "notes": "Complete paginated ListObjectsV2 inventory of every key (no sampling). These bytes were LISTED, not downloaded. Sizes are as stored; the bucket contains zip archives and duplicate copies, which we quantify separately."
+  },
+  {
+   "name": "PSI listing records and documentation actually downloaded and parsed",
+   "url": "https://nasa-psi.s3.us-west-2.amazonaws.com/",
+   "license": "NASA open data (public domain)",
+   "records": 388602,
+   "bytes": 8524257,
+   "accessed": "2026-10-24",
+   "scope": "processed",
+   "notes": "388,602 listing records parsed (399 XML pages; response bytes not metered) plus 14 PSI documents read for metadata (DSI Solidification Plans, DSI DoD, SRD, Task Book reports, OASIS DoD, PK-4 summary, HD-9 filelist/import sheet): index.html, DSI/DECLIC-DSI DoD.docx, DSI/Data/DSI-HD Solidification Plan.xlsx, DSI/Data/DSI-INIT Solidification Plan.xlsx, DSI/Data/DSI-S1 Solidification Plan.xlsx, DSI/Data/DSI-S2 Solidification Plan.xlsx, DSI/SRD/Final_SRD_1_101203.pdf, DSI Task Book report FY2010, DSI Task Book report FY2013, OASIS/OASIS DoD.pdf, OASIS/Generating OASIS Filelist.docx, pk4/To_NASA_team/PK-4_Summary_-_updated_12-21-22.docx, DSI HD-9 HR2_2 filelist.txt, DSI HD-9 HR2_2 import.xlsx."
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging",
+  "partitions": [
+   "mit_normal"
+  ],
+  "job_ids": [
+   "26813006"
+  ],
+  "cpu_hours": 0.07,
+  "wall_minutes": 2.0,
+  "peak_storage_gb": 0.01
+ },
+ "method": [
+  "Listed the whole bucket anonymously with S3 ListObjectsV2: delimiter listings at depth 0-1 enumerate 17 second-level prefixes, each listed to exhaustion (continuation tokens), 12 threads, one Slurm job.",
+  "399 list pages, 388,602 objects, 30,269,667,094,536 bytes; key uniqueness asserted.",
+  "Exact duplicates = same ETag and size (identical content uploaded twice). Zip archives counted separately: in DSI they are compressed copies of the extracted image folders; in OASIS the \"_Originals.zip\" archives are the primary copy of the original frames (the extracted JPGs are gallery previews).",
+  "Data volume per experiment-day: DSI = raw 1024x1024 BMP frame bytes / span between first and last frame of the activity, from the clock tick in each file name (23 ticks/s since 2009-01-01, derived from the PSI Solidification Plan sheets); OASIS = de-duplicated bytes on each hard-drive folder / calendar days named in the folder (HD01 \"Jul 1 to Jul 6 2015\" etc.); PK-4 = on-board camera video bytes (VMx-AVI files) per calendar date from file-name stamps (YYMMDD), counting \"science days\" with >= 100 GB (the daily distribution is bimodal: 300-790 GB science days vs 2-7 GB check-out days)."
+ ],
+ "charts": [
+  {
+   "id": "psi-bytes-per-investigation",
+   "kind": "hbar",
+   "title": "Stored data per ISS investigation",
+   "subtitle": "NASA PSI open bucket, complete listing, terabytes (log scale)",
+   "x": {
+    "label": "Stored",
+    "unit": "TB",
+    "scale": "log"
+   },
+   "y": {
+    "label": "Investigation",
+    "unit": "",
+    "scale": "category"
+   },
+   "series": [
+    {
+     "name": "Stored bytes",
+     "color": "orange",
+     "points": [
+      [
+       "PK-4",
+       21.03
+      ],
+      [
+       "OASIS",
+       9.075
+      ],
+      [
+       "DSI",
+       0.165
+      ]
+     ]
+    },
+    {
+     "name": "Exact duplicates and DSI zip copies removed",
+     "color": "cyan",
+     "points": [
+      [
+       "PK-4",
+       20.974
+      ],
+      [
+       "OASIS",
+       9.02
+      ],
+      [
+       "DSI",
+       0.07
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "PK-4 (complex plasma videos) dominates: 21.0 TB. OASIS 9.07 TB, of which 7.23 TB are zip archives of original frames. DSI is only 165 GB stored and 70 GB once its zip copies and duplicates are removed. Sizes are what PSI publishes, not everything each experiment recorded."
+  },
+  {
+   "id": "psi-files-per-type",
+   "kind": "hbar",
+   "title": "What the files are",
+   "subtitle": "Object count per file type, whole bucket (top 12 by bytes)",
+   "x": {
+    "label": "Files",
+    "unit": "count",
+    "scale": "log"
+   },
+   "y": {
+    "label": "File type",
+    "unit": "",
+    "scale": "category"
+   },
+   "series": [
+    {
+     "name": "Files",
+     "color": "violet",
+     "points": [
+      [
+       "avi",
+       1578
+      ],
+      [
+       "zip",
+       5280
+      ],
+      [
+       "ts",
+       718
+      ],
+      [
+       "log",
+       6598
+      ],
+      [
+       "dat",
+       3281
+      ],
+      [
+       "raw",
+       67084
+      ],
+      [
+       "bmp",
+       63328
+      ],
+      [
+       "tiff",
+       17019
+      ],
+      [
+       "txt",
+       25959
+      ],
+      [
+       "jpg",
+       169608
+      ],
+      [
+       "csv",
+       1687
+      ],
+      [
+       "mp4",
+       63
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": ".avi: 20.46 TB; .zip: 7.46 TB; .ts: 1.70 TB; .log: 0.24 TB; .dat: 0.11 TB; .raw: 0.07 TB. 45 further types hold 34.0 GB. Video (.avi/.ts) and zip archives carry almost all bytes; images (.bmp/.jpg/.raw/.tiff) carry most files."
+  },
+  {
+   "id": "psi-gb-per-experiment-day",
+   "kind": "hbar",
+   "title": "Raw data produced per experiment-day",
+   "subtitle": "GB per day of operations, per DSI activity, OASIS drive and PK-4 campaign (log scale)",
+   "x": {
+    "label": "Data volume",
+    "unit": "GB/day",
+    "scale": "log"
+   },
+   "y": {
+    "label": "Experiment unit",
+    "unit": "",
+    "scale": "category"
+   },
+   "series": [
+    {
+     "name": "DSI (raw axial+side frames)",
+     "color": "orange",
+     "points": [
+      [
+       "DSI HD-9",
+       2.37
+      ],
+      [
+       "DSI INIT-4",
+       13.01
+      ],
+      [
+       "DSI S1-1",
+       5.1
+      ],
+      [
+       "DSI S1-2",
+       4.8
+      ],
+      [
+       "DSI S1-3",
+       4.43
+      ],
+      [
+       "DSI S1-4",
+       2.25
+      ],
+      [
+       "DSI S2-11",
+       2.62
+      ],
+      [
+       "DSI S2-4",
+       2.87
+      ]
+     ]
+    },
+    {
+     "name": "OASIS (incl. original-frame zips)",
+     "color": "cyan",
+     "points": [
+      [
+       "OASIS HD01",
+       100.9
+      ],
+      [
+       "OASIS HD02",
+       146.4
+      ],
+      [
+       "OASIS HD03",
+       41.4
+      ],
+      [
+       "OASIS HD04",
+       30.7
+      ],
+      [
+       "OASIS HD05",
+       57.9
+      ],
+      [
+       "OASIS HD06",
+       35.7
+      ],
+      [
+       "OASIS HD07",
+       59.5
+      ],
+      [
+       "OASIS HD08",
+       81.9
+      ],
+      [
+       "OASIS HD09",
+       45.2
+      ],
+      [
+       "OASIS HD10",
+       142.2
+      ],
+      [
+       "OASIS HD11",
+       27.8
+      ],
+      [
+       "OASIS HD12",
+       104.4
+      ],
+      [
+       "OASIS HD13",
+       25.0
+      ]
+     ]
+    },
+    {
+     "name": "PK-4 (on-board video, science days)",
+     "color": "violet",
+     "points": [
+      [
+       "PK-4 C00",
+       555.8
+      ],
+      [
+       "PK-4 C01",
+       536.7
+      ],
+      [
+       "PK-4 C02",
+       682.1
+      ],
+      [
+       "PK-4 C03",
+       590.1
+      ],
+      [
+       "PK-4 C04",
+       612.7
+      ],
+      [
+       "PK-4 C05",
+       619.6
+      ],
+      [
+       "PK-4 C06",
+       738.9
+      ],
+      [
+       "PK-4 C07",
+       766.1
+      ],
+      [
+       "PK-4 C08",
+       714.7
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "DSI: 2.2-13.0 GB/day of raw 8-bit frames. OASIS: 25-146 GB per calendar day (drive date ranges include idle days, so this is a lower bound on the rate while operating). PK-4: 537-766 GB of on-board video per science day by campaign; median over all 31 science days 702 GB. These are archive volumes after downlink and curation, not on-board sensor rates."
+  },
+  {
+   "id": "psi-daily-volume-timeline",
+   "kind": "scatter",
+   "title": "Daily data volume over time",
+   "subtitle": "GB per calendar day with dated files (DSI frame ticks; PK-4 file-name stamps)",
+   "x": {
+    "label": "Date",
+    "unit": "",
+    "scale": "time"
+   },
+   "y": {
+    "label": "Data volume",
+    "unit": "GB/day",
+    "scale": "log"
+   },
+   "series": [
+    {
+     "name": "DSI 2010-2011",
+     "color": "orange",
+     "points": [
+      [
+       "2010-04-26",
+       0.1
+      ],
+      [
+       "2010-04-27",
+       13.19
+      ],
+      [
+       "2010-04-28",
+       8.46
+      ],
+      [
+       "2010-05-25",
+       0.13
+      ],
+      [
+       "2010-05-26",
+       5.56
+      ],
+      [
+       "2010-05-27",
+       4.96
+      ],
+      [
+       "2010-05-28",
+       4.6
+      ],
+      [
+       "2010-05-29",
+       1.88
+      ],
+      [
+       "2010-05-30",
+       2.26
+      ],
+      [
+       "2010-10-08",
+       0.17
+      ],
+      [
+       "2010-10-09",
+       0.2
+      ],
+      [
+       "2010-10-10",
+       4.63
+      ],
+      [
+       "2010-10-15",
+       0.05
+      ],
+      [
+       "2010-10-16",
+       0.66
+      ],
+      [
+       "2010-10-17",
+       4.39
+      ],
+      [
+       "2010-10-18",
+       1.2
+      ],
+      [
+       "2011-01-16",
+       0.18
+      ],
+      [
+       "2011-01-17",
+       0.19
+      ],
+      [
+       "2011-01-18",
+       3.19
+      ],
+      [
+       "2011-01-19",
+       4.89
+      ]
+     ]
+    },
+    {
+     "name": "PK-4 on-board video 2014-2019",
+     "color": "violet",
+     "points": [
+      [
+       "2014-12-08",
+       3.0
+      ],
+      [
+       "2014-12-09",
+       3.7
+      ],
+      [
+       "2015-06-02",
+       1.9
+      ],
+      [
+       "2015-06-03",
+       295.5
+      ],
+      [
+       "2015-06-04",
+       601.8
+      ],
+      [
+       "2015-06-05",
+       770.1
+      ],
+      [
+       "2015-10-26",
+       4.1
+      ],
+      [
+       "2015-10-27",
+       603.4
+      ],
+      [
+       "2015-10-28",
+       617.2
+      ],
+      [
+       "2015-10-29",
+       389.5
+      ],
+      [
+       "2016-06-13",
+       7.3
+      ],
+      [
+       "2016-06-14",
+       626.0
+      ],
+      [
+       "2016-06-15",
+       735.7
+      ],
+      [
+       "2016-06-16",
+       684.5
+      ],
+      [
+       "2016-10-10",
+       3.3
+      ],
+      [
+       "2016-10-11",
+       702.3
+      ],
+      [
+       "2016-10-12",
+       522.8
+      ],
+      [
+       "2016-10-13",
+       545.1
+      ],
+      [
+       "2017-02-13",
+       3.0
+      ],
+      [
+       "2017-02-14",
+       782.6
+      ],
+      [
+       "2017-02-15",
+       660.6
+      ],
+      [
+       "2017-02-16",
+       394.9
+      ],
+      [
+       "2018-11-05",
+       3.1
+      ],
+      [
+       "2018-11-06",
+       748.3
+      ],
+      [
+       "2018-11-07",
+       700.8
+      ],
+      [
+       "2018-11-08",
+       319.5
+      ],
+      [
+       "2018-11-09",
+       709.9
+      ],
+      [
+       "2019-03-04",
+       2.3
+      ],
+      [
+       "2019-03-05",
+       783.4
+      ],
+      [
+       "2019-03-06",
+       782.5
+      ],
+      [
+       "2019-03-07",
+       759.9
+      ],
+      [
+       "2019-03-08",
+       629.7
+      ],
+      [
+       "2019-07-22",
+       1.6
+      ],
+      [
+       "2019-07-23",
+       0.9
+      ],
+      [
+       "2019-07-24",
+       785.6
+      ],
+      [
+       "2019-07-25",
+       778.1
+      ],
+      [
+       "2019-07-26",
+       757.2
+      ],
+      [
+       "2019-07-27",
+       743.5
+      ],
+      [
+       "2019-11-09",
+       2.4
+      ],
+      [
+       "2019-11-11",
+       783.2
+      ],
+      [
+       "2019-11-12",
+       537.6
+      ],
+      [
+       "2019-11-13",
+       785.7
+      ],
+      [
+       "2019-11-14",
+       752.3
+      ]
+     ]
+    }
+   ],
+   "annotations": [],
+   "caption": "Each point is one calendar day. PK-4 days cluster in short campaigns months apart, which suits a shared foundry that buffers, compresses and schedules downlink."
+  }
+ ],
+ "stats": {
+  "objects": 388602,
+  "bytes": 30269667094536,
+  "unique_content_objects": 345940,
+  "per_investigation": {
+   "PK-4": {
+    "objects": 61592,
+    "bytes": 21030050226822,
+    "zip_bytes": 144018446155,
+    "exact_dup_removed_bytes": 20973778862967,
+    "dup_and_zip_removed_bytes": 20829760416812
+   },
+   "OASIS": {
+    "objects": 205198,
+    "bytes": 9074643987009,
+    "zip_bytes": 7231416905037,
+    "exact_dup_removed_bytes": 9020152087398,
+    "dup_and_zip_removed_bytes": 1837384195429
+   },
+   "DSI": {
+    "objects": 121811,
+    "bytes": 164972837638,
+    "zip_bytes": 89038357428,
+    "exact_dup_removed_bytes": 155662180808,
+    "dup_and_zip_removed_bytes": 70292621794
+   }
+  },
+  "per_unit": [
+   {
+    "investigation": "DSI",
+    "unit": "HD activity 9",
+    "objects": 16107,
+    "bytes": 16277181931,
+    "exact_dup_removed_bytes": 16235828431
+   },
+   {
+    "investigation": "DSI",
+    "unit": "HD activity 9 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 6203427369,
+    "exact_dup_removed_bytes": 6203427369
+   },
+   {
+    "investigation": "DSI",
+    "unit": "INIT activity 4",
+    "objects": 41491,
+    "bytes": 41009548704,
+    "exact_dup_removed_bytes": 41009548704
+   },
+   {
+    "investigation": "DSI",
+    "unit": "INIT activity 4 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 15717368514,
+    "exact_dup_removed_bytes": 15717368514
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 1",
+    "objects": 15967,
+    "bytes": 19252941691,
+    "exact_dup_removed_bytes": 9993561701
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 1 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 3668799626,
+    "exact_dup_removed_bytes": 3668799626
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 2",
+    "objects": 9484,
+    "bytes": 8803788430,
+    "exact_dup_removed_bytes": 8803788430
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 2 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 3283504935,
+    "exact_dup_removed_bytes": 3283504935
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 3",
+    "objects": 9080,
+    "bytes": 7914909323,
+    "exact_dup_removed_bytes": 7913791457
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 3 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 2870643982,
+    "exact_dup_removed_bytes": 2870643982
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 4",
+    "objects": 8073,
+    "bytes": 8109772688,
+    "exact_dup_removed_bytes": 8100967214
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S1 activity 4 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 3076946537,
+    "exact_dup_removed_bytes": 3076946537
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S2 activity 11",
+    "objects": 12018,
+    "bytes": 11505550759,
+    "exact_dup_removed_bytes": 11505550759
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S2 activity 11 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 4293433992,
+    "exact_dup_removed_bytes": 4293433992
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S2 activity 4",
+    "objects": 9563,
+    "bytes": 9389183486,
+    "exact_dup_removed_bytes": 9389183486
+   },
+   {
+    "investigation": "DSI",
+    "unit": "S2 activity 4 (whole-activity zip)",
+    "objects": 1,
+    "bytes": 3570660294,
+    "exact_dup_removed_bytes": 3570660294
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD01 - SN001 Jul 1 to Jul 6 2015",
+    "objects": 7598,
+    "bytes": 605333946478,
+    "exact_dup_removed_bytes": 605333945605
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD02 - SN001 Jul 7 to Jul 10 2015",
+    "objects": 12982,
+    "bytes": 585450131201,
+    "exact_dup_removed_bytes": 585450130541
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD03 - SN001 Jul 13 to Jul 17 2015 - LOADING COMPLETE",
+    "objects": 5294,
+    "bytes": 206858146352,
+    "exact_dup_removed_bytes": 206858145878
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD04 - SN003 Jul 31 to Aug 13 2015",
+    "objects": 8522,
+    "bytes": 429762231704,
+    "exact_dup_removed_bytes": 429762230735
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD05 - SN003 Aug 17 to Aug 27 2015",
+    "objects": 8983,
+    "bytes": 636854207728,
+    "exact_dup_removed_bytes": 636780629548
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD06 - SN002 Sept 2 to Sept 18 2015",
+    "objects": 54900,
+    "bytes": 607301658671,
+    "exact_dup_removed_bytes": 607301645951
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD07 - SN001 Oct 5 to Oct 16 2015",
+    "objects": 6821,
+    "bytes": 744358458696,
+    "exact_dup_removed_bytes": 713684383260
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD08 - SN003 Oct 20 to Oct 30 2015",
+    "objects": 28451,
+    "bytes": 907539633815,
+    "exact_dup_removed_bytes": 901335078122
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD09 - SN004 Nov 3 to Nov 20 2015",
+    "objects": 18818,
+    "bytes": 815644603325,
+    "exact_dup_removed_bytes": 813894416149
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD10 - SN001-SN003 Dec 15 to Dec 18 2015",
+    "objects": 5107,
+    "bytes": 576383084930,
+    "exact_dup_removed_bytes": 568790986859
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD11 - SN003 Dec 31 2015 to Jan 14 2016",
+    "objects": 21417,
+    "bytes": 417250953510,
+    "exact_dup_removed_bytes": 417177379608
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD12 - SN004 Jan 8 to Jan 14 2016",
+    "objects": 17675,
+    "bytes": 733987560566,
+    "exact_dup_removed_bytes": 730878293656
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "HD13 - SN003 Jan 15 to Jan 18 2016",
+    "objects": 6897,
+    "bytes": 100095056132,
+    "exact_dup_removed_bytes": 100021474010
+   },
+   {
+    "investigation": "OASIS",
+    "unit": "OASIS SCIENCE VIDEOS Streaming",
+    "objects": 1653,
+    "bytes": 1707734439814,
+    "exact_dup_removed_bytes": 1702800413654
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C00_R1",
+    "objects": 2757,
+    "bytes": 348376722835,
+    "exact_dup_removed_bytes": 347161951518
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C00_R2",
+    "objects": 1254,
+    "bytes": 613728613720,
+    "exact_dup_removed_bytes": 611997661776
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C00_R3",
+    "objects": 617,
+    "bytes": 792260267684,
+    "exact_dup_removed_bytes": 791803492003
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C01_R1",
+    "objects": 1950,
+    "bytes": 623367014928,
+    "exact_dup_removed_bytes": 620144280183
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C01_R2",
+    "objects": 825,
+    "bytes": 643278336662,
+    "exact_dup_removed_bytes": 622851975100
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C01_R3",
+    "objects": 2202,
+    "bytes": 407035655064,
+    "exact_dup_removed_bytes": 405960674458
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C02_R1",
+    "objects": 1436,
+    "bytes": 650754503287,
+    "exact_dup_removed_bytes": 649822203885
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C02_R2",
+    "objects": 1008,
+    "bytes": 752647991237,
+    "exact_dup_removed_bytes": 750828215854
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C02_R3",
+    "objects": 1015,
+    "bytes": 692980655355,
+    "exact_dup_removed_bytes": 692721333783
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C03_R1",
+    "objects": 1439,
+    "bytes": 737848185417,
+    "exact_dup_removed_bytes": 737582567066
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C03_R2",
+    "objects": 1900,
+    "bytes": 537576742240,
+    "exact_dup_removed_bytes": 534232163797
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C03_R3",
+    "objects": 1997,
+    "bytes": 561222527140,
+    "exact_dup_removed_bytes": 560476615168
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C04_R1",
+    "objects": 2634,
+    "bytes": 820072108819,
+    "exact_dup_removed_bytes": 819695216935
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C04_R2",
+    "objects": 2261,
+    "bytes": 676707173341,
+    "exact_dup_removed_bytes": 676411419564
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C04_R3",
+    "objects": 2984,
+    "bytes": 409896983789,
+    "exact_dup_removed_bytes": 409559334349
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C05_R1",
+    "objects": 2605,
+    "bytes": 795625651768,
+    "exact_dup_removed_bytes": 795527148590
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C05_R2",
+    "objects": 1960,
+    "bytes": 719430944576,
+    "exact_dup_removed_bytes": 717998116580
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C05_R3",
+    "objects": 2076,
+    "bytes": 336974772873,
+    "exact_dup_removed_bytes": 336555847853
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C05_R4",
+    "objects": 2492,
+    "bytes": 744907311150,
+    "exact_dup_removed_bytes": 744565879956
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C06_R1",
+    "objects": 4498,
+    "bytes": 826891461946,
+    "exact_dup_removed_bytes": 815749612613
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C06_R2",
+    "objects": 1617,
+    "bytes": 799892572682,
+    "exact_dup_removed_bytes": 797489064398
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C06_R3",
+    "objects": 2061,
+    "bytes": 791695489603,
+    "exact_dup_removed_bytes": 791148583008
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C06_R4",
+    "objects": 1788,
+    "bytes": 653621624295,
+    "exact_dup_removed_bytes": 652657460483
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C07_R1",
+    "objects": 3979,
+    "bytes": 825217924705,
+    "exact_dup_removed_bytes": 824554006544
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C07_R2",
+    "objects": 1968,
+    "bytes": 792122443536,
+    "exact_dup_removed_bytes": 791854031236
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C07_R3",
+    "objects": 1646,
+    "bytes": 773860857009,
+    "exact_dup_removed_bytes": 773432482262
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C07_R4",
+    "objects": 1661,
+    "bytes": 757714530292,
+    "exact_dup_removed_bytes": 757368139269
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C08_R1",
+    "objects": 1841,
+    "bytes": 822224428135,
+    "exact_dup_removed_bytes": 822222552125
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C08_R2",
+    "objects": 2151,
+    "bytes": 553686137715,
+    "exact_dup_removed_bytes": 553432655915
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C08_R3",
+    "objects": 1251,
+    "bytes": 799617381371,
+    "exact_dup_removed_bytes": 799507127444
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "C08_R4",
+    "objects": 1698,
+    "bytes": 768648909769,
+    "exact_dup_removed_bytes": 768302749469
+   },
+   {
+    "investigation": "PK-4",
+    "unit": "documentation",
+    "objects": 21,
+    "bytes": 164303879,
+    "exact_dup_removed_bytes": 164299783
+   }
+  ],
+  "file_types": [
+   {
+    "type": "avi",
+    "objects": 1578,
+    "bytes": 20455895864782
+   },
+   {
+    "type": "zip",
+    "objects": 5280,
+    "bytes": 7464473708620
+   },
+   {
+    "type": "ts",
+    "objects": 718,
+    "bytes": 1703479727838
+   },
+   {
+    "type": "log",
+    "objects": 6598,
+    "bytes": 239181616169
+   },
+   {
+    "type": "dat",
+    "objects": 3281,
+    "bytes": 105582307501
+   },
+   {
+    "type": "raw",
+    "objects": 67084,
+    "bytes": 72856740888
+   },
+   {
+    "type": "bmp",
+    "objects": 63328,
+    "bytes": 66486619712
+   },
+   {
+    "type": "tiff",
+    "objects": 17019,
+    "bytes": 54052961916
+   },
+   {
+    "type": "txt",
+    "objects": 25959,
+    "bytes": 21783909731
+   },
+   {
+    "type": "jpg",
+    "objects": 169608,
+    "bytes": 19885048665
+   },
+   {
+    "type": "csv",
+    "objects": 1687,
+    "bytes": 19373107181
+   },
+   {
+    "type": "mp4",
+    "objects": 63,
+    "bytes": 12577568858
+   },
+   {
+    "type": "timetag",
+    "objects": 1660,
+    "bytes": 12301252815
+   },
+   {
+    "type": "mpg",
+    "objects": 88,
+    "bytes": 10872223192
+   },
+   {
+    "type": "7z",
+    "objects": 386,
+    "bytes": 1407097161
+   },
+   {
+    "type": "md5 checksum",
+    "objects": 20114,
+    "bytes": 1129620808
+   },
+   {
+    "type": "001",
+    "objects": 86,
+    "bytes": 1014801817
+   },
+   {
+    "type": "002",
+    "objects": 31,
+    "bytes": 938842435
+   },
+   {
+    "type": "(no extension)",
+    "objects": 282,
+    "bytes": 925526792
+   },
+   {
+    "type": "003",
+    "objects": 27,
+    "bytes": 817585561
+   },
+   {
+    "type": "004",
+    "objects": 22,
+    "bytes": 674373879
+   },
+   {
+    "type": "tm",
+    "objects": 166,
+    "bytes": 489903484
+   },
+   {
+    "type": "005",
+    "objects": 18,
+    "bytes": 464541068
+   },
+   {
+    "type": "xlsx",
+    "objects": 653,
+    "bytes": 418317394
+   },
+   {
+    "type": "gz",
+    "objects": 24,
+    "bytes": 294502400
+   }
+  ],
+  "dsi_activities": [
+   {
+    "activity": "HD activity 9",
+    "bmp_frames": 8037,
+    "cameras": {
+     "HR1 mode 1": 517,
+     "HR1 mode 2": 10,
+     "HR2 mode 1": 7296,
+     "HR2 mode 2": 214
+    },
+    "first": "2011-01-16T05:26",
+    "last": "2011-01-19T18:59",
+    "span_days": 3.565,
+    "raw_bmp_bytes": 8436069198,
+    "unique_nonzip_bytes": 10032402584,
+    "gb_per_day": 2.37
+   },
+   {
+    "activity": "INIT activity 4",
+    "bmp_frames": 20725,
+    "cameras": {
+     "HR1 mode 1": 875,
+     "HR1 mode 2": 46,
+     "HR2 mode 1": 19080,
+     "HR2 mode 2": 724
+    },
+    "first": "2010-04-26T14:14",
+    "last": "2010-04-28T06:22",
+    "span_days": 1.672,
+    "raw_bmp_bytes": 21754079150,
+    "unique_nonzip_bytes": 25292183288,
+    "gb_per_day": 13.01
+   },
+   {
+    "activity": "S1 activity 1",
+    "bmp_frames": 5314,
+    "cameras": {
+     "HR1 mode 1": 439,
+     "HR1 mode 2": 96,
+     "HR2 mode 1": 4480,
+     "HR2 mode 2": 299
+    },
+    "first": "2010-05-25T10:34",
+    "last": "2010-05-26T12:49",
+    "span_days": 1.093,
+    "raw_bmp_bytes": 5577861356,
+    "unique_nonzip_bytes": 6324763287,
+    "gb_per_day": 5.1
+   },
+   {
+    "activity": "S1 activity 2",
+    "bmp_frames": 4734,
+    "cameras": {
+     "HR1 mode 1": 548,
+     "HR1 mode 2": 4,
+     "HR2 mode 1": 3761,
+     "HR2 mode 2": 421
+    },
+    "first": "2010-05-26T12:52",
+    "last": "2010-05-27T13:44",
+    "span_days": 1.036,
+    "raw_bmp_bytes": 4969062036,
+    "unique_nonzip_bytes": 5520284707,
+    "gb_per_day": 4.8
+   },
+   {
+    "activity": "S1 activity 3",
+    "bmp_frames": 4402,
+    "cameras": {
+     "HR1 mode 1": 448,
+     "HR1 mode 2": 123,
+     "HR2 mode 1": 3509,
+     "HR2 mode 2": 322
+    },
+    "first": "2010-05-27T13:50",
+    "last": "2010-05-28T14:51",
+    "span_days": 1.042,
+    "raw_bmp_bytes": 4620576908,
+    "unique_nonzip_bytes": 5043148477,
+    "gb_per_day": 4.43
+   },
+   {
+    "activity": "S1 activity 4",
+    "bmp_frames": 4027,
+    "cameras": {
+     "HR1 mode 1": 260,
+     "HR1 mode 2": 1,
+     "HR2 mode 1": 3635,
+     "HR2 mode 2": 131
+    },
+    "first": "2010-05-28T15:11",
+    "last": "2010-05-30T12:22",
+    "span_days": 1.882,
+    "raw_bmp_bytes": 4226956658,
+    "unique_nonzip_bytes": 5024021679,
+    "gb_per_day": 2.25
+   },
+   {
+    "activity": "S2 activity 11",
+    "bmp_frames": 5999,
+    "cameras": {
+     "HR1 mode 1": 340,
+     "HR1 mode 2": 6,
+     "HR2 mode 1": 5461,
+     "HR2 mode 2": 192
+    },
+    "first": "2010-10-15T20:48",
+    "last": "2010-10-18T06:25",
+    "span_days": 2.4,
+    "raw_bmp_bytes": 6296874346,
+    "unique_nonzip_bytes": 7212117991,
+    "gb_per_day": 2.62
+   },
+   {
+    "activity": "S2 activity 4",
+    "bmp_frames": 4773,
+    "cameras": {
+     "HR1 mode 1": 372,
+     "HR1 mode 2": 31,
+     "HR2 mode 1": 4221,
+     "HR2 mode 2": 149
+    },
+    "first": "2010-10-08T18:51",
+    "last": "2010-10-10T12:44",
+    "span_days": 1.745,
+    "raw_bmp_bytes": 5009998542,
+    "unique_nonzip_bytes": 5818524404,
+    "gb_per_day": 2.87
+   }
+  ],
+  "oasis_drives": [
+   {
+    "drive": "HD01 - SN001 Jul 1 to Jul 6 2015",
+    "start": "2015-07-01",
+    "end": "2015-07-06",
+    "days": 6,
+    "unique_bytes": 605333945605,
+    "unique_nonzip_bytes": 538417241,
+    "gb_per_day": 100.9,
+    "gb_per_day_nonzip_lower": 0.09
+   },
+   {
+    "drive": "HD02 - SN001 Jul 7 to Jul 10 2015",
+    "start": "2015-07-07",
+    "end": "2015-07-10",
+    "days": 4,
+    "unique_bytes": 585450130541,
+    "unique_nonzip_bytes": 1118967701,
+    "gb_per_day": 146.4,
+    "gb_per_day_nonzip_lower": 0.28
+   },
+   {
+    "drive": "HD03 - SN001 Jul 13 to Jul 17 2015 - LOADING COMPLETE",
+    "start": "2015-07-13",
+    "end": "2015-07-17",
+    "days": 5,
+    "unique_bytes": 206858145878,
+    "unique_nonzip_bytes": 476570331,
+    "gb_per_day": 41.4,
+    "gb_per_day_nonzip_lower": 0.1
+   },
+   {
+    "drive": "HD04 - SN003 Jul 31 to Aug 13 2015",
+    "start": "2015-07-31",
+    "end": "2015-08-13",
+    "days": 14,
+    "unique_bytes": 429762230735,
+    "unique_nonzip_bytes": 1134694963,
+    "gb_per_day": 30.7,
+    "gb_per_day_nonzip_lower": 0.08
+   },
+   {
+    "drive": "HD05 - SN003 Aug 17 to Aug 27 2015",
+    "start": "2015-08-17",
+    "end": "2015-08-27",
+    "days": 11,
+    "unique_bytes": 636780629548,
+    "unique_nonzip_bytes": 1114854184,
+    "gb_per_day": 57.9,
+    "gb_per_day_nonzip_lower": 0.1
+   },
+   {
+    "drive": "HD06 - SN002 Sept 2 to Sept 18 2015",
+    "start": "2015-09-02",
+    "end": "2015-09-18",
+    "days": 17,
+    "unique_bytes": 607301645951,
+    "unique_nonzip_bytes": 86842400385,
+    "gb_per_day": 35.7,
+    "gb_per_day_nonzip_lower": 5.11
+   },
+   {
+    "drive": "HD07 - SN001 Oct 5 to Oct 16 2015",
+    "start": "2015-10-05",
+    "end": "2015-10-16",
+    "days": 12,
+    "unique_bytes": 713684383260,
+    "unique_nonzip_bytes": 232581863,
+    "gb_per_day": 59.5,
+    "gb_per_day_nonzip_lower": 0.02
+   },
+   {
+    "drive": "HD08 - SN003 Oct 20 to Oct 30 2015",
+    "start": "2015-10-20",
+    "end": "2015-10-30",
+    "days": 11,
+    "unique_bytes": 901335078122,
+    "unique_nonzip_bytes": 29080393390,
+    "gb_per_day": 81.9,
+    "gb_per_day_nonzip_lower": 2.64
+   },
+   {
+    "drive": "HD09 - SN004 Nov 3 to Nov 20 2015",
+    "start": "2015-11-03",
+    "end": "2015-11-20",
+    "days": 18,
+    "unique_bytes": 813894416149,
+    "unique_nonzip_bytes": 2642975344,
+    "gb_per_day": 45.2,
+    "gb_per_day_nonzip_lower": 0.15
+   },
+   {
+    "drive": "HD10 - SN001-SN003 Dec 15 to Dec 18 2015",
+    "start": "2015-12-15",
+    "end": "2015-12-18",
+    "days": 4,
+    "unique_bytes": 568790986859,
+    "unique_nonzip_bytes": 440078396,
+    "gb_per_day": 142.2,
+    "gb_per_day_nonzip_lower": 0.11
+   },
+   {
+    "drive": "HD11 - SN003 Dec 31 2015 to Jan 14 2016",
+    "start": "2015-12-31",
+    "end": "2016-01-14",
+    "days": 15,
+    "unique_bytes": 417177379608,
+    "unique_nonzip_bytes": 12288393077,
+    "gb_per_day": 27.8,
+    "gb_per_day_nonzip_lower": 0.82
+   },
+   {
+    "drive": "HD12 - SN004 Jan 8 to Jan 14 2016",
+    "start": "2016-01-08",
+    "end": "2016-01-14",
+    "days": 7,
+    "unique_bytes": 730878293656,
+    "unique_nonzip_bytes": 1627698486,
+    "gb_per_day": 104.4,
+    "gb_per_day_nonzip_lower": 0.23
+   },
+   {
+    "drive": "HD13 - SN003 Jan 15 to Jan 18 2016",
+    "start": "2016-01-15",
+    "end": "2016-01-18",
+    "days": 4,
+    "unique_bytes": 100021474010,
+    "unique_nonzip_bytes": 723650711,
+    "gb_per_day": 25.0,
+    "gb_per_day_nonzip_lower": 0.18
+   }
+  ],
+  "pk4_campaign_video_gb_per_science_day": {
+   "C00": 555.8,
+   "C01": 536.7,
+   "C02": 682.1,
+   "C03": 590.1,
+   "C04": 612.7,
+   "C05": 619.6,
+   "C06": 738.9,
+   "C07": 766.1,
+   "C08": 714.7
+  },
+  "pk4_median_video_gb_per_science_day": 702.3,
+  "pk4_science_days": 31,
+  "pk4_science_day_range_gb": [
+   295.5,
+   785.7
+  ],
+  "pk4_video_days_total": 43,
+  "pk4_fraction_of_bytes_with_date_stamp": 0.986,
+  "dsi_raw_frames": 58011,
+  "dsi_raw_frame_bytes": 60891478194,
+  "list_pages": 399,
+  "listing_seconds": 117.8
+ },
+ "findings": [
+  "The complete PSI bucket is 30.27 TB in 388,602 objects (345,940 distinct by content hash), from three ISS investigations.",
+  "PK-4 complex-plasma data is 21.0 TB (69% of the bucket), almost all on-board video; OASIS 9.1 TB; DSI 165 GB.",
+  "The 8 public DSI solidification activities contain 58,011 raw 1024x1024 frames (60.9 GB), 2.2-13.0 GB per day of operation; the NASA Task Book reports 39 DSI experiments in the campaign, so PSI hosts about a fifth of them.",
+  "On its 31 science days PK-4 recorded a median 702 GB of on-board video per day (range 296-786 GB); that is ~192x the median DSI activity day, so data volume per experiment-day spans more than two orders of magnitude across facilities.",
+  "95 GB of the 165 GB DSI folder is redundant (zips of extracted folders and a second extracted copy), a reminder that curation, not just storage, is needed."
+ ],
+ "limitations": [
+  "Volumes are what PSI publishes after downlink and curation, not what the instruments recorded; PSI states that some OASIS drives were partially loaded and PK-4 videos are missing sensor data for some runs.",
+  "OASIS per-day values divide by the calendar span of each hard drive, which includes idle days; the zip archives may partly overlap extracted raw/tiff frames (we did not open them).",
+  "DSI per-day values span the first to last frame of each activity (melting, ~1-day homogenisation and solidification), so they average over quiet and burst acquisition.",
+  "Three investigations are not a representative sample of all ISS science; the full PSI catalogue (psi.nasa.gov, registration) lists many more."
+ ],
+ "future_big_data": [
+  "Inventory the full PSI catalogue at psi.nasa.gov (registration required), which lists dozens of further ISS physical-science investigations, to build a fleet-wide data-rate model.",
+  "Open the OASIS \"_Originals.zip\" central directories by HTTP range requests to separate original frames from previews without downloading 7 TB.",
+  "Join PK-4 file stamps with the ESA campaign express reports in pk4/To_NASA_team/Campaign_Reports to get data rate per scientific sequence, not per day.",
+  "Add the ACE colloid (Advanced Colloids Experiment) and DECLIC DSI-R (2017-2018 reflight) imagery when published, for photonic and cooling materials respectively."
+ ],
+ "partners": [
+  {
+   "name": "NASA Physical Sciences Informatics (MSFC/GRC)",
+   "why": "Curates and serves the open ISS physical-science archive a foundry would extend",
+   "evidence": "Hosts the 30 TB bucket; DSI Task Book contact monitor at NASA MSFC"
+  },
+  {
+   "name": "CNES (DECLIC facility)",
+   "why": "Built and operates DECLIC, the sealed multi-insert ISS facility closest to a shared process-cartridge design",
+   "evidence": "DSI Task Book report: \"DECLIC-DSI facility built by the French Space Agency CNES\""
+  },
+  {
+   "name": "ESA / Max Planck (PK-4 science team) and University of Memphis",
+   "why": "Operate and curate the largest data stream in the bucket; experience with on-board video data handling",
+   "evidence": "pk4/To_NASA_team summary document prepared by the University of Memphis team (R. Gopalakrishnan); campaign reports provided by the ESA/PK-4 science team"
+  }
+ ],
+ "code": [
+  "analysis/bigdata/psi_inventory.py",
+  "analysis/bigdata/psi_inventory_summary.py",
+  "analysis/bigdata/psi_report.py",
+  "cluster/bigdata/psi-inventory.sbatch"
+ ],
+ "reproduce": [
+  "rsync -azR analysis/bigdata/psi* cluster/bigdata/psi-* engaging:~/orcd/scratch/orbital-foundry-20261024-01a170b7/",
+  "ssh engaging \"cd ~/orcd/scratch/orbital-foundry-20261024-01a170b7 && sbatch cluster/bigdata/psi-inventory.sbatch\"",
+  "python -I analysis/bigdata/psi_inventory_summary.py --tsv psi-objects.tsv.gz --out psi-inventory-summary.json",
+  "python -I analysis/bigdata/psi_report.py inventory --summary psi-inventory-summary.json --meta psi-objects.tsv.gz.meta.json --jobs jobs.json --out data/results/bigdata/psi-inventory.json"
+ ],
+ "investigations": {
+  "DSI": "DECLIC-DSI (CNES/NASA, ISS 2010-2011): directional solidification of a transparent succinonitrile-0.24 wt% camphor alloy, imaging the 3-D cellular/dendritic front in situ (PI R. Trivedi, Iowa State; Co-I A. Karma, Northeastern; NASA Task Book NNX07AK69G).",
+  "OASIS": "OASIS (ISS 2015-2016): Observation and Analysis of Smectic Islands In Space - freely suspended liquid-crystal (smectic) bubbles, islands, coarsening, Marangoni and electric-field tests on 4 samples (PSI OASIS Data Organization Document).",
+  "PK-4": "PK-4 (ESA/Roscosmos, ISS Columbus, 2014-2019 campaigns C00-C08): complex (dusty) plasma flowing in a DC discharge tube - on-board videos, sensor logs and ground data, curated for PSI by the University of Memphis team (PSI PK-4 summary document)."
+ },
+ "generated_at": "2026-10-25T03:22:55+00:00"
+}

@@ -1,0 +1,136 @@
+{
+  "kind": "NASA raw-image descriptive QC",
+  "count": 12,
+  "bytes": 12595848,
+  "source": "https://nasa-psi.s3.us-west-2.amazonaws.com/",
+  "selection": "First eligible bitmap objects in lexicographic listing; convenience sample.",
+  "accessed_at": "2026-10-25T01:44:50.569300+00:00",
+  "code_sha256": "120b866fd5bfd6d16ac640f6b52a9f38693b227a76cb46b9624bf5e2df8a8f4d",
+  "limitations": [
+    "Convenience pilot, not a representative archive sample.",
+    "Intensity and gradient metrics are image diagnostics, not calibrated morphology or material performance.",
+    "No ground controls, run-level statistical effect, physical scale, or causal microgravity advantage established."
+  ],
+  "rows": [
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012360641_1.bmp",
+      "sha256": "0908035f3316608ef37d0bf5bbfc469824783a9eeab15a52b4f089f25edc5ebd",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 31.057788848876953,
+      "intensity_sd": 41.51061115679406,
+      "saturated_fraction": 0.0,
+      "mean_gradient": 1.2142423478739004
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012364781_1.bmp",
+      "sha256": "343c3076cdedc481e46b204ddfe6ff009733c5cc77dfd289876e6b79815b527b",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 32.23184299468994,
+      "intensity_sd": 53.41594339604032,
+      "saturated_fraction": 0.27965450286865234,
+      "mean_gradient": 1.7304606358443304
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012368923_1.bmp",
+      "sha256": "d7352f712076bf0c53156b3d68be9f3ae23dc0f57121bf79939772fe23ba5fee",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 49.96773815155029,
+      "intensity_sd": 72.21323191535434,
+      "saturated_fraction": 0.19889259338378906,
+      "mean_gradient": 2.1608554992974094
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012373063_1.bmp",
+      "sha256": "da9883c0a192f5d2e702211fc921ad4fb83d17fae3686f11e33fc76a26fcab3d",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 54.961713790893555,
+      "intensity_sd": 75.98582546513121,
+      "saturated_fraction": 2.765655517578125e-05,
+      "mean_gradient": 2.1598082959127565
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012377203_1.bmp",
+      "sha256": "39f984bc4b7df423eb2610c0ff883ebc8c2daf0715fd9461361d379ffb78c010",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 57.36134624481201,
+      "intensity_sd": 78.30965326022486,
+      "saturated_fraction": 8.296966552734375e-05,
+      "mean_gradient": 2.0470344192937437
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012381342_1.bmp",
+      "sha256": "6aa92828d8f5ab8a4c9c2389cf76292da32bcfd8a091a6d82efff809bdb60c1e",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 52.10191535949707,
+      "intensity_sd": 71.9438031197688,
+      "saturated_fraction": 8.487701416015625e-05,
+      "mean_gradient": 2.1794254605021997
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012385482_1.bmp",
+      "sha256": "c7b2b1df2a4eb7cd3b27aac639ef09b0f5dea8169365f1e06acca6a7259471f8",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 52.81998157501221,
+      "intensity_sd": 73.82175234580792,
+      "saturated_fraction": 9.441375732421875e-05,
+      "mean_gradient": 2.2011322588282014
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012389623_1.bmp",
+      "sha256": "6bf644d565510f487886cb844b8e420129c6f82bde15ffe41ebadf8973cad7b2",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 51.58140468597412,
+      "intensity_sd": 70.81195828652233,
+      "saturated_fraction": 0.00012302398681640625,
+      "mean_gradient": 2.081864671157136
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012393763_1.bmp",
+      "sha256": "080ac68989eefbb09c0d37361f0fc22e3a4b01a8e1806bf72d92aed83522e07e",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 48.15775394439697,
+      "intensity_sd": 67.3762943222465,
+      "saturated_fraction": 0.00020694732666015625,
+      "mean_gradient": 1.9642237330461878
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012397903_1.bmp",
+      "sha256": "97684f10d3d8185fc9fdf6be1bc8e767433d7ac3f00de88c96dfc885618f65f9",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 46.960700035095215,
+      "intensity_sd": 67.36548558283864,
+      "saturated_fraction": 0.0003204345703125,
+      "mean_gradient": 1.84829440447825
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012402043_1.bmp",
+      "sha256": "9236c72ec850411b799dba01e84045e06b817747451ab4d88b686069ff82206d",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 44.9428129196167,
+      "intensity_sd": 64.28362887149524,
+      "saturated_fraction": 0.00025653839111328125,
+      "mean_gradient": 1.9983857603250246
+    },
+    {
+      "key": "DSI/Data/S1 activity 1/S1 activity 1/DA_TC_DSI_SEQ2_ACTIVITE01_HR1/DSI_SEQ2_ACTIVITE01_HR1_1012406182_1.bmp",
+      "sha256": "c6b53167c1256fe3dfd8994a610d471222853ca19d945f6a267774d7f0382300",
+      "width": 1024,
+      "height": 1024,
+      "mean_intensity": 42.86114692687988,
+      "intensity_sd": 59.853766331843474,
+      "saturated_fraction": 0.00019359588623046875,
+      "mean_gradient": 1.9166695304863148
+    }
+  ]
+}

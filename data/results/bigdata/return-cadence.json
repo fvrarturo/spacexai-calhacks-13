@@ -1,0 +1,2977 @@
+{
+ "id": "return-cadence",
+ "tab": "foundry",
+ "title": "How often can anything come back from orbit?",
+ "question": "How often do pressurised or recoverable capsules land on Earth, how long are the gaps, and how does that compare with the fleet model's 12\u201324 h return cadence?",
+ "headline": {
+  "value": "45",
+  "unit": "days",
+  "text": "Since 2021 a US-accessible capsule (Dragon, Starliner, Varda or Starfall) has landed every 45 days at the median. The fleet model assumes each of its 3 capsules can return every 12\u201324 hours."
+ },
+ "evidence_level": "our computation on public data",
+ "datasets": [
+  {
+   "name": "GCAT satcat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/satcat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 69999,
+   "bytes": 19297422,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:26; sha256 3faae397abc0d8ff"
+  },
+  {
+   "name": "GCAT ecat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/ecat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 7500,
+   "bytes": 2187750,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:31; sha256 2c497bf7f74a3ecd"
+  },
+  {
+   "name": "GCAT auxcat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/auxcat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 12062,
+   "bytes": 3430322,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:28; sha256 42113ba526c1ce1f"
+  },
+  {
+   "name": "GCAT lprcat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/lprcat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 2670,
+   "bytes": 747450,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:31; sha256 197759d215b76320"
+  },
+  {
+   "name": "GCAT satcat070k.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/satcat070k.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 3333,
+   "bytes": 728745,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:31; sha256 c59217f797effb3f"
+  },
+  {
+   "name": "GCAT satcat100k.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/satcat100k.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 1185,
+   "bytes": 338549,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:32; sha256 e2772b0329409593"
+  },
+  {
+   "name": "GCAT satcat270k.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/satcat270k.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 477,
+   "bytes": 103306,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:32; sha256 a261bb8b89450364"
+  },
+  {
+   "name": "GCAT satcat700M.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/satcat700M.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 1844,
+   "bytes": 519822,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:32; sha256 1e259ee4c0d11a7f"
+  },
+  {
+   "name": "GCAT tmpcat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/tmpcat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 53,
+   "bytes": 10406,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:28; sha256 dbc51dcb7ddf312c"
+  },
+  {
+   "name": "GCAT csocat.tsv",
+   "url": "https://planet4589.org/space/gcat/tsv/cat/csocat.tsv",
+   "license": "CC-BY (J. McDowell, planet4589.org)",
+   "records": 818,
+   "bytes": 199906,
+   "accessed": "2026-10-24",
+   "notes": "Updated 2026 Oct 24 1903:31; sha256 31117387c9b87616"
+  }
+ ],
+ "compute": {
+  "where": "MIT Engaging (final run, job 26814679) and local Mac (development); stdlib Python, identical GCAT files by SHA-256",
+  "partitions": [
+   "mit_quicktest"
+  ],
+  "job_ids": [
+   "26814679",
+   "26814431",
+   "26814205",
+   "26814061"
+  ],
+  "jobs": [
+   {
+    "id": "26814679",
+    "name": "of-logistics-gcat",
+    "partition": "mit_quicktest",
+    "cpus": 1,
+    "elapsed": "00:00:07",
+    "maxrss": "483044K",
+    "state": "COMPLETED",
+    "note": "final run with the committed script"
+   },
+   {
+    "id": "26814653",
+    "name": "of-logistics-gcat",
+    "partition": "mit_quicktest",
+    "cpus": 1,
+    "elapsed": "00:00:00",
+    "maxrss": "",
+    "state": "CANCELLED",
+    "note": "superseded before start"
+   },
+   {
+    "id": "26814431",
+    "name": "of-logistics-gcat",
+    "partition": "mit_quicktest",
+    "cpus": 1,
+    "elapsed": "00:00:07",
+    "maxrss": "",
+    "state": "COMPLETED",
+    "note": "intermediate script"
+   },
+   {
+    "id": "26814205",
+    "name": "of-logistics-gcat",
+    "partition": "mit_quicktest",
+    "cpus": 1,
+    "elapsed": "00:00:06",
+    "maxrss": "483088K",
+    "state": "COMPLETED",
+    "note": "intermediate script"
+   },
+   {
+    "id": "26814061",
+    "name": "of-logistics-gcat",
+    "partition": "mit_quicktest",
+    "cpus": 1,
+    "elapsed": "00:00:09",
+    "maxrss": "485096K",
+    "state": "COMPLETED",
+    "note": "first run, includes GCAT download"
+   }
+  ],
+  "cpu_hours": 0.008,
+  "wall_minutes": 0.12,
+  "peak_storage_gb": 0.052
+ },
+ "method": [
+  "Load every phase record of every catalogued object (satcat*, auxcat, lprcat, tmpcat, csocat, plus the extra-phase file ecat).",
+  "A return event = a payload-type object (Type P*) whose phase ends with status L (landed) on primary Earth; one event per object per day. Cargo inside capsules (Type C*) is counted separately, as down cargo.",
+  "Classify each landed vehicle by GCAT bus and name (Dragon cargo vs crew by CRS naming; Soyuz, Shenzhou, Starliner, Varda RV, Starfall, X-37B/CSSHQ, sample-return capsules, Starship test ships, and so on).",
+  "\"US-accessible\" (our classification) = Dragon cargo, Crew Dragon, Starliner, Varda and SpaceX Starfall: vehicles a US commercial payload could plausibly ride home.",
+  "Gaps = time between consecutive landings within a class, window 2021-01-01 to 2026-10-24 (Dragon-2 era); 2012\u20132020 is kept for comparison.",
+  "Mean wait for a product finished at a uniformly random time = sum(gap^2) / (2 sum(gap)) (the inspection paradox), compared with the fleet model's uniform wait of cadence/2.",
+  "Down cargo = GCAT objects named \"... Down Cargo\". Final status AL* = landed inside a capsule (returned) and AR* = reentered with a disposal vehicle (burned).",
+  "Integrity check: mission numbers of landed CRS Dragons, Shenzhous and Soyuz MS must be contiguous; the only gaps are expected losses (stats.integrity_checks)."
+ ],
+ "charts": [
+  {
+   "id": "returns-per-year",
+   "kind": "stacked",
+   "title": "Recoverable vehicles landed on Earth per year",
+   "subtitle": "Capsules, spaceplanes and test ships recorded as landed in GCAT, 2000 to date (2026 YTD = to 2026-10-24)",
+   "x": {
+    "label": "Year",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Landings",
+    "unit": "",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Dragon cargo (CRS)",
+     "color": "orange",
+     "points": [
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       1
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       2
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       2
+      ],
+      [
+       2015,
+       2
+      ],
+      [
+       2016,
+       2
+      ],
+      [
+       2017,
+       3
+      ],
+      [
+       2018,
+       3
+      ],
+      [
+       2019,
+       3
+      ],
+      [
+       2020,
+       2
+      ],
+      [
+       2021,
+       3
+      ],
+      [
+       2022,
+       2
+      ],
+      [
+       2023,
+       4
+      ],
+      [
+       2024,
+       2
+      ],
+      [
+       2025,
+       1
+      ],
+      [
+       "2026 YTD",
+       2
+      ]
+     ]
+    },
+    {
+     "name": "Crew Dragon",
+     "color": "cyan",
+     "points": [
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       1
+      ],
+      [
+       2020,
+       1
+      ],
+      [
+       2021,
+       3
+      ],
+      [
+       2022,
+       3
+      ],
+      [
+       2023,
+       3
+      ],
+      [
+       2024,
+       4
+      ],
+      [
+       2025,
+       4
+      ],
+      [
+       "2026 YTD",
+       2
+      ]
+     ]
+    },
+    {
+     "name": "Starliner, Varda, Starfall",
+     "color": "violet",
+     "points": [
+      [
+       2000,
+       0
+      ],
+      [
+       2001,
+       0
+      ],
+      [
+       2002,
+       0
+      ],
+      [
+       2003,
+       0
+      ],
+      [
+       2004,
+       0
+      ],
+      [
+       2005,
+       0
+      ],
+      [
+       2006,
+       0
+      ],
+      [
+       2007,
+       0
+      ],
+      [
+       2008,
+       0
+      ],
+      [
+       2009,
+       0
+      ],
+      [
+       2010,
+       0
+      ],
+      [
+       2011,
+       0
+      ],
+      [
+       2012,
+       0
+      ],
+      [
+       2013,
+       0
+      ],
+      [
+       2014,
+       0
+      ],
+      [
+       2015,
+       0
+      ],
+      [
+       2016,
+       0
+      ],
+      [
+       2017,
+       0
+      ],
+      [
+       2018,
+       0
+      ],
+      [
+       2019,
+       1
+      ],
+      [
+       2020,
+       0
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       1
+      ],
+      [
+       2023,
+       0
+      ],
+      [
+       2024,
+       2
+      ],
+      [
+       2025,
+       2
+      ],
+      [
+       "2026 YTD",
+       4
+      ]
+     ]
+    },
+    {
+     "name": "Soyuz and Shenzhou",
+     "color": "green",
+     "points": [
+      [
+       2000,
+       1
+      ],
+      [
+       2001,
+       3
+      ],
+      [
+       2002,
+       3
+      ],
+      [
+       2003,
+       4
+      ],
+      [
+       2004,
+       2
+      ],
+      [
+       2005,
+       3
+      ],
+      [
+       2006,
+       2
+      ],
+      [
+       2007,
+       2
+      ],
+      [
+       2008,
+       3
+      ],
+      [
+       2009,
+       3
+      ],
+      [
+       2010,
+       4
+      ],
+      [
+       2011,
+       5
+      ],
+      [
+       2012,
+       5
+      ],
+      [
+       2013,
+       5
+      ],
+      [
+       2014,
+       4
+      ],
+      [
+       2015,
+       4
+      ],
+      [
+       2016,
+       5
+      ],
+      [
+       2017,
+       4
+      ],
+      [
+       2018,
+       4
+      ],
+      [
+       2019,
+       3
+      ],
+      [
+       2020,
+       3
+      ],
+      [
+       2021,
+       4
+      ],
+      [
+       2022,
+       4
+      ],
+      [
+       2023,
+       4
+      ],
+      [
+       2024,
+       4
+      ],
+      [
+       2025,
+       4
+      ],
+      [
+       "2026 YTD",
+       3
+      ]
+     ]
+    },
+    {
+     "name": "Everything else (Shuttle to 2011, military, China recoverable sats, sample return, demos, Starship tests)",
+     "color": "grey",
+     "points": [
+      [
+       2000,
+       17
+      ],
+      [
+       2001,
+       26
+      ],
+      [
+       2002,
+       8
+      ],
+      [
+       2003,
+       8
+      ],
+      [
+       2004,
+       5
+      ],
+      [
+       2005,
+       6
+      ],
+      [
+       2006,
+       11
+      ],
+      [
+       2007,
+       9
+      ],
+      [
+       2008,
+       5
+      ],
+      [
+       2009,
+       10
+      ],
+      [
+       2010,
+       8
+      ],
+      [
+       2011,
+       6
+      ],
+      [
+       2012,
+       4
+      ],
+      [
+       2013,
+       1
+      ],
+      [
+       2014,
+       7
+      ],
+      [
+       2015,
+       4
+      ],
+      [
+       2016,
+       2
+      ],
+      [
+       2017,
+       1
+      ],
+      [
+       2018,
+       1
+      ],
+      [
+       2019,
+       1
+      ],
+      [
+       2020,
+       4
+      ],
+      [
+       2021,
+       0
+      ],
+      [
+       2022,
+       3
+      ],
+      [
+       2023,
+       2
+      ],
+      [
+       2024,
+       3
+      ],
+      [
+       2025,
+       3
+      ],
+      [
+       "2026 YTD",
+       3
+      ]
+     ]
+    }
+   ],
+   "caption": "One bar segment per landed vehicle (GCAT status L, primary Earth). Cargo carried inside a capsule is not counted separately. Excludes suborbital flights and launch aborts."
+  },
+  {
+   "id": "gap-hist-us",
+   "kind": "hist",
+   "title": "Days between US-accessible return opportunities",
+   "subtitle": "Dragon cargo, Crew Dragon, Starliner, Varda and Starfall landings, 2021-01-01 to 2026-10-24",
+   "x": {
+    "label": "Gap to next landing",
+    "unit": "days",
+    "scale": "linear"
+   },
+   "y": {
+    "label": "Number of gaps",
+    "unit": "",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "US-accessible landings",
+     "color": "orange",
+     "points": [
+      [
+       0,
+       14,
+       7
+      ],
+      [
+       14,
+       28,
+       6
+      ],
+      [
+       28,
+       42,
+       7
+      ],
+      [
+       42,
+       56,
+       6
+      ],
+      [
+       56,
+       70,
+       3
+      ],
+      [
+       70,
+       84,
+       4
+      ],
+      [
+       84,
+       98,
+       3
+      ],
+      [
+       98,
+       112,
+       3
+      ],
+      [
+       112,
+       126,
+       0
+      ],
+      [
+       126,
+       140,
+       1
+      ],
+      [
+       140,
+       154,
+       0
+      ],
+      [
+       154,
+       168,
+       1
+      ],
+      [
+       168,
+       182,
+       0
+      ],
+      [
+       182,
+       196,
+       0
+      ],
+      [
+       196,
+       210,
+       0
+      ],
+      [
+       210,
+       224,
+       0
+      ],
+      [
+       224,
+       238,
+       0
+      ],
+      [
+       238,
+       252,
+       0
+      ],
+      [
+       252,
+       266,
+       0
+      ],
+      [
+       266,
+       280,
+       0
+      ],
+      [
+       280,
+       294,
+       0
+      ]
+     ]
+    },
+    {
+     "name": "Dragon cargo only",
+     "color": "cyan",
+     "points": [
+      [
+       0,
+       14,
+       0
+      ],
+      [
+       14,
+       28,
+       0
+      ],
+      [
+       28,
+       42,
+       0
+      ],
+      [
+       42,
+       56,
+       0
+      ],
+      [
+       56,
+       70,
+       0
+      ],
+      [
+       70,
+       84,
+       2
+      ],
+      [
+       84,
+       98,
+       1
+      ],
+      [
+       98,
+       112,
+       1
+      ],
+      [
+       112,
+       126,
+       1
+      ],
+      [
+       126,
+       140,
+       1
+      ],
+      [
+       140,
+       154,
+       1
+      ],
+      [
+       154,
+       168,
+       1
+      ],
+      [
+       168,
+       182,
+       2
+      ],
+      [
+       182,
+       196,
+       0
+      ],
+      [
+       196,
+       210,
+       1
+      ],
+      [
+       210,
+       224,
+       0
+      ],
+      [
+       224,
+       238,
+       1
+      ],
+      [
+       238,
+       252,
+       0
+      ],
+      [
+       252,
+       266,
+       0
+      ],
+      [
+       266,
+       280,
+       1
+      ],
+      [
+       280,
+       294,
+       0
+      ]
+     ]
+    }
+   ],
+   "caption": "14-day bins; the last bin collects any longer gaps. A real return slot is weeks away, not hours. \"US-accessible\" is our classification of vehicles a US commercial payload could plausibly ride."
+  },
+  {
+   "id": "median-gap-vs-model",
+   "kind": "hbar",
+   "title": "Median gap between returns versus the fleet model",
+   "subtitle": "Real median gaps 2021\u20132026 compared with the synthetic return cadence in analysis/fleet.py",
+   "x": {
+    "label": "Median gap between returns",
+    "unit": "days",
+    "scale": "log"
+   },
+   "y": {
+    "label": "",
+    "unit": "",
+    "scale": "category"
+   },
+   "series": [
+    {
+     "name": "Real median gap (GCAT)",
+     "color": "orange",
+     "points": [
+      [
+       "Dragon cargo (CRS)",
+       143.64
+      ],
+      [
+       "Varda W-series",
+       185.08
+      ],
+      [
+       "All Dragon",
+       54.27
+      ],
+      [
+       "US-accessible, any",
+       45.25
+      ],
+      [
+       "All LEO capsules, world",
+       23.12
+      ]
+     ]
+    },
+    {
+     "name": "Synthetic fleet-model cadence",
+     "color": "grey",
+     "points": [
+      [
+       "Fleet model: 24 h",
+       1.0
+      ],
+      [
+       "Fleet model: 12 h",
+       0.5
+      ]
+     ]
+    }
+   ],
+   "caption": "Log scale. The fleet model's 12 h and 24 h cadences are synthetic assumptions, not observations."
+  },
+  {
+   "id": "downcargo",
+   "kind": "stacked",
+   "title": "Station down cargo: returned versus burned",
+   "subtitle": "GCAT \"Down Cargo\" objects by fate, tonnes per year, 2017 to date (years with continuous GCAT coverage)",
+   "x": {
+    "label": "Year",
+    "unit": "",
+    "scale": "category"
+   },
+   "y": {
+    "label": "Down cargo mass",
+    "unit": "tonnes",
+    "scale": "linear"
+   },
+   "series": [
+    {
+     "name": "Returned to Earth (landed inside a capsule)",
+     "color": "orange",
+     "points": [
+      [
+       2017,
+       5.25
+      ],
+      [
+       2018,
+       5.3
+      ],
+      [
+       2019,
+       6.05
+      ],
+      [
+       2020,
+       3.38
+      ],
+      [
+       2021,
+       5.87
+      ],
+      [
+       2022,
+       4.3
+      ],
+      [
+       2023,
+       7.9
+      ],
+      [
+       2024,
+       2.25
+      ],
+      [
+       2025,
+       1.95
+      ],
+      [
+       "2026 YTD",
+       3.9
+      ]
+     ]
+    },
+    {
+     "name": "Burned on reentry (disposal on Progress, Cygnus, Tianzhou, HTV)",
+     "color": "grey",
+     "points": [
+      [
+       2017,
+       3.91
+      ],
+      [
+       2018,
+       6.5
+      ],
+      [
+       2019,
+       11.25
+      ],
+      [
+       2020,
+       7.44
+      ],
+      [
+       2021,
+       14.65
+      ],
+      [
+       2022,
+       8.7
+      ],
+      [
+       2023,
+       8.7
+      ],
+      [
+       2024,
+       15.35
+      ],
+      [
+       2025,
+       7.7
+      ],
+      [
+       "2026 YTD",
+       3.0
+      ]
+     ]
+    }
+   ],
+   "caption": "GCAT down-cargo masses are mostly nominal estimates (often round numbers, flagged ?). The point is the split, not the exact tonnes. Before 2017 GCAT catalogues down cargo only for some missions, so earlier years are not shown."
+  }
+ ],
+ "stats": {
+  "vehicles": [
+   {
+    "cls": "dragon_cargo",
+    "label": "Dragon cargo (CRS)",
+    "landings_since_2000": 35,
+    "landings_in_window": 14,
+    "last_landing": "2026-06-17",
+    "commercial_downmass": "yes",
+    "note": "Routine pressurized ISS downmass; GCAT catalogues a \"Down Cargo\" object landed inside each recent CRS Dragon."
+   },
+   {
+    "cls": "dragon_crew",
+    "label": "Crew Dragon (NASA + private)",
+    "landings_since_2000": 21,
+    "landings_in_window": 19,
+    "last_landing": "2026-10-08",
+    "commercial_downmass": "limited",
+    "note": "Returns some research with crew; GCAT catalogues no separate down-cargo object for crew flights."
+   },
+   {
+    "cls": "varda",
+    "label": "Varda W-series",
+    "landings_since_2000": 5,
+    "landings_in_window": 5,
+    "last_landing": "2026-05-19",
+    "commercial_downmass": "yes (own product)",
+    "note": "Commercial free-flyer reentry vehicle that returns its own manufactured product."
+   },
+   {
+    "cls": "spacex_starfall",
+    "label": "SpaceX Starfall",
+    "landings_since_2000": 2,
+    "landings_in_window": 2,
+    "last_landing": "2026-10-20",
+    "commercial_downmass": "unknown",
+    "note": "SpaceX-owned recoverable capsule catalogued in GCAT from 2026; payload purpose not stated in GCAT."
+   },
+   {
+    "cls": "starliner",
+    "label": "Boeing Starliner",
+    "landings_since_2000": 3,
+    "landings_in_window": 2,
+    "last_landing": "2024-09-07",
+    "commercial_downmass": "limited",
+    "note": "Crew vehicle; GCAT records 300 kg of down cargo on the 2024 crewed test flight."
+   },
+   {
+    "cls": "soyuz",
+    "label": "Soyuz",
+    "landings_since_2000": 74,
+    "landings_in_window": 12,
+    "last_landing": "2026-07-26",
+    "commercial_downmass": "limited",
+    "note": "Crew return to Kazakhstan; small downmass, not a routine commercial channel for US payloads."
+   },
+   {
+    "cls": "shenzhou",
+    "label": "Shenzhou",
+    "landings_since_2000": 21,
+    "landings_in_window": 11,
+    "last_landing": "2026-05-29",
+    "commercial_downmass": "not for US payloads",
+    "note": "China's crew vehicle for the Tiangong station."
+   },
+   {
+    "cls": "china_recoverable_sat",
+    "label": "China recoverable satellites (SJ-10, SJ-19, FSW)",
+    "landings_since_2000": 8,
+    "landings_in_window": 1,
+    "last_landing": "2024-10-11",
+    "commercial_downmass": "not for US payloads",
+    "note": "Chinese free-flying recoverable science satellites."
+   },
+   {
+    "cls": "other_recoverable",
+    "label": "Other recoverable capsules and demos",
+    "landings_since_2000": 15,
+    "landings_in_window": 3,
+    "last_landing": "2025-09-19",
+    "commercial_downmass": "case by case",
+    "note": "Bion-M, Foton, reentry demos (IXV, LOFTID, HSRC, ATMOS Phoenix) and others."
+   },
+   {
+    "cls": "military_spaceplane",
+    "label": "Military spaceplanes (X-37B, CSSHQ)",
+    "landings_since_2000": 10,
+    "landings_in_window": 4,
+    "last_landing": "2025-03-07",
+    "commercial_downmass": "no",
+    "note": "Classified payloads; not a commercial channel."
+   },
+   {
+    "cls": "starship_test",
+    "label": "Starship test ships",
+    "landings_since_2000": 2,
+    "landings_in_window": 2,
+    "last_landing": "2026-09-28",
+    "commercial_downmass": "not yet",
+    "note": "Test ships recorded as landed after (near-)orbital flights; no payload return to date."
+   },
+   {
+    "cls": "shuttle",
+    "label": "Space Shuttle",
+    "landings_since_2000": 43,
+    "landings_in_window": 0,
+    "last_landing": "2011-07-21",
+    "commercial_downmass": "historical",
+    "note": "Retired 2011."
+   },
+   {
+    "cls": "military_film_capsule",
+    "label": "Russian film-return capsules",
+    "landings_since_2000": 69,
+    "landings_in_window": 0,
+    "last_landing": "2015-09-17",
+    "commercial_downmass": "no",
+    "note": "Reconnaissance film capsules; ended 2015."
+   },
+   {
+    "cls": "deep_space_return",
+    "label": "Deep-space returns (Orion, sample capsules)",
+    "landings_since_2000": 11,
+    "landings_in_window": 4,
+    "last_landing": "2026-04-11",
+    "commercial_downmass": "no",
+    "note": "Lunar/planetary missions, not LEO return slots."
+   }
+  ],
+  "integrity_checks": {
+   "Dragon CRS": {
+    "landed": "1..34",
+    "n": 33,
+    "missing": [
+     7
+    ]
+   },
+   "Shenzhou": {
+    "landed": "2..22",
+    "n": 21,
+    "missing": []
+   },
+   "Soyuz MS": {
+    "landed": "1..28",
+    "n": 27,
+    "missing": [
+     10
+    ]
+   },
+   "Down cargo SpX-n": {
+    "catalogued": "10..34",
+    "n": 25,
+    "missing": []
+   },
+   "Down cargo Progress MS-n": {
+    "catalogued": "1..33",
+    "n": 32,
+    "missing": [
+     4
+    ]
+   },
+   "Down cargo Tianzhou-n": {
+    "catalogued": "2..9",
+    "n": 8,
+    "missing": []
+   },
+   "Down cargo ISS NG-n": {
+    "catalogued": "10..21",
+    "n": 12,
+    "missing": []
+   }
+  },
+  "window_summary": {
+   "all_leo_capsules": {
+    "n_returns": 69,
+    "n_gaps": 68,
+    "median_gap_hours": 555.0,
+    "mean_gap_hours": 743.1,
+    "p10_gap_hours": 195.2,
+    "p25_gap_hours": 295.1,
+    "p75_gap_hours": 1002.1,
+    "p90_gap_hours": 1654.2,
+    "min_gap_hours": 4.1,
+    "max_gap_hours": 3114.3,
+    "median_gap_days": 23.12,
+    "p90_gap_days": 68.93,
+    "max_gap_days": 129.76,
+    "mean_wait_hours_random_finish": 626.7,
+    "mean_wait_days_random_finish": 26.11,
+    "span_days": 2105.4,
+    "returns_per_year": 11.87,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew",
+     "varda",
+     "spacex_starfall",
+     "starliner",
+     "soyuz",
+     "shenzhou",
+     "china_recoverable_sat",
+     "other_recoverable"
+    ],
+    "ratio_median_gap_to_24h": 23.1
+   },
+   "us_accessible": {
+    "n_returns": 42,
+    "n_gaps": 41,
+    "median_gap_hours": 1086.1,
+    "mean_gap_hours": 1232.5,
+    "p10_gap_hours": 284.4,
+    "p25_gap_hours": 468.1,
+    "p75_gap_hours": 1723.9,
+    "p90_gap_hours": 2569.4,
+    "min_gap_hours": 146.0,
+    "max_gap_hours": 3809.1,
+    "median_gap_days": 45.25,
+    "p90_gap_days": 107.06,
+    "max_gap_days": 158.71,
+    "mean_wait_hours_random_finish": 928.8,
+    "mean_wait_days_random_finish": 38.7,
+    "span_days": 2105.4,
+    "returns_per_year": 7.23,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew",
+     "varda",
+     "spacex_starfall",
+     "starliner"
+    ],
+    "ratio_median_gap_to_24h": 45.3
+   },
+   "dragon_all": {
+    "n_returns": 33,
+    "n_gaps": 32,
+    "median_gap_hours": 1302.6,
+    "mean_gap_hours": 1570.2,
+    "p10_gap_hours": 618.6,
+    "p25_gap_hours": 954.1,
+    "p75_gap_hours": 2181.8,
+    "p90_gap_hours": 2642.9,
+    "min_gap_hours": 251.6,
+    "max_gap_hours": 3809.1,
+    "median_gap_days": 54.28,
+    "p90_gap_days": 110.12,
+    "max_gap_days": 158.71,
+    "mean_wait_hours_random_finish": 1028.0,
+    "mean_wait_days_random_finish": 42.84,
+    "span_days": 2093.6,
+    "returns_per_year": 5.68,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew"
+    ],
+    "ratio_median_gap_to_24h": 54.3
+   },
+   "dragon_cargo": {
+    "n_returns": 14,
+    "n_gaps": 13,
+    "median_gap_hours": 3447.4,
+    "mean_gap_hours": 3656.2,
+    "p10_gap_hours": 2046.5,
+    "p25_gap_hours": 2644.4,
+    "p75_gap_hours": 4250.1,
+    "p90_gap_hours": 5443.6,
+    "min_gap_hours": 1817.5,
+    "max_gap_hours": 6674.0,
+    "median_gap_days": 143.64,
+    "p90_gap_days": 226.82,
+    "max_gap_days": 278.08,
+    "mean_wait_hours_random_finish": 2095.2,
+    "mean_wait_days_random_finish": 87.3,
+    "span_days": 1980.4,
+    "returns_per_year": 2.41,
+    "classes": [
+     "dragon_cargo"
+    ],
+    "ratio_median_gap_to_24h": 143.6
+   },
+   "dragon_crew": {
+    "n_returns": 19,
+    "n_gaps": 18,
+    "median_gap_hours": 2896.7,
+    "mean_gap_hours": 2647.1,
+    "p10_gap_hours": 544.9,
+    "p25_gap_hours": 1027.0,
+    "p75_gap_hours": 3807.2,
+    "p90_gap_hours": 4160.8,
+    "min_gap_hours": 251.6,
+    "max_gap_hours": 6390.9,
+    "median_gap_days": 120.7,
+    "p90_gap_days": 173.37,
+    "max_gap_days": 266.29,
+    "mean_wait_hours_random_finish": 1843.3,
+    "mean_wait_days_random_finish": 76.8,
+    "span_days": 1985.4,
+    "returns_per_year": 3.27,
+    "classes": [
+     "dragon_crew"
+    ],
+    "ratio_median_gap_to_24h": 120.7
+   },
+   "varda": {
+    "n_returns": 5,
+    "n_gaps": 4,
+    "median_gap_hours": 4442.0,
+    "mean_gap_hours": 4904.1,
+    "p10_gap_hours": 2057.7,
+    "p25_gap_hours": 2426.8,
+    "p75_gap_hours": 6919.2,
+    "p90_gap_hours": 8120.2,
+    "min_gap_hours": 1811.6,
+    "max_gap_hours": 8920.9,
+    "median_gap_days": 185.08,
+    "p90_gap_days": 338.34,
+    "max_gap_days": 371.7,
+    "mean_wait_hours_random_finish": 3285.0,
+    "mean_wait_days_random_finish": 136.87,
+    "span_days": 817.3,
+    "returns_per_year": 0.86,
+    "classes": [
+     "varda"
+    ],
+    "ratio_median_gap_to_24h": 185.1
+   },
+   "soyuz": {
+    "n_returns": 12,
+    "n_gaps": 11,
+    "median_gap_hours": 4391.5,
+    "mean_gap_hours": 4202.7,
+    "p10_gap_hours": 2408.2,
+    "p25_gap_hours": 4202.8,
+    "p75_gap_hours": 4804.7,
+    "p90_gap_hours": 5501.4,
+    "min_gap_hours": 1534.6,
+    "max_gap_hours": 5595.7,
+    "median_gap_days": 182.98,
+    "p90_gap_days": 229.22,
+    "max_gap_days": 233.15,
+    "mean_wait_hours_random_finish": 2262.6,
+    "mean_wait_days_random_finish": 94.27,
+    "span_days": 1926.2,
+    "returns_per_year": 2.06,
+    "classes": [
+     "soyuz"
+    ],
+    "ratio_median_gap_to_24h": 183.0
+   },
+   "shenzhou": {
+    "n_returns": 11,
+    "n_gaps": 10,
+    "median_gap_hours": 4366.0,
+    "mean_gap_hours": 4116.7,
+    "p10_gap_hours": 2975.2,
+    "p25_gap_hours": 3748.2,
+    "p75_gap_hours": 4690.6,
+    "p90_gap_hours": 5112.2,
+    "min_gap_hours": 1576.9,
+    "max_gap_hours": 5578.2,
+    "median_gap_days": 181.92,
+    "p90_gap_days": 213.01,
+    "max_gap_days": 232.43,
+    "mean_wait_hours_random_finish": 2197.2,
+    "mean_wait_days_random_finish": 91.55,
+    "span_days": 1715.3,
+    "returns_per_year": 1.89,
+    "classes": [
+     "shenzhou"
+    ],
+    "ratio_median_gap_to_24h": 181.9
+   },
+   "commercial_downmass_yes": {
+    "n_returns": 19,
+    "n_gaps": 18,
+    "median_gap_hours": 1966.9,
+    "mean_gap_hours": 2640.6,
+    "p10_gap_hours": 698.4,
+    "p25_gap_hours": 1660.9,
+    "p75_gap_hours": 4014.1,
+    "p90_gap_hours": 5160.0,
+    "min_gap_hours": 267.6,
+    "max_gap_hours": 5984.4,
+    "median_gap_days": 81.95,
+    "p90_gap_days": 215.0,
+    "max_gap_days": 249.35,
+    "mean_wait_hours_random_finish": 1843.4,
+    "mean_wait_days_random_finish": 76.81,
+    "span_days": 1980.4,
+    "returns_per_year": 3.27,
+    "classes": [
+     "dragon_cargo",
+     "varda"
+    ],
+    "ratio_median_gap_to_24h": 82.0
+   }
+  },
+  "previous_era_2012_2020": {
+   "all_leo_capsules": {
+    "n_returns": 67,
+    "n_gaps": 66,
+    "median_gap_hours": 970.0,
+    "mean_gap_hours": 1127.1,
+    "p10_gap_hours": 237.1,
+    "p25_gap_hours": 509.4,
+    "p75_gap_hours": 1584.0,
+    "p90_gap_hours": 2139.4,
+    "min_gap_hours": 14.6,
+    "max_gap_hours": 2912.8,
+    "median_gap_days": 40.41,
+    "p90_gap_days": 89.14,
+    "max_gap_days": 121.37,
+    "mean_wait_hours_random_finish": 815.9,
+    "mean_wait_days_random_finish": 34.0,
+    "span_days": 3099.6
+   },
+   "us_accessible": {
+    "n_returns": 23,
+    "n_gaps": 22,
+    "median_gap_hours": 2644.2,
+    "mean_gap_hours": 3256.5,
+    "p10_gap_hours": 1847.3,
+    "p25_gap_hours": 2169.2,
+    "p75_gap_hours": 3596.0,
+    "p90_gap_hours": 4819.0,
+    "min_gap_hours": 386.7,
+    "max_gap_hours": 10034.5,
+    "median_gap_days": 110.18,
+    "p90_gap_days": 200.79,
+    "max_gap_days": 418.1,
+    "mean_wait_hours_random_finish": 2327.0,
+    "mean_wait_days_random_finish": 96.96,
+    "span_days": 2985.1
+   },
+   "dragon_cargo": {
+    "n_returns": 20,
+    "n_gaps": 19,
+    "median_gap_hours": 2833.4,
+    "mean_gap_hours": 3622.9,
+    "p10_gap_hours": 2138.3,
+    "p25_gap_hours": 2466.7,
+    "p75_gap_hours": 3722.1,
+    "p90_gap_hours": 5644.4,
+    "min_gap_hours": 1826.0,
+    "max_gap_hours": 10034.5,
+    "median_gap_days": 118.06,
+    "p90_gap_days": 235.18,
+    "max_gap_days": 418.1,
+    "mean_wait_hours_random_finish": 2419.4,
+    "mean_wait_days_random_finish": 100.81,
+    "span_days": 2868.1
+   }
+  },
+  "commercial_capsule_reentries_not_recorded_as_landed": [
+   {
+    "jcat": "A11536",
+    "name": "Mission Possible",
+    "owner": "EXCO",
+    "status": "D",
+    "date": "2025-06-24",
+    "file": "auxcat.tsv"
+   },
+   {
+    "jcat": "S69093",
+    "name": "W-4 Reentry Vehicle",
+    "owner": "VARDA",
+    "status": "R",
+    "date": "2026-06-01",
+    "file": "satcat.tsv"
+   }
+  ],
+  "downcargo_by_year": {
+   "2000": {
+    "returned_kg": 1252.0,
+    "returned_n": 5,
+    "burned_kg": 0.0,
+    "burned_n": 4
+   },
+   "2001": {
+    "returned_kg": 396.0,
+    "returned_n": 1,
+    "burned_kg": 4705.0,
+    "burned_n": 11
+   },
+   "2002": {
+    "burned_kg": 3670.0,
+    "burned_n": 6,
+    "returned_kg": 1504.0,
+    "returned_n": 2
+   },
+   "2003": {
+    "burned_kg": 0.0,
+    "burned_n": 3
+   },
+   "2004": {
+    "burned_kg": 0.0,
+    "burned_n": 4
+   },
+   "2005": {
+    "returned_kg": 2994.0,
+    "returned_n": 1,
+    "burned_kg": 0.0,
+    "burned_n": 3
+   },
+   "2006": {
+    "burned_kg": 5023.0,
+    "burned_n": 7,
+    "returned_kg": 450.0,
+    "returned_n": 1
+   },
+   "2007": {
+    "returned_kg": 2088.0,
+    "returned_n": 3,
+    "burned_kg": 808.0,
+    "burned_n": 5
+   },
+   "2008": {
+    "returned_kg": 4145.0,
+    "returned_n": 5,
+    "burned_kg": 0.0,
+    "burned_n": 6
+   },
+   "2009": {
+    "returned_kg": 3861.0,
+    "returned_n": 5,
+    "burned_kg": 0.0,
+    "burned_n": 5
+   },
+   "2010": {
+    "returned_kg": 700.0,
+    "returned_n": 1,
+    "burned_kg": 3077.0,
+    "burned_n": 7
+   },
+   "2011": {
+    "returned_kg": 4074.0,
+    "returned_n": 3,
+    "burned_kg": 1014.0,
+    "burned_n": 8
+   },
+   "2012": {
+    "burned_kg": 0.0,
+    "burned_n": 5,
+    "returned_kg": 0.0,
+    "returned_n": 2
+   },
+   "2013": {
+    "burned_kg": 0.0,
+    "burned_n": 7,
+    "returned_kg": 0.0,
+    "returned_n": 1
+   },
+   "2014": {
+    "burned_kg": 0.0,
+    "burned_n": 7,
+    "returned_kg": 0.0,
+    "returned_n": 2
+   },
+   "2015": {
+    "burned_kg": 0.0,
+    "burned_n": 5,
+    "returned_kg": 0.0,
+    "returned_n": 2
+   },
+   "2016": {
+    "burned_kg": 0.0,
+    "burned_n": 6,
+    "returned_kg": 1680.0,
+    "returned_n": 2
+   },
+   "2017": {
+    "returned_kg": 5252.0,
+    "returned_n": 3,
+    "burned_kg": 3912.0,
+    "burned_n": 6
+   },
+   "2018": {
+    "burned_kg": 6500.0,
+    "burned_n": 4,
+    "returned_kg": 5296.0,
+    "returned_n": 3
+   },
+   "2019": {
+    "burned_kg": 11250.0,
+    "burned_n": 7,
+    "returned_kg": 6054.0,
+    "returned_n": 5
+   },
+   "2020": {
+    "burned_kg": 7443.0,
+    "burned_n": 4,
+    "returned_kg": 3385.0,
+    "returned_n": 3
+   },
+   "2021": {
+    "burned_kg": 14646.0,
+    "burned_n": 7,
+    "returned_kg": 5872.0,
+    "returned_n": 3
+   },
+   "2022": {
+    "burned_kg": 8700.0,
+    "burned_n": 6,
+    "returned_kg": 4300.0,
+    "returned_n": 3
+   },
+   "2023": {
+    "burned_kg": 8700.0,
+    "burned_n": 6,
+    "returned_kg": 7900.0,
+    "returned_n": 4
+   },
+   "2024": {
+    "burned_kg": 15350.0,
+    "burned_n": 9,
+    "returned_kg": 2250.0,
+    "returned_n": 2
+   },
+   "2025": {
+    "burned_kg": 7700.0,
+    "burned_n": 5,
+    "returned_kg": 1950.0,
+    "returned_n": 1
+   },
+   "2026": {
+    "other_kg": 6000.0,
+    "other_n": 2,
+    "burned_kg": 3000.0,
+    "burned_n": 3,
+    "returned_kg": 3900.0,
+    "returned_n": 2
+   }
+  },
+  "dragon_downcargo_returned_objects": 24,
+  "dragon_downcargo_returned_median_kg": 1925.0,
+  "downcargo_since_window_start_t": {
+   "returned": 26.17,
+   "burned": 58.1
+  },
+  "events_in_window": [
+   {
+    "date": "2021-01-14T01:26",
+    "name": "Dragon CRS-21",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-04-17T04:55",
+    "name": "Soyuz MS-17",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-05-02T06:56",
+    "name": "Resilience",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-07-10T03:29",
+    "name": "Dragon CRS-22",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-09-17T05:34",
+    "name": "Shenzhou 12",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2021-09-18T23:06",
+    "name": "Inspiration4",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "satcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2021-10-01T02:57",
+    "name": "Dragon CRS-23",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-10-17T04:35",
+    "name": "Soyuz MS-18",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2021-11-09T03:32",
+    "name": "Endeavour",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2021-12-20T03:13",
+    "name": "Soyuz MS-20",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-01-24T21:05",
+    "name": "Dragon CRS-24",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-03-30T11:28",
+    "name": "Soyuz MS-19",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2022-04-16T01:56",
+    "name": "Shenzhou 13",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2022-04-25T17:06",
+    "name": "Axiom Ax-1",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-05-06T04:43",
+    "name": "Endurance",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-05-25T22:49",
+    "name": "Starliner OFT-2",
+    "cls": "starliner",
+    "owner": "BOKSC",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-08-20T18:53",
+    "name": "Dragon CRS-25",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-09-29T10:57",
+    "name": "Soyuz MS-21",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-10-14T20:55",
+    "name": "Freedom",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2022-11-10T12:02",
+    "name": "Bernard Kutter LOFTID",
+    "cls": "other_recoverable",
+    "owner": "LARCN",
+    "file": "auxcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2022-12-04T12:09",
+    "name": "Shenzhou 14",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-01-11T10:19",
+    "name": "Dragon CRS-26",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-03-12T02:02",
+    "name": "Endurance",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-03-28T11:45",
+    "name": "Soyuz MS-22",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-04-15T20:58",
+    "name": "Dragon CRS-27",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-05-31T03:04",
+    "name": "Axiom Ax-2",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-06-03T22:33",
+    "name": "Shenzhou 15",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-06-30T14:30",
+    "name": "Dragon CRS-28",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-09-04T04:17",
+    "name": "Dragon Endeavour (Crew-6)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-09-27T11:17",
+    "name": "Soyuz MS-23",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-10-31T00:11",
+    "name": "Shenzhou 16",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2023-12-22T17:33",
+    "name": "Dragon CRS-29",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2024-02-09T13:30",
+    "name": "Axiom Ax-3",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-02-21T21:40",
+    "name": "W-1 Reentry Vehicle",
+    "cls": "varda",
+    "owner": "VARDA",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-03-12T09:47",
+    "name": "Dragon Endurance (Crew-7)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-04-06T07:17",
+    "name": "Soyuz MS-24",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-04-30T05:38",
+    "name": "Dragon CRS-30",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-04-30T09:46",
+    "name": "Shenzhou 17",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-09-07T04:01",
+    "name": "Calypso",
+    "cls": "starliner",
+    "owner": "BOCC",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-09-15T07:36",
+    "name": "Polaris Dawn",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "satcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-09-23T11:59",
+    "name": "Soyuz MS-25",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-10-11T02:39",
+    "name": "Shi Jian 19 RV",
+    "cls": "china_recoverable_sat",
+    "owner": "CASC",
+    "file": "satcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-10-25T07:29",
+    "name": "Dragon Endeavour (Crew-8)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2024-11-03T17:24",
+    "name": "Shenzhou 18",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2024-12-17T18:39",
+    "name": "Dragon CRS-31",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-02-27T14:32",
+    "name": "W-2 Reentry Vehicle",
+    "cls": "varda",
+    "owner": "VARDA",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-03-18T21:57",
+    "name": "Dragon Freedom (Crew-9)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-04-04T16:19",
+    "name": "Dragon Reslience (Fram-2)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "satcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-04-20T01:20",
+    "name": "Soyuz MS-26",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-04-22T02:58",
+    "name": "Phoenix 1",
+    "cls": "other_recoverable",
+    "owner": "ATMOS",
+    "file": "auxcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2025-04-30T05:08",
+    "name": "Shenzhou 19",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-05-14T02:07",
+    "name": "W-3 Reentry Vehicle",
+    "cls": "varda",
+    "owner": "VARDA",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-05-25T05:44",
+    "name": "Dragon CRS-32",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-07-15T09:31",
+    "name": "Axiom Ax-4",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-08-09T15:33",
+    "name": "Dragon Endurance (Crew-10)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-09-19T07:00",
+    "name": "Bion-M No. 2",
+    "cls": "other_recoverable",
+    "owner": "FKA",
+    "file": "satcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2025-11-14T08:40",
+    "name": "Shenzhou 21",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2025-12-09T05:03",
+    "name": "Soyuz MS-27",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-01-15T08:41",
+    "name": "Dragon Endeavour (Crew-11)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-01-19T01:34",
+    "name": "Shenzhou 20",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-01-29T14:07",
+    "name": "W-5 Reentry Vehicle",
+    "cls": "varda",
+    "owner": "VARDA",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-02-27T07:44",
+    "name": "Dragon CRS-33",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-05-19T06:03",
+    "name": "W-6 Reentry Vehicle",
+    "cls": "varda",
+    "owner": "VARDA",
+    "file": "auxcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2026-05-29T12:11",
+    "name": "Shenzhou 22",
+    "cls": "shenzhou",
+    "owner": "CMSEO",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-06-17T12:10",
+    "name": "Dragon CRS-34",
+    "cls": "dragon_cargo",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2026-06-23T14:08",
+    "name": "Starfall Demo",
+    "cls": "spacex_starfall",
+    "owner": "SPX",
+    "file": "auxcat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2026-07-24T23:56",
+    "name": "Starship FT-13",
+    "cls": "starship_test",
+    "owner": "SPX",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-07-26T10:27",
+    "name": "Soyuz MS-28",
+    "cls": "soyuz",
+    "owner": "RKKE",
+    "file": "ecat.tsv",
+    "time_uncertain": true
+   },
+   {
+    "date": "2026-09-28T15:57",
+    "name": "Starship FT-14",
+    "cls": "starship_test",
+    "owner": "SPX",
+    "file": "satcat100k.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-10-08T15:34",
+    "name": "Dragon Freedom (Crew-12)",
+    "cls": "dragon_crew",
+    "owner": "SPX",
+    "file": "ecat.tsv",
+    "time_uncertain": false
+   },
+   {
+    "date": "2026-10-20T12:00",
+    "name": "Starfall 1",
+    "cls": "spacex_starfall",
+    "owner": "SPX",
+    "file": "auxcat.tsv",
+    "time_uncertain": false
+   }
+  ]
+ },
+ "calibration": {
+  "description": "Empirical gaps between real Earth landings, for analysis/fleet.py. Replace the synthetic cadence by sampling gaps_hours, or use median/percentiles.",
+  "window": {
+   "start": "2021-01-01",
+   "end": "2026-10-24",
+   "years": 5.81
+  },
+  "synthetic_assumption_hours": [
+   12,
+   24
+  ],
+  "synthetic_model_note": "analysis/fleet.py: 3 capsules, each with a return slot every cadence hours, offset by cadence/3, so the system has a slot every cadence/3 hours (8 h at 24 h).",
+  "classes": {
+   "all_leo_capsules": {
+    "n_returns": 69,
+    "n_gaps": 68,
+    "median_gap_hours": 555.0,
+    "mean_gap_hours": 743.1,
+    "p10_gap_hours": 195.2,
+    "p25_gap_hours": 295.1,
+    "p75_gap_hours": 1002.1,
+    "p90_gap_hours": 1654.2,
+    "min_gap_hours": 4.1,
+    "max_gap_hours": 3114.3,
+    "median_gap_days": 23.12,
+    "p90_gap_days": 68.93,
+    "max_gap_days": 129.76,
+    "mean_wait_hours_random_finish": 626.7,
+    "mean_wait_days_random_finish": 26.11,
+    "span_days": 2105.4,
+    "returns_per_year": 11.87,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew",
+     "varda",
+     "spacex_starfall",
+     "starliner",
+     "soyuz",
+     "shenzhou",
+     "china_recoverable_sat",
+     "other_recoverable"
+    ],
+    "ratio_median_gap_to_24h": 23.1,
+    "gaps_hours": [
+     2235.5,
+     362.0,
+     1652.5,
+     1658.1,
+     41.5,
+     291.8,
+     385.6,
+     551.0,
+     983.7,
+     857.9,
+     1550.4,
+     398.5,
+     231.2,
+     251.6,
+     474.1,
+     2084.1,
+     952.1,
+     370.0,
+     639.1,
+     576.1,
+     910.2,
+     1431.7,
+     393.7,
+     441.2,
+     1086.1,
+     91.5,
+     640.0,
+     1573.8,
+     559.0,
+     804.9,
+     1265.4,
+     1172.0,
+     296.2,
+     468.1,
+     597.5,
+     574.3,
+     4.1,
+     3114.3,
+     195.6,
+     196.4,
+     422.7,
+     340.8,
+     225.9,
+     1057.2,
+     1723.9,
+     463.4,
+     402.4,
+     369.0,
+     49.6,
+     194.2,
+     333.0,
+     267.6,
+     1227.8,
+     606.0,
+     975.4,
+     1345.7,
+     596.4,
+     891.6,
+     88.9,
+     252.6,
+     689.6,
+     1942.3,
+     246.1,
+     456.0,
+     146.0,
+     788.3,
+     1781.1,
+     284.4
+    ]
+   },
+   "us_accessible": {
+    "n_returns": 42,
+    "n_gaps": 41,
+    "median_gap_hours": 1086.1,
+    "mean_gap_hours": 1232.5,
+    "p10_gap_hours": 284.4,
+    "p25_gap_hours": 468.1,
+    "p75_gap_hours": 1723.9,
+    "p90_gap_hours": 2569.4,
+    "min_gap_hours": 146.0,
+    "max_gap_hours": 3809.1,
+    "median_gap_days": 45.25,
+    "p90_gap_days": 107.06,
+    "max_gap_days": 158.71,
+    "mean_wait_hours_random_finish": 928.8,
+    "mean_wait_days_random_finish": 38.7,
+    "span_days": 2105.4,
+    "returns_per_year": 7.23,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew",
+     "varda",
+     "spacex_starfall",
+     "starliner"
+    ],
+    "ratio_median_gap_to_24h": 45.3,
+    "gaps_hours": [
+     2597.5,
+     1652.5,
+     1699.6,
+     291.8,
+     936.6,
+     1841.5,
+     2180.0,
+     251.6,
+     474.1,
+     2084.1,
+     1322.0,
+     2125.4,
+     1431.7,
+     834.9,
+     1086.1,
+     731.4,
+     1573.8,
+     2629.3,
+     1172.0,
+     296.2,
+     468.1,
+     1171.8,
+     3118.4,
+     195.6,
+     959.9,
+     1283.2,
+     1723.9,
+     463.4,
+     402.4,
+     945.8,
+     267.6,
+     1227.8,
+     606.0,
+     3809.1,
+     341.4,
+     689.6,
+     1942.3,
+     702.1,
+     146.0,
+     2569.4,
+     284.4
+    ]
+   },
+   "dragon_all": {
+    "n_returns": 33,
+    "n_gaps": 32,
+    "median_gap_hours": 1302.6,
+    "mean_gap_hours": 1570.2,
+    "p10_gap_hours": 618.6,
+    "p25_gap_hours": 954.1,
+    "p75_gap_hours": 2181.8,
+    "p90_gap_hours": 2642.9,
+    "min_gap_hours": 251.6,
+    "max_gap_hours": 3809.1,
+    "median_gap_days": 54.28,
+    "p90_gap_days": 110.12,
+    "max_gap_days": 158.71,
+    "mean_wait_hours_random_finish": 1028.0,
+    "mean_wait_days_random_finish": 42.84,
+    "span_days": 2093.6,
+    "returns_per_year": 5.68,
+    "classes": [
+     "dragon_cargo",
+     "dragon_crew"
+    ],
+    "ratio_median_gap_to_24h": 54.3,
+    "gaps_hours": [
+     2597.5,
+     1652.5,
+     1699.6,
+     291.8,
+     936.6,
+     1841.5,
+     2180.0,
+     251.6,
+     2558.2,
+     1322.0,
+     2125.4,
+     1431.7,
+     834.9,
+     1086.1,
+     731.4,
+     1573.8,
+     2629.3,
+     1172.0,
+     764.3,
+     1171.8,
+     3314.0,
+     959.9,
+     1283.2,
+     2187.3,
+     402.4,
+     1213.4,
+     1227.8,
+     606.0,
+     3809.1,
+     1031.0,
+     2644.4,
+     2715.4
+    ]
+   },
+   "dragon_cargo": {
+    "n_returns": 14,
+    "n_gaps": 13,
+    "median_gap_hours": 3447.4,
+    "mean_gap_hours": 3656.2,
+    "p10_gap_hours": 2046.5,
+    "p25_gap_hours": 2644.4,
+    "p75_gap_hours": 4250.1,
+    "p90_gap_hours": 5443.6,
+    "min_gap_hours": 1817.5,
+    "max_gap_hours": 6674.0,
+    "median_gap_days": 143.64,
+    "p90_gap_days": 226.82,
+    "max_gap_days": 278.08,
+    "mean_wait_hours_random_finish": 2095.2,
+    "mean_wait_days_random_finish": 87.3,
+    "span_days": 1980.4,
+    "returns_per_year": 2.41,
+    "classes": [
+     "dragon_cargo"
+    ],
+    "ratio_median_gap_to_24h": 143.6,
+    "gaps_hours": [
+     4250.1,
+     1991.5,
+     2778.1,
+     4989.8,
+     3447.4,
+     2266.7,
+     1817.5,
+     4203.1,
+     3108.1,
+     5557.0,
+     3803.1,
+     6674.0,
+     2644.4
+    ]
+   },
+   "dragon_crew": {
+    "n_returns": 19,
+    "n_gaps": 18,
+    "median_gap_hours": 2896.7,
+    "mean_gap_hours": 2647.1,
+    "p10_gap_hours": 544.9,
+    "p25_gap_hours": 1027.0,
+    "p75_gap_hours": 3807.2,
+    "p90_gap_hours": 4160.8,
+    "min_gap_hours": 251.6,
+    "max_gap_hours": 6390.9,
+    "median_gap_days": 120.7,
+    "p90_gap_days": 173.37,
+    "max_gap_days": 266.29,
+    "mean_wait_hours_random_finish": 1843.3,
+    "mean_wait_days_random_finish": 76.8,
+    "span_days": 1985.4,
+    "returns_per_year": 3.27,
+    "classes": [
+     "dragon_crew"
+    ],
+    "ratio_median_gap_to_24h": 120.7,
+    "gaps_hours": [
+     3352.2,
+     1228.4,
+     4021.6,
+     251.6,
+     3880.2,
+     3557.1,
+     1921.0,
+     2305.2,
+     3801.2,
+     764.3,
+     4485.8,
+     959.9,
+     3470.5,
+     402.4,
+     2441.2,
+     606.0,
+     3809.1,
+     6390.9
+    ]
+   },
+   "varda": {
+    "n_returns": 5,
+    "n_gaps": 4,
+    "median_gap_hours": 4442.0,
+    "mean_gap_hours": 4904.1,
+    "p10_gap_hours": 2057.7,
+    "p25_gap_hours": 2426.8,
+    "p75_gap_hours": 6919.2,
+    "p90_gap_hours": 8120.2,
+    "min_gap_hours": 1811.6,
+    "max_gap_hours": 8920.9,
+    "median_gap_days": 185.08,
+    "p90_gap_days": 338.34,
+    "max_gap_days": 371.7,
+    "mean_wait_hours_random_finish": 3285.0,
+    "mean_wait_days_random_finish": 136.87,
+    "span_days": 817.3,
+    "returns_per_year": 0.86,
+    "classes": [
+     "varda"
+    ],
+    "ratio_median_gap_to_24h": 185.1,
+    "gaps_hours": [
+     8920.9,
+     1811.6,
+     6252.0,
+     2631.9
+    ]
+   },
+   "soyuz": {
+    "n_returns": 12,
+    "n_gaps": 11,
+    "median_gap_hours": 4391.5,
+    "mean_gap_hours": 4202.7,
+    "p10_gap_hours": 2408.2,
+    "p25_gap_hours": 4202.8,
+    "p75_gap_hours": 4804.7,
+    "p90_gap_hours": 5501.4,
+    "min_gap_hours": 1534.6,
+    "max_gap_hours": 5595.7,
+    "median_gap_days": 182.98,
+    "p90_gap_days": 229.22,
+    "max_gap_days": 233.15,
+    "mean_wait_hours_random_finish": 2262.6,
+    "mean_wait_days_random_finish": 94.27,
+    "span_days": 1926.2,
+    "returns_per_year": 2.06,
+    "classes": [
+     "soyuz"
+    ],
+    "ratio_median_gap_to_24h": 183.0,
+    "gaps_hours": [
+     4391.7,
+     1534.6,
+     2408.2,
+     4391.5,
+     4320.8,
+     4391.5,
+     4604.0,
+     4084.7,
+     5005.4,
+     5595.7,
+     5501.4
+    ]
+   },
+   "shenzhou": {
+    "n_returns": 11,
+    "n_gaps": 10,
+    "median_gap_hours": 4366.0,
+    "mean_gap_hours": 4116.7,
+    "p10_gap_hours": 2975.2,
+    "p25_gap_hours": 3748.2,
+    "p75_gap_hours": 4690.6,
+    "p90_gap_hours": 5112.2,
+    "min_gap_hours": 1576.9,
+    "max_gap_hours": 5578.2,
+    "median_gap_days": 181.92,
+    "p90_gap_days": 213.01,
+    "max_gap_days": 232.43,
+    "mean_wait_hours_random_finish": 2197.2,
+    "mean_wait_days_random_finish": 91.55,
+    "span_days": 1715.3,
+    "returns_per_year": 1.89,
+    "classes": [
+     "shenzhou"
+    ],
+    "ratio_median_gap_to_24h": 181.9,
+    "gaps_hours": [
+     5060.4,
+     5578.2,
+     4354.4,
+     3577.6,
+     4377.6,
+     4495.6,
+     4259.7,
+     4755.5,
+     1576.9,
+     3130.6
+    ]
+   },
+   "commercial_downmass_yes": {
+    "n_returns": 19,
+    "n_gaps": 18,
+    "median_gap_hours": 1966.9,
+    "mean_gap_hours": 2640.6,
+    "p10_gap_hours": 698.4,
+    "p25_gap_hours": 1660.9,
+    "p75_gap_hours": 4014.1,
+    "p90_gap_hours": 5160.0,
+    "min_gap_hours": 267.6,
+    "max_gap_hours": 5984.4,
+    "median_gap_days": 81.95,
+    "p90_gap_days": 215.0,
+    "max_gap_days": 249.35,
+    "mean_wait_hours_random_finish": 1843.4,
+    "mean_wait_days_random_finish": 76.81,
+    "span_days": 1980.4,
+    "returns_per_year": 3.27,
+    "classes": [
+     "dragon_cargo",
+     "varda"
+    ],
+    "ratio_median_gap_to_24h": 82.0,
+    "gaps_hours": [
+     4250.1,
+     1991.5,
+     2778.1,
+     4989.8,
+     3447.4,
+     2266.7,
+     1817.5,
+     4203.1,
+     1468.1,
+     1640.0,
+     5557.0,
+     1723.9,
+     1811.6,
+     267.6,
+     5984.4,
+     689.6,
+     1942.3,
+     702.1
+    ]
+   }
+  },
+  "previous_era_2012_2020": {
+   "all_leo_capsules": {
+    "n_returns": 67,
+    "n_gaps": 66,
+    "median_gap_hours": 970.0,
+    "mean_gap_hours": 1127.1,
+    "p10_gap_hours": 237.1,
+    "p25_gap_hours": 509.4,
+    "p75_gap_hours": 1584.0,
+    "p90_gap_hours": 2139.4,
+    "min_gap_hours": 14.6,
+    "max_gap_hours": 2912.8,
+    "median_gap_days": 40.41,
+    "p90_gap_days": 89.14,
+    "max_gap_days": 121.37,
+    "mean_wait_hours_random_finish": 815.9,
+    "mean_wait_days_random_finish": 34.0,
+    "span_days": 3099.6
+   },
+   "us_accessible": {
+    "n_returns": 23,
+    "n_gaps": 22,
+    "median_gap_hours": 2644.2,
+    "mean_gap_hours": 3256.5,
+    "p10_gap_hours": 1847.3,
+    "p25_gap_hours": 2169.2,
+    "p75_gap_hours": 3596.0,
+    "p90_gap_hours": 4819.0,
+    "min_gap_hours": 386.7,
+    "max_gap_hours": 10034.5,
+    "median_gap_days": 110.18,
+    "p90_gap_days": 200.79,
+    "max_gap_days": 418.1,
+    "mean_wait_hours_random_finish": 2327.0,
+    "mean_wait_days_random_finish": 96.96,
+    "span_days": 2985.1
+   },
+   "dragon_cargo": {
+    "n_returns": 20,
+    "n_gaps": 19,
+    "median_gap_hours": 2833.4,
+    "mean_gap_hours": 3622.9,
+    "p10_gap_hours": 2138.3,
+    "p25_gap_hours": 2466.7,
+    "p75_gap_hours": 3722.1,
+    "p90_gap_hours": 5644.4,
+    "min_gap_hours": 1826.0,
+    "max_gap_hours": 10034.5,
+    "median_gap_days": 118.06,
+    "p90_gap_days": 235.18,
+    "max_gap_days": 418.1,
+    "mean_wait_hours_random_finish": 2419.4,
+    "mean_wait_days_random_finish": 100.81,
+    "span_days": 2868.1
+   }
+  },
+  "recommended": {
+   "baseline": "us_accessible",
+   "conservative": "dragon_cargo",
+   "optimistic": "all_leo_capsules",
+   "note": "us_accessible pools all US-accessible landings as if any could carry a foundry cartridge; real manifests are booked months ahead, so this is an upper bound on opportunity."
+  }
+ },
+ "findings": [
+  "From 2021-01-01 to 2026-10-24 GCAT records 69 landings of LEO return capsules worldwide; 42 were US-accessible vehicles (Dragon, Starliner, Varda, Starfall).",
+  "The median gap between US-accessible return opportunities was 45.25 days (90th percentile 107.06 days, longest 158.71 days). That is 45.3x the fleet model's synthetic 24 h per-capsule cadence (its 3 staggered capsules give a slot every 8 h system-wide).",
+  "Of those 69 landings, 19 (3.27 per year) were vehicles whose job includes commercial downmass (Dragon cargo, Varda); the rest were crew vehicles with limited downmass, new or demo capsules, or vehicles that are not a routine channel for US commercial payloads (Soyuz, Shenzhou, Chinese satellites).",
+  "Dragon cargo, the only routine pressurized downmass, landed 14 times (2.41 per year), with a median gap of 143.64 days.",
+  "A product finished at a random moment would wait on average 38.7 days for the next US-accessible landing and 87.3 days for the next Dragon cargo landing; the fleet model assumes 12 h on average (half of 24 h).",
+  "Of GCAT down cargo catalogued since 2021, about 26.2 t came back to Earth inside capsules and 58.1 t was burned on purpose with disposal vehicles.",
+  "Varda's W-series capsules landed 5 times in the window; GCAT also lists a W-4 reentry vehicle as reentered without a recorded landing (status R)."
+ ],
+ "limitations": [
+  "Landing times come from GCAT phase records; some are flagged uncertain (?) and a few are day-precision only. That changes gaps by hours, not the weeks-scale conclusion.",
+  "\"US-accessible\" and \"commercial downmass\" are our classifications from public vehicle roles, not manifests. A landing is an opportunity only if the payload was booked on that flight, often months ahead, so pooled gaps overstate real access.",
+  "Crew Dragon, Soyuz and Starliner carry some downmass, but GCAT does not catalogue it separately for crew flights, so its mass is unknown here.",
+  "GCAT down-cargo masses are mostly nominal (round, flagged ?) and should not be read as measured manifests.",
+  "Varda and SpaceX Starfall are new; with a handful of flights, their cadence is not yet a stable rate.",
+  "Failed or unrecorded recoveries (for example the Varda W-4 reentry vehicle, status R; The Exploration Company's Mission Possible, status D) are listed in stats, not counted as returns.",
+  "The window ends at the GCAT update date, so the last gap is right-censored (the next landing has not happened yet).",
+  "An external cross-check against Wikipedia mission lists was attempted, but the Wikimedia API rate-limited our IP. Validation here is internal: contiguous mission numbering, CRS-7 (2015 launch failure) and Soyuz MS-10 (2018 abort) are the only gaps."
+ ],
+ "future_big_data": [
+  "Join NASA ISS cargo manifests and ISS National Lab payload lists to turn landings into booked commercial downmass (kg per flight available to customers).",
+  "Add Space-Track decay messages and TLE histories for free-flyer capsules, to model deorbit-window availability by orbit rather than by booked flight.",
+  "Feed the empirical gaps_hours distribution into analysis/fleet.py and rerun the sweep on Engaging to see how on-time delivery collapses (or how much buffer storage is needed) at real cadence."
+ ],
+ "partners": [
+  {
+   "name": "SpaceX (Dragon, Starfall)",
+   "why": "Dragon is the only routine pressurized downmass channel for US payloads, and Starfall is a new SpaceX recoverable capsule.",
+   "evidence": "33 of 42 US-accessible landings since 2021 were Dragons; GCAT records 24 returned 'SpX-n Down Cargo' objects (median 1925.0 kg, nominal) and 2 Starfall landings."
+  },
+  {
+   "name": "Varda Space Industries",
+   "why": "The only company routinely landing its own free-flying manufacturing capsules.",
+   "evidence": "5 W-series reentry vehicles recorded as landed in GCAT (W-1 2024-02-21 at 113W 40N?; W-2 2025-02-27 at Koonibba; W-3 2025-05-14 at Koonibba; W-5 2026-01-29 at Koonibba; W-6 2026-05-19 at unrecorded site); W-8, W-9, W-7 still in orbit at the data cutoff."
+  },
+  {
+   "name": "NASA / ISS National Lab (CASIS)",
+   "why": "Book commercial and research downmass on CRS Dragon flights.",
+   "evidence": "GCAT down-cargo objects for CRS missions are owned by JSC (NASA) and land inside Dragon (status AL IN)."
+  },
+  {
+   "name": "Boeing (Starliner)",
+   "why": "A second US crew vehicle; adds return slots if it flies operationally.",
+   "evidence": "3 Starliner landings in GCAT, with 300 kg of down cargo recorded on the 2024 crewed test flight."
+  }
+ ],
+ "code": [
+  "analysis/bigdata/logistics_gcat.py",
+  "cluster/bigdata/logistics-gcat.sbatch"
+ ],
+ "reproduce": [
+  "python3 -I analysis/bigdata/logistics_gcat.py --raw <raw-dir> --download --out-dir data/results/bigdata",
+  "sbatch cluster/bigdata/logistics-gcat.sbatch   # same script on MIT Engaging (mit_quicktest, 1 CPU)"
+ ],
+ "generated_at": "2026-10-25T03:20:18+00:00"
+}

@@ -1,0 +1,3 @@
+# Only needed for NASA bitmap QC. Fleet and published arithmetic use Python stdlib.
+numpy>=1.24,<3
+Pillow>=10,<13
