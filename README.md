@@ -2,6 +2,8 @@
 
 A maintainable research site and reproducible analysis workspace for the SpaceXAI × Cal Hacks 13.0 project.
 
+**Live site: [zerogspot.us](https://zerogspot.us)** (published from `dist/` to the `fvrarturo/zero-g-spot` Pages repo with `scripts/publish_pages.sh`).
+
 ## Run locally
 
 Python 3.10+ is required. No JavaScript package installation is needed.
