@@ -27,7 +27,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
     build()
     threading.Thread(target=watch, daemon=True).start()
-    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(OUT))
+    class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
+        # Always serve the freshest build: browsers otherwise cache ES modules heuristically.
+        def end_headers(self):
+            self.send_header('Cache-Control', 'no-store, must-revalidate')
+            super().end_headers()
+    handler = functools.partial(NoCacheHandler, directory=str(OUT))
     server = http.server.ThreadingHTTPServer(('127.0.0.1', args.port), handler)
     print(f'Local: http://127.0.0.1:{args.port}', flush=True)
     server.serve_forever()

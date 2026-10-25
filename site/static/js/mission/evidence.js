@@ -367,6 +367,8 @@ export async function initAppendix() {
       <details><summary>Reproduce & code <span>+</span></summary><pre>${(r.reproduce || []).map(esc).join('\n')}</pre><p>${(r.code || []).map(p => `<a href="https://github.com/fvrarturo/spacexai-calhacks-13/blob/main/${esc(p)}">${esc(p)} ↗</a>`).join(' · ')}</p>${r._doc ? `<p><a href="${esc(r._doc)}">Full methods note ↗</a></p>` : ''}</details>
     </section>`;
   }).join('');
+  // Reference page: show every chart immediately, no draw-on-scroll.
+  target.querySelectorAll('.evidence-chart').forEach(c => c.classList.add('drawn'));
 }
 
 // Home-page headline cards: one number per tab, read from the result files.

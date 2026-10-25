@@ -16,6 +16,24 @@ def shell(title, body, css, script):
 <title>{title}</title><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="stylesheet" href="css/{css}">
 </head><body>{body}<script type="module" src="js/{script}"></script></body></html>'''
 
+def bust_caches():
+    """Append a content hash to local JS/CSS references so browsers never run a stale build."""
+    import hashlib, re
+    files = sorted(p for p in (OUT / 'js').rglob('*.js')) + sorted((OUT / 'css').glob('*.css'))
+    digest = hashlib.sha256(b''.join(p.read_bytes() for p in files)).hexdigest()[:10]
+    stamp = lambda m: f"{m.group(1)}{m.group(2)}?v={digest}{m.group(3)}"
+    for js in (OUT / 'js').rglob('*.js'):
+        text = js.read_text()
+        text = re.sub(r"(from\s+['\"])(\.{1,2}/[^'\"?]+\.js)(['\"])", stamp, text)
+        text = re.sub(r"(import\(\s*['\"])(\.{1,2}/[^'\"?]+\.js)(['\"])", stamp, text)
+        js.write_text(text)
+    for css in (OUT / 'css').glob('*.css'):
+        css.write_text(re.sub(r"(@import url\(['\"]?)(\./[^'\")?]+\.css)(['\"]?\))", stamp, css.read_text()))
+    for page in OUT.glob('*.html'):
+        text = page.read_text()
+        text = re.sub(r'((?:src|href)=")((?:js|css)/[^"?]+\.(?:js|css))(")', stamp, text)
+        page.write_text(text)
+
 def human_bytes(n):
     units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
     v = float(n or 0); i = 0
@@ -121,6 +139,7 @@ def build():
     shutil.copytree(ROOT / 'docs', OUT / 'docs', dirs_exist_ok=True)
     (OUT / 'results/bigdata').mkdir(parents=True, exist_ok=True)
     (OUT / 'results/bigdata/index.json').write_text(json.dumps(bigdata, indent=1))
+    bust_caches()
     print(f'Built {OUT} · {totals["analyses"]} big-data analyses · {human_bytes(totals["bytes"])} · {totals["jobs"]} Slurm jobs')
 
 if __name__ == '__main__':
